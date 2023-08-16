@@ -7,7 +7,7 @@ To ensure standardization of development and improve teamwork. Please observe th
 * **Pull Requests (PRs) and Code Review**: After completing work on a feature branch, team members can create a Pull Request to merge it back into the development branch. This allows for code review, where team members can provide feedback and suggestions for improvement. At least one team member should review the code to ensure quality and consistency.
 * **Regular Merging and Releases**: Periodically merge the development branch back into the main branch to keep the main branch up to-date and stable. 
 
-If you are not familiar with this: please watch this tutorial video! https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev  
+If you are not familiar with this, please watch this tutorial video! https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev  
 
 ## Project Objectives
 Aquaterra, an organization specializing in simplifying and cost-effective online farming solutions utilizing parameters such as soil moisture and temperature, currently operates a web platform developed on AWS cloud services and a PostgreSQL backend. The platform facilitates user access to crucial moisture data across different sections of their fields.
