@@ -1,5 +1,11 @@
 # AQ-Redback
 
+## Structure of folders  
+├── docs/ # This folder contains documentation and project artifacts  
+├── src/  # This folder contains src code  
+└── README.md  
+
+
 ## Development Processes && Specifications
 To ensure standardization of development and improve teamwork. Please observe the following:
 * **Set Up Branching Strategy**: Generally, you can consider creating a **main branch (typically named main or master)** and **development branches**. The **main branch** can hold **stable versions**, while **development branches** are used for team members to work on specific features. This helps avoid making direct changes to the main branch and reduces potential conflicts.
