@@ -56,7 +56,27 @@ This semester, our team undertook this project with the following goals:
 | Yilin Liu  | Scrum Master | <li>Ensure timely delivery of planned features within each sprint.<li>Conduct and coordinate standup meetings and other Scrum ceremonies.<li>Regularly oversee the Kanban board and allocate tasks to team members.<li>Maintain vigilance over project updates and progress, offering proactive feedback. |
 | Bowei Huang  | Dev Lead | <li>Engage in routine standup meetings, providing updates on ongoing development progress and sharing feedback.<li>Collaboratively address bugs and defects in the code, working together to find effective solutions.<li>Regularly monitor the Kanban board to stay informed about new changes and updates. |
 | You Zhou  | Dev Member | <li>Engage in routine standup meetings, providing updates on ongoing development progress and sharing feedback.<li>Collaboratively address bugs and defects in the code, working together to find effective solutions.<li>Regularly monitor the Kanban board to stay informed about new changes and updates. |
-| Jiakang Li  | Quality Manager | <li>Monitoring and inspecting our mobile application to identify deviations from quality standards and taking corrective actions when necessary.<li>Identifying potential quality risks and implementing measures to mitigate them. |  
+| Jiakang Li  | Quality Manager | <li>Monitoring and inspecting our mobile application to identify deviations from quality standards and taking corrective actions when necessary.<li>Identifying potential quality risks and implementing measures to mitigate them. |
+| Lokesh Chandra  | Client |  |  
+
+## Road Map
+| Event  | Date |
+| ------------- | ------------- |
+| Sprint 1  | 17/08/2023 | 
+| Sprint 2  | 18/08/2023 - 22/09/2023 | 
+| Sprint 1  | 22/09/2023 - 20/10/2023 | 
+
+## Preparation for Development Tools and Technologies  
+* Xcode: Development Environment  
+* Swift Programming Laguange: Xcode comes equipped with integrated support for the Swift programming language, making it a seamless platform for coding in Swift.
+* Apis and Libraries: https://www.swift.org/documentation/#
+* UIKit or SwiftUI: These are UI frameworks provided by Apple for building user interfaces. UIKit has been used for many years and offers a lot of flexibility and control. SwiftUI is a newer declarative framework that simplifies UI development with less code.
+* Interface Builder: Xcode includes Interface Builder, a visual tool for designing user interfaces. You can use it to create and arrange UI elements visually, and then connect them to your Swift code.
+* Version Control System: Using a version control system like Git is crucial for tracking changes to your code, collaborating with other developers, and managing different versions of your app.
+* iOS SDK: The iOS Software Development Kit includes APIs, frameworks, and tools for building apps. It provides access to device features like camera, location, sensors, and more.
+* Apple Developer Account: To test and distribute your app on real devices or through the App Store, you'll need an Apple Developer account. This involves enrolling in a program and obtaining certificates and provisioning profiles.
+
+
 
 ## Structure of folders  
 ├── docs/ # This folder contains documentation and project artifacts  
