@@ -57,12 +57,11 @@ This semester, our team undertook this project with the following goals:
 | Bowei Huang  | Dev Lead | <li>Engage in routine standup meetings, providing updates on ongoing development progress and sharing feedback.<li>Collaboratively address bugs and defects in the code, working together to find effective solutions.<li>Regularly monitor the Kanban board to stay informed about new changes and updates. |
 | You Zhou  | Dev Member | <li>Engage in routine standup meetings, providing updates on ongoing development progress and sharing feedback.<li>Collaboratively address bugs and defects in the code, working together to find effective solutions.<li>Regularly monitor the Kanban board to stay informed about new changes and updates. |
 | Jiakang Li  | Quality Manager | <li>Monitoring and inspecting our mobile application to identify deviations from quality standards and taking corrective actions when necessary.<li>Identifying potential quality risks and implementing measures to mitigate them. |
-| Lokesh Chandra  | Client |  |  
 
 ## Road Map
 | Event  | Date |
 | ------------- | ------------- |
-| Sprint 1  | 17/08/2023 | 
+| Sprint 1  | 03/18/2023 - 17/08/2023 | 
 | Sprint 2  | 18/08/2023 - 22/09/2023 | 
 | Sprint 3  | 22/09/2023 - 20/10/2023 | 
 
