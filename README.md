@@ -64,7 +64,7 @@ This semester, our team undertook this project with the following goals:
 | ------------- | ------------- |
 | Sprint 1  | 17/08/2023 | 
 | Sprint 2  | 18/08/2023 - 22/09/2023 | 
-| Sprint 1  | 22/09/2023 - 20/10/2023 | 
+| Sprint 3  | 22/09/2023 - 20/10/2023 | 
 
 ## Preparation for Development Tools and Technologies  
 * Xcode: Development Environment  
