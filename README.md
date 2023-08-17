@@ -87,10 +87,15 @@ This semester, our team undertook this project with the following goals:
 
 
 ## Development Processes & Specifications
-To ensure standardization of development and improve teamwork. Please observe the following:
-* **Set Up Branching Strategy**: Generally, you can consider creating a **main branch (typically named main or master)** and **development branches**. The **main branch** can hold **stable versions**, while **development branches** are used for team members to work on specific features. This helps avoid making direct changes to the main branch and reduces potential conflicts.
-* **Create Feature Branches**: For effective collaboration, it's recommended that team members create feature branches off the development branch for developing specific features or fixes. Once the feature development is complete, the branch can be merged back into the development branch to ensure code integration and stability.
-* **Pull Requests (PRs) and Code Review**: After completing work on a feature branch, team members can create a Pull Request to merge it back into the development branch. This allows for code review, where team members can provide feedback and suggestions for improvement. At least one team member should review the code to ensure quality and consistency.
-* **Regular Merging and Releases**: Periodically merge the development branch back into the main branch to keep the main branch up to-date and stable. 
+To standardize development and enhance teamwork, please follow these guidelines:
 
-If you are not familiar with this, please watch this tutorial video! https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev  
+- **Branching Strategy** - Create a **main branch (e.g., main or master)** for stable versions and **development branches** for specific features. Avoid changes to the main branch.
+
+- **Feature Branches** - Team members should use feature branches off the development branch for working on specific tasks. Merge them back for integration.
+
+- **Pull Requests and Review** - Create Pull Requests for merging. One team member should review for quality and consistency.
+
+- **Regular Merging and Releases** - Periodically merge development into the main branch for stability. Plan releases for new features.
+
+For more details, watch this tutorial - [Tutorial Video](https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev).
+ 
