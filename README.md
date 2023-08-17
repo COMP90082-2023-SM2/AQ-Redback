@@ -66,14 +66,17 @@ This semester, our team undertook this project with the following goals:
 | Sprint 3  | 22/09/2023 - 20/10/2023 | 
 
 ## Preparation for Development Tools and Technologies  
-* Xcode: Development Environment  
-* Swift Programming Laguange: Xcode comes equipped with integrated support for the Swift programming language, making it a seamless platform for coding in Swift.
-* Apis and Libraries: https://www.swift.org/documentation/#
-* UIKit or SwiftUI: These are UI frameworks provided by Apple for building user interfaces. UIKit has been used for many years and offers a lot of flexibility and control. SwiftUI is a newer declarative framework that simplifies UI development with less code.
-* Interface Builder: Xcode includes Interface Builder, a visual tool for designing user interfaces. You can use it to create and arrange UI elements visually, and then connect them to your Swift code.
-* Version Control System: Using a version control system like Git is crucial for tracking changes to your code, collaborating with other developers, and managing different versions of your app.
-* iOS SDK: The iOS Software Development Kit includes APIs, frameworks, and tools for building apps. It provides access to device features like camera, location, sensors, and more.
-* Apple Developer Account: To test and distribute your app on real devices or through the App Store, you'll need an Apple Developer account. This involves enrolling in a program and obtaining certificates and provisioning profiles.
+| Technology/Concept           | Description                                                                                                                                                                                           |
+|-----------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Xcode                       | Xcode serves as the development environment for iOS app creation.                                                                                                                                      |
+| Swift Programming Language  | Xcode features built-in support for the Swift programming language, ensuring a seamless experience for coding in Swift.                                                                                 |
+| APIs and Libraries          | Additional resources can be found in the Swift documentation at [https://www.swift.org/documentation/#](https://www.swift.org/documentation/#).                                                   |
+| UIKit or SwiftUI           | Apple offers two UI frameworks for interface development: UIKit, a long-standing framework known for its flexibility and control, and SwiftUI, a newer declarative framework that simplifies UI development with less code. |
+| Interface Builder          | Within Xcode, developers can access Interface Builder, a visual tool for designing user interfaces. This tool facilitates the creation and arrangement of UI elements through visual means, which can then be linked to Swift code. |
+| Version Control System     | The utilization of a version control system, such as Git, plays a crucial role in code tracking, collaboration, and the management of multiple app versions.                                              |
+| iOS SDK                     | The iOS Software Development Kit encompasses an array of APIs, frameworks, and tools essential for app development. This kit provides access to device functionalities like the camera, location services, sensors, and more.       |
+| Apple Developer Account    | For testing and app distribution via real devices or the App Store, developers are required to possess an Apple Developer account. This entails enrollment in a program and the acquisition of certificates and provisioning profiles. |
+
 
 
 
