@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5745682F2A9A270300884D81 /* Test1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5745682E2A9A270300884D81 /* Test1.swift */; };
 		57BB171C2A9A24E900D10CA7 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57BB171B2A9A24E900D10CA7 /* Test.swift */; };
 		57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */; };
 		57FDEEF62A99C9F10029303E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF52A99C9F10029303E /* MainView.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5745682E2A9A270300884D81 /* Test1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test1.swift; sourceTree = SOURCE_ROOT; };
 		57BB171B2A9A24E900D10CA7 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = SOURCE_ROOT; };
 		57FDEEF02A99C9F10029303E /* AquaTerra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTerra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AquaTerraApp.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				57BB171B2A9A24E900D10CA7 /* Test.swift */,
+				5745682E2A9A270300884D81 /* Test1.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -183,6 +186,7 @@
 				57FDEF0E2A99E7300029303E /* RegisterView.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				57BB171C2A9A24E900D10CA7 /* Test.swift in Sources */,
+				5745682F2A9A270300884D81 /* Test1.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,
 				57FDEF102A99E7450029303E /* RegisterViewViewModel.swift in Sources */,
 			);
