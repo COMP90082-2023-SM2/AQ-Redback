@@ -10,7 +10,6 @@
 		57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */; };
 		57FDEEF62A99C9F10029303E /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF52A99C9F10029303E /* MainView.swift */; };
 		57FDEEF82A99C9F20029303E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FDEEF72A99C9F20029303E /* Assets.xcassets */; };
-		57FDEEFC2A99C9F20029303E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 57FDEEFB2A99C9F20029303E /* Preview Assets.xcassets */; };
 		57FDEF082A99D7620029303E /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF072A99D7620029303E /* LoginView.swift */; };
 		57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF092A99D8AE0029303E /* MainViewViewModel.swift */; };
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
@@ -24,7 +23,6 @@
 		57FDEEF52A99C9F10029303E /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		57FDEEF72A99C9F20029303E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		57FDEEF92A99C9F20029303E /* AquaTerra.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AquaTerra.entitlements; sourceTree = "<group>"; };
-		57FDEEFB2A99C9F20029303E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		57FDEF072A99D7620029303E /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		57FDEF092A99D8AE0029303E /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
 		57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
@@ -67,17 +65,8 @@
 				57FDEF032A99D55D0029303E /* ViewModels */,
 				57FDEF022A99D54D0029303E /* Views */,
 				57FDEEF92A99C9F20029303E /* AquaTerra.entitlements */,
-				57FDEEFA2A99C9F20029303E /* Preview Content */,
 			);
 			path = AquaTerra;
-			sourceTree = "<group>";
-		};
-		57FDEEFA2A99C9F20029303E /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				57FDEEFB2A99C9F20029303E /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		57FDEF022A99D54D0029303E /* Views */ = {
@@ -174,7 +163,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				57FDEEFC2A99C9F20029303E /* Preview Assets.xcassets in Resources */,
 				57FDEEF82A99C9F20029303E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
