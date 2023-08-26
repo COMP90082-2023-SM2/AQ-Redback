@@ -97,5 +97,5 @@ To standardize development and enhance teamwork, please follow these guidelines:
 
 - **Regular Merging and Releases** - Periodically merge development into the main branch for stability. Plan releases for new features.
 
-For more details, watch this tutorial - [Tutorial Video](https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev).
+For more details, watch these two tutorial videos - [Tutorial Video1](https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev) - [Tutorial Video2](https://www.youtube.com/watch?v=RYDCwj37ous&ab_channel=SoftwareSageLLC).
  
