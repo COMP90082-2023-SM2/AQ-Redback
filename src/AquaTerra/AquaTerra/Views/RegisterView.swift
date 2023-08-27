@@ -9,7 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     var body: some View {
-        Text("This is registration page!")
+        Text("This is registration page")
     }
 }
 
