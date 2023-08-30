@@ -9,7 +9,9 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var email = ""
+    @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
+    
+    @State var username = ""
     @State var password = ""
     
     var body: some View {
@@ -23,13 +25,16 @@ struct LoginView: View {
                     
                     // Login Form
                     Form {
-                        TextField("Email Address", text: $email)
+                        TextField("Email Address", text: $username)
                             .textFieldStyle(DefaultTextFieldStyle())
                         SecureField("Password", text: $password)
                             .textFieldStyle(DefaultTextFieldStyle())
                         
                         Button {
-                            // Attemp to log in
+                            sessionViewViewModel.login(
+                                username: username,
+                                password: password
+                            )
                         } label: {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
@@ -41,13 +46,12 @@ struct LoginView: View {
                             }
                         }
                         .padding(10)
-
                     }
                     
                     // Create Account
                     VStack {
                         Text("New to here?")
-                        NavigationLink("Create an Account", destination: RegisterView())
+                        Button("Don't have an account? Sign Up.", action: sessionViewViewModel.showSignUp)
                     }
                     .padding(.bottom, 50)
                 }
