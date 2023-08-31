@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aquaterra-dev-130753-authRole",
+      "UnauthRoleArn": "arn:aws:iam::432438631462:role/amplify-aquaterra-dev-130753-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::432438631462:role/amplify-aquaterra-dev-130753-authRole",
+      "Region": "ap-southeast-2",
+      "DeploymentBucketName": "amplify-aquaterra-dev-130753-deployment",
+      "UnauthRoleName": "amplify-aquaterra-dev-130753-unauthRole",
+      "StackName": "amplify-aquaterra-dev-130753",
+      "StackId": "arn:aws:cloudformation:ap-southeast-2:432438631462:stack/amplify-aquaterra-dev-130753/94d23d50-47ab-11ee-a3c0-0aab8283ace8",
+      "AmplifyAppId": "d5y4sm4qt3goi"
+    },
+    "categories": {
+      "auth": {
+        "aquaterra841512a2": {
+          "userPoolId": "ap-southeast-2_cSiT8o4mI",
+          "userPoolName": "user",
+          "webClientId": "18kpbn4p9u0ii7bdi58hatrdtm",
+          "nativeClientId": "18kpbn4p9u0ii7bdi58hatrdtm"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+framework module Pods_AquaTerra {
+  umbrella header "Pods-AquaTerra-umbrella.h"
+
+  export *
+  module * { export * }
+}
