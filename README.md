@@ -95,7 +95,41 @@ To standardize development and enhance teamwork, please follow these guidelines:
 
 - **Pull Requests and Review** - Create Pull Requests for merging. One team member should review for quality and consistency.
 
+
 - **Regular Merging and Releases** - Periodically merge development into the main branch for stability. Plan releases for new features.
 
-For more details, watch these two tutorial videos - [Tutorial Video1](https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev) - [Tutorial Video2](https://www.youtube.com/watch?v=RYDCwj37ous&ab_channel=SoftwareSageLLC).
+For more details, watch these two tutorial videos - [Tutorial Video1](https://www.youtube.com/watch?v=jhtbhSpV5YA&ab_channel=AkoDev) - [Tutorial Video2](https://www.youtube.com/watch?v=RYDCwj37ous&ab_channel=SoftwareSageLLC).  
+
+## Prerequisites
+
+### General Prerequisites
+1. Xcode
+   - Install from the App Store
+2. AWS Amplify CLI
+   - Install by using this command in Terminal:
+   ```bash
+   curl -sL https://aws-amplify.github.io/amplify-cli/install | bash && $SHELL
+   ```
+3. Clone the AquaTerra Project
+
+### Pod Install
+```bash
+sudo gem install cocoapods
+```
+```bash
+pod install --repo-update
+```
+### AWS Amplify  
+After cloning the repo, please make sure that the local Amplify cli has connected to the correct backend by running the following steps:
+```bash
+amplify init
+```
+# The setup 
+* Select in Default  
+* Editor choose Xcode  
+
+```bash
+amplify push
+```
+
  
