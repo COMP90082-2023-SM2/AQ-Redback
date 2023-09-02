@@ -58,6 +58,14 @@ This semester, our team undertook this project with the following goals:
 | You Zhou  | Dev Member | <li>Engage in routine standup meetings, providing updates on ongoing development progress and sharing feedback.<li>Collaboratively address bugs and defects in the code, working together to find effective solutions.<li>Regularly monitor the Kanban board to stay informed about new changes and updates. |
 | Jiakang Li  | Quality Manager | <li>Monitoring and inspecting our mobile application to identify deviations from quality standards and taking corrective actions when necessary.<li>Identifying potential quality risks and implementing measures to mitigate them. |
 
+## Our Stakeholders  
+| Role  | Name | Contacts |  
+| ------------- | ------------- | ------------- |
+| Client (AquaTerra Group)  | Lokesh Chandra | lokesh.spark.1651@gmail.com |  
+| IT Support (AquaTerra Group)  | Sean Wei | sean.wei@unimelb.edu.au |  
+| Supervisor  | Wei Wang | wang.w11@unimelb.edu.au |  
+
+
 ## Road Map
 | Event  | Date |
 | ------------- | ------------- |
