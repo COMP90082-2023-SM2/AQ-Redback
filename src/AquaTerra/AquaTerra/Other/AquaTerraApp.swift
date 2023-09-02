@@ -24,17 +24,14 @@ struct AquaTerraApp: App {
             case .login:
                 LoginView()
                     .environmentObject(sessionViewViewModel)
-                
             case .signUp:
                 SignUpView()
                     .environmentObject(sessionViewViewModel)
-                
             case .confirmCode(let username):
                 ConfirmationView(username: username)
                     .environmentObject(sessionViewViewModel)
-                
             case .session(let user):
-                SessionView(user: user)
+                MainTabView(user: user)
                     .environmentObject(sessionViewViewModel)
             }
         }

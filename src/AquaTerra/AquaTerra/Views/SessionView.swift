@@ -10,8 +10,7 @@ import SwiftUI
 
 struct SessionView: View {
     
-    @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
-    
+    let sessionViewViewModel: SessionViewViewModel
     let user: AuthUser
     
     var body: some View {
@@ -25,6 +24,7 @@ struct SessionView: View {
             Button("Sign Out", action: {
                 sessionViewViewModel.signOut()
             })
+            Spacer()
         }
     }
 }
@@ -35,6 +35,6 @@ struct SessionView_Previews: PreviewProvider {
         let username: String = "dummy"
     }
     static var previews: some View {
-        SessionView(user: DummyUser())
+        SessionView(sessionViewViewModel: SessionViewViewModel(), user: DummyUser())
     }
 }
