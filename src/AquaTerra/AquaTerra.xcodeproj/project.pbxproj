@@ -21,6 +21,24 @@
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
 		57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0D2A99E7300029303E /* SignUpView.swift */; };
 		57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */; };
+		C6D20F042AB0259700154327 /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EEA2AB0259700154327 /* UITools.swift */; };
+		C6D20F052AB0259700154327 /* CusTabbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EEC2AB0259700154327 /* CusTabbarView.swift */; };
+		C6D20F062AB0259700154327 /* NavigationBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EED2AB0259700154327 /* NavigationBackView.swift */; };
+		C6D20F072AB0259700154327 /* FMNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EEE2AB0259700154327 /* FMNavigationBarView.swift */; };
+		C6D20F082AB0259700154327 /* BaseBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF12AB0259700154327 /* BaseBarModel.swift */; };
+		C6D20F092AB0259700154327 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF22AB0259700154327 /* BaseView.swift */; };
+		C6D20F0A2AB0259700154327 /* GRInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF52AB0259700154327 /* GRInputView.swift */; };
+		C6D20F0B2AB0259700154327 /* GRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF62AB0259700154327 /* GRButton.swift */; };
+		C6D20F0C2AB0259700154327 /* GRMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF72AB0259700154327 /* GRMapView.swift */; };
+		C6D20F0D2AB0259700154327 /* GRSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF82AB0259700154327 /* GRSubmitView.swift */; };
+		C6D20F0E2AB0259700154327 /* GRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EF92AB0259700154327 /* GRegistrationView.swift */; };
+		C6D20F0F2AB0259700154327 /* GRStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EFA2AB0259700154327 /* GRStepView.swift */; };
+		C6D20F102AB0259700154327 /* MGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EFD2AB0259700154327 /* MGViewModel.swift */; };
+		C6D20F112AB0259700154327 /* MGAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EFE2AB0259700154327 /* MGAlertView.swift */; };
+		C6D20F122AB0259700154327 /* MGListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20EFF2AB0259700154327 /* MGListItem.swift */; };
+		C6D20F132AB0259700154327 /* MGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20F002AB0259700154327 /* MGHeaderView.swift */; };
+		C6D20F142AB0259700154327 /* MGatewaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20F012AB0259700154327 /* MGatewaysView.swift */; };
+		C6D20F152AB0259700154327 /* FManagementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6D20F032AB0259700154327 /* FManagementView.swift */; };
 		F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3E345A1324DBA81237826D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -44,6 +62,25 @@
 		9CE2869D6D248E0C62E96416 /* Pods-AquaTerra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.debug.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.debug.xcconfig"; sourceTree = "<group>"; };
 		B126E68F6AB3E80649E71B0A /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		BD3E345A1324DBA81237826D /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		C6D20EEA2AB0259700154327 /* UITools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITools.swift; sourceTree = "<group>"; };
+		C6D20EEC2AB0259700154327 /* CusTabbarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CusTabbarView.swift; sourceTree = "<group>"; };
+		C6D20EED2AB0259700154327 /* NavigationBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBackView.swift; sourceTree = "<group>"; };
+		C6D20EEE2AB0259700154327 /* FMNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMNavigationBarView.swift; sourceTree = "<group>"; };
+		C6D20EF12AB0259700154327 /* BaseBarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBarModel.swift; sourceTree = "<group>"; };
+		C6D20EF22AB0259700154327 /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		C6D20EF52AB0259700154327 /* GRInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRInputView.swift; sourceTree = "<group>"; };
+		C6D20EF62AB0259700154327 /* GRButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRButton.swift; sourceTree = "<group>"; };
+		C6D20EF72AB0259700154327 /* GRMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRMapView.swift; sourceTree = "<group>"; };
+		C6D20EF82AB0259700154327 /* GRSubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSubmitView.swift; sourceTree = "<group>"; };
+		C6D20EF92AB0259700154327 /* GRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRegistrationView.swift; sourceTree = "<group>"; };
+		C6D20EFA2AB0259700154327 /* GRStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRStepView.swift; sourceTree = "<group>"; };
+		C6D20EFD2AB0259700154327 /* MGViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGViewModel.swift; sourceTree = "<group>"; };
+		C6D20EFE2AB0259700154327 /* MGAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGAlertView.swift; sourceTree = "<group>"; };
+		C6D20EFF2AB0259700154327 /* MGListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGListItem.swift; sourceTree = "<group>"; };
+		C6D20F002AB0259700154327 /* MGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGHeaderView.swift; sourceTree = "<group>"; };
+		C6D20F012AB0259700154327 /* MGatewaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGatewaysView.swift; sourceTree = "<group>"; };
+		C6D20F032AB0259700154327 /* FManagementView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FManagementView.swift; sourceTree = "<group>"; };
+		C6D20F162AB026CF00154327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +117,8 @@
 		57FDEEF22A99C9F10029303E /* AquaTerra */ = {
 			isa = PBXGroup;
 			children = (
+				C6D20F162AB026CF00154327 /* Info.plist */,
+				C6D20EE82AB0259700154327 /* FramManagement */,
 				57FDEF062A99D5870029303E /* Other */,
 				57FDEF042A99D56C0029303E /* Models */,
 				57FDEF032A99D55D0029303E /* ViewModels */,
@@ -152,6 +191,103 @@
 				BD3E345A1324DBA81237826D /* amplifyconfiguration.json */,
 			);
 			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		C6D20EE82AB0259700154327 /* FramManagement */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EE92AB0259700154327 /* Tools */,
+				C6D20EEB2AB0259700154327 /* Common */,
+				C6D20EEF2AB0259700154327 /* Bar */,
+				C6D20EF32AB0259700154327 /* Views */,
+			);
+			path = FramManagement;
+			sourceTree = "<group>";
+		};
+		C6D20EE92AB0259700154327 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EEA2AB0259700154327 /* UITools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		C6D20EEB2AB0259700154327 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EEC2AB0259700154327 /* CusTabbarView.swift */,
+				C6D20EED2AB0259700154327 /* NavigationBackView.swift */,
+				C6D20EEE2AB0259700154327 /* FMNavigationBarView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C6D20EEF2AB0259700154327 /* Bar */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EF02AB0259700154327 /* ViewModels */,
+				C6D20EF22AB0259700154327 /* BaseView.swift */,
+			);
+			path = Bar;
+			sourceTree = "<group>";
+		};
+		C6D20EF02AB0259700154327 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EF12AB0259700154327 /* BaseBarModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C6D20EF32AB0259700154327 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EF42AB0259700154327 /* GRegistration */,
+				C6D20EFB2AB0259700154327 /* MGateway */,
+				C6D20F022AB0259700154327 /* FManagement */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C6D20EF42AB0259700154327 /* GRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EF52AB0259700154327 /* GRInputView.swift */,
+				C6D20EF62AB0259700154327 /* GRButton.swift */,
+				C6D20EF72AB0259700154327 /* GRMapView.swift */,
+				C6D20EF82AB0259700154327 /* GRSubmitView.swift */,
+				C6D20EF92AB0259700154327 /* GRegistrationView.swift */,
+				C6D20EFA2AB0259700154327 /* GRStepView.swift */,
+			);
+			path = GRegistration;
+			sourceTree = "<group>";
+		};
+		C6D20EFB2AB0259700154327 /* MGateway */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EFC2AB0259700154327 /* ViewModels */,
+				C6D20EFE2AB0259700154327 /* MGAlertView.swift */,
+				C6D20EFF2AB0259700154327 /* MGListItem.swift */,
+				C6D20F002AB0259700154327 /* MGHeaderView.swift */,
+				C6D20F012AB0259700154327 /* MGatewaysView.swift */,
+			);
+			path = MGateway;
+			sourceTree = "<group>";
+		};
+		C6D20EFC2AB0259700154327 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20EFD2AB0259700154327 /* MGViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C6D20F022AB0259700154327 /* FManagement */ = {
+			isa = PBXGroup;
+			children = (
+				C6D20F032AB0259700154327 /* FManagementView.swift */,
+			);
+			path = FManagement;
 			sourceTree = "<group>";
 		};
 		D1BA71CF673EFDA48F3D8DAD /* Pods */ = {
@@ -283,16 +419,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C6D20F0B2AB0259700154327 /* GRButton.swift in Sources */,
 				57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */,
 				57FDEF082A99D7620029303E /* LoginView.swift in Sources */,
+				C6D20F0A2AB0259700154327 /* GRInputView.swift in Sources */,
+				C6D20F062AB0259700154327 /* NavigationBackView.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
+				C6D20F0E2AB0259700154327 /* GRegistrationView.swift in Sources */,
+				C6D20F042AB0259700154327 /* UITools.swift in Sources */,
 				57FDEEF62A99C9F10029303E /* MainView.swift in Sources */,
+				C6D20F142AB0259700154327 /* MGatewaysView.swift in Sources */,
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
+				C6D20F0D2AB0259700154327 /* GRSubmitView.swift in Sources */,
+				C6D20F122AB0259700154327 /* MGListItem.swift in Sources */,
+				C6D20F112AB0259700154327 /* MGAlertView.swift in Sources */,
+				C6D20F0C2AB0259700154327 /* GRMapView.swift in Sources */,
+				C6D20F102AB0259700154327 /* MGViewModel.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
+				C6D20F0F2AB0259700154327 /* GRStepView.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
+				C6D20F052AB0259700154327 /* CusTabbarView.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,
+				C6D20F072AB0259700154327 /* FMNavigationBarView.swift in Sources */,
+				C6D20F152AB0259700154327 /* FManagementView.swift in Sources */,
+				C6D20F132AB0259700154327 /* MGHeaderView.swift in Sources */,
+				C6D20F082AB0259700154327 /* BaseBarModel.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
 				57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */,
+				C6D20F092AB0259700154327 /* BaseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +574,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AquaTerra/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -457,6 +612,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AquaTerra/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;

@@ -20,23 +20,24 @@ struct AquaTerraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            switch sessionViewViewModel.authState {
-            case .login:
-                LoginView()
-                    .environmentObject(sessionViewViewModel)
-                
-            case .signUp:
-                SignUpView()
-                    .environmentObject(sessionViewViewModel)
-                
-            case .confirmCode(let username):
-                ConfirmationView(username: username)
-                    .environmentObject(sessionViewViewModel)
-                
-            case .session(let user):
-                SessionView(user: user)
-                    .environmentObject(sessionViewViewModel)
-            }
+            BaseView()
+//            switch sessionViewViewModel.authState {
+//            case .login:
+//                LoginView()
+//                    .environmentObject(sessionViewViewModel)
+//
+//            case .signUp:
+//                SignUpView()
+//                    .environmentObject(sessionViewViewModel)
+//
+//            case .confirmCode(let username):
+//                ConfirmationView(username: username)
+//                    .environmentObject(sessionViewViewModel)
+//
+//            case .session(let user):
+//                SessionView(user: user)
+//                    .environmentObject(sessionViewViewModel)
+//            }
         }
     }
     
