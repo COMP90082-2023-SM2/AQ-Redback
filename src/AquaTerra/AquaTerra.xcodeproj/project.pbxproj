@@ -10,6 +10,8 @@
 		15A089DBC62FBADED997AF91 /* Pods_AquaTerra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA3B18A8B7FAC55C97B7D6E /* Pods_AquaTerra.framework */; };
 		452DD591C1AB5F625927C19F /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = B126E68F6AB3E80649E71B0A /* awsconfiguration.json */; };
 		570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */; };
+		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
+		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
 		57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */; };
 		57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */; };
 		57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */; };
@@ -26,6 +28,8 @@
 
 /* Begin PBXFileReference section */
 		570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewViewModel.swift; sourceTree = "<group>"; };
+		573C635F2AAC3BCE0085524C /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
+		573C63652AAD6C420085524C /* SensorListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListApi.swift; sourceTree = "<group>"; };
 		57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		57FDEEF02A99C9F10029303E /* AquaTerra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTerra.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,7 @@
 				57FDEF0D2A99E7300029303E /* SignUpView.swift */,
 				57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */,
 				57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */,
+				573C635F2AAC3BCE0085524C /* SensorListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 		57FDEF042A99D56C0029303E /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				573C63652AAD6C420085524C /* SensorListApi.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -290,6 +296,8 @@
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
+				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
+				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
 				57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */,
@@ -418,6 +426,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
@@ -455,6 +464,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
