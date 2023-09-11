@@ -16,7 +16,7 @@ enum AuthState {
 
 final class SessionViewViewModel: ObservableObject {
     @Published var authState: AuthState = .login
-    
+
     func getCurrentAuthUser() {
         if let user = Amplify.Auth.getCurrentUser() {
             authState = .session(user: user)
@@ -109,6 +109,7 @@ final class SessionViewViewModel: ObservableObject {
         }
     }
     
+    
     func signOut() {
         _ = Amplify.Auth.signOut{ [weak self] result in
             switch result {
@@ -118,6 +119,31 @@ final class SessionViewViewModel: ObservableObject {
                 }
             case .failure(let error):
                 print("Sign out error: ", error)
+            }
+        }
+    }
+    
+    func fetchFieldData(completion: @escaping (Result<[FieldData], Error>) -> Void) {
+        SensorListApi.shared.getTopSensors { result in
+            switch result {
+            case .success(let data):
+                DispatchQueue.main.async {
+                    completion(.success(data))
+                }
+
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+
+    func fetchSensorData(fieldId: String, completion: @escaping (Result<SensorDataResponse, Error>) -> Void) {
+        SensorListApi.shared.getSensorData(fieldId: fieldId) { result in
+            switch result {
+            case .success(let sensorDataResponse):
+                completion(.success(sensorDataResponse))
+            case .failure(let error):
+                completion(.failure(error))
             }
         }
     }

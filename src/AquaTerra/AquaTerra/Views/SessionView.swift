@@ -12,29 +12,48 @@ struct SessionView: View {
     
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
     
+    @State private var sensorData: [FieldData] = []
+    
     let user: AuthUser
     
+    @State private var isShowingSensorListView = false
+    
+    @ObservedObject private var viewModel = SessionViewViewModel()
+    
     var body: some View {
-        VStack {
-            Spacer()
-            Text("You sign in as \(user.username) using Amplify!")
-                .font(.largeTitle)
-                .multilineTextAlignment(.center)
-            
-            Spacer()
-            Button("Sign Out", action: {
-                sessionViewViewModel.signOut()
-            })
+        NavigationStack {
+            VStack {
+                Spacer()
+                Text("You sign in as \(user.username) using Amplify!")
+                    .font(.largeTitle)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                Button("Sign Out", action: {
+                    sessionViewViewModel.signOut()
+                })
+                
+                Button("My Sensors", action: {
+                    sessionViewViewModel.fetchFieldData { result in
+                        switch result {
+                        case .success(let data):
+                            self.sensorData = data
+                            self.isShowingSensorListView = true
+                        case .failure(let error):
+                            print("Error fetching sensor data: \(error)")
+                        }
+                    }
+                })
+                .navigationDestination(isPresented: $isShowingSensorListView){
+                    SensorListView(sensorData: self.sensorData, viewModel: viewModel)
+                }
+
+                List(sensorData, id: \.field_id) { sensor in
+                    Text("Field Name: \(sensor.field_name)")
+                }
+            }
+            .navigationBarTitle("Session")
         }
     }
 }
 
-struct SessionView_Previews: PreviewProvider {
-    private struct DummyUser: AuthUser {
-        let userId: String = "1"
-        let username: String = "dummy"
-    }
-    static var previews: some View {
-        SessionView(user: DummyUser())
-    }
-}
