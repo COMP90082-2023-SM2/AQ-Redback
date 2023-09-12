@@ -8,13 +8,11 @@
 import SwiftUI
 
 struct SensorListView: View {
-    var sensorData: [FieldData]
+    var fieldData: [FieldData]
 
     @ObservedObject var viewModel: SessionViewViewModel
     @State private var selectedFieldName: FieldData?
-    @State private var fieldID: String? = nil
-    @State private var gatewayID: String? = nil
-    @State private var isMenuVisible = false
+    @State private var sensorData: [SensorData] = [] // 存储传感器数据
 
     var body: some View {
         NavigationView {
@@ -29,29 +27,30 @@ struct SensorListView: View {
                     Spacer()
                 }
 
-                Text("Field ID: \(fieldID ?? "")")
-                    .font(.title)
-                    .padding()
-
-                Text("Gateway ID: \(gatewayID ?? "")")
-                    .font(.title)
-                    .padding()
-
-                HStack {
-                    Spacer()
+                // Display Sensor ID and Gateway ID
+                List(sensorData, id: \.sensor_id) { sensor in
+                    HStack {
+                        Text("Sensor ID: \(sensor.sensor_id)")
+                            .font(.title)
+                        Spacer()
+                        Text("Gateway ID: \(sensor.gateway_id ?? "")")
+                            .font(.title)
+                    }
+                }
+                .padding()
+            }
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
                     Menu("Select a Field") {
-                        ForEach(sensorData, id: \.field_id) { sensor in
+                        ForEach(fieldData, id: \.field_id) { sensor in
                             Button(action: {
                                 selectedFieldName = sensor
-                                isMenuVisible = false
-
                                 viewModel.fetchSensorData(fieldId: sensor.field_id) { result in
                                     switch result {
                                     case .success(let sensorDataResponse):
-                                        if let firstSensor = sensorDataResponse.data.first {
-                                            self.fieldID = firstSensor.field_id
-                                            self.gatewayID = firstSensor.gateway_id
-                                        }
+                                        // 更新传感器数据
+                                        self.sensorData = sensorDataResponse.data
                                     case .failure(let error):
                                         print("Error: \(error)")
                                     }
@@ -62,13 +61,8 @@ struct SensorListView: View {
                         }
                     }
                     .menuStyle(BorderlessButtonMenuStyle())
-                    .padding()
-                    .font(.title)
                 }
-
-                Spacer()
             }
-            .navigationBarTitle("", displayMode: .inline)
         }
     }
 }

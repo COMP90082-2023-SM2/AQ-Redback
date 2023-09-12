@@ -9,6 +9,7 @@ import Foundation
 
 final class SensorListApi {
     static let shared = SensorListApi()
+    var currentUserUsername: String?
     
     struct Constants {
         static let fieldDataURL = URL(string: "https://webapp.aquaterra.cloud/api/field")
@@ -24,7 +25,7 @@ final class SensorListApi {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let jsonDict: [String: String] = ["userName":"demo"]
+        let jsonDict: [String: String] = ["userName": currentUserUsername ?? ""]
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -55,7 +56,7 @@ final class SensorListApi {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        let jsonDict: [String: Any] = ["userName": "demo", "fieldId": fieldId]
+        let jsonDict: [String: Any] = ["userName": currentUserUsername ?? "", "fieldId": fieldId]
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
