@@ -23,6 +23,12 @@
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
 		57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0D2A99E7300029303E /* SignUpView.swift */; };
 		57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */; };
+		6999F1EE2AB01DC000B8B3BE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */; };
+		6999F1EF2AB01DC000B8B3BE /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1E92AB01DBF00B8B3BE /* OpenSans-Bold.ttf */; };
+		6999F1F02AB01DC000B8B3BE /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EA2AB01DBF00B8B3BE /* OpenSans-Regular.ttf */; };
+		6999F1F12AB01DC000B8B3BE /* OpenSans-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EB2AB01DBF00B8B3BE /* OpenSans-ExtraBold.ttf */; };
+		6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */; };
+		6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */; };
 		F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3E345A1324DBA81237826D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +49,13 @@
 		57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		57FDEF0D2A99E7300029303E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewViewModel.swift; sourceTree = "<group>"; };
+		6999F1E72AB01A5900B8B3BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		6999F1E92AB01DBF00B8B3BE /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		6999F1EA2AB01DBF00B8B3BE /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		6999F1EB2AB01DBF00B8B3BE /* OpenSans-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-ExtraBold.ttf"; sourceTree = "<group>"; };
+		6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		7542C0EA64370EBD912ACCD8 /* Pods-AquaTerra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.release.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.release.xcconfig"; sourceTree = "<group>"; };
 		7BA3B18A8B7FAC55C97B7D6E /* Pods_AquaTerra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AquaTerra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE2869D6D248E0C62E96416 /* Pods-AquaTerra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.debug.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -65,6 +78,12 @@
 		57FDEEE72A99C9F10029303E = {
 			isa = PBXGroup;
 			children = (
+				6999F1E92AB01DBF00B8B3BE /* OpenSans-Bold.ttf */,
+				6999F1EB2AB01DBF00B8B3BE /* OpenSans-ExtraBold.ttf */,
+				6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */,
+				6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */,
+				6999F1EA2AB01DBF00B8B3BE /* OpenSans-Regular.ttf */,
+				6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */,
 				57FDEEF22A99C9F10029303E /* AquaTerra */,
 				57FDEEF12A99C9F10029303E /* Products */,
 				D1BA71CF673EFDA48F3D8DAD /* Pods */,
@@ -84,6 +103,7 @@
 		57FDEEF22A99C9F10029303E /* AquaTerra */ = {
 			isa = PBXGroup;
 			children = (
+				6999F1E72AB01A5900B8B3BE /* Info.plist */,
 				57FDEF062A99D5870029303E /* Other */,
 				57FDEF042A99D56C0029303E /* Models */,
 				57FDEF032A99D55D0029303E /* ViewModels */,
@@ -231,7 +251,13 @@
 			files = (
 				57FDEEFC2A99C9F20029303E /* Preview Assets.xcassets in Resources */,
 				57FDEEF82A99C9F20029303E /* Assets.xcassets in Resources */,
+				6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */,
+				6999F1EF2AB01DC000B8B3BE /* OpenSans-Bold.ttf in Resources */,
+				6999F1F12AB01DC000B8B3BE /* OpenSans-ExtraBold.ttf in Resources */,
+				6999F1F02AB01DC000B8B3BE /* OpenSans-Regular.ttf in Resources */,
 				452DD591C1AB5F625927C19F /* awsconfiguration.json in Resources */,
+				6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */,
+				6999F1EE2AB01DC000B8B3BE /* OpenSans-Medium.ttf in Resources */,
 				F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -429,6 +455,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AquaTerra/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -467,6 +494,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = AquaTerra/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
