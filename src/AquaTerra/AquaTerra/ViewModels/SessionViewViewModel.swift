@@ -20,6 +20,7 @@ final class SessionViewViewModel: ObservableObject {
     func getCurrentAuthUser() {
         if let user = Amplify.Auth.getCurrentUser() {
             authState = .session(user: user)
+            SensorListApi.shared.currentUserUsername = user.username
         } else {
             authState = .login
         }
@@ -87,6 +88,27 @@ final class SessionViewViewModel: ObservableObject {
             
         }
     }
+    
+//    func login(username: String, password: String) {
+//        _ = Amplify.Auth.signIn(
+//            username: username,
+//            password: password,
+//            options: nil
+//        ) {[weak self] result in
+//            switch result {
+//            case .success(let signInResult):
+//                print(signInResult)
+//                if signInResult.isSignedIn {
+//                    DispatchQueue.main.async {
+//                        self?.getCurrentAuthUser()
+//                    }
+//                }
+//
+//            case .failure(let error):
+//                print("Login error: ", error)
+//            }
+//        }
+//    }
     
     func login(username: String, password: String) {
         _ = Amplify.Auth.signIn(
