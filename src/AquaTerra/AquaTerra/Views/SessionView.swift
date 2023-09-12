@@ -9,17 +9,17 @@ import Amplify
 import SwiftUI
 
 struct SessionView: View {
-    
+
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
-    
-    @State private var sensorData: [FieldData] = []
-    
+
+    @State private var fieldData: [FieldData] = []
+
     let user: AuthUser
-    
+
     @State private var isShowingSensorListView = false
-    
+
     @ObservedObject private var viewModel = SessionViewViewModel()
-    
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -27,17 +27,17 @@ struct SessionView: View {
                 Text("You sign in as \(user.username) using Amplify!")
                     .font(.largeTitle)
                     .multilineTextAlignment(.center)
-                
+
                 Spacer()
                 Button("Sign Out", action: {
                     sessionViewViewModel.signOut()
                 })
-                
+
                 Button("My Sensors", action: {
                     sessionViewViewModel.fetchFieldData { result in
                         switch result {
                         case .success(let data):
-                            self.sensorData = data
+                            self.fieldData = data
                             self.isShowingSensorListView = true
                         case .failure(let error):
                             print("Error fetching sensor data: \(error)")
@@ -45,10 +45,10 @@ struct SessionView: View {
                     }
                 })
                 .navigationDestination(isPresented: $isShowingSensorListView){
-                    SensorListView(sensorData: self.sensorData, viewModel: viewModel)
+                    SensorListView(fieldData: self.fieldData, viewModel: viewModel)
                 }
 
-                List(sensorData, id: \.field_id) { sensor in
+                List(fieldData, id: \.field_id) { sensor in
                     Text("Field Name: \(sensor.field_name)")
                 }
             }
@@ -56,4 +56,3 @@ struct SessionView: View {
         }
     }
 }
-
