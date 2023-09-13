@@ -19,6 +19,7 @@ struct SessionView: View {
 
     let user: AuthUser
 
+    @State private var isShowingFarmsView = false
     @State private var isShowingSensorListView = false
 
     @ObservedObject private var viewModel = SessionViewViewModel()
@@ -75,6 +76,7 @@ struct SessionView: View {
                 
                 Button{
                     
+                    isShowingFarmsView.toggle()
                     
                 }label: {
                     ZStack{
@@ -93,6 +95,9 @@ struct SessionView: View {
                             .foregroundColor(Color.white)
                     }.frame(width: 318, height: 110)
                         
+                }.navigationDestination(isPresented: $isShowingFarmsView) {
+                    
+                    FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                 }
 
                 Button{
