@@ -2,7 +2,7 @@
 //  SessionView.swift
 //  AquaTerra
 //
-//  Created by Davincci on 30/8/2023.
+//  Created by jiakang on 13/9/2023.
 //
 
 import Amplify
@@ -42,10 +42,9 @@ struct SessionView: View {
                     .frame(maxHeight: 127)
                     .background(Color.gray)
                 
-                
-                Button{
-                    
-                }label: {
+                NavigationLink {
+                    MGatewaysView()
+                } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.white)
@@ -62,8 +61,15 @@ struct SessionView: View {
                             .font(.custom("OpenSans-ExtraBold", size: 20))
                             .foregroundColor(Color.white)
                     }.frame(width: 318, height: 110)
-                        
+                       
                 }.padding(.top,13)
+
+                
+//                Button{
+//
+//                }label: {
+//
+//                }.padding(.top,13)
                 
      
 //
@@ -150,9 +156,12 @@ struct SessionView: View {
                     sessionViewViewModel.signOut()
                 })
  
-                CustomTabBar().padding(.bottom, 30)
+                CustomTabBar(selectedTab: .constant(.manage)).padding(.bottom, 30)
                 
             }.ignoresSafeArea()
+        }.onAppear {
+            MGViewModel.share().setupUser(user: user.userId)
         }
     }
+    
 }

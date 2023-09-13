@@ -30,6 +30,21 @@
 		6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */; };
 		6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */; };
 		6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */; };
+		C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68262AB1947B0053DF9C /* BaseBarModel.swift */; };
+		C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68282AB1947B0053DF9C /* UITools.swift */; };
+		C61C683D2AB1947B0053DF9C /* NavigationBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */; };
+		C61C683E2AB1947B0053DF9C /* FMNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682B2AB1947B0053DF9C /* FMNavigationBarView.swift */; };
+		C61C683F2AB1947B0053DF9C /* GRInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682E2AB1947B0053DF9C /* GRInputView.swift */; };
+		C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682F2AB1947B0053DF9C /* GRButton.swift */; };
+		C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68302AB1947B0053DF9C /* GRMapView.swift */; };
+		C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68312AB1947B0053DF9C /* GRSubmitView.swift */; };
+		C61C68432AB1947B0053DF9C /* GRegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68322AB1947B0053DF9C /* GRegistrationView.swift */; };
+		C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68332AB1947B0053DF9C /* GRStepView.swift */; };
+		C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68362AB1947B0053DF9C /* MGViewModel.swift */; };
+		C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68372AB1947B0053DF9C /* MGAlertView.swift */; };
+		C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68382AB1947B0053DF9C /* MGListItem.swift */; };
+		C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68392AB1947B0053DF9C /* MGHeaderView.swift */; };
+		C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */; };
 		F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3E345A1324DBA81237826D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +78,21 @@
 		9CE2869D6D248E0C62E96416 /* Pods-AquaTerra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.debug.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.debug.xcconfig"; sourceTree = "<group>"; };
 		B126E68F6AB3E80649E71B0A /* awsconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = awsconfiguration.json; sourceTree = "<group>"; };
 		BD3E345A1324DBA81237826D /* amplifyconfiguration.json */ = {isa = PBXFileReference; explicitFileType = text.json; path = amplifyconfiguration.json; sourceTree = "<group>"; };
+		C61C68262AB1947B0053DF9C /* BaseBarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseBarModel.swift; sourceTree = "<group>"; };
+		C61C68282AB1947B0053DF9C /* UITools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITools.swift; sourceTree = "<group>"; };
+		C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBackView.swift; sourceTree = "<group>"; };
+		C61C682B2AB1947B0053DF9C /* FMNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMNavigationBarView.swift; sourceTree = "<group>"; };
+		C61C682E2AB1947B0053DF9C /* GRInputView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRInputView.swift; sourceTree = "<group>"; };
+		C61C682F2AB1947B0053DF9C /* GRButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRButton.swift; sourceTree = "<group>"; };
+		C61C68302AB1947B0053DF9C /* GRMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRMapView.swift; sourceTree = "<group>"; };
+		C61C68312AB1947B0053DF9C /* GRSubmitView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRSubmitView.swift; sourceTree = "<group>"; };
+		C61C68322AB1947B0053DF9C /* GRegistrationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRegistrationView.swift; sourceTree = "<group>"; };
+		C61C68332AB1947B0053DF9C /* GRStepView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRStepView.swift; sourceTree = "<group>"; };
+		C61C68362AB1947B0053DF9C /* MGViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGViewModel.swift; sourceTree = "<group>"; };
+		C61C68372AB1947B0053DF9C /* MGAlertView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGAlertView.swift; sourceTree = "<group>"; };
+		C61C68382AB1947B0053DF9C /* MGListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGListItem.swift; sourceTree = "<group>"; };
+		C61C68392AB1947B0053DF9C /* MGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGHeaderView.swift; sourceTree = "<group>"; };
+		C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGatewaysView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +135,7 @@
 		57FDEEF22A99C9F10029303E /* AquaTerra */ = {
 			isa = PBXGroup;
 			children = (
+				C61C68242AB1947B0053DF9C /* MainTab */,
 				6999F1E72AB01A5900B8B3BE /* Info.plist */,
 				57FDEF062A99D5870029303E /* Other */,
 				57FDEF042A99D56C0029303E /* Models */,
@@ -181,6 +212,84 @@
 				BD3E345A1324DBA81237826D /* amplifyconfiguration.json */,
 			);
 			name = AmplifyConfig;
+			sourceTree = "<group>";
+		};
+		C61C68242AB1947B0053DF9C /* MainTab */ = {
+			isa = PBXGroup;
+			children = (
+				C61C68252AB1947B0053DF9C /* ViewModels */,
+				C61C68272AB1947B0053DF9C /* Tools */,
+				C61C68292AB1947B0053DF9C /* Common */,
+				C61C682C2AB1947B0053DF9C /* Views */,
+			);
+			path = MainTab;
+			sourceTree = "<group>";
+		};
+		C61C68252AB1947B0053DF9C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C61C68262AB1947B0053DF9C /* BaseBarModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C61C68272AB1947B0053DF9C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				C61C68282AB1947B0053DF9C /* UITools.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		C61C68292AB1947B0053DF9C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */,
+				C61C682B2AB1947B0053DF9C /* FMNavigationBarView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		C61C682C2AB1947B0053DF9C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C61C682D2AB1947B0053DF9C /* GRegistration */,
+				C61C68342AB1947B0053DF9C /* MGateway */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C61C682D2AB1947B0053DF9C /* GRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				C61C682E2AB1947B0053DF9C /* GRInputView.swift */,
+				C61C682F2AB1947B0053DF9C /* GRButton.swift */,
+				C61C68302AB1947B0053DF9C /* GRMapView.swift */,
+				C61C68312AB1947B0053DF9C /* GRSubmitView.swift */,
+				C61C68322AB1947B0053DF9C /* GRegistrationView.swift */,
+				C61C68332AB1947B0053DF9C /* GRStepView.swift */,
+			);
+			path = GRegistration;
+			sourceTree = "<group>";
+		};
+		C61C68342AB1947B0053DF9C /* MGateway */ = {
+			isa = PBXGroup;
+			children = (
+				C61C68352AB1947B0053DF9C /* ViewModels */,
+				C61C68372AB1947B0053DF9C /* MGAlertView.swift */,
+				C61C68382AB1947B0053DF9C /* MGListItem.swift */,
+				C61C68392AB1947B0053DF9C /* MGHeaderView.swift */,
+				C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */,
+			);
+			path = MGateway;
+			sourceTree = "<group>";
+		};
+		C61C68352AB1947B0053DF9C /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C61C68362AB1947B0053DF9C /* MGViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		D1BA71CF673EFDA48F3D8DAD /* Pods */ = {
@@ -321,16 +430,31 @@
 				57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */,
 				57FDEF082A99D7620029303E /* LoginView.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
+				C61C683E2AB1947B0053DF9C /* FMNavigationBarView.swift in Sources */,
+				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
 				6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */,
 				57FDEEF62A99C9F10029303E /* MainView.swift in Sources */,
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
+				C61C68432AB1947B0053DF9C /* GRegistrationView.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
+				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
+				C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
+				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
+				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
+				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
+				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
 				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
+				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
+				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,
+				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
 				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,
+				C61C683F2AB1947B0053DF9C /* GRInputView.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
+				C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */,
 				57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */,
+				C61C683D2AB1947B0053DF9C /* NavigationBackView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
