@@ -98,7 +98,7 @@ final class SensorListApi {
                 "type": "Feature",
                 "geometry": [
                     "type": "Point",
-                    "coordinates": [coordinate.longitude, coordinate.latitude] // 使用所选坐标
+                    "coordinates": [coordinate.longitude, coordinate.latitude]
                 ],
                 "properties": [:]
             ]

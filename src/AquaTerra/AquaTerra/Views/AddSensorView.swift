@@ -44,18 +44,17 @@ struct AddSensorView: View {
 
                 Section {
                     Button("Add Sensor") {
-                        print("Add Sensor button tapped") 
                         guard let selectedCoordinate = selectedCoordinate else {
                             return
                         }
-
+                        
                         viewModel.addSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate)
-
-                        showAddSensorSheet = false
-                    }
+                            
+                            showAddSensorSheet = false
+                        }
                 }
             }
-            .listStyle(GroupedListStyle()) // 使用 GroupedListStyle，使列表看起来更接近表单的样式
+            .listStyle(GroupedListStyle()) 
             .navigationBarTitle("Add Sensor", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
                 showAddSensorSheet = false
