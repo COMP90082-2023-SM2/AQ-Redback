@@ -4,7 +4,6 @@
 //
 //  Created by Davincci on 9/9/2023.
 //
-
 import SwiftUI
 
 struct SensorListView: View {
@@ -12,7 +11,13 @@ struct SensorListView: View {
 
     @ObservedObject var viewModel: SessionViewViewModel
     @State private var selectedFieldName: FieldData?
-    @State private var sensorData: [SensorData] = [] // 存储传感器数据
+    @State private var sensorData: [SensorData] = []
+
+    @State private var showAlert = false
+    @State private var deletionIndex: Int?
+    @State private var showAddSensorSheet = false
+    @State private var selectedFieldID: String?
+    @State private var shouldRefreshData = false
 
     var body: some View {
         NavigationView {
@@ -27,17 +32,68 @@ struct SensorListView: View {
                     Spacer()
                 }
 
-                // Display Sensor ID and Gateway ID
-                List(sensorData, id: \.sensor_id) { sensor in
-                    HStack {
-                        Text("Sensor ID: \(sensor.sensor_id)")
-                            .font(.title)
-                        Spacer()
-                        Text("Gateway ID: \(sensor.gateway_id ?? "")")
-                            .font(.title)
+                Group {
+                    if selectedFieldName != nil {
+                        Button(action: {
+                            // Show the add sensor sheet
+                            showAddSensorSheet = true
+                        }) {
+                            Label("Add Sensor", systemImage: "plus.circle.fill")
+                                .font(.title)
+                                .foregroundColor(.blue)
+                        }
+                        .padding()
                     }
                 }
+
+                List {
+                    ForEach(sensorData, id: \.sensor_id) { sensor in
+                        HStack {
+                            Text("Sensor ID: \(viewModel.abbreviateSensorID(sensor.sensor_id))")
+                                .font(.title)
+                            Spacer()
+                            Text("Gateway ID: \(sensor.gateway_id ?? "")")
+                                .font(.title)
+                            Button(action: {
+
+                            }) {
+                                Image(systemName: "pencil.circle.fill")
+                                    .foregroundColor(.green)
+                                    .font(.title)
+                            }
+                            Button(action: {
+                                deletionIndex = sensorData.firstIndex(of: sensor)
+                                showAlert = true
+                            }) {
+                                Image(systemName: "trash.circle.fill")
+                                    .foregroundColor(.red)
+                                    .font(.title)
+                            }
+                        }
+                    }
+                    .onDelete(perform: deleteSensor)
+                }
                 .padding()
+                .alert(isPresented: $showAlert) {
+                    Alert(
+                        title: Text("Delete Sensor"),
+                        message: Text("Are you sure you want to delete this sensor?"),
+                        primaryButton: .destructive(Text("Delete")) {
+                            if let index = deletionIndex {
+                                let sensorToDelete = sensorData[index]
+                                viewModel.deleteSensor(sensorID: sensorToDelete.sensor_id) { result in
+                                    switch result {
+                                    case .success:
+                                        sensorData.remove(at: index)
+                                    case .failure(let error):
+                                        print("Error deleting sensor: \(error)")
+                                    }
+                                }
+                            }
+                        },
+                        secondaryButton: .cancel()
+                    )
+                }
             }
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
@@ -49,7 +105,6 @@ struct SensorListView: View {
                                 viewModel.fetchSensorData(fieldId: sensor.field_id) { result in
                                     switch result {
                                     case .success(let sensorDataResponse):
-                                        // 更新传感器数据
                                         self.sensorData = sensorDataResponse.data
                                     case .failure(let error):
                                         print("Error: \(error)")
@@ -64,5 +119,18 @@ struct SensorListView: View {
                 }
             }
         }
+        .sheet(isPresented: $showAddSensorSheet) {
+            if let field = selectedFieldName {
+                AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: field.field_id)
+            }
+        }
+    }
+
+    private func deleteSensor(at offsets: IndexSet) {
+        if let firstIndex = offsets.first {
+            deletionIndex = firstIndex
+            showAlert = true
+        }
     }
 }
+

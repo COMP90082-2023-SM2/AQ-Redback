@@ -6,6 +6,8 @@
 //
 
 import Amplify
+import CoreLocation
+
 
 enum AuthState {
     case signUp
@@ -16,6 +18,7 @@ enum AuthState {
 
 final class SessionViewViewModel: ObservableObject {
     @Published var authState: AuthState = .login
+    @Published var sensorData: [SensorData] = []
 
     func getCurrentAuthUser() {
         if let user = Amplify.Auth.getCurrentUser() {
@@ -89,27 +92,6 @@ final class SessionViewViewModel: ObservableObject {
         }
     }
     
-//    func login(username: String, password: String) {
-//        _ = Amplify.Auth.signIn(
-//            username: username,
-//            password: password,
-//            options: nil
-//        ) {[weak self] result in
-//            switch result {
-//            case .success(let signInResult):
-//                print(signInResult)
-//                if signInResult.isSignedIn {
-//                    DispatchQueue.main.async {
-//                        self?.getCurrentAuthUser()
-//                    }
-//                }
-//
-//            case .failure(let error):
-//                print("Login error: ", error)
-//            }
-//        }
-//    }
-    
     func login(username: String, password: String) {
         _ = Amplify.Auth.signIn(
             username: username,
@@ -169,4 +151,50 @@ final class SessionViewViewModel: ObservableObject {
             }
         }
     }
+    
+    func abbreviateSensorID(_ sensorID: String) -> String {
+        if sensorID.count <= 5 {
+            return sensorID
+        } else {
+            let endIndex = sensorID.index(sensorID.startIndex, offsetBy: 5)
+            let abbreviatedID = sensorID[..<endIndex]
+            return "\(abbreviatedID)..."
+        }
+    }
+    
+    func deleteSensor(sensorID: String, completion: @escaping (Result<Void, Error>) -> Void) {
+        SensorListApi.shared.deleteSensor(sensorID: sensorID) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func addSensor(sensorID: String, fieldID: String, coordinate: CLLocationCoordinate2D) {
+        SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: coordinate) { [weak self] result in
+            switch result {
+            case .success:
+                print("Sensor created successfully")
+
+                self?.fetchSensorData(fieldId: fieldID) { result in
+                    switch result {
+                    case .success(let sensorDataResponse):
+                        DispatchQueue.main.async {
+                            self?.sensorData = sensorDataResponse.data
+                        }
+                    case .failure(let error):
+                        print("Error fetching sensor data: \(error)")
+                    }
+                }
+
+            case .failure(let error):
+                print("Error creating sensor: \(error)")
+            }
+        }
+    }
+
 }
+
