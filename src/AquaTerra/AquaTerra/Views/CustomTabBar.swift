@@ -38,11 +38,11 @@ struct CustomTabBar: View {
                                     .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                    .foregroundColor(Color("ButtonGradient2"))
-                                Text("Dashboard")
-                                    .font(.custom("OpenSans-SemiBold", size: 12))
-                            }.foregroundColor(Color("ButtonGradient2"))
+                                    .frame(width:32, height: 30)
+                                    .foregroundColor(Color("HighlightColor"))
+//                                Text("Dashboard")
+//                                    .font(.custom("OpenSans-SemiBold", size: 12))
+                            }.foregroundColor(Color("HighlightColor"))
                                 .frame(width: geo.size.width, height: geo.size.height)
                             
                         }else{
@@ -51,9 +51,9 @@ struct CustomTabBar: View {
                                     .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                Text("Dashboard")
-                                    .font(.custom("OpenSans-Regular", size: 12))
+                                    .frame(width:32, height: 30)
+//                                Text("Dashboard")
+//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
@@ -68,23 +68,28 @@ struct CustomTabBar: View {
                         geo in
                         if selectedTab == .manage {
                             VStack(alignment: .center, spacing: 5){
-                                Image(systemName: "tree.fill")
+//                                Image(systemName: "tree.fill")
+                                Image("Manage")
+                                    .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                Text("Manage")
-                                    .font(.custom("OpenSans-SemiBold", size: 12))
-                            }.foregroundColor(Color("ButtonGradient2"))
+                                    .frame(width:36, height: 36)
+                                    .foregroundColor(Color("HighlightColor"))
+//                                Text("Manage")
+//                                    .font(.custom("OpenSans-SemiBold", size: 12))
+                            }.foregroundColor(Color("HighlightColor"))
                                 .frame(width: geo.size.width, height: geo.size.height)
                             
                         }else{
                             VStack(alignment: .center, spacing: 5){
-                                Image(systemName: "tree.fill")
+                                //                                Image(systemName: "tree.fill")
+                                    Image("Manage")
+                                    .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                Text("Manage")
-                                    .font(.custom("OpenSans-Regular", size: 12))
+                                    .frame(width:36, height: 36)
+//                                Text("Manage")
+//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
@@ -99,23 +104,27 @@ struct CustomTabBar: View {
                         geo in
                         if selectedTab == .profile {
                             VStack(alignment: .center, spacing: 5){
-                                Image(systemName: "person.fill")
+//                                Image(systemName: "person.fill")
+                                Image("User")
+                                    .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                Text("Profile")
-                                    .font(.custom("OpenSans-SemiBold", size: 12))
-                            }.foregroundColor(Color("ButtonGradient2"))
+                                    .frame(width:34, height: 34)
+                                    .foregroundColor(Color("HighlightColor"))
+//                                Text("Profile")
+//                                    .font(.custom("OpenSans-SemiBold", size: 12))
+                            }.foregroundColor(Color("HighlightColor"))
                                  .frame(width: geo.size.width, height: geo.size.height)
                             
                         }else{
                             VStack(alignment: .center, spacing: 5){
-                                Image(systemName: "person.fill")
+                                Image("User")
+                                    .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
-                                    .frame(width:24, height: 24)
-                                Text("Profile")
-                                    .font(.custom("OpenSans-Regular", size: 12))
+                                    .frame(width:34, height: 34)
+//                                Text("Profile")
+//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
                                  .frame(width: geo.size.width, height: geo.size.height)
                             

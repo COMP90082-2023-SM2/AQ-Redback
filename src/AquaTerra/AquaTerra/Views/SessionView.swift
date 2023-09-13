@@ -150,8 +150,10 @@ struct SessionView: View {
                 
 //                Button("Sign Out", action: {
 //                    sessionViewViewModel.signOut()
-//                }).tint(Color.green)
-                
+//                })
+//                .tint(Color("ButtonGradient1"))
+//                .font(.custom("OpenSans-Bold", size: 16))
+//
                 Spacer()
  
                 CustomTabBar(selectedTab: $selectedTab)
