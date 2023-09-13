@@ -9,6 +9,8 @@ import Amplify
 import SwiftUI
 
 struct SessionView: View {
+    
+    @State var selectedTab: Tabs = .manage
 
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
 
@@ -152,9 +154,11 @@ struct SessionView: View {
                         
                 }
                 
-                Button("Sign Out", action: {
-                    sessionViewViewModel.signOut()
-                })
+//                Button("Sign Out", action: {
+//                    sessionViewViewModel.signOut()
+//                }).tint(Color.green)
+                
+                Spacer()
  
                 CustomTabBar(selectedTab: .constant(.manage)).padding(.bottom, 30)
                 
