@@ -21,6 +21,7 @@ struct GRButton: View {
                 buttonAction?()
             } label: {
                 Text(title)
+                    .font(.custom("OpenSans-SemiBold", size: 14))
                     .font(font)
                     .foregroundColor(.white)
                     .frame(width: geometry.size.width,height: geometry.size.height)

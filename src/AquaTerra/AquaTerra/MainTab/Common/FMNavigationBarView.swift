@@ -12,16 +12,24 @@ struct FMNavigationBarView: View {
     
     var body: some View {
         ZStack{
-            Rectangle()
-                .foregroundColor(.white)
-                .shadow(color: .black.opacity(0.2), radius: 1,y: 3)
-            HStack{
+            
+            ZStack{
+                Rectangle()
+                    .fill(Color.white)
+                    .frame(maxHeight: 150)
+//                    .shadow(color: Color.black.opacity(0.15), radius: 2.0, x: 0, y: 0)
+                    .ignoresSafeArea()
+                
+                
                 Text(title)
-                    .font(.system(size: 20,weight: .heavy))
-                    .foregroundColor(.black)
-                Spacer()
-            }
-            .padding(.leading,20)
+                    .font(.custom("OpenSans-ExtraBold", size: 20))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.top, 95)
+                    .padding(.horizontal, 28)
+                    .padding(.bottom, 10)
+            }.ignoresSafeArea()
+                .frame(maxHeight: 127)
+            
         }
     }
 }

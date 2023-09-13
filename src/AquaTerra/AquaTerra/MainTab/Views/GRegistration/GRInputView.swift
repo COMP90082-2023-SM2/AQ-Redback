@@ -14,25 +14,31 @@ struct GRInputView: View {
     
     var body: some View {
         VStack(alignment:.leading){
-            HStack(){
-                Text("Pleas Enter your")
-                    .font(.system(size: 16))
-                Text("gateway ID:")
-                    .font(.system(size: 16,weight: .bold))
+            HStack(spacing: 3.5){
+                Text("Please enter your")
+                    .font(.custom("OpenSans-Regular", size: 16))
+                Text("Gateway ID:")
+                    .font(.custom("OpenSans-Bold", size: 16))
             }
             HStack{
                 Text("Note: The gateway ID is provided with your purchase.")
-                    .font(.system(size: 13))
+                    .font(.custom("OpenSans-Regular", size: 13))
             }
             .padding(.top,1)
-            TextField("Example:AquaTerraGateway909a56",text: $textFiledText)
-                .frame(height: 50)
-                .textFieldStyle(
-                    TextFieldFillStyle(backColor: .init(hex: "D8D8D8")
-                        .opacity(0.3))
-                )
-                .font(.system(size: 14,weight: .bold))
-                .padding(.top)
+            
+            VStack(alignment: .center){
+                TextField("Example:AquaTerraGateway909a56",text: $textFiledText)
+                    .font(.custom("OpenSans-Regular", size: 14))
+                    .foregroundColor(Color("Placeholder"))
+                    .padding([.horizontal], 15)
+                    .frame(height: 50)
+                    .accentColor(Color("ButtonGradient2"))
+                
+            }
+            .background(Color("Hint"))
+            .cornerRadius(5)
+            
+            
             GRButton(enable: $enable,title: "Next",buttonAction: {
                 buttonClick?()
             })

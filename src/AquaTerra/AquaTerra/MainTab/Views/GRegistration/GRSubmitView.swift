@@ -14,11 +14,12 @@ struct GRSubmitView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Please submit to finish registering your gateway:")
-                    .font(.system(size: 16))
-                Spacer()
+                Text("Please submit this form to finish registering your new gateway:")
+                    .font(.custom("OpenSans-Regular", size: 16))
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             .padding(.bottom,10)
+            
             Text(gateway)
                 .foregroundColor(.init(hex: "#80B240"))
                 .font(.system(size: 16,weight: .bold))

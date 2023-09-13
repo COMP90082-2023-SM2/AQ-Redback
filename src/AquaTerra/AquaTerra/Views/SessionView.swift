@@ -42,7 +42,6 @@ struct SessionView: View {
                         .padding(.bottom, 15)
                 }.ignoresSafeArea()
                     .frame(maxHeight: 127)
-                    .background(Color.gray)
                 
                 NavigationLink {
                     MGatewaysView()

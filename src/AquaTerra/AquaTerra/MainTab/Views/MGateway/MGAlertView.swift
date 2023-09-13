@@ -20,7 +20,7 @@ struct MGAlertView: View {
                 VStack{
                     HStack {
                         Text("Gateway Deletion")
-                            .font(.system(size: 14,weight: .bold))
+                            .font(.custom("OpenSans-Bold", size: 14))
                         Spacer()
                         Image("close-fill")
                             .onTapGesture {
@@ -29,7 +29,7 @@ struct MGAlertView: View {
                     }
                     .padding(20)
                     Text("All sensors connected to this gateway will be deleted. Are you sure?")
-                        .font(.system(size: 14))
+                        .font(.custom("OpenSans-Regular", size: 14))
                         .padding(.top,-5)
                         .padding(.leading,20)
                         .padding(.trailing,20)
@@ -48,7 +48,7 @@ struct MGAlertView: View {
                 }
                 .frame(width: 258,height: 211)
                 .background(.white)
-                .cornerRadius(20)
+                .cornerRadius(8)
             }
             .frame(width: geometry.size.width,height: geometry.size.height)
             .background(.black.opacity(0.3))

@@ -15,15 +15,16 @@ struct MGHeaderView : View {
     
     var body: some View{
         HStack{
-            Text("No.")
-                .font(.system(size: 16,weight: .bold))
+            Text("NO.")
+                .font(.custom("OpenSans-SemiBold", size: 16))
                 .foregroundColor(.black)
-            Spacer().frame(width: 30)
+            Spacer().frame(width: 35)
             Text("Gateway ID")
-                .font(.system(size: 16,weight: .bold))
+                .font(.custom("OpenSans-SemiBold", size: 16))
                 .foregroundColor(.black)
             Spacer()
             Text("Add Gateway")
+                .font(.custom("OpenSans-Bold", size: 14))
                 .foregroundColor(.white)
                 .onTapGesture {
                     addGateways = true
@@ -37,10 +38,13 @@ struct MGHeaderView : View {
                     ))
                 .cornerRadius(5)
         }
-        .foregroundColor(.init(hex: "#FAFAFA"))
-        .frame(height: 60)
+        .padding(.vertical, 20)
+        .padding(.trailing, 15)
+        .padding(.leading, 33)
+        .frame(maxWidth: .infinity)
         .onAppear{
             addGateways = false
         }
+        .background(Color("bar"))
     }
 }

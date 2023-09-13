@@ -14,20 +14,32 @@ struct MGListItem : View {
     var gatewayId : String = "demo"
     var deleteActionBlock : DeleteActionBlock?
     var body: some View{
-        HStack{
-            Text(no)
-            Spacer().frame(width: 35)
-            Text(gatewayId)
-            Spacer()
-            Image("close-circle-fill").resizable()
-                .frame(width: 38,height: 38)
-                .padding(.trailing,30)
-                .onTapGesture {
-                    deleteActionBlock?(gatewayId)
-                }
-        }
-        .frame(height: 68)
-        .padding(.leading,5)
+        VStack{
+            HStack{
+                Text(no)
+                    .font(.custom("OpenSans-Regular", size: 14))
+                    .padding(.leading, 36)
+                Spacer().frame(width: 51)
+                Text(gatewayId)
+                    .font(.custom("OpenSans-Regular", size: 14))
+                Spacer()
+                Image("close-circle-fill").resizable()
+                    .frame(width: 38,height: 38)
+                    .padding(.trailing,36)
+                    .onTapGesture {
+                        deleteActionBlock?(gatewayId)
+                    }
+               
+            }
+            .background(Color.white)
+            
+            Divider()
+                .frame(maxWidth: .infinity)
+                .foregroundColor(Color("bar"))
+                .frame(height: 2)
+            
+        }.frame(height: 68)
+        
     }
 }
 

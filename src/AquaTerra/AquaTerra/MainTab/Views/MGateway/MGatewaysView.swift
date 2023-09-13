@@ -87,16 +87,19 @@ struct MGMainView : View {
     var body: some View {
         VStack{
             FMNavigationBarView(title: "My Gateways")
-                .frame(height: 60)
-            Spacer()
+                .frame(height: 45)
+            MGHeaderView(addGateways: $addGateways)
+                .frame(maxWidth: .infinity)
             List {
-                MGHeaderView(addGateways: $addGateways)
                 ForEach(items,id: \.self) { item in
-                    MGListItem(no: item.no,gatewayId: item.gatewayId,deleteActionBlock:deleteBlock)
+                    MGListItem(no: item.no,gatewayId:
+                        item.gatewayId,deleteActionBlock:deleteBlock)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                         .onTapGesture {}
                 }
             }
-            .listStyle(.plain)
+            .listStyle(PlainListStyle())
         }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

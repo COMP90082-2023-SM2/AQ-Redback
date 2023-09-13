@@ -13,7 +13,7 @@ struct GRSetpView : View {
     
     var body: some View{
         ZStack{
-            Image("line_ic")
+            Rectangle().frame(width: 250, height: 3.5)
                 .padding(.bottom)
             HStack{
                 ForEach(0..<3,id: \.self){ index in
@@ -52,7 +52,7 @@ struct CirCleView : View {
                     .foregroundColor(backColor)
                 if !complete {
                     Text("\(index)")
-                        .font(.system(size: 18,weight: .bold))
+                        .font(.custom("OpenSans-Bold", size: 14))
                         .foregroundColor(.white)
                 }else {
                     Image("check_fill_ic")

@@ -14,7 +14,8 @@ struct NavigationBackView : View {
                 .padding(.top,2)
             Text("Back")
                 .foregroundColor(.init(hex: "#C1B18B"))
-                .font(.system(size: 16,weight: .bold))
+                .font(.custom("OpenSans-ExtraBold", size: 16))
+
         }
     }
 }

@@ -44,8 +44,6 @@ struct GReginstrationView: View {
             }else{
                 FMNavigationBarView(title: "Gateway Registration")
                     .frame(height: 60)
-                Spacer()
-                    .frame(height: 20)
                 VStack{
                     GRSetpView(selected: $seletectd)
                     VStack{
@@ -67,7 +65,7 @@ struct GReginstrationView: View {
                                 }
                             }
                             .frame(height: 50)
-                            .padding()
+                            .padding(.top, 15)
                         case 2:
                             GRSubmitView(gateway: textFiledText) {
                                 submit()
