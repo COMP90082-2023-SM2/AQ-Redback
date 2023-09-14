@@ -195,6 +195,18 @@ final class SessionViewViewModel: ObservableObject {
             }
         }
     }
+    
+    func editSensor(sensorData: SensorData, coordinate: CLLocationCoordinate2D, completion: @escaping () -> Void) {
+        SensorListApi.shared.editSensor(sensorData: sensorData, coordinate: coordinate) { result in
+            switch result {
+            case .success:
+                
+                completion()
+            case .failure(let error):
+                print("Error editing sensor: \(error)")
+            }
+        }
+    }
 
 }
 

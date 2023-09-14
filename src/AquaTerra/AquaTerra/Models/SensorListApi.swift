@@ -89,24 +89,28 @@ final class SensorListApi {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        // 构建 JSON 负载，将坐标信息添加到 geom 参数中
         let sensorData: [String: Any] = [
-            "userName": currentUserUsername ?? "",
+            "username": currentUserUsername ?? "",
             "fieldId": fieldID,
             "sensorId": sensorID,
             "geom": [
                 "type": "Feature",
                 "geometry": [
                     "type": "Point",
-                    "coordinates": [coordinate.longitude, coordinate.latitude]
-                ],
-                "properties": [:]
-            ]
+                    "coordinates": [
+                        String(coordinate.longitude),
+                        String(coordinate.latitude)
+                    ]
+                ] as [String : Any],
+                "properties": Dictionary<String, Any>()
+            ] as [String : Any]
         ]
+
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: sensorData) {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
+            print("Cooordinate Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
         }
         
         let task = URLSession.shared.dataTask(with: request) { _, _, error in
@@ -137,6 +141,56 @@ final class SensorListApi {
         }
         task.resume()
     }
+    
+    public func editSensor(sensorData: SensorData, coordinate: CLLocationCoordinate2D?, completion: @escaping (Result<Void, Error>) -> Void) {
+        let sensorID = sensorData.sensor_id
+        
+        guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/\(sensorID)") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        var sensorUpdateData: [String: Any] = [
+            "username": currentUserUsername ?? "",
+            "sensorId": sensorID,
+            "alias": sensorData.alias,
+            "sleeping": sensorData.sleeping
+        ]
+        
+        if let coordinate = coordinate {
+            sensorUpdateData["geom"] = [
+                    "type": "Feature",
+                    "geometry": [
+                        "type": "Point",
+                        "coordinates": [
+                            String(coordinate.longitude),
+                            String(coordinate.latitude)
+                        ]
+                    ] as [String : Any],
+                    "properties": Dictionary<String, Any>()
+            ]
+        }
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: sensorUpdateData) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            print("Edit Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { _, _, error in
+            if let error = error {
+                print("Edit Sensor Error: \(error)")
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+        task.resume()
+    }
+
+
 }
 
 // Models
@@ -160,7 +214,8 @@ struct SensorDataResponse: Codable {
     let data: [SensorData]
 }
 
-struct SensorData: Codable, Equatable {
+struct SensorData: Codable, Equatable, Identifiable {
+    var id: String { sensor_id }
     let sensor_id: String
     let gateway_id: String?
     let field_id: String
@@ -183,5 +238,3 @@ struct Coordinate {
     let latitude: Double
     let longitude: Double
 }
-
-
