@@ -21,6 +21,8 @@ struct SessionView: View {
 
     @State private var isShowingSensorListView = false
 
+    @State private var isShowingFarmsView = false
+    
     @ObservedObject private var viewModel = SessionViewViewModel()
 
     var body: some View {
@@ -78,10 +80,11 @@ struct SessionView: View {
 //                    .font(.largeTitle)
 //                    .multilineTextAlignment(.center)
                 
-                Button{
+                Button {
                     
-                    
-                }label: {
+                    isShowingFarmsView.toggle()
+
+                } label: {
                     ZStack{
                         RoundedRectangle(cornerRadius: 10)
                             .fill(Color.white)
@@ -99,6 +102,11 @@ struct SessionView: View {
                     }.frame(width: 318, height: 110)
                         
                 }
+                .navigationDestination(isPresented: $isShowingFarmsView) {
+                    
+                    FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
+                }
+
 
                 Button{
                     sessionViewViewModel.fetchFieldData { result in
