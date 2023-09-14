@@ -52,7 +52,7 @@ struct CirCleView : View {
                     .foregroundColor(backColor)
                 if !complete {
                     Text("\(index)")
-                        .font(.custom("OpenSans-Bold", size: 14))
+                        .font(.custom("OpenSans-Bold", size: 18))
                         .foregroundColor(.white)
                 }else {
                     Image("check_fill_ic")

@@ -17,15 +17,8 @@ struct SensorListView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HStack {
-                    Text("My Sensors")
-                        .font(.system(size: 30))
-                        .bold()
-                        .padding(.leading, 16)
-                        .padding(.top, -50)
-
-                    Spacer()
-                }
+                FMNavigationBarView(title: "My Sensors")
+                    .frame(height: 45)
 
                 // Display Sensor ID and Gateway ID
                 List(sensorData, id: \.sensor_id) { sensor in
@@ -39,7 +32,19 @@ struct SensorListView: View {
                 }
                 .padding()
             }
-            .navigationBarTitle("", displayMode: .inline)
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    NavigationBackView()
+//                        .onTapGesture {
+////                            presentationMode.wrappedValue.dismiss()
+//                            BaseBarModel.share.show()
+//                        }
+//                        .frame(width: 70,height: 17)
+//                }
+//            }
+//            .navigationBarBackButtonHidden(true)
+//            NavigationLink("",destination: SessionView(),isActive: $addGateways).opacity(0)
+            
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu("Select a Field") {
@@ -63,6 +68,9 @@ struct SensorListView: View {
                     .menuStyle(BorderlessButtonMenuStyle())
                 }
             }
+            
         }
+        
     }
+    
 }

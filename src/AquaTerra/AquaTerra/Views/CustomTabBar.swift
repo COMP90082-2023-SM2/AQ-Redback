@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Amplify
 
 enum Tabs: Int {
     case home = 0
@@ -15,7 +16,19 @@ enum Tabs: Int {
 
 struct CustomTabBar: View {
     
+    
     @Binding var selectedTab: Tabs
+    @Binding var user: AuthUser
+    
+    @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
+
+    @ObservedObject private var viewModel = SessionViewViewModel()
+    
+    @State private var showDashboardView = false
+    @State private var showSessionView = false
+    @State private var showProfileView = false
+    
+
     
     var body: some View {
         ZStack{
@@ -27,7 +40,12 @@ struct CustomTabBar: View {
             
             HStack(alignment:.center){
                 Button{
-                    selectedTab = .home
+                    if selectedTab == .home {
+                            return
+                    }else{
+                        selectedTab = .home
+                        showDashboardView = true
+                    }
                     //Switch to Home
                 }label: {
                     GeometryReader{
@@ -40,8 +58,7 @@ struct CustomTabBar: View {
                                     .scaledToFit()
                                     .frame(width:32, height: 30)
                                     .foregroundColor(Color("HighlightColor"))
-//                                Text("Dashboard")
-//                                    .font(.custom("OpenSans-SemiBold", size: 12))
+
                             }.foregroundColor(Color("HighlightColor"))
                                 .frame(width: geo.size.width, height: geo.size.height)
                             
@@ -52,69 +69,80 @@ struct CustomTabBar: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:32, height: 30)
-//                                Text("Dashboard")
-//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
                     }
                 }
+                .navigationDestination(isPresented: $showDashboardView){
+                    DashboardView(user: $user)
+                }
+                .navigationBarBackButtonHidden(true)
                 
                 Button{
-                    selectedTab = .manage
                     //Switch to manage
+                    if selectedTab == .manage {
+                            return
+                    }else{
+                        selectedTab = .manage
+                        showSessionView = true
+                    }
                 }label: {
                     GeometryReader{
                         geo in
                         if selectedTab == .manage {
                             VStack(alignment: .center, spacing: 5){
-//                                Image(systemName: "tree.fill")
                                 Image("Manage")
                                     .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:36, height: 36)
                                     .foregroundColor(Color("HighlightColor"))
-//                                Text("Manage")
-//                                    .font(.custom("OpenSans-SemiBold", size: 12))
+                                
                             }.foregroundColor(Color("HighlightColor"))
                                 .frame(width: geo.size.width, height: geo.size.height)
                             
                         }else{
                             VStack(alignment: .center, spacing: 5){
-                                //                                Image(systemName: "tree.fill")
                                     Image("Manage")
                                     .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:36, height: 36)
-//                                Text("Manage")
-//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
                                 .frame(width: geo.size.width, height: geo.size.height)
                         }
                     }
                 }
+                .navigationDestination(isPresented: $showSessionView){
+                    SessionView(user: user)
+                    
+                }
+                .navigationBarBackButtonHidden(true)
                 
                 Button{
-                    selectedTab = .profile
+                    if selectedTab == .profile {
+                            return
+                    }else{
+                        selectedTab = .profile
+                        showProfileView = true
+                    }
+                    
                     //Switch to Home
                 }label: {
                     GeometryReader{
                         geo in
                         if selectedTab == .profile {
                             VStack(alignment: .center, spacing: 5){
-//                                Image(systemName: "person.fill")
+                                //                                Image(systemName: "person.fill")
                                 Image("User")
                                     .renderingMode(.template)
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:34, height: 34)
                                     .foregroundColor(Color("HighlightColor"))
-//                                Text("Profile")
-//                                    .font(.custom("OpenSans-SemiBold", size: 12))
                             }.foregroundColor(Color("HighlightColor"))
-                                 .frame(width: geo.size.width, height: geo.size.height)
+                                .frame(width: geo.size.width, height: geo.size.height)
                             
                         }else{
                             VStack(alignment: .center, spacing: 5){
@@ -123,27 +151,27 @@ struct CustomTabBar: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(width:34, height: 34)
-//                                Text("Profile")
-//                                    .font(.custom("OpenSans-Regular", size: 12))
                             }.foregroundColor(Color.black)
-                                 .frame(width: geo.size.width, height: geo.size.height)
+                                .frame(width: geo.size.width, height: geo.size.height)
                             
                         }
                     }
+                } .navigationDestination(isPresented: $showProfileView){
+                    ProfileView(user: $user)
+                    
                 }
+                .navigationBarBackButtonHidden(true)
+                
                 
             }.frame(width: 335, height: 90)
-                
-            
-            
         }
         
     }
 }
 
-struct CustomTabBar_Previews: PreviewProvider {
-    static var previews: some View {
-        CustomTabBar(selectedTab: .constant(.manage))
-    }
-}
+//struct CustomTabBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CustomTabBar(selectedTab: .constant(.manage))
+//    }
+//}
 

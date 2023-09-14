@@ -29,8 +29,10 @@ struct LoginView: View {
             VStack {
                 ZStack {
                     Image("Login")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
                         .frame(width: 600, height: 200)
-                        .offset(y:-250)
+                        .offset(y:-150)
                         .mask(
                         Ellipse()
                             .foregroundColor(Color.green)

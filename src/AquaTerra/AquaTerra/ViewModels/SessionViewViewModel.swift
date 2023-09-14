@@ -16,12 +16,15 @@ enum AuthState {
 
 final class SessionViewViewModel: ObservableObject {
     @Published var authState: AuthState = .login
+    @Published var user: AuthUser?
 
     func getCurrentAuthUser() {
         if let user = Amplify.Auth.getCurrentUser() {
+            self.user = user
             authState = .session(user: user)
             SensorListApi.shared.currentUserUsername = user.username
         } else {
+            user = nil
             authState = .login
         }
     }
@@ -137,6 +140,7 @@ final class SessionViewViewModel: ObservableObject {
             switch result {
             case .success:
                 DispatchQueue.main.async {
+                    self?.user = nil
                     self?.getCurrentAuthUser()
                 }
             case .failure(let error):
