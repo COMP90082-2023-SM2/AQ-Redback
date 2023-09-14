@@ -12,6 +12,7 @@
 		570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */; };
 		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
 		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
+		577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577279B42AB206D700ED9495 /* AddSensorView.swift */; };
 		57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */; };
 		57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */; };
 		57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */; };
@@ -55,6 +56,7 @@
 		570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewViewModel.swift; sourceTree = "<group>"; };
 		573C635F2AAC3BCE0085524C /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
 		573C63652AAD6C420085524C /* SensorListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListApi.swift; sourceTree = "<group>"; };
+		577279B42AB206D700ED9495 /* AddSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorView.swift; sourceTree = "<group>"; };
 		57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		57FDEEF02A99C9F10029303E /* AquaTerra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTerra.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 				57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */,
 				573C635F2AAC3BCE0085524C /* SensorListView.swift */,
 				6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */,
+				577279B42AB206D700ED9495 /* AddSensorView.swift */,
 				698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */,
 				698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */,
 				698B69D12AB319640031E0ED /* ProfileView.swift */,
@@ -448,6 +451,7 @@
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
 				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
+				577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */,
 				C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
