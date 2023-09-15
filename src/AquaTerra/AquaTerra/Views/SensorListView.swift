@@ -165,12 +165,20 @@ struct SensorListView: View {
                                     .font(.custom("OpenSans-Regular", size: 14))
 
                                 Spacer()
-                                Button(action: {
-                                }) {
-                                    Image("edit").resizable()
-                                        .frame(width: 38,height: 38)
-                                }
-                                Spacer().frame(width: 0)
+                                
+                                NavigationLink(
+                                    destination: SensorEditView(
+                                        viewModel: viewModel,
+                                        sensorId: sensor.sensor_id,
+                                        username: sensor.username ?? "",
+                                        fieldId: sensor.field_id
+                                    ),
+                                    label: {
+                                        Image("edit").resizable()
+                                            .frame(width: 38,height: 38)
+                                    }
+                                )
+                               
                                 Button(action: {
                                     deletionIndex = sensorData.firstIndex(of: sensor)
                                     showAlert = true
@@ -200,15 +208,6 @@ struct SensorListView: View {
                             title: Text("Delete Sensor"),
                             message: Text("Are you sure you want to delete this sensor?"),
                             primaryButton: .destructive(Text("Delete")) {
-                                if let index = deletionIndex {
-                                    let sensorToDelete = sensorData[index]
-                                    viewModel.deleteSensor(sensorID: sensorToDelete.sensor_id) { result in
-                                        switch result {
-                                        case .success:
-                                            sensorData.remove(at: index)
-                                        case .failure(let error):
-                                            print("Error deleting sensor: \(error)")
-                                        }
                                 if let index = deletionIndex {
                                     let sensorToDelete = sensorData[index]
                                     viewModel.deleteSensor(sensorID: sensorToDelete.sensor_id) { result in
