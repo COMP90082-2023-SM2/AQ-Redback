@@ -20,6 +20,7 @@ enum AuthState {
 final class SessionViewViewModel: ObservableObject {
     @Published var authState: AuthState = .login
     @Published var sensorData: [SensorData] = []
+    @Published var sensorDetail: SensorDetail?
     
     var currentUserUsername: String?
     
@@ -200,17 +201,17 @@ final class SessionViewViewModel: ObservableObject {
         }
     }
     
-    func editSensor(sensorData: SensorData, coordinate: CLLocationCoordinate2D, completion: @escaping () -> Void) {
-        SensorListApi.shared.editSensor(sensorData: sensorData, coordinate: coordinate) { result in
+    func editSensor(sensorDetail: SensorDetail, coordinate: CLLocationCoordinate2D, completion: @escaping (Result<Void, Error>) -> Void) {
+        SensorListApi.shared.editSensor(sensorDetail: sensorDetail, coordinate: coordinate) { result in
             switch result {
             case .success:
-                
-                completion()
+                completion(.success(()))
             case .failure(let error):
-                print("Error editing sensor: \(error)")
+                completion(.failure(error)) 
             }
         }
     }
+
     
     func fetchSensorDetail(sensorId: String, username: String, fieldId: String, completion: @escaping (Result<SensorDetail, Error>) -> Void) {
         print("fetchSensorDetail called with sensorId: \(sensorId), username: \(username), fieldId: \(fieldId)")
