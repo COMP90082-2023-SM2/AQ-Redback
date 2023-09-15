@@ -2,7 +2,7 @@
 //  SessionView.swift
 //  AquaTerra
 //
-//  Created by jiakang on 13/9/2023.
+//  Created by Davincci on 26/8/2023.
 //
 
 import Amplify

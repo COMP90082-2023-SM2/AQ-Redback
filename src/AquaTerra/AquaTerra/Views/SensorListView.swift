@@ -209,6 +209,15 @@ struct SensorListView: View {
                                         case .failure(let error):
                                             print("Error deleting sensor: \(error)")
                                         }
+                                if let index = deletionIndex {
+                                    let sensorToDelete = sensorData[index]
+                                    viewModel.deleteSensor(sensorID: sensorToDelete.sensor_id) { result in
+                                        switch result {
+                                        case .success:
+                                            sensorData.remove(at: index)
+                                        case .failure(let error):
+                                            print("Error deleting sensor: \(error)")
+                                        }
                                     }
                                 }
                             },
