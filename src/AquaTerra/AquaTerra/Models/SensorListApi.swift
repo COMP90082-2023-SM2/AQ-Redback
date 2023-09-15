@@ -189,6 +189,46 @@ final class SensorListApi {
         }
         task.resume()
     }
+    
+    public func getSensorDetail(username: String, fieldId: String, sensorId: String, completion: @escaping (Result<SensorDetail, Error>) -> Void) {
+        guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/\(sensorId)?username=\(username)&fieldId=\(fieldId)") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+
+        print("getSensorDetail called with URL: \(url)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("getSensorDetail error: \(error)")
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                print("getSensorDetail: No data received")
+                completion(.failure(NSError(domain: "No data received", code: 1, userInfo: nil)))
+                return
+            }
+
+            do {
+                let response = try JSONDecoder().decode(SensorDetailResponse.self, from: data)
+                let sensorDetail = response.sensor
+                print("getSensorDetail success with sensorDetail: \(sensorDetail)")
+                completion(.success(sensorDetail))
+            } catch {
+                print("getSensorDetail error: \(error)")
+                completion(.failure(error))
+            }
+        }
+
+        task.resume()
+    }
+
+
 
 
 }
@@ -237,4 +277,22 @@ struct SensorData: Codable, Equatable, Identifiable {
 struct Coordinate {
     let latitude: Double
     let longitude: Double
+}
+
+struct SensorDetailResponse: Codable {
+    let sensor: SensorDetail
+}
+
+struct SensorDetail: Codable {
+    let sensor_id: String
+    let gateway_id: String?
+    let field_id: String
+    let geom: String?
+    let datetime: String?
+    let is_active: Bool
+    let has_notified: Bool
+    let username: String?
+    let sleeping: Int?
+    let alias: String?
+    let points: String?
 }
