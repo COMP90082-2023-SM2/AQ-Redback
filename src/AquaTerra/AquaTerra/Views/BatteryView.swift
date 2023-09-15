@@ -9,7 +9,7 @@ import SwiftUI
 
 struct BatteryView: View {
     var body: some View {
-        Color.purple.opacity(0.2).ignoresSafeArea()
+        Color("HighlightColor").opacity(0.4).ignoresSafeArea()
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct InfoTab: View {
     var body: some View {
-        Color.yellow.opacity(0.2).ignoresSafeArea()
+        Color("HighlightColor").opacity(0.1).ignoresSafeArea()
     }
 }
 

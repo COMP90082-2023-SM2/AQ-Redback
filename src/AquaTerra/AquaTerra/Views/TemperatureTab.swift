@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TemperatureTab: View {
     var body: some View {
-        Color.green.opacity(0.2).ignoresSafeArea()
+        Color("HighlightColor").opacity(0.3).ignoresSafeArea()
     }
 }
 

@@ -61,7 +61,7 @@ struct GRMapView: View {
                     }
                 }
             }
-        }
+        }.frame(height:370)
     }
     
     func addAnnotation() {
