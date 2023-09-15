@@ -59,8 +59,6 @@ struct SensorListView: View {
                             NavigationLink(
                                 destination: SensorEditView(
                                     viewModel: viewModel,
-//                                    isPresented: Binding.constant(false),
-//                                    sensorData: sensor,
                                     sensorId: sensor.sensor_id,
                                     username: sensor.username ?? "",
                                     fieldId: sensor.field_id

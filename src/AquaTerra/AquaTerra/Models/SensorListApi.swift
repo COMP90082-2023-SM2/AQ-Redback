@@ -185,7 +185,6 @@ final class SensorListApi {
                     print("Edit Sensor Response JSON: \(jsonResponse)")
                 }
                 
-                // Handle the response as needed here
                 completion(.success(()))
             } catch {
                 print("Edit Sensor Error: Failed to parse JSON response")
