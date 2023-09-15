@@ -18,7 +18,7 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack{
-                CustomHeaderView(title: "My Profile").frame(alignment: .top)
+                CustomHeaderView(title: "My Profile")
                     .frame(alignment: .top)
                     .frame(height: 60)
                     .background(Color.green)
@@ -44,7 +44,7 @@ struct ProfileView: View {
                 }.padding(.top, 10)
                                 
                 Spacer()
-                CustomTabBar(selectedTab: $selectedTab, user: $user)
+//                CustomTabBar(selectedTab: $selectedTab, user: $user)
                 
             }
             

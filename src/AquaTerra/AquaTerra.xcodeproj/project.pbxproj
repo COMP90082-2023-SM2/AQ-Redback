@@ -34,6 +34,13 @@
 		6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */; };
 		6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */; };
 		6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */; };
+		69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA062AB328CB001777F9 /* InfoTab.swift */; };
+		69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA082AB328E7001777F9 /* MoistureTab.swift */; };
+		69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */; };
+		69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0C2AB336E0001777F9 /* BatteryView.swift */; };
+		69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA102AB3E74B001777F9 /* TabBarItem.swift */; };
+		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
+		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
 		C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68262AB1947B0053DF9C /* BaseBarModel.swift */; };
 		C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68282AB1947B0053DF9C /* UITools.swift */; };
 		C61C683D2AB1947B0053DF9C /* NavigationBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */; };
@@ -81,6 +88,13 @@
 		6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		69B1DA062AB328CB001777F9 /* InfoTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTab.swift; sourceTree = "<group>"; };
+		69B1DA082AB328E7001777F9 /* MoistureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoistureTab.swift; sourceTree = "<group>"; };
+		69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTab.swift; sourceTree = "<group>"; };
+		69B1DA0C2AB336E0001777F9 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
+		69B1DA102AB3E74B001777F9 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardView.swift; sourceTree = "<group>"; };
+		69B1DA142AB40517001777F9 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		7542C0EA64370EBD912ACCD8 /* Pods-AquaTerra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.release.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.release.xcconfig"; sourceTree = "<group>"; };
 		7BA3B18A8B7FAC55C97B7D6E /* Pods_AquaTerra.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AquaTerra.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CE2869D6D248E0C62E96416 /* Pods-AquaTerra.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.debug.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.debug.xcconfig"; sourceTree = "<group>"; };
@@ -177,6 +191,13 @@
 				698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */,
 				698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */,
 				698B69D12AB319640031E0ED /* ProfileView.swift */,
+				69B1DA062AB328CB001777F9 /* InfoTab.swift */,
+				69B1DA082AB328E7001777F9 /* MoistureTab.swift */,
+				69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */,
+				69B1DA0C2AB336E0001777F9 /* BatteryView.swift */,
+				69B1DA102AB3E74B001777F9 /* TabBarItem.swift */,
+				69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */,
+				69B1DA142AB40517001777F9 /* SwitchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,6 +463,9 @@
 				57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */,
 				57FDEF082A99D7620029303E /* LoginView.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
+				69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */,
+				69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */,
+				69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */,
 				C61C683E2AB1947B0053DF9C /* FMNavigationBarView.swift in Sources */,
 				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
 				6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */,
@@ -452,9 +476,12 @@
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
 				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
 				577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */,
+				69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */,
 				C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
+				69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */,
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
+				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
 				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
@@ -463,6 +490,7 @@
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,
 				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
+				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
 				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,
 				C61C683F2AB1947B0053DF9C /* GRInputView.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,

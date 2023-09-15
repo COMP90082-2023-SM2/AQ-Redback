@@ -18,6 +18,8 @@ struct SensorListView: View {
     @State private var showAddSensorSheet = false
     @State private var selectedFieldID: String?
     @State private var shouldRefreshData = false
+    
+    @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
         NavigationView {
@@ -102,6 +104,17 @@ struct SensorListView: View {
 //            NavigationLink("",destination: SessionView(),isActive: $addGateways).opacity(0)
             
             .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationBackView()
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        .frame(width: 70,height: 17)
+                }
+            }
+            .navigationBarBackButtonHidden(true)
+            
+            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu("Select a Field") {
                         ForEach(fieldData, id: \.field_id) { sensor in
@@ -129,7 +142,7 @@ struct SensorListView: View {
             if let field = selectedFieldName {
                 AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: field.field_id)
             }
-        }
+        }.navigationBarBackButtonHidden(true)
     }
 
     private func deleteSensor(at offsets: IndexSet) {

@@ -34,7 +34,7 @@ struct AquaTerraApp: App {
                     .environmentObject(sessionViewViewModel)
                 
             case .session(let user):
-                SessionView(user: user)
+                SwitchView(user: user)
                     .environmentObject(sessionViewViewModel)
                 
             
