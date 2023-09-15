@@ -16,16 +16,24 @@ struct SensorListView: View {
     @State private var showAlert = false
     @State private var deletionIndex: Int?
     @State private var showAddSensorSheet = false
-    @State private var selectedFieldID: String?
     @State private var shouldRefreshData = false
     
     @Environment(\.presentationMode) var presentationMode
 
+    @State private var selectedSensor: SensorData?
+
     var body: some View {
         NavigationView {
             VStack {
-                FMNavigationBarView(title: "My Sensors")
-                    .frame(height: 45)
+                HStack {
+                    Text("My Sensors")
+                        .font(.system(size: 30))
+                        .bold()
+                        .padding(.leading, 16)
+                        .padding(.top, -50)
+
+                    Spacer()
+                }
 
                 Group {
                     if selectedFieldName != nil {
@@ -42,20 +50,23 @@ struct SensorListView: View {
                 }
 
                 List {
-                    ForEach(sensorData, id: \.sensor_id) { sensor in
+                    ForEach(sensorData) { sensor in
                         HStack {
                             Text("Sensor ID: \(viewModel.abbreviateSensorID(sensor.sensor_id))")
                                 .font(.title)
                             Spacer()
                             Text("Gateway ID: \(sensor.gateway_id ?? "")")
                                 .font(.title)
-                            Button(action: {
 
-                            }) {
-                                Image(systemName: "pencil.circle.fill")
-                                    .foregroundColor(.green)
-                                    .font(.title)
-                            }
+                            NavigationLink(
+                                destination: SensorEditView(viewModel: viewModel, isPresented: Binding.constant(false), sensorData: sensor),
+                                label: {
+                                    Image(systemName: "pencil.circle.fill")
+                                        .foregroundColor(.green)
+                                        .font(.title)
+                                }
+                            )
+
                             Button(action: {
                                 deletionIndex = sensorData.firstIndex(of: sensor)
                                 showAlert = true
@@ -90,19 +101,7 @@ struct SensorListView: View {
                     )
                 }
             }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarLeading) {
-//                    NavigationBackView()
-//                        .onTapGesture {
-////                            presentationMode.wrappedValue.dismiss()
-//                            BaseBarModel.share.show()
-//                        }
-//                        .frame(width: 70,height: 17)
-//                }
-//            }
-//            .navigationBarBackButtonHidden(true)
-//            NavigationLink("",destination: SessionView(),isActive: $addGateways).opacity(0)
-            
+            .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationBackView()
@@ -136,7 +135,6 @@ struct SensorListView: View {
                     .menuStyle(BorderlessButtonMenuStyle())
                 }
             }
-            
         }
         .sheet(isPresented: $showAddSensorSheet) {
             if let field = selectedFieldName {
@@ -151,6 +149,10 @@ struct SensorListView: View {
             showAlert = true
         }
     }
-    
 }
 
+struct SensorListView_Previews: PreviewProvider {
+    static var previews: some View {
+        SensorListView(fieldData: [], viewModel: SessionViewViewModel())
+    }
+}

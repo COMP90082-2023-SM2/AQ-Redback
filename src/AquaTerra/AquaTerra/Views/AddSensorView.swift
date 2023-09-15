@@ -16,10 +16,8 @@ struct AddSensorView: View {
     @State private var sensorID: String = ""
     @State private var selectedCoordinate: CLLocationCoordinate2D?
 
-    @State private var region: MKCoordinateRegion = MKCoordinateRegion(
-        center: CLLocationCoordinate2D(latitude: 37.7749, longitude: -122.4194),
-        span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
-    )
+    @State private var annotations: [MKPointAnnotation] = []
+    @State private var FullScreen = true
 
     var body: some View {
         NavigationView {
@@ -29,32 +27,33 @@ struct AddSensorView: View {
                 }
 
                 Section {
-                    Map(
-                        coordinateRegion: $region,
-                        showsUserLocation: true
+                    GRMapView(
+                        fullScreen: $FullScreen,
+                        selectPosion: $selectedCoordinate,
+                        annotations: $annotations
                     )
-                    .frame(height: 200)
-                    .gesture(
-                        TapGesture().onEnded { gesture in
-                            let coordinate = region.center
-                            selectedCoordinate = coordinate
-                        }
-                    )
+                    .frame(height: FullScreen ? 200 : 550)
                 }
 
-                Section {
-                    Button("Add Sensor") {
-                        guard let selectedCoordinate = selectedCoordinate else {
-                            return
-                        }
-                        
-                        viewModel.addSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate)
-                            
+                Button("Add Sensor") {
+                    guard let selectedCoordinate = selectedCoordinate else {
+                        return
+                    }
+
+                    print("Selected Coordinate: \(selectedCoordinate.latitude), \(selectedCoordinate.longitude)")
+                    
+                    SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate) { result in
+                        switch result {
+                        case .success:
                             showAddSensorSheet = false
+                        case .failure(let error):
+                            print("Error creating sensor: \(error)")
                         }
+                    }
                 }
+
             }
-            .listStyle(GroupedListStyle()) 
+            .listStyle(GroupedListStyle())
             .navigationBarTitle("Add Sensor", displayMode: .inline)
             .navigationBarItems(trailing: Button("Cancel") {
                 showAddSensorSheet = false
@@ -62,4 +61,3 @@ struct AddSensorView: View {
         }
     }
 }
-
