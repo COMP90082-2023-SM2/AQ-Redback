@@ -13,6 +13,7 @@
 		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
 		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
 		575FB5502AB411830079B6E8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB54F2AB411830079B6E8 /* Extension.swift */; };
+		575FB5522AB4AD8E0079B6E8 /* SensorListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */; };
 		577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577279B42AB206D700ED9495 /* AddSensorView.swift */; };
 		5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */; };
 		57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */; };
@@ -67,6 +68,7 @@
 		573C635F2AAC3BCE0085524C /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
 		573C63652AAD6C420085524C /* SensorListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListApi.swift; sourceTree = "<group>"; };
 		575FB54F2AB411830079B6E8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListItem.swift; sourceTree = "<group>"; };
 		577279B42AB206D700ED9495 /* AddSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorView.swift; sourceTree = "<group>"; };
 		5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorEditView.swift; sourceTree = "<group>"; };
 		57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -206,6 +208,7 @@
 				5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */,
 				573C635F2AAC3BCE0085524C /* SensorListView.swift */,
 				69B1DA162AB45D61001777F9 /* SelectionView.swift */,
+				575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -492,6 +495,7 @@
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
 				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
 				698B69D22AB319640031E0ED /* ProfileView.swift in Sources */,
+				575FB5522AB4AD8E0079B6E8 /* SensorListItem.swift in Sources */,
 				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,

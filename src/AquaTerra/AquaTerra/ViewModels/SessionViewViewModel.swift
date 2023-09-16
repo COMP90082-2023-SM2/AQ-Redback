@@ -22,7 +22,14 @@ final class SessionViewViewModel: ObservableObject {
     @Published var sensorData: [SensorData] = []
     @Published var sensorDetail: SensorDetail?
     
+    @Published var list : [SessionViewViewModel] = []
+    
     var currentUserUsername: String?
+    
+    static let shareInstance : SessionViewViewModel = SessionViewViewModel()
+    static func share() -> SessionViewViewModel {
+        return shareInstance
+    }
     
 
     func getCurrentAuthUser() {

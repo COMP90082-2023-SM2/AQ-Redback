@@ -15,10 +15,14 @@ struct SensorListView: View {
 
     @State private var showAlert = false
     @State private var showSelection = false
-    @State private var deletionIndex: Int?
+    @State var deletionIndex: Int?
     @State private var showAddSensorSheet = false
     @State private var shouldRefreshData = false
     var colors : [Color] = [.init(hex: "#7FAF3A"),.init(hex: "#85B3A4")]
+    
+    @State private var alertShow = false
+    @State private var selectId : String = ""
+    @State private var loading = false
     
     @Environment(\.presentationMode) var presentationMode
 
@@ -156,73 +160,18 @@ struct SensorListView: View {
                 if selectedFieldName != nil {
                     List {
                         ForEach(sensorData) { sensor in
-                            HStack {
-                                Text((viewModel.abbreviateSensorID(sensor.sensor_id)))
-                                    .font(.custom("OpenSans-Regular", size: 14))
-                                
-                                Spacer().frame(width: 20)
-                                Text(sensor.gateway_id ?? "")
-                                    .font(.custom("OpenSans-Regular", size: 14))
-
-                                Spacer()
-                                
-                                NavigationLink(
-                                    destination: SensorEditView(
-                                        viewModel: viewModel,
-                                        sensorId: sensor.sensor_id,
-                                        username: sensor.username ?? "",
-                                        fieldId: sensor.field_id
-                                    ),
-                                    label: {
-                                        Image("edit").resizable()
-                                            .frame(width: 38,height: 38)
-                                    }
-                                )
-                               
-                                Button(action: {
-                                    deletionIndex = sensorData.firstIndex(of: sensor)
-                                    showAlert = true
-
-                                }) {
-                                    Image("close-circle-fill").resizable()
-                                        .frame(width: 38,height: 38)
-                                }
-                                
-                            }
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
-                            .frame(height: 68)
-                            .listRowInsets(EdgeInsets())
-
+                            
+                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel)
+                                .listRowSeparator(.hidden)
+                                .buttonStyle(PlainButtonStyle())
                         }
-                        .onDelete(perform: deleteSensor)
                         
                     }
-                    .scrollIndicators(.hidden)
                     .listStyle(PlainListStyle())
-                    .padding(.top, -7)
+                    .scrollIndicators(.hidden)
                     .padding(.bottom, 70)
                     .frame(maxHeight: .infinity)
-                    .alert(isPresented: $showAlert) {
-                        Alert(
-                            title: Text("Delete Sensor"),
-                            message: Text("Are you sure you want to delete this sensor?"),
-                            primaryButton: .destructive(Text("Delete")) {
-                                if let index = deletionIndex {
-                                    let sensorToDelete = sensorData[index]
-                                    viewModel.deleteSensor(sensorID: sensorToDelete.sensor_id) { result in
-                                        switch result {
-                                        case .success:
-                                            sensorData.remove(at: index)
-                                        case .failure(let error):
-                                            print("Error deleting sensor: \(error)")
-                                        }
-                                    }
-                                }
-                            },
-                            secondaryButton: .cancel()
-                        )
-                    }
+                    
                     
                 }else{
                     Spacer()
@@ -268,13 +217,22 @@ struct SensorListView: View {
             }
         }.navigationBarBackButtonHidden(true)
     }
+    
 
-    private func deleteSensor(at offsets: IndexSet) {
-        if let firstIndex = offsets.first {
-            deletionIndex = firstIndex
-            showAlert = true
-        }
-    }
+//    private func deleteHandler(id:String){
+//        alertShow = false
+//        loading = true
+//        viewModel.deleteSensor(sensorID: id, completion: {_ in
+//            loading = false
+//          })
+//    }
+//
+//    private func showAlert(id:String){
+//        withAnimation(.easeIn,{
+//            alertShow = true
+//        })
+//        selectId = id
+//    }
 }
 
 struct SensorListView_Previews: PreviewProvider {
@@ -282,3 +240,4 @@ struct SensorListView_Previews: PreviewProvider {
         SensorListView(fieldData: [], viewModel: SessionViewViewModel())
     }
 }
+

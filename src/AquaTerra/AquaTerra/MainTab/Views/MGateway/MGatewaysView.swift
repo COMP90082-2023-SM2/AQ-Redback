@@ -96,7 +96,6 @@ struct MGMainView : View {
                         item.gatewayId,deleteActionBlock:deleteBlock)
                         .listRowInsets(EdgeInsets())
                         .listRowSeparator(.hidden)
-                        .onTapGesture {}
                 }
             }
             .listStyle(PlainListStyle())
