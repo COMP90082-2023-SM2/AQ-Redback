@@ -33,67 +33,57 @@ struct SensorListView: View {
             VStack {
                 FMNavigationBarView(title: "My Sensors")
                     .frame(height: 45)
-                
                 Divider()
-                
                 HStack{
                     Text("Current Field:").font(.custom("OpenSans-SemiBold", size: 14))
                         .foregroundColor(Color.black)
                     
-                        if selectedFieldName != nil {
-                            Text(selectedFieldName?.field_name ?? "").font(.custom("OpenSans-Bold", size: 14))
-                                .foregroundColor(Color("ButtonGradient2"))
-
-                            Spacer()
-                            Button{
-                                showSelection = true
-                            }label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                        .fill(Color("HighlightColor"))
-                                        .frame(height: 41)
-                                        .frame(width: 110)
-
-                                    Text("Select A Field")
-                                        .foregroundColor(Color.white)
-                                        .font(.custom("OpenSans-Regular", size: 14))
-                                        .bold()
-                                }
-
-                            }.navigationDestination(isPresented: $showSelection){
-                                SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
-                            }
-                        }
-                    
-                    
-                    
-                        else{
-
-                            Text(selectedFieldName?.field_name ?? "Not Selected").font(.custom("OpenSans-SemiBold", size: 14))
-                                .foregroundColor(Color.gray)
-                            
-                            Spacer()
-                            Button{
-                                showSelection = true
-                            }label: {
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                        .fill(Color("HighlightColor"))
-                                        .frame(height: 41)
-                                        .frame(width: 110)
-                                    
-                                    Text("Select A Field")
-                                        .foregroundColor(Color.white)
-                                        .font(.custom("OpenSans-Regular", size: 14))
-                                        .bold()
-                                }
+                    if selectedFieldName != nil {
+                        Text(selectedFieldName?.field_name ?? "").font(.custom("OpenSans-Bold", size: 14))
+                            .foregroundColor(Color("ButtonGradient2"))
+                        
+                        Spacer()
+                        Button{
+                            showSelection = true
+                        }label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                    .fill(Color("HighlightColor"))
+                                    .frame(height: 41)
+                                    .frame(width: 110)
                                 
-                            }.navigationDestination(isPresented: $showSelection){
-                                SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
+                                Text("Select A Field")
+                                    .foregroundColor(Color.white)
+                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .bold()
                             }
                             
+                        }.navigationDestination(isPresented: $showSelection){
+                            SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
                         }
-
+                    }
+                    else{
+                        Text(selectedFieldName?.field_name ?? "Not Selected").font(.custom("OpenSans-SemiBold", size: 14))
+                            .foregroundColor(Color.gray)
+                        Spacer()
+                        Button{
+                            showSelection = true
+                        }label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                    .fill(Color("HighlightColor"))
+                                    .frame(height: 41)
+                                    .frame(width: 110)
+                                
+                                Text("Select A Field")
+                                    .foregroundColor(Color.white)
+                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .bold()
+                            }
+                        }.navigationDestination(isPresented: $showSelection){
+                            SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
+                        }
+                    }
                 }.frame(height: 50)
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 25)
@@ -124,7 +114,7 @@ struct SensorListView: View {
                                     .fill(LinearGradient(gradient: Gradient(colors: colors), startPoint: .topLeading, endPoint: .bottomTrailing))
                                     .frame(height: 41)
                                     .frame(width: 126)
-                                    
+                                
                                 Text("Add New Sensor")
                                     .foregroundColor(Color.white)
                                     .font(.custom("OpenSans-Regular", size: 14))
@@ -133,7 +123,7 @@ struct SensorListView: View {
                         }
                     }else{
                         Button(action: {
-
+                            
                         }) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -141,13 +131,13 @@ struct SensorListView: View {
                                     .frame(height: 41)
                                     .frame(width: 126)
                                     .opacity(0.3)
-                                    
+                                
                                 Text("Add New Sensor")
                                     .foregroundColor(Color.white)
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .bold()
-                                    
-                                }
+                                
+                            }
                         }.disabled(true)
                     }
                 }.frame(maxWidth: .infinity)
@@ -165,7 +155,6 @@ struct SensorListView: View {
                                 .listRowSeparator(.hidden)
                                 .buttonStyle(PlainButtonStyle())
                         }
-                        
                     }
                     .listStyle(PlainListStyle())
                     .scrollIndicators(.hidden)
@@ -175,26 +164,22 @@ struct SensorListView: View {
                     
                 }else{
                     Spacer()
-                    
                     Image("empty")
-                    .renderingMode(.template)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width:50, height: 50)
-                    .foregroundColor(Color.gray).opacity(0.5)
-                    
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:50, height: 50)
+                        .foregroundColor(Color.gray).opacity(0.5)
                     
                     Group {
                         Text("Please ").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray) +
-                      Text("Select A Field ").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor")) +
-                      Text("To Display Your Sensor Data").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
+                        Text("Select A Field ").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor")) +
+                        Text("To Display Your Sensor Data").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
                     }.padding(.vertical,15)
- 
+                    
                     Spacer()
                     Spacer()
                 }
-
-
                 
             }
             .navigationBarTitle("", displayMode: .inline)
@@ -217,22 +202,6 @@ struct SensorListView: View {
             }
         }.navigationBarBackButtonHidden(true)
     }
-    
-
-//    private func deleteHandler(id:String){
-//        alertShow = false
-//        loading = true
-//        viewModel.deleteSensor(sensorID: id, completion: {_ in
-//            loading = false
-//          })
-//    }
-//
-//    private func showAlert(id:String){
-//        withAnimation(.easeIn,{
-//            alertShow = true
-//        })
-//        selectId = id
-//    }
 }
 
 struct SensorListView_Previews: PreviewProvider {

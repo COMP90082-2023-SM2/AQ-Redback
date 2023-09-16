@@ -62,11 +62,7 @@ struct SelectionView: View {
                 .padding(.bottom, 100)
                 .frame(maxHeight: .infinity)
                 .ignoresSafeArea(.all)
-                
 
-                
-                
-                
             }
             .navigationBarTitle("", displayMode: .inline)
                 .toolbar {

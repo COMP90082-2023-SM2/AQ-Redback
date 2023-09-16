@@ -22,127 +22,144 @@ struct SensorEditView: View {
     @State private var editedAlias: String = ""
     @State private var editedLatitude: String = ""
     @State private var editedLongitude: String = ""
+
     @State private var editedSleeping: String = ""
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = true
     
     var body: some View {
-        VStack {
-            Text("Edit Sensor")
-                .font(.largeTitle)
-                .bold()
-                .padding()
+        
+        NavigationStack{
             
-            if let sensorDetail = sensorDetail {
-                Text("Sensor ID: \(sensorDetail.sensor_id)")
-                    .font(.title)
+            VStack {
+                FMNavigationBarView(title: "Edit Sensor")
+                    .frame(height: 45)
                 
-                TextField("Alias", text: $editedAlias)
-                    .font(.title)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
                 
-                Text("Coordinates: \(parseCoordinates(sensorDetail.points))")
-                    .font(.title)
                 
-                HStack {
-                    TextField("Latitude", text: $editedLatitude)
-                        .font(.title)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
+                
+                if let sensorDetail = sensorDetail {
                     
-                    TextField("Longitude", text: $editedLongitude)
-                        .font(.title)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding()
-                }
-                
-                TextField("Sleeping", text: $editedSleeping)
-                    .font(.title)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
-            } else {
-                Text("Loading sensor data...")
-            }
-            
-            GRMapView(
-                fullScreen: $FullScreen,
-                selectPosion: $selectPosion,
-                annotations: $annotations
-            )
-            .frame(height: FullScreen ? 200 : 550)
-            
-            Button(action: {
-                // Save the edited sensor information here
-                if var editedSensorDetail = sensorDetail {
-                    // Update the edited fields
-                    editedSensorDetail.alias = editedAlias
-                    if let latitude = Double(editedLatitude), let longitude = Double(editedLongitude) {
-                        editedSensorDetail.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                    }
-                    editedSensorDetail.sleeping = Int(editedSleeping)
-                    
-                    // Check if selectPosion is not nil before updating
-                    if let selectedCoordinate = selectPosion {
-                        viewModel.editSensor(sensorDetail: editedSensorDetail, coordinate: selectedCoordinate) { result in
-                            switch result {
-                            case .success:
-                                DispatchQueue.main.async {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                            case .failure(let error):
-                                print("Error editing sensor: \(error)")
-                            }
-                        }
-                    } else {
-                        print("Error: No coordinate selected")
+                    HStack{
+                        Text("Sensor ID:").font(.custom("OpenSans-SemiBold", size: 16))
+                        Spacer()
+                        Text(sensorDetail.sensor_id).font(.custom("OpenSans-ExtraBold", size: 16)).foregroundColor(Color("ButtonGradient2"))
+                        Spacer()
+                    }.frame(height: 65)
+                        .frame(maxWidth: .infinity)
+                        .padding(.horizontal, 30)
+                        .background(Color("bar"))
+
+                    VStack{
+                        EditViewListItem(title: "Alias", detail: $editedAlias)
                         
+//                        EditViewListItem(title: "Latitude", detail: parseCoordinates(sensorDetail.points)[0] ?? "")
+//                        EditViewListItem(title: "Lontitude", detail: parseCoordinates(sensorDetail.points)[1] ?? "")
+                        EditViewListItem(title: "Sleeping Time (Hr)", detail: $editedSleeping)
+                    }.padding(.top, -5)
+                        .onAppear {
+                            
+                        }
+
+                    
+
+                } else {
+                    Text("Loading sensor data...")
+                }
+                Spacer()
+                
+//                GRMapView(
+//                    fullScreen: $FullScreen,
+//                    selectPosion: $selectPosion,
+//                    annotations: $annotations
+//                )
+//                .frame(height: FullScreen ? 200 : 550)
+                
+                Button(action: {
+                    // Save the edited sensor information here
+                    if var editedSensorDetail = sensorDetail {
+                        // Update the edited fields
+                        editedSensorDetail.alias = editedAlias
+                        if let latitude = Double(editedLatitude), let longitude = Double(editedLongitude) {
+                            editedSensorDetail.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                        }
+                        editedSensorDetail.sleeping = Int(editedSleeping)
+                        
+                        // Check if selectPosion is not nil before updating
+                        if let selectedCoordinate = selectPosion {
+                            viewModel.editSensor(sensorDetail: editedSensorDetail, coordinate: selectedCoordinate) { result in
+                                switch result {
+                                case .success:
+                                    DispatchQueue.main.async {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                case .failure(let error):
+                                    print("Error editing sensor: \(error)")
+                                }
+                            }
+                        } else {
+                            print("Error: No coordinate selected")
+                            
+                        }
+                    }
+                }) {
+                    Text("Save")
+                        .font(.headline)
+                        .foregroundColor(.white)
+                        .frame(width: 200, height: 50)
+                        .background(Color.blue)
+                        .cornerRadius(10)
+                        .padding()
+                }
+            }
+            .onAppear {
+                // Fetch sensor details when the view appears
+                print("View appeared (before async operation)")
+                viewModel.fetchSensorDetail(sensorId: sensorId, username: username, fieldId: fieldId) { result in
+                    switch result {
+                    case .success(let sensorDetail):
+                        DispatchQueue.main.async {
+                            self.sensorDetail = sensorDetail
+                            editedAlias = sensorDetail.alias ?? ""
+                            editedLatitude = "\(sensorDetail.coordinate?.latitude ?? 0)"
+                            editedLongitude = "\(sensorDetail.coordinate?.longitude ?? 0)"
+                            editedSleeping = "\(sensorDetail.sleeping ?? 0)"
+                            print("Edit DispatchQueue successful")
+                        }
+                    case .failure(let error):
+                        print("Viewedit: Error fetching sensor details: \(error)")
                     }
                 }
-            }) {
-                Text("Save")
-                    .font(.headline)
-                    .foregroundColor(.white)
-                    .frame(width: 200, height: 50)
-                    .background(Color.blue)
-                    .cornerRadius(10)
-                    .padding()
-            }
-        }
-        .onAppear {
-            // Fetch sensor details when the view appears
-            print("View appeared (before async operation)")
-            viewModel.fetchSensorDetail(sensorId: sensorId, username: username, fieldId: fieldId) { result in
-                switch result {
-                case .success(let sensorDetail):
-                    DispatchQueue.main.async {
-                        self.sensorDetail = sensorDetail
-                        editedAlias = sensorDetail.alias ?? ""
-                        editedLatitude = "\(sensorDetail.coordinate?.latitude ?? 0)"
-                        editedLongitude = "\(sensorDetail.coordinate?.longitude ?? 0)"
-                        editedSleeping = "\(sensorDetail.sleeping ?? 0)"
-                        print("Edit DispatchQueue successful")
+                print("Async operation completed")
+            }.navigationBarTitle("", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        NavigationBackView()
+                            .onTapGesture {
+                                presentationMode.wrappedValue.dismiss()
+                            }
+                            .frame(width: 70,height: 17)
                     }
-                case .failure(let error):
-                    print("Viewedit: Error fetching sensor details: \(error)")
                 }
-            }
-            print("Async operation completed")
+                .navigationBarBackButtonHidden(true)
         }
-    }
+            
+        }
+  
     
     // Helper method to parse coordinates from JSON string
-    private func parseCoordinates(_ points: String?) -> String {
+    private func parseCoordinates(_ points: String?) -> [String] {
         guard let pointsData = points?.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: pointsData, options: []) as? [String: Any],
               let coordinates = json["coordinates"] as? [Double],
               coordinates.count == 2 else {
-            return "Invalid coordinates"
+            return ["Invalid coordinates"]
         }
         
-        let latitude = coordinates[1]
-        let longitude = coordinates[0]
+        let latitude = String(coordinates[1])
+        let longitude = String(coordinates[0])
         
-        return "Latitude: \(latitude), Longitude: \(longitude)"
+        return [latitude, longitude]
     }
+
 }

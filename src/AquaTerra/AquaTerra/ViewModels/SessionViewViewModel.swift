@@ -22,6 +22,7 @@ final class SessionViewViewModel: ObservableObject {
     @Published var sensorData: [SensorData] = []
     @Published var sensorDetail: SensorDetail?
     
+    
     @Published var list : [SessionViewViewModel] = []
     
     var currentUserUsername: String?
