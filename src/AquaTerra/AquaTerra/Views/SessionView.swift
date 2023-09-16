@@ -25,6 +25,8 @@ struct SessionView: View {
                         .frame(alignment: .top)
                         .frame(maxHeight: 20)
                     
+                    Spacer().frame(height: 60)
+                    
                     VStack(spacing: 24){
                         NavigationLink {
                             MGatewaysView()
@@ -63,7 +65,7 @@ struct SessionView: View {
                         }
                     }.padding(.vertical, 37)
                     
-    //                Spacer()
+                    Spacer()
     //                CustomTabBar(selectedTab: $selectedTab, user: $user)
                 }
             }

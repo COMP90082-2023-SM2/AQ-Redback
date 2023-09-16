@@ -17,25 +17,25 @@ struct SelectionView: View {
     var body: some View {
         
         NavigationStack{
-            VStack{
+            VStack(spacing: 0){
                 FMNavigationBarView(title: "Select a Field")
                     .frame(height: 45)
                 Divider()
                 
                 List {
                     ForEach(fieldData, id: \.field_id) { sensor in
-                        HStack{
+                        HStack(spacing: 0){
                             Button(action: {
                                 selectedFieldName = sensor
                                 viewModel.fetchSensorData(fieldId: sensor.field_id) { result in
                                     switch result {
                                     case .success(let sensorDataResponse):
-                                           DispatchQueue.main.async { // Ensure UI updates are on the main thread
-                                               self.sensorData = sensorDataResponse.data
-                                               self.selectedFieldName = sensor
-                                               presentationMode.wrappedValue.dismiss()
-                                           }
-
+                                        DispatchQueue.main.async { // Ensure UI updates are on the main thread
+                                            self.sensorData = sensorDataResponse.data
+                                            self.selectedFieldName = sensor
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                        
                                     case .failure(let error):
                                         print("Error: \(error)")
                                     }
@@ -44,22 +44,26 @@ struct SelectionView: View {
                             }) {
                                 Text(sensor.field_name)
                                     .font(.custom("OpenSans-SemiBold", size: 16))
+                                    .padding(.leading, 30)
                                 
                                 
                             }
-                        }.frame(height: 68)
-                            .listRowInsets(EdgeInsets())
                             
-                    }
+                        }
+                        Divider()
+                            .frame(maxWidth: .infinity)
+                            .foregroundColor(Color("bar"))
+                        
+                            
+                    }.frame(height: 40)
+                        .listRowInsets(EdgeInsets())
+                        .listRowSeparator(.hidden)
                 }
                 .listStyle(.plain)
                 .scrollIndicators(.hidden)
-                .padding(.top, -7)
-                .padding(.leading, 30)
-                .padding(.trailing, 30)
-                .padding(.bottom, 100)
                 .frame(maxHeight: .infinity)
                 .ignoresSafeArea(.all)
+                .padding(.top, 20)
 
             }
             .navigationBarTitle("", displayMode: .inline)
