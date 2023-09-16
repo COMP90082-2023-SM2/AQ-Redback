@@ -41,7 +41,6 @@ struct SensorEditView: View {
     }
     
     var body: some View {
-        NavigationStack{
             VStack {
                 FMNavigationBarView(title: "Edit Sensor")
                     .frame(height: 45)
@@ -130,9 +129,6 @@ struct SensorEditView: View {
                     }
                     .navigationBarBackButtonHidden(true)
             }
-            
-            
-        }
     }
     // Helper method to parse coordinates from JSON string
     private func parseCoordinates(_ points: String?) -> [String] {
@@ -190,5 +186,4 @@ struct SensorEditView: View {
             }
         }
     }
-
 }

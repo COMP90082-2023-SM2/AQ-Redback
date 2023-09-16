@@ -16,7 +16,6 @@ struct SelectionView: View {
 
     var body: some View {
         
-        NavigationStack{
             VStack(spacing: 0){
                 FMNavigationBarView(title: "Select a Field")
                     .frame(height: 45)
@@ -80,7 +79,6 @@ struct SelectionView: View {
         }
        
     }
-}
 
 //struct SelectionView_Previews: PreviewProvider {
 //    static var previews: some View {
