@@ -21,7 +21,6 @@ struct ProfileView: View {
                 CustomHeaderView(title: "My Profile")
                     .frame(alignment: .top)
                     .frame(height: 60)
-                    .background(Color.green)
                 
                 Button {
                     sessionViewViewModel.signOut()

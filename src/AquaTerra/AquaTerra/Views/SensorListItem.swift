@@ -14,6 +14,7 @@ struct SensorListItem: View {
     @State var gatewayID : String
     @Binding var deletionIndex: Int?
     @State private var showAlert = false
+    @State private var showEdit = false
     @Binding var sensorData: [SensorData]
     @State var sensor: SensorData
     @ObservedObject var viewModel: SessionViewViewModel
@@ -32,13 +33,21 @@ struct SensorListItem: View {
                     .font(.custom("OpenSans-Regular", size: 14))
                 
                 Spacer()
-
-                Button(action: {
-                    
-                }) {
+                
+                Button{
+                    showEdit = true
+                }label: {
                     Image("edit").resizable()
                         .frame(width: 38,height: 38)
+                }.navigationDestination(isPresented: $showEdit){
+                    SensorEditView(
+                        viewModel: viewModel,
+                        sensorId: sensor.sensor_id,
+                        username: sensor.username ?? "",
+                        fieldId: sensor.field_id
+                    )
                 }
+                
                 Spacer().frame(width: 0)
                 
                 
