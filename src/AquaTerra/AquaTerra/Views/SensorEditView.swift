@@ -185,7 +185,7 @@ struct SensorEditView: View {
                     }
                 } else {
                     print("Error: No coordinate selected")
-                    
+                    presentationMode.wrappedValue.dismiss()
                 }
             }
         }

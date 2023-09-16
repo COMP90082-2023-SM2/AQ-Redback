@@ -21,6 +21,15 @@ struct AddSensorView: View {
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = true
     @State private var selected = 0
+    
+    private var enableBtn : Binding<Bool> {
+        Binding<Bool>(
+            get: {
+                return selectedCoordinate != nil
+            },
+            set: { _ in}
+        )
+    }
 
     var body: some View {
         NavigationView {
@@ -75,7 +84,7 @@ struct AddSensorView: View {
                                 presentationMode.wrappedValue.dismiss()
                             })
                             Spacer().frame(width: 20)
-                            SensorButton(title: "Next") {
+                            GRButton(enable:enableBtn, title: "Next") {
                                 next()
                             }
                         }
@@ -132,5 +141,6 @@ struct AddSensorView: View {
             selected += 1
         }
     }
+    
 }
 
