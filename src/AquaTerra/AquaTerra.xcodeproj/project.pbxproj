@@ -28,6 +28,8 @@
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
 		57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0D2A99E7300029303E /* SignUpView.swift */; };
 		57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */; };
+		697099452AB5585A005003E7 /* SensorStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099442AB5585A005003E7 /* SensorStepView.swift */; };
+		697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099462AB55C69005003E7 /* SensorIDBar.swift */; };
 		698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */; };
 		698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */; };
 		698B69D22AB319640031E0ED /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69D12AB319640031E0ED /* ProfileView.swift */; };
@@ -86,6 +88,8 @@
 		57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		57FDEF0D2A99E7300029303E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewViewModel.swift; sourceTree = "<group>"; };
+		697099442AB5585A005003E7 /* SensorStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorStepView.swift; sourceTree = "<group>"; };
+		697099462AB55C69005003E7 /* SensorIDBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIDBar.swift; sourceTree = "<group>"; };
 		698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		698B69D12AB319640031E0ED /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				69B1DA162AB45D61001777F9 /* SelectionView.swift */,
 				575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */,
 				575FB5532AB542700079B6E8 /* EditViewListItem.swift */,
+				697099442AB5585A005003E7 /* SensorStepView.swift */,
+				697099462AB55C69005003E7 /* SensorIDBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,6 +479,7 @@
 			files = (
 				57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */,
 				57FDEF082A99D7620029303E /* LoginView.swift in Sources */,
+				697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
 				69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */,
 				69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */,
@@ -484,6 +491,7 @@
 				57FDEEF62A99C9F10029303E /* MainView.swift in Sources */,
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
 				C61C68432AB1947B0053DF9C /* GRegistrationView.swift in Sources */,
+				697099452AB5585A005003E7 /* SensorStepView.swift in Sources */,
 				575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,

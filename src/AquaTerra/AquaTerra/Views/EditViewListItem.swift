@@ -28,7 +28,7 @@ struct EditViewListItem: View {
         }
         .background(Color.white)
         .padding(.horizontal, 30)
-        .frame(height: 68)
+        .frame(height: 60)
         
         Divider()
             .frame(maxWidth: .infinity)

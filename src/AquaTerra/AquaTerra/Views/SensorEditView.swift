@@ -19,13 +19,14 @@ struct SensorEditView: View {
     
     @State private var sensorDetail: SensorDetail?
     @State private var selectPosion: CLLocationCoordinate2D?
-    @State private var editedAlias: String = ""
-    @State private var editedLatitude: String = ""
-    @State private var editedLongitude: String = ""
+    @State private var editedAlias: String?
+    @State private var editedLatitude: String?
+    @State private var editedLongitude: String?
 
-    @State private var editedSleeping: String = ""
+    @State private var editedSleeping: String?
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = true
+    @State private var seletected = 0
     
     var body: some View {
         
@@ -35,38 +36,23 @@ struct SensorEditView: View {
                 FMNavigationBarView(title: "Edit Sensor")
                     .frame(height: 45)
                 
-                
-                
-                
+                SensorStepView(selected: $seletected)
+                    .padding(.vertical, 20)
+
                 if let sensorDetail = sensorDetail {
-                    
-                    HStack{
-                        Text("Sensor ID:").font(.custom("OpenSans-SemiBold", size: 16))
-                        Spacer()
-                        Text(sensorDetail.sensor_id).font(.custom("OpenSans-ExtraBold", size: 16)).foregroundColor(Color("ButtonGradient2"))
-                        Spacer()
-                    }.frame(height: 65)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal, 30)
-                        .background(Color("bar"))
-
+                    SensorIDBar(sensorDetail: sensorDetail)
                     VStack{
-                        EditViewListItem(title: "Alias", detail: $editedAlias)
-                        
-//                        EditViewListItem(title: "Latitude", detail: parseCoordinates(sensorDetail.points)[0] ?? "")
-//                        EditViewListItem(title: "Lontitude", detail: parseCoordinates(sensorDetail.points)[1] ?? "")
-                        EditViewListItem(title: "Sleeping Time (Hr)", detail: $editedSleeping)
-                    }.padding(.top, -5)
-                        .onAppear {
-                            
-                        }
-
-                    
-
+                       EditViewListItem(title: "Alias", detail: Binding(
+                            get: {self.editedAlias ?? ""},set: {self.editedAlias = $0}))
+                       EditViewListItem(title: "Latitude", detail: Binding.constant(parseCoordinates(sensorDetail.points)[0] ?? ""))
+                       EditViewListItem(title: "Longitude", detail: Binding.constant(parseCoordinates(sensorDetail.points)[1] ?? ""))
+                        EditViewListItem(title: "Sleeping Time (Hr)", detail: Binding(
+                            get: {self.editedSleeping ?? ""},set: {self.editedSleeping = $0}))
+                    }
                 } else {
                     Text("Loading sensor data...")
                 }
-                Spacer()
+                
                 
 //                GRMapView(
 //                    fullScreen: $FullScreen,
@@ -80,10 +66,10 @@ struct SensorEditView: View {
                     if var editedSensorDetail = sensorDetail {
                         // Update the edited fields
                         editedSensorDetail.alias = editedAlias
-                        if let latitude = Double(editedLatitude), let longitude = Double(editedLongitude) {
-                            editedSensorDetail.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                        }
-                        editedSensorDetail.sleeping = Int(editedSleeping)
+                        if let latitudeStr = editedLatitude, let longitudeStr = editedLongitude,
+                                                   let latitude = Double(latitudeStr), let longitude = Double(longitudeStr) {
+                                                    editedSensorDetail.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                                                }
                         
                         // Check if selectPosion is not nil before updating
                         if let selectedCoordinate = selectPosion {
