@@ -11,53 +11,126 @@ import CoreLocation
 struct AddSensorView: View {
     @ObservedObject var viewModel: SessionViewViewModel
     @Binding var showAddSensorSheet: Bool
+    @Environment(\.presentationMode) var presentationMode
     let fieldID: String
+    @State private var selectPosion: CLLocationCoordinate2D?
 
     @State private var sensorID: String = ""
     @State private var selectedCoordinate: CLLocationCoordinate2D?
 
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = true
+    @State private var selected = 0
 
     var body: some View {
         NavigationView {
-            List {
-                Section(header: Text("Sensor Information")) {
-                    TextField("Sensor ID", text: $sensorID)
-                }
-
-                Section {
-                    GRMapView(
-                        fullScreen: $FullScreen,
-                        selectPosion: $selectedCoordinate,
-                        annotations: $annotations
-                    )
-                    .frame(height: FullScreen ? 200 : 550)
-                }
-
-                Button("Add Sensor") {
-                    guard let selectedCoordinate = selectedCoordinate else {
-                        return
-                    }
-
-                    print("Selected Coordinate: \(selectedCoordinate.latitude), \(selectedCoordinate.longitude)")
-                    
-                    SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate) { result in
-                        switch result {
-                        case .success:
-                            showAddSensorSheet = false
-                        case .failure(let error):
-                            print("Error creating sensor: \(error)")
+            VStack{
+                FMNavigationBarView(title: "Add A New Sensor")
+                    .frame(height: 45)
+                Divider()
+                SensorStepView(selected: $selected).padding(.vertical, 20)
+                
+                
+                VStack{
+                    switch selected {
+                    case 0:
+                        VStack(alignment: .leading){
+                            HStack(spacing: 3.5){
+                                Text("Please enter your new sensor ID.")
+                                    .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
+                            }
+                            
+                            TextField("Example:AquaTerraGateway909a56",text: $sensorID)
+                                .font(.custom("OpenSans-Regular", size: 14))
+                                .foregroundColor(Color("Placeholder"))
+                                .padding([.horizontal], 15)
+                                .frame(height: 50)
+                                .accentColor(Color("ButtonGradient2"))
+                                .background(Color("Hint"))
+                                .cornerRadius(5)
+                            
+                        }.padding(.horizontal, 30)
+                            .padding(.top, 20)
+                        
+                        SensorButton(title: "Next") {
+                            next()
                         }
-                    }
-                }
+                        .frame(height: 50)
+                        .padding(.top, 15)
+                        .padding(.horizontal,30)
+                        
+                        Spacer()
+                        
+                    case 1:
+                        GRMapView(
+                            fullScreen: $FullScreen,
+                            selectPosion: $selectedCoordinate,
+                            annotations: $annotations
+                        )
+                        .padding(.horizontal, 30)
+                        
+                        HStack{
+                            SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
+                                undo()
+                                presentationMode.wrappedValue.dismiss()
+                            })
+                            Spacer().frame(width: 20)
+                            SensorButton(title: "Next") {
+                                next()
+                            }
+                        }
+                        .frame(height: 60)
+                        .padding(.top, 15)
+                        .padding(.horizontal, 30)
+                        Spacer()
+                    
+                    case 2:
+                        SensorSubmitView(gateway: sensorID) {
+                            guard let selectedCoordinate = selectedCoordinate else {
+                                return
+                            }
 
+                            print("Selected Coordinate: \(selectedCoordinate.latitude), \(selectedCoordinate.longitude)")
+                            
+                            SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate) { result in
+                                switch result {
+                                case .success:
+                                    showAddSensorSheet = false
+                                case .failure(let error):
+                                    print("Error creating sensor: \(error)")
+                                }
+                            }
+                        } .padding(.horizontal, 30)
+                            .padding(.top,20)
+                            Spacer()
+                    
+                    default :
+                        HStack{}
+                    }
+                    
+                }
             }
-            .listStyle(GroupedListStyle())
-            .navigationBarTitle("Add Sensor", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Cancel") {
-                showAddSensorSheet = false
-            })
+        }.navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationBackView()
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
+                        }
+                        .frame(width: 70,height: 17)
+                }
+            }
+            .navigationBarBackButtonHidden(true)
+    }
+    private func undo() {
+        selectPosion = nil
+        annotations.removeAll()
+    }
+    
+    private func next(){
+        withAnimation(.linear(duration: 0.5)){
+            selected += 1
         }
     }
 }
+

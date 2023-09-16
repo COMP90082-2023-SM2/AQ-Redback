@@ -120,7 +120,12 @@ struct SensorListView: View {
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .bold()
                             }
+                        }.navigationDestination(isPresented: $showAddSensorSheet){
+                            AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "")
                         }
+                        
+                        
+                        
                     }else{
                         Button(action: {
                             
@@ -195,12 +200,12 @@ struct SensorListView: View {
             .navigationBarBackButtonHidden(true)
             
 
-        }
-        .sheet(isPresented: $showAddSensorSheet) {
-            if let field = selectedFieldName {
-                AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: field.field_id)
-            }
         }.navigationBarBackButtonHidden(true)
+//        .sheet(isPresented: $showAddSensorSheet) {
+//            if let field = selectedFieldName {
+//                AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: field.field_id)
+//            }
+//        }.navigationBarBackButtonHidden(true)
     }
 }
 
