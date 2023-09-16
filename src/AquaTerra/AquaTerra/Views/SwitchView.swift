@@ -42,7 +42,7 @@ struct SwitchView: View {
             }
         }
         .onAppear {
-            MGViewModel.share().setupUser(user: user.userId)
+            MGViewModel.share().setupUser(user: user.username)
                 
         }
     }
