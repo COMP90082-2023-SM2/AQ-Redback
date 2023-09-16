@@ -92,14 +92,15 @@ struct SensorEditView: View {
                                 print("Async operation completed")
                             }
                     case 1:
-                        GRMapView(fullScreen: $FullScreen,selectPosion: $selectPosion,annotations: $annotations)
+                        SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
                             .padding(.horizontal, 30)
                         HStack{
-                            GRButton(enable:enableBtn, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
+                            SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
                                 undo()
+                                presentationMode.wrappedValue.dismiss()
                             })
                             Spacer().frame(width: 20)
-                            GRButton(enable:enableBtn, title: "Next") {
+                            SensorButton(title: "Next") {
                                 next()
                             }
                         }

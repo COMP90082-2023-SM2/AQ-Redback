@@ -17,6 +17,7 @@
 		575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5532AB542700079B6E8 /* EditViewListItem.swift */; };
 		575FB5562AB5699C0079B6E8 /* SensorSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */; };
 		575FB5582AB589900079B6E8 /* SensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5572AB589900079B6E8 /* SensorButton.swift */; };
+		575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5592AB598050079B6E8 /* SensorMapView.swift */; };
 		577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577279B42AB206D700ED9495 /* AddSensorView.swift */; };
 		5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */; };
 		57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */; };
@@ -77,6 +78,7 @@
 		575FB5532AB542700079B6E8 /* EditViewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewListItem.swift; sourceTree = "<group>"; };
 		575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSubmitView.swift; sourceTree = "<group>"; };
 		575FB5572AB589900079B6E8 /* SensorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorButton.swift; sourceTree = "<group>"; };
+		575FB5592AB598050079B6E8 /* SensorMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMapView.swift; sourceTree = "<group>"; };
 		577279B42AB206D700ED9495 /* AddSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorView.swift; sourceTree = "<group>"; };
 		5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorEditView.swift; sourceTree = "<group>"; };
 		57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				697099462AB55C69005003E7 /* SensorIDBar.swift */,
 				575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */,
 				575FB5572AB589900079B6E8 /* SensorButton.swift */,
+				575FB5592AB598050079B6E8 /* SensorMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,
 				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
+				575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */,
 				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
 				69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */,
 				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,

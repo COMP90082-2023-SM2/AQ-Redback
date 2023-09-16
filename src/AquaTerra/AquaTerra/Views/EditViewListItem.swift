@@ -9,7 +9,7 @@ import SwiftUI
 
 struct EditViewListItem: View {
     @State var title: String
-    @Binding var detail: String
+    @Binding var detail: String?
     
     var body: some View {
         HStack {
@@ -19,8 +19,11 @@ struct EditViewListItem: View {
             
             Spacer()
             
-            TextField("", text: $detail, onCommit: {
-                // Perform action when editing is complete
+            TextField("", text: Binding<String>(
+                get: { self.detail ?? "" },
+                set: { self.detail = $0 }
+            ), onCommit: {
+                
             })
             .font(.custom("OpenSans-SemiBold", size: 16))
             .frame(maxWidth: 100)

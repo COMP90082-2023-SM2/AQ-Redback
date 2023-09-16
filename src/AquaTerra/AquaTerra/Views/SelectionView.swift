@@ -14,8 +14,6 @@ struct SelectionView: View {
     @Binding var sensorData: [SensorData]
     @Environment(\.presentationMode) var presentationMode
 
-
-    
     var body: some View {
         
         NavigationStack{

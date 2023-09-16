@@ -1,17 +1,20 @@
 //
-//  GRMapView.swift
-//  Gateways
+//  SensorMapView.swift
+//  AquaTerra
 //
-//  Created by ... on 2023/9/9.
+//  Created by Davincci on 16/9/2023.
 //
 
 import SwiftUI
 import MapKit
 
-struct GRMapView: View {
+struct SensorMapView: View {
     @Binding var fullScreen : Bool
     @Binding var selectPosion: CLLocationCoordinate2D?
     @Binding var annotations: [MKPointAnnotation]
+    
+    @Binding var latitude: String?
+    @Binding var longitude: String?
     
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.8136, longitude: 144.9631), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     @State private var enable = true
@@ -23,7 +26,7 @@ struct GRMapView: View {
                 .font(.custom("OpenSans-Regular", size: 16))
                 .frame(maxWidth: .infinity, alignment: .leading)
             ZStack{
-                MapView(selectedCoordinate: $selectPosion,region: $region,annotations: $annotations,allowLocation: $allowLocation)
+                SMapView(selectedCoordinate: $selectPosion, region: $region, annotations: $annotations, allowLocation: $allowLocation, latitude: latitude, longitude: longitude)
                 HStack {
                     Spacer()
                     VStack(alignment: .trailing){
@@ -73,22 +76,39 @@ struct GRMapView: View {
     }
 }
 
-struct MapView: UIViewRepresentable {
+struct SMapView: UIViewRepresentable {
     @Binding var selectedCoordinate: CLLocationCoordinate2D?
     @Binding var region: MKCoordinateRegion
     @Binding var annotations: [MKPointAnnotation]
+    @Binding var allowLocation: Bool
     
-    @Binding var allowLocation : Bool
+    var latitude: String?
+    var longitude: String?
+
 
     func makeUIView(context: Context) -> MKMapView {
-        let mapView = MKMapView()
-        mapView.isZoomEnabled = true
-        mapView.delegate = context.coordinator
-        mapView.setRegion(region, animated: true)
+        let smapView = MKMapView()
+        smapView.isZoomEnabled = true
+        smapView.delegate = context.coordinator
+
+        // Set the initial map center based on latitude and longitude from SensorMapView
+        if let latitudeStr = latitude, let longitudeStr = longitude,
+           let latitude = Double(latitudeStr), let longitude = Double(longitudeStr) {
+            let initialRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            print("-------------")
+            print(latitudeStr)
+            print(longitudeStr)
+            smapView.setRegion(initialRegion, animated: true)
+        }
+
+        smapView.setRegion(region, animated: true)
+
+        // Add the annotations here if needed
+
         // click add
         let gestureRecognizer = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.handleSingleTapPress(_:)))
-        mapView.addGestureRecognizer(gestureRecognizer)
-        return mapView
+        smapView.addGestureRecognizer(gestureRecognizer)
+        return smapView
     }
 
     func updateUIView(_ uiView: MKMapView, context: Context) {
@@ -102,20 +122,20 @@ struct MapView: UIViewRepresentable {
     }
 
     class Coordinator: NSObject, MKMapViewDelegate {
-        var parent: MapView
+        var parent: SMapView
         
-        init(_ parent: MapView) {
+        init(_ parent: SMapView) {
             self.parent = parent
         }
         
-        func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-            parent.region = mapView.region
+        func mapView(_ smapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+            parent.region = smapView.region
         }
         
-        func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        func mapView(_ smapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
             let identifier = "CustomAnnotationView"
-            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
+            var annotationView = smapView.dequeueReusableAnnotationView(withIdentifier: identifier) as? MKMarkerAnnotationView
             if annotationView == nil {
                 annotationView = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
             } else {
@@ -132,12 +152,12 @@ struct MapView: UIViewRepresentable {
             
             if !parent.allowLocation { return }
             
-            guard let mapView = gestureRecognizer.view as? MKMapView else {
+            guard let smapView = gestureRecognizer.view as? MKMapView else {
                 return
             }
             
-            let location = gestureRecognizer.location(in: mapView)
-            let coordinate = mapView.convert(location, toCoordinateFrom: mapView)
+            let location = gestureRecognizer.location(in: smapView)
+            let coordinate = smapView.convert(location, toCoordinateFrom: smapView)
             
             let newAnnotation = MKPointAnnotation()
             newAnnotation.coordinate = coordinate
@@ -151,11 +171,4 @@ struct MapView: UIViewRepresentable {
     }
 }
 
-//struct GRMapView_Previews: PreviewProvider {
-//    @State static var state = true
-//    @State static var selectedLL : CLLocationCoordinate2D?
-//    @State static var annotations : [MKPointAnnotation] = []
-//    static var previews: some View {
-//        GRMapView(fullScreen: $state,selectPosion: $selectedLL,annotations: $annotations)
-//    }
-//}
+
