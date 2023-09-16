@@ -154,6 +154,7 @@ struct SensorListView: View {
                             SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel)
                                 .listRowSeparator(.hidden)
                                 .buttonStyle(PlainButtonStyle())
+                            
                         }
                     }
                     .listStyle(PlainListStyle())
