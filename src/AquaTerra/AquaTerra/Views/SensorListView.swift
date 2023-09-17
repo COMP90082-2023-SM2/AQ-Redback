@@ -23,6 +23,7 @@ struct SensorListView: View {
     @State private var alertShow = false
     @State private var selectId : String = ""
     @State private var loading = false
+    @State private var refreshList = false
     
     @Environment(\.presentationMode) var presentationMode
 
@@ -52,9 +53,8 @@ struct SensorListView: View {
                                 .bold()
                                 .frame(width: 110, height: 41)
                                 .background(RoundedRectangle(cornerRadius: 5, style: .continuous).fill(Color("HighlightColor")))
-                        }.navigationDestination(isPresented: $showSelection) {
-                            SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
-                            }
+                        }
+                        NavigationLink("",destination: SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData),isActive:  $showSelection).opacity(0)
                         }
                     else{
                         Text(selectedFieldName?.field_name ?? "Not Selected").font(.custom("OpenSans-SemiBold", size: 14))
@@ -69,9 +69,8 @@ struct SensorListView: View {
                                 .bold()
                                 .frame(width: 110, height: 41)
                                 .background(RoundedRectangle(cornerRadius: 5, style: .continuous).fill(Color("HighlightColor")))
-                        }.navigationDestination(isPresented: $showSelection) {
-                            SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
-                            }
+                        }
+                        NavigationLink("",destination: SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData),isActive:  $showSelection).opacity(0)
                         }
                 }.frame(height: 50)
                     .frame(maxWidth: .infinity)
@@ -109,11 +108,8 @@ struct SensorListView: View {
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .bold()
                             }
-                        }.navigationDestination(isPresented: $showAddSensorSheet){
-                            AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "")
                         }
-                        
-                        
+                        NavigationLink("",destination: AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "", fieldData: fieldData, refreshList: $refreshList),isActive: $showAddSensorSheet).opacity(0)
                         
                     }else{
                         Button(action: {
@@ -145,11 +141,12 @@ struct SensorListView: View {
                     List {
                         ForEach(sensorData) { sensor in
                             
-                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel)
+                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel, fieldData: fieldData)
                                 .listRowSeparator(.hidden)
                                 .buttonStyle(PlainButtonStyle())
                         }
                     }
+                    .buttonStyle(PlainButtonStyle())
                     .listStyle(PlainListStyle())
                     .scrollIndicators(.hidden)
                     .padding(.bottom, 70)
@@ -176,12 +173,33 @@ struct SensorListView: View {
                 }
                 
             }
+            .onChange(of: refreshList){
+                refreshed in
+                if refreshed {
+                    //fetch data
+                    viewModel.fetchSensorData(fieldId: selectedFieldName?.field_id ?? "") { result in
+                        switch result {
+                        case .success(let sensorDataResponse):
+                            DispatchQueue.main.async {
+                                self.sensorData = sensorDataResponse.data
+                                self.selectedFieldName = selectedFieldName
+                            }
+                        case .failure(let error):
+                            print("Error: \(error)")
+                        }
+                        
+                        // Reset refreshList to false after the refresh is complete
+                        refreshList = false
+                    }
+                }
+            }
             .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationBackView()
                         .onTapGesture {
                             presentationMode.wrappedValue.dismiss()
+                            BaseBarModel.share.show()
                         }
                         .frame(width: 70,height: 17)
                 }
@@ -190,4 +208,3 @@ struct SensorListView: View {
         }.navigationBarBackButtonHidden(true)
     }
 }
-

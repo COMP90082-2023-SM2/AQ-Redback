@@ -18,6 +18,7 @@ struct SensorListItem: View {
     @Binding var sensorData: [SensorData]
     @State var sensor: SensorData
     @ObservedObject var viewModel: SessionViewViewModel
+    @State var fieldData: [FieldData]
     
     var body: some View {
         
@@ -33,24 +34,32 @@ struct SensorListItem: View {
                     .font(.custom("OpenSans-Regular", size: 14))
                 
                 Spacer()
+                Spacer()
                 
-                Button{
-                    showEdit = true
-                }label: {
-                    Image("edit").resizable()
-                        .frame(width: 38,height: 38)
-                }.navigationDestination(isPresented: $showEdit){
-                    SensorEditView(
-                        viewModel: viewModel,
-                        sensorId: sensor.sensor_id,
-                        username: sensor.username ?? "",
-                        fieldId: sensor.field_id
+                
+                HStack{
+                    Button(action: {
+                        showEdit = true
+                    }) {
+                        Image("edit")
+                            .resizable()
+                            .frame(width: 38, height: 38)
+                    }
+                    .background(
+                        NavigationLink("", destination: SensorEditView(
+                            viewModel: viewModel,
+                            sensorId: sensor.sensor_id,
+                            username: sensor.username ?? "",
+                            fieldId: sensor.field_id,
+                            fieldData: fieldData
+                        ), isActive: $showEdit)
+                        .opacity(0)
                     )
                 }
+
                 
                 Spacer().frame(width: 0)
-                
-                
+         
                 Button(
                     action: {
                         deletionIndex = sensorData.firstIndex(of: sensor)
@@ -86,12 +95,12 @@ struct SensorListItem: View {
             Divider()
                 .frame(maxWidth: .infinity)
                 .foregroundColor(Color("bar"))
-                .frame(height: 2)
             
         }
             .frame(height: 68)
             .listRowInsets(EdgeInsets())
             .onTapGesture {return}
+            .listRowBackground(Color.clear)
 
     }
     private func deleteSensor(at offsets: IndexSet) {

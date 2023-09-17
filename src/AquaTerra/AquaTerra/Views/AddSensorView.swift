@@ -14,13 +14,14 @@ struct AddSensorView: View {
     @Environment(\.presentationMode) var presentationMode
     let fieldID: String
     @State private var selectPosion: CLLocationCoordinate2D?
-
+    @State var fieldData: [FieldData]
     @State private var sensorID: String = ""
     @State private var selectedCoordinate: CLLocationCoordinate2D?
 
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = false
     @State private var selected = 0
+    @Binding var refreshList : Bool
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -109,11 +110,16 @@ struct AddSensorView: View {
                                 SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate) { result in
                                     switch result {
                                     case .success:
-                                        showAddSensorSheet = false
+                                        DispatchQueue.main.async {
+                                            showAddSensorSheet = false
+                                            refreshList = true
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
                                     case .failure(let error):
                                         print("Error creating sensor: \(error)")
                                     }
                                 }
+                                
                             }
                                 .padding(.top,20)
                                 Spacer()
@@ -153,4 +159,3 @@ struct AddSensorView: View {
     }
     
 }
-

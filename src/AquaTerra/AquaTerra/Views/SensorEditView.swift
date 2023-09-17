@@ -22,6 +22,7 @@ struct SensorEditView: View {
     @State private var editedAlias: String?
     @State var editedLatitude: String?
     @State var editedLongitude: String?
+    @State var fieldData: [FieldData]
 
     @State private var editedSleeping: String?
     @State private var annotations: [MKPointAnnotation] = []
@@ -138,19 +139,19 @@ struct SensorEditView: View {
                             HStack{}
                         }
                         Spacer()
-                    } .navigationBarTitle("", displayMode: .inline)
+                    }.navigationBarTitle("", displayMode: .inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
                                 NavigationBackView()
                                     .onTapGesture {
                                         presentationMode.wrappedValue.dismiss()
+                                        BaseBarModel.share.show()
                                     }
                                     .frame(width: 70,height: 17)
                             }
                         }
-                        .navigationBarBackButtonHidden(true)
                 }
-            }
+            }.navigationBarBackButtonHidden(true)
     }
     // Helper method to parse coordinates from JSON string
     private func parseCoordinates(_ points: String?) {
