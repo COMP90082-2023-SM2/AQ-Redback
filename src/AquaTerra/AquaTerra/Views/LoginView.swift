@@ -32,7 +32,7 @@ struct LoginView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(width: 600, height: 200)
-                        .offset(y:-150)
+                        .offset(y:-180)
                         .mask(
                         Ellipse()
                             .foregroundColor(Color.green)
