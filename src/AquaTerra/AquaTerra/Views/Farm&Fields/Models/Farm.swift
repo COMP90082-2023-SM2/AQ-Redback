@@ -7,13 +7,30 @@
 
 import Foundation
 
-struct Farm: Identifiable {
+struct Farm: Codable, Identifiable {
     /// field id
-    let id: String
+    let id: String = UUID().uuidString
     /// user name
     let user: String
-    /// field name
+    /// farm name
+    var name: String
+        
+    enum CodingKeys: String, CodingKey {
+        case name = "farm_name"
+        case user = "username"
+    }
+}
+
+struct NewFarm: Identifiable {
+    /// field id
+    let id: String = UUID().uuidString
+    /// user name
+    let user: String
+    /// farm name
     var name: String
     
-    var fields: [Field]?
+    var fieldName: String
+    
+    //TODO: confirm api data struct
+    var polyLineLocations: [[Double]] = []
 }

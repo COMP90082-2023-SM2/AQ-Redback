@@ -15,12 +15,18 @@ struct FarmFieldItem: View {
     
     @ObservedObject var viewModel: FarmsViewModel
 
+    @Binding var deleteAlertShowup : Bool
+
+    var deleteAction: ((Field) -> Void)?
+    
+    var viewDetailAction: ((Field) -> Void)?
+
     var body: some View {
         
         ZStack {
             Rectangle()
                 .fill(.white)
-                .shadow(radius: 5)
+                .shadow(radius: 1)
             
             HStack {
                 Text("\(index)")
@@ -57,10 +63,12 @@ struct FarmFieldItem: View {
     
     func showFieldDetail() {
         
+        viewDetailAction?(field)
     }
     
     func deleteField() {
-        
+                
+        deleteAction?(field)
     }
 }
 
@@ -68,6 +76,11 @@ struct FarmFieldItem_Previews: PreviewProvider {
     static var previews: some View {
         
         let filed = Field(id: UUID().uuidString, user: "demo", name: "Demo", farm: "Farm1", crop: "Rice", soil: nil, geom: "", points: "", elevation: nil)
-        FarmFieldItem(index: 1, field: filed, viewModel: FarmsViewModel.previewViewModel())
+        let show: Binding<Bool> = Binding<Bool> {
+            return true
+        } set: { _ in }
+
+        
+        FarmFieldItem(index: 1, field: filed, viewModel: FarmsViewModel.previewViewModel(), deleteAlertShowup: show)
     }
 }

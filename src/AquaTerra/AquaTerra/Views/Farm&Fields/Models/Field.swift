@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Field: Identifiable {
+struct Field: Codable, Identifiable {
     /// field id
     let id: String
     /// user name
@@ -25,5 +25,15 @@ struct Field: Identifiable {
     
     let points: String
 
-    let elevation: String?
+    let elevation: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case id = "field_id"
+        case user = "username"
+        case name = "field_name"
+        case farm = "farm_name"
+        case crop = "crop_type"
+        case soil = "soil_type"
+        case geom, points, elevation
+    }
 }

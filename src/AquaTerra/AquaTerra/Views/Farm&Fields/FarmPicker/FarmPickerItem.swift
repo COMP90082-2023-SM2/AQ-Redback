@@ -11,7 +11,7 @@ struct FarmPickerItem: View {
     
     let farm: Farm
     
-    @ObservedObject var viewModel: FarmsViewModel
+    @Binding var currentPickedFarm: String
 
     var body: some View {
         
@@ -25,7 +25,7 @@ struct FarmPickerItem: View {
                 Button {
                     selectFarm()
                 } label: {
-                    Image(viewModel.currentFarm?.id == farm.id ? "FarmPickSelected" : "FarmPickNormal")
+                    Image(currentPickedFarm.elementsEqual(farm.name) ? "FarmPickSelected" : "FarmPickNormal")
                         .resizable()
                         .frame(width: 38, height: 38)
                         .tint(Color.farmNameColor)
@@ -46,15 +46,19 @@ struct FarmPickerItem: View {
     
     func selectFarm() {
         
-        viewModel.currentFarm = farm
+        currentPickedFarm = farm.name
     }
 }
 
 struct FarmPickerItem_Previews: PreviewProvider {
     static var previews: some View {
         
-        let farm = Farm(id: UUID().uuidString, user: "Demo", name: "Farm1")
+        let farm = Farm(user: "Demo", name: "Farm1")
         
-        FarmPickerItem(farm: farm, viewModel: FarmsViewModel.previewViewModel())
+        let bindingPickedFarm = Binding {
+            return farm.name
+        } set: { _ in }
+
+        FarmPickerItem(farm: farm, currentPickedFarm: bindingPickedFarm)
     }
 }

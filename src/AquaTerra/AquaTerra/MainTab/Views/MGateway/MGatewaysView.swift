@@ -25,7 +25,7 @@ struct MGatewaysView: View {
             }
         )
         
-        ZStack{
+        ZStack {
             if alertShow {
                 MGMainView(selectedItems: $selectedItems, addGateways: $addGateways, items: bindingToInfoModels) { id in
                     showAlert(id: id)

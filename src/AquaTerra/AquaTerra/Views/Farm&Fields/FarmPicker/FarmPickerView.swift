@@ -12,6 +12,17 @@ struct FarmPickerView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var viewModel: FarmsViewModel
+
+    @State private var pickedFarm: String = ""
+    
+    private var currentPickedFarm: Binding<String> {
+        Binding<String>(
+            get: {
+                return self.pickedFarm
+            },
+            set: { self.pickedFarm = $0 }
+        )
+    }
     
     var body: some View {
         
@@ -21,7 +32,7 @@ struct FarmPickerView: View {
                 Divider().frame(height: 0.5)
                 
                 ForEach(farms) { farm in
-                    FarmPickerItem(farm: farm, viewModel: viewModel)
+                    FarmPickerItem(farm: farm, currentPickedFarm: currentPickedFarm)
                         .frame(height: 68)
                 }
                 
@@ -55,10 +66,22 @@ struct FarmPickerView: View {
                 }
             }
         }
+        .onAppear {
+            //load from local storage
+            pickedFarm = viewModel.currentFarmName
+            
+            print("current farm: \(pickedFarm)")
+        }
     }
     
     func selectCurrentFarm() {
         
+        if !pickedFarm.isEmpty {
+            
+            viewModel.currentFarmName = pickedFarm
+        }
+        
+        presentationMode.wrappedValue.dismiss()
     }
 }
 
