@@ -44,6 +44,17 @@ struct SensorEditView: View {
             VStack {
                 if FullScreen && selected == 1 {
                     SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                        .navigationBarTitle("", displayMode: .inline)
+                            .toolbar {
+                                ToolbarItem(placement: .navigationBarLeading) {
+                                    NavigationBackView()
+                                        .onTapGesture {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
+                                        .frame(width: 70,height: 17)
+                                }
+                            }
+                            .navigationBarBackButtonHidden(true)
                 }else{
                     FMNavigationBarView(title: "Edit Sensor")
                         .frame(height: 45)
@@ -99,8 +110,6 @@ struct SensorEditView: View {
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 30)
-                            
-                            
                             SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
                                 .padding(.horizontal, 30)
                             HStack{
@@ -129,8 +138,7 @@ struct SensorEditView: View {
                             HStack{}
                         }
                         Spacer()
-                    }
-                    .navigationBarTitle("", displayMode: .inline)
+                    } .navigationBarTitle("", displayMode: .inline)
                         .toolbar {
                             ToolbarItem(placement: .navigationBarLeading) {
                                 NavigationBackView()
@@ -141,9 +149,7 @@ struct SensorEditView: View {
                             }
                         }
                         .navigationBarBackButtonHidden(true)
-                    
                 }
-               
             }
     }
     // Helper method to parse coordinates from JSON string
