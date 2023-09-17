@@ -14,7 +14,7 @@ struct SensorSubmitView: View {
     var body: some View {
         VStack{
             HStack{
-                Text("Please submit this form to finish registering your new gateway:")
+                Text("Please submit this form to finish updating your sensor:")
                     .font(.custom("OpenSans-Regular", size: 16))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }

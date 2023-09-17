@@ -16,7 +16,6 @@ struct EditViewListItem: View {
             Text(title)
                 .font(.custom("OpenSans-SemiBold", size: 16))
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading) // Allow text to expand to the left
-            
             Spacer()
             
             TextField("", text: Binding<String>(
@@ -39,11 +38,3 @@ struct EditViewListItem: View {
             .padding(0)
     }
 }
-
-
-
-//struct EditViewListItem_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditViewListItem(title:"Alias", detail: "null")
-//    }
-//}

@@ -43,47 +43,36 @@ struct SensorListView: View {
                             .foregroundColor(Color("ButtonGradient2"))
                         
                         Spacer()
-                        Button{
+                        Button(action: {
                             showSelection = true
-                        }label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                    .fill(Color("HighlightColor"))
-                                    .frame(height: 41)
-                                    .frame(width: 110)
-                                
-                                Text("Select A Field")
-                                    .foregroundColor(Color.white)
-                                    .font(.custom("OpenSans-Regular", size: 14))
-                                    .bold()
-                            }
-                            
-                        }.navigationDestination(isPresented: $showSelection){
+                        }) {
+                            Text("Select A Field")
+                                .font(.custom("OpenSans-Regular", size: 14))
+                                .foregroundColor(Color.white)
+                                .bold()
+                                .frame(width: 110, height: 41)
+                                .background(RoundedRectangle(cornerRadius: 5, style: .continuous).fill(Color("HighlightColor")))
+                        }.navigationDestination(isPresented: $showSelection) {
                             SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
+                            }
                         }
-                    }
                     else{
                         Text(selectedFieldName?.field_name ?? "Not Selected").font(.custom("OpenSans-SemiBold", size: 14))
                             .foregroundColor(Color.gray)
                         Spacer()
-                        Button{
+                        Button(action: {
                             showSelection = true
-                        }label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 5, style: .continuous)
-                                    .fill(Color("HighlightColor"))
-                                    .frame(height: 41)
-                                    .frame(width: 110)
-                                
-                                Text("Select A Field")
-                                    .foregroundColor(Color.white)
-                                    .font(.custom("OpenSans-Regular", size: 14))
-                                    .bold()
-                            }
-                        }.navigationDestination(isPresented: $showSelection){
+                        }) {
+                            Text("Select A Field")
+                                .font(.custom("OpenSans-Regular", size: 14))
+                                .foregroundColor(Color.white)
+                                .bold()
+                                .frame(width: 110, height: 41)
+                                .background(RoundedRectangle(cornerRadius: 5, style: .continuous).fill(Color("HighlightColor")))
+                        }.navigationDestination(isPresented: $showSelection) {
                             SelectionView(selectedFieldName: $selectedFieldName, viewModel: SessionViewViewModel(), fieldData: $fieldData, sensorData: $sensorData)
+                            }
                         }
-                    }
                 }.frame(height: 50)
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 25)

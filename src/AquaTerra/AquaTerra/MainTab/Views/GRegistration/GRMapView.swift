@@ -19,9 +19,7 @@ struct GRMapView: View {
     
     var body: some View {
         VStack{
-            Text("Please add a marker using icon to locate your gateway on the map.")
-                .font(.custom("OpenSans-Regular", size: 16))
-                .frame(maxWidth: .infinity, alignment: .leading)
+            
             ZStack{
                 MapView(selectedCoordinate: $selectPosion,region: $region,annotations: $annotations,allowLocation: $allowLocation)
                 HStack {
@@ -44,7 +42,6 @@ struct GRMapView: View {
                             }
                             .frame(width: 77,height: 33)
                             .background(Color.white)
-                            .cornerRadius(10)
                         }
                         .padding()
                         
@@ -56,12 +53,12 @@ struct GRMapView: View {
                             }
                             .padding(.top,2)
                             .padding(.trailing)
-                            .cornerRadius(10)
                         Spacer()
                     }
                 }
             }
-        }.frame(height:370)
+        }
+         
     }
     
     func addAnnotation() {

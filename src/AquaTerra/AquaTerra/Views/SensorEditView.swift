@@ -42,93 +42,108 @@ struct SensorEditView: View {
     
     var body: some View {
             VStack {
-                FMNavigationBarView(title: "Edit Sensor")
-                    .frame(height: 45)
-                SensorStepView(selected: $selected).padding(.vertical, 20)
-                VStack{
-                    switch selected {
-                    case 0:
-                        VStack{
-                            if let sensorDetail = sensorDetail {
-                                SensorIDBar(sensorDetail: sensorDetail)
-                                VStack{
-                                    EditViewListItem(title: "Alias", detail: Binding(
-                                        get: {self.editedAlias ?? ""},set: {self.editedAlias = $0}))
-                                    EditViewListItem(title: "Latitude", detail: Binding(
-                                        get: {self.editedLatitude ?? ""},set: {self.editedLatitude = $0}))
-                                    EditViewListItem(title: "Latitude", detail: Binding(
-                                        get: {self.editedLongitude ?? ""},set: {self.editedLongitude = $0}))
-                                    EditViewListItem(title: "Sleeping Time (Hr)", detail: Binding(
-                                        get: {self.editedSleeping ?? ""},set: {self.editedSleeping = $0}))
+                if FullScreen && selected == 1 {
+                    SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                }else{
+                    FMNavigationBarView(title: "Edit Sensor")
+                        .frame(height: 45)
+                    SensorStepView(selected: $selected).padding(.vertical, 20)
+                    VStack{
+                        switch selected {
+                        case 0:
+                            VStack{
+                                if let sensorDetail = sensorDetail {
+                                    SensorIDBar(sensorDetail: sensorDetail)
+                                    VStack{
+                                        EditViewListItem(title: "Alias", detail: Binding(
+                                            get: {self.editedAlias ?? ""},set: {self.editedAlias = $0}))
+                                        EditViewListItem(title: "Latitude", detail: Binding(
+                                            get: {self.editedLatitude ?? ""},set: {self.editedLatitude = $0}))
+                                        EditViewListItem(title: "Latitude", detail: Binding(
+                                            get: {self.editedLongitude ?? ""},set: {self.editedLongitude = $0}))
+                                        EditViewListItem(title: "Sleeping Time (Hr)", detail: Binding(
+                                            get: {self.editedSleeping ?? ""},set: {self.editedSleeping = $0}))
+                                    }
+                                    SensorButton(title: "Next") {
+                                        next()
+                                    }
+                                    .frame(height: 50)
+                                    .padding(.top, 15)
+                                    .padding(.horizontal,30)
+                                } else {
+                                    Text("Loading sensor data...")
                                 }
+                            }
+                            Spacer()
+                                .onAppear {
+                                    // Fetch sensor details when the view appears
+                                    viewModel.fetchSensorDetail(sensorId: sensorId, username: username, fieldId: fieldId) { result in
+                                        switch result {
+                                        case .success(let sensorDetail):
+                                            DispatchQueue.main.async {
+                                                self.sensorDetail = sensorDetail
+                                                parseCoordinates(sensorDetail.points)
+                                                editedAlias = sensorDetail.alias ?? ""
+                                                editedSleeping = "\(sensorDetail.sleeping ?? 0)"
+                                                print("Edit DispatchQueue successful")
+                                            }
+                                        case .failure(let error):
+                                            print("Viewedit: Error fetching sensor details: \(error)")
+                                        }
+                                    }
+                                    print("Async operation completed")
+                                }
+
+                        case 1:
+                            Text("Please add a marker using icon to locate your sensor on the map.")
+                                .font(.custom("OpenSans-Regular", size: 16))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.horizontal, 30)
+                            
+                            
+                            SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                                .padding(.horizontal, 30)
+                            HStack{
+                                SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
+                                    undo()
+                                    presentationMode.wrappedValue.dismiss()
+                                })
+                                Spacer().frame(width: 20)
                                 SensorButton(title: "Next") {
                                     next()
                                 }
-                                .frame(height: 50)
-                                .padding(.top, 15)
-                                .padding(.horizontal,30)
-                            } else {
-                                Text("Loading sensor data...")
                             }
-                        }
-                        Spacer()
-                            .onAppear {
-                                // Fetch sensor details when the view appears
-                                viewModel.fetchSensorDetail(sensorId: sensorId, username: username, fieldId: fieldId) { result in
-                                    switch result {
-                                    case .success(let sensorDetail):
-                                        DispatchQueue.main.async {
-                                            self.sensorDetail = sensorDetail
-                                            parseCoordinates(sensorDetail.points)
-                                            editedAlias = sensorDetail.alias ?? ""
-                                            editedSleeping = "\(sensorDetail.sleeping ?? 0)"
-                                            print("Edit DispatchQueue successful")
-                                        }
-                                    case .failure(let error):
-                                        print("Viewedit: Error fetching sensor details: \(error)")
-                                    }
-                                }
-                                print("Async operation completed")
-                            }
-
-                    case 1:
-                        SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                            .frame(height: 50)
+                            .padding(.top, 15)
+                            .padding(.bottom, 50)
                             .padding(.horizontal, 30)
-                        HStack{
-                            SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
-                                undo()
-                                presentationMode.wrappedValue.dismiss()
-                            })
-                            Spacer().frame(width: 20)
-                            SensorButton(title: "Next") {
-                                next()
+                            Spacer()
+                        case 2:
+                            SensorSubmitView(gateway: sensorId) {
+                                submit()
+                            }
+                            .padding(.horizontal, 30)
+                            .padding(.top,20)
+                            Spacer()
+                        default :
+                            HStack{}
+                        }
+                        Spacer()
+                    }
+                    .navigationBarTitle("", displayMode: .inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarLeading) {
+                                NavigationBackView()
+                                    .onTapGesture {
+                                        presentationMode.wrappedValue.dismiss()
+                                    }
+                                    .frame(width: 70,height: 17)
                             }
                         }
-                        .padding(.horizontal, 30)
-                        .frame(height: 60)
-                        .padding(.top, 15)
-                        Spacer()
-                    case 2:
-                        SensorSubmitView(gateway: sensorId) {
-                            submit()
-                        }
-                        .padding(.horizontal, 30)
-                        .padding(.top,20)
-                        Spacer()
-                    default :
-                        HStack{}
-                    }
-                }.navigationBarTitle("", displayMode: .inline)
-                    .toolbar {
-                        ToolbarItem(placement: .navigationBarLeading) {
-                            NavigationBackView()
-                                .onTapGesture {
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                                .frame(width: 70,height: 17)
-                        }
-                    }
-                    .navigationBarBackButtonHidden(true)
+                        .navigationBarBackButtonHidden(true)
+                    
+                }
+               
             }
     }
     // Helper method to parse coordinates from JSON string

@@ -22,9 +22,6 @@ struct SensorMapView: View {
     
     var body: some View {
         VStack{
-            Text("Please add a marker using icon to locate your gateway on the map.")
-                .font(.custom("OpenSans-Regular", size: 16))
-                .frame(maxWidth: .infinity, alignment: .leading)
             ZStack{
                 SMapView(selectedCoordinate: $selectPosion, region: $region, annotations: $annotations, allowLocation: $allowLocation, latitude: latitude, longitude: longitude)
                 HStack {
@@ -47,7 +44,6 @@ struct SensorMapView: View {
                             }
                             .frame(width: 77,height: 33)
                             .background(Color.white)
-                            .cornerRadius(10)
                         }
                         .padding()
                         
@@ -59,13 +55,13 @@ struct SensorMapView: View {
                             }
                             .padding(.top,2)
                             .padding(.trailing)
-                            .cornerRadius(10)
                         Spacer()
                     }
                 }
             }
-        }.frame(height:370)
+        }
     }
+    
     
     func addAnnotation() {
         if let coordinate = selectPosion {

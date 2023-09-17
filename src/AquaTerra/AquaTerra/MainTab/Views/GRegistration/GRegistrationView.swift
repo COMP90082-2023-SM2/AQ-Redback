@@ -55,6 +55,10 @@ struct GReginstrationView: View {
                             },textFiledText: $textFiledText, enable: isTextEmpty)
                             .padding(.top,20)
                         case 1:
+                            Text("Please add a marker using icon to locate your gateway on the map.")
+                                .font(.custom("OpenSans-Regular", size: 16))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.top, 20)
                             GRMapView(fullScreen: $fullScreen,selectPosion: $position,annotations: $annotations)
                             HStack{
                                 GRButton(enable:enableBtn, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
@@ -66,6 +70,9 @@ struct GReginstrationView: View {
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
+                            .padding(.bottom, 50)
+                            
+
                         case 2:
                             GRSubmitView(gateway: textFiledText) {
                                 submit()
