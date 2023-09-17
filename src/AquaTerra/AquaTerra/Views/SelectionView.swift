@@ -65,17 +65,17 @@ struct SelectionView: View {
                 .padding(.top, 20)
 
             }
-            .navigationBarTitle("", displayMode: .inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        NavigationBackView()
-                            .onTapGesture {
-                                presentationMode.wrappedValue.dismiss()
-                            }
-                            .frame(width: 70,height: 17)
-                    }
-                }
-                .navigationBarBackButtonHidden(true)
+//            .navigationBarTitle("", displayMode: .inline)
+//                .toolbar {
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        NavigationBackView()
+//                            .onTapGesture {
+//                                presentationMode.wrappedValue.dismiss()
+//                            }
+//                            .frame(width: 70,height: 17)
+//                    }
+//                }
+//                .navigationBarBackButtonHidden(true)
         }
        
     }

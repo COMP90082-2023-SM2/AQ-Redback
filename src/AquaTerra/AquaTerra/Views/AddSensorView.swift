@@ -119,7 +119,8 @@ struct AddSensorView: View {
                     
                 }
             }
-        }.navigationBarTitle("", displayMode: .inline)
+        }
+        .navigationBarTitle("", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     NavigationBackView()

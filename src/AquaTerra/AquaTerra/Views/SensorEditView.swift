@@ -20,8 +20,8 @@ struct SensorEditView: View {
     @State private var sensorDetail: SensorDetail?
     @State private var selectPosion: CLLocationCoordinate2D?
     @State private var editedAlias: String?
-    @State private var editedLatitude: String?
-    @State private var editedLongitude: String?
+    @State var editedLatitude: String?
+    @State var editedLongitude: String?
 
     @State private var editedSleeping: String?
     @State private var annotations: [MKPointAnnotation] = []
@@ -54,8 +54,10 @@ struct SensorEditView: View {
                                 VStack{
                                     EditViewListItem(title: "Alias", detail: Binding(
                                         get: {self.editedAlias ?? ""},set: {self.editedAlias = $0}))
-                                    EditViewListItem(title: "Latitude", detail: Binding.constant(parseCoordinates(sensorDetail.points)[0] ?? ""))
-                                    EditViewListItem(title: "Longitude", detail: Binding.constant(parseCoordinates(sensorDetail.points)[1] ?? ""))
+                                    EditViewListItem(title: "Latitude", detail: Binding(
+                                        get: {self.editedLatitude ?? ""},set: {self.editedLatitude = $0}))
+                                    EditViewListItem(title: "Latitude", detail: Binding(
+                                        get: {self.editedLongitude ?? ""},set: {self.editedLongitude = $0}))
                                     EditViewListItem(title: "Sleeping Time (Hr)", detail: Binding(
                                         get: {self.editedSleeping ?? ""},set: {self.editedSleeping = $0}))
                                 }
@@ -72,15 +74,13 @@ struct SensorEditView: View {
                         Spacer()
                             .onAppear {
                                 // Fetch sensor details when the view appears
-                                print("View appeared (before async operation)")
                                 viewModel.fetchSensorDetail(sensorId: sensorId, username: username, fieldId: fieldId) { result in
                                     switch result {
                                     case .success(let sensorDetail):
                                         DispatchQueue.main.async {
                                             self.sensorDetail = sensorDetail
+                                            parseCoordinates(sensorDetail.points)
                                             editedAlias = sensorDetail.alias ?? ""
-                                            editedLatitude = "\(sensorDetail.coordinate?.latitude ?? 0)"
-                                            editedLongitude = "\(sensorDetail.coordinate?.longitude ?? 0)"
                                             editedSleeping = "\(sensorDetail.sleeping ?? 0)"
                                             print("Edit DispatchQueue successful")
                                         }
@@ -90,6 +90,7 @@ struct SensorEditView: View {
                                 }
                                 print("Async operation completed")
                             }
+
                     case 1:
                         SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
                             .padding(.horizontal, 30)
@@ -131,19 +132,22 @@ struct SensorEditView: View {
             }
     }
     // Helper method to parse coordinates from JSON string
-    private func parseCoordinates(_ points: String?) -> [String] {
+    private func parseCoordinates(_ points: String?) {
         guard let pointsData = points?.data(using: .utf8),
               let json = try? JSONSerialization.jsonObject(with: pointsData, options: []) as? [String: Any],
               let coordinates = json["coordinates"] as? [Double],
               coordinates.count == 2 else {
-            return ["Invalid coordinates"]
+            print("Invalid coordinates")
+            return
         }
         
         let latitude = String(coordinates[1])
         let longitude = String(coordinates[0])
         
-        return [latitude, longitude]
+        editedLatitude = latitude
+        editedLongitude = longitude
     }
+
 
     private func undo() {
         selectPosion = nil
@@ -167,7 +171,7 @@ struct SensorEditView: View {
             if let sleepingStr = editedSleeping, let sleeping = Int(sleepingStr) {
                 editedSensorDetail.sleeping = sleeping
                 
-                // Check if selectPosion is not nil before updating
+                // Check if selectPosion is not nil
                 if let selectedCoordinate = selectPosion {
                     viewModel.editSensor(sensorDetail: editedSensorDetail, coordinate: selectedCoordinate) { result in
                         switch result {
@@ -180,10 +184,26 @@ struct SensorEditView: View {
                         }
                     }
                 } else {
-                    print("Error: No coordinate selected")
-                    presentationMode.wrappedValue.dismiss()
+                    print("no position")
+                    // Use the sensor's current coordinate
+                    if let sensorCoordinate = editedSensorDetail.coordinate {
+                        viewModel.editSensor(sensorDetail: editedSensorDetail, coordinate: sensorCoordinate) { result in
+                            switch result {
+                            case .success:
+                                DispatchQueue.main.async {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                            case .failure(let error):
+                                print("Error editing sensor: \(error)")
+                            }
+                        }
+                    } else {
+                        print("Error: No coordinate selected or available")
+                        presentationMode.wrappedValue.dismiss()
+                    }
                 }
             }
         }
     }
+
 }

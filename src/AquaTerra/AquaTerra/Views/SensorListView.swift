@@ -197,15 +197,8 @@ struct SensorListView: View {
                         .frame(width: 70,height: 17)
                 }
             }
-            .navigationBarBackButtonHidden(true)
-            
 
         }.navigationBarBackButtonHidden(true)
-//        .sheet(isPresented: $showAddSensorSheet) {
-//            if let field = selectedFieldName {
-//                AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: field.field_id)
-//            }
-//        }.navigationBarBackButtonHidden(true)
     }
 }
 
