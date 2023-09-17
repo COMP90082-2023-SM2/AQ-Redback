@@ -14,11 +14,24 @@ enum AuthState {
     case login
     case confirmCode(username: String)
     case session(user: AuthUser)
+    
 }
 
 final class SessionViewViewModel: ObservableObject {
     @Published var authState: AuthState = .login
     @Published var sensorData: [SensorData] = []
+    @Published var sensorDetail: SensorDetail?
+    
+    
+    @Published var list : [SessionViewViewModel] = []
+    
+    var currentUserUsername: String?
+    
+    static let shareInstance : SessionViewViewModel = SessionViewViewModel()
+    static func share() -> SessionViewViewModel {
+        return shareInstance
+    }
+    
 
     func getCurrentAuthUser() {
         if let user = Amplify.Auth.getCurrentUser() {
@@ -195,6 +208,35 @@ final class SessionViewViewModel: ObservableObject {
             }
         }
     }
+    
+    func editSensor(sensorDetail: SensorDetail, coordinate: CLLocationCoordinate2D, completion: @escaping (Result<Void, Error>) -> Void) {
+        SensorListApi.shared.editSensor(sensorDetail: sensorDetail, coordinate: coordinate) { result in
+            switch result {
+            case .success:
+                completion(.success(()))
+            case .failure(let error):
+                completion(.failure(error)) 
+            }
+        }
+    }
+
+    
+    func fetchSensorDetail(sensorId: String, username: String, fieldId: String, completion: @escaping (Result<SensorDetail, Error>) -> Void) {
+        print("fetchSensorDetail called with sensorId: \(sensorId), username: \(username), fieldId: \(fieldId)")
+        
+        SensorListApi.shared.getSensorDetail(username: username, fieldId: fieldId, sensorId: sensorId) { result in
+            switch result {
+            case .success(let sensorDetail):
+                print("fetchSensorDetail success with sensorData: \(sensorDetail)")
+                completion(.success(sensorDetail))
+            case .failure(let error):
+                print("fetchSensorDetail failure with error: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+
 
 }
+
 

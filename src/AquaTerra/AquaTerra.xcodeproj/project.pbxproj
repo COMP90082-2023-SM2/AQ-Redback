@@ -12,7 +12,14 @@
 		570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */; };
 		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
 		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
+		575FB5502AB411830079B6E8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB54F2AB411830079B6E8 /* Extension.swift */; };
+		575FB5522AB4AD8E0079B6E8 /* SensorListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */; };
+		575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5532AB542700079B6E8 /* EditViewListItem.swift */; };
+		575FB5562AB5699C0079B6E8 /* SensorSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */; };
+		575FB5582AB589900079B6E8 /* SensorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5572AB589900079B6E8 /* SensorButton.swift */; };
+		575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB5592AB598050079B6E8 /* SensorMapView.swift */; };
 		577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577279B42AB206D700ED9495 /* AddSensorView.swift */; };
+		5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */; };
 		57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */; };
 		57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */; };
 		57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEEF32A99C9F10029303E /* AquaTerraApp.swift */; };
@@ -24,6 +31,11 @@
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
 		57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0D2A99E7300029303E /* SignUpView.swift */; };
 		57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */; };
+		697099452AB5585A005003E7 /* SensorStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099442AB5585A005003E7 /* SensorStepView.swift */; };
+		697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099462AB55C69005003E7 /* SensorIDBar.swift */; };
+		698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */; };
+		698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */; };
+		698B69D22AB319640031E0ED /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69D12AB319640031E0ED /* ProfileView.swift */; };
 		6999F1EE2AB01DC000B8B3BE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */; };
 		6999F1EF2AB01DC000B8B3BE /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1E92AB01DBF00B8B3BE /* OpenSans-Bold.ttf */; };
 		6999F1F02AB01DC000B8B3BE /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EA2AB01DBF00B8B3BE /* OpenSans-Regular.ttf */; };
@@ -45,6 +57,14 @@
 		761BD4682AB3093600722C88 /* FarmRegisterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4672AB3093600722C88 /* FarmRegisterInfoView.swift */; };
 		761BD46A2AB40BC400722C88 /* FarmNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4692AB40BC400722C88 /* FarmNetwork.swift */; };
 		761BD46C2AB4467600722C88 /* FarmDeleteAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD46B2AB4467600722C88 /* FarmDeleteAlert.swift */; };
+		69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA062AB328CB001777F9 /* InfoTab.swift */; };
+		69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA082AB328E7001777F9 /* MoistureTab.swift */; };
+		69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */; };
+		69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0C2AB336E0001777F9 /* BatteryView.swift */; };
+		69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA102AB3E74B001777F9 /* TabBarItem.swift */; };
+		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
+		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
+		69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA162AB45D61001777F9 /* SelectionView.swift */; };
 		C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68262AB1947B0053DF9C /* BaseBarModel.swift */; };
 		C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68282AB1947B0053DF9C /* UITools.swift */; };
 		C61C683D2AB1947B0053DF9C /* NavigationBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */; };
@@ -67,7 +87,14 @@
 		570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewViewModel.swift; sourceTree = "<group>"; };
 		573C635F2AAC3BCE0085524C /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
 		573C63652AAD6C420085524C /* SensorListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListApi.swift; sourceTree = "<group>"; };
+		575FB54F2AB411830079B6E8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListItem.swift; sourceTree = "<group>"; };
+		575FB5532AB542700079B6E8 /* EditViewListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditViewListItem.swift; sourceTree = "<group>"; };
+		575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSubmitView.swift; sourceTree = "<group>"; };
+		575FB5572AB589900079B6E8 /* SensorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorButton.swift; sourceTree = "<group>"; };
+		575FB5592AB598050079B6E8 /* SensorMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorMapView.swift; sourceTree = "<group>"; };
 		577279B42AB206D700ED9495 /* AddSensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSensorView.swift; sourceTree = "<group>"; };
+		5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorEditView.swift; sourceTree = "<group>"; };
 		57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationView.swift; sourceTree = "<group>"; };
 		57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		57FDEEF02A99C9F10029303E /* AquaTerra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTerra.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +108,11 @@
 		57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		57FDEF0D2A99E7300029303E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewViewModel.swift; sourceTree = "<group>"; };
+		697099442AB5585A005003E7 /* SensorStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorStepView.swift; sourceTree = "<group>"; };
+		697099462AB55C69005003E7 /* SensorIDBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIDBar.swift; sourceTree = "<group>"; };
+		698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
+		698B69D12AB319640031E0ED /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6999F1E72AB01A5900B8B3BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
 		6999F1E92AB01DBF00B8B3BE /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
@@ -89,6 +121,14 @@
 		6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		69B1DA062AB328CB001777F9 /* InfoTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTab.swift; sourceTree = "<group>"; };
+		69B1DA082AB328E7001777F9 /* MoistureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoistureTab.swift; sourceTree = "<group>"; };
+		69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTab.swift; sourceTree = "<group>"; };
+		69B1DA0C2AB336E0001777F9 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
+		69B1DA102AB3E74B001777F9 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
+		69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardView.swift; sourceTree = "<group>"; };
+		69B1DA142AB40517001777F9 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
+		69B1DA162AB45D61001777F9 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
 		7542C0EA64370EBD912ACCD8 /* Pods-AquaTerra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.release.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.release.xcconfig"; sourceTree = "<group>"; };
 		761BD4452AB2DEEB00722C88 /* UI+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UI+.swift"; sourceTree = "<group>"; };
 		761BD4462AB2DEEB00722C88 /* FarmsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmsView.swift; sourceTree = "<group>"; };
@@ -194,9 +234,28 @@
 				57FDEF0D2A99E7300029303E /* SignUpView.swift */,
 				57CEAEDD2A9F0CA2002EEFCE /* ConfirmationView.swift */,
 				57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */,
-				573C635F2AAC3BCE0085524C /* SensorListView.swift */,
 				6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */,
 				577279B42AB206D700ED9495 /* AddSensorView.swift */,
+				698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */,
+				698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */,
+				698B69D12AB319640031E0ED /* ProfileView.swift */,
+				69B1DA062AB328CB001777F9 /* InfoTab.swift */,
+				69B1DA082AB328E7001777F9 /* MoistureTab.swift */,
+				69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */,
+				69B1DA0C2AB336E0001777F9 /* BatteryView.swift */,
+				69B1DA102AB3E74B001777F9 /* TabBarItem.swift */,
+				69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */,
+				69B1DA142AB40517001777F9 /* SwitchView.swift */,
+				5786D27F2AB34FE400F5B9EE /* SensorEditView.swift */,
+				573C635F2AAC3BCE0085524C /* SensorListView.swift */,
+				69B1DA162AB45D61001777F9 /* SelectionView.swift */,
+				575FB5512AB4AD8E0079B6E8 /* SensorListItem.swift */,
+				575FB5532AB542700079B6E8 /* EditViewListItem.swift */,
+				697099442AB5585A005003E7 /* SensorStepView.swift */,
+				697099462AB55C69005003E7 /* SensorIDBar.swift */,
+				575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */,
+				575FB5572AB589900079B6E8 /* SensorButton.swift */,
+				575FB5592AB598050079B6E8 /* SensorMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -216,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				573C63652AAD6C420085524C /* SensorListApi.swift */,
+				575FB54F2AB411830079B6E8 /* Extension.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -478,13 +538,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AquaTerra/Pods-AquaTerra-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-AquaTerra/Pods-AquaTerra-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -525,11 +581,19 @@
 				57FDEF082A99D7620029303E /* LoginView.swift in Sources */,
 				761BD44E2AB2DEEB00722C88 /* FarmPickerItem.swift in Sources */,
 				761BD4562AB2E07E00722C88 /* Farm.swift in Sources */,
+				697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */,
+				575FB5582AB589900079B6E8 /* SensorButton.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
+				69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */,
+				69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */,
+				69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */,
 				C61C683E2AB1947B0053DF9C /* FMNavigationBarView.swift in Sources */,
 				761BD44D2AB2DEEB00722C88 /* FarmsView.swift in Sources */,
 				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
 				761BD44C2AB2DEEB00722C88 /* UI+.swift in Sources */,
+				575FB5562AB5699C0079B6E8 /* SensorSubmitView.swift in Sources */,
+				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
+				5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */,
 				6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */,
 				57FDEEF62A99C9F10029303E /* MainView.swift in Sources */,
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
@@ -537,28 +601,42 @@
 				761BD46A2AB40BC400722C88 /* FarmNetwork.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				761BD4592AB2E0B900722C88 /* FarmsViewModel.swift in Sources */,
+				697099452AB5585A005003E7 /* SensorStepView.swift in Sources */,
+				575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */,
+				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
+				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
 				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
 				761BD4552AB2E07E00722C88 /* Field.swift in Sources */,
 				577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */,
+				69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */,
 				C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
+				69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */,
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
+				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
 				761BD4512AB2DEEB00722C88 /* FarmPickerView.swift in Sources */,
 				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
+				698B69D22AB319640031E0ED /* ProfileView.swift in Sources */,
+				575FB5522AB4AD8E0079B6E8 /* SensorListItem.swift in Sources */,
 				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				761BD44F2AB2DEEB00722C88 /* FarmFieldItem.swift in Sources */,
 				761BD46C2AB4467600722C88 /* FarmDeleteAlert.swift in Sources */,
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,
 				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
+				575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */,
+				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
+				69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */,
 				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,
 				C61C683F2AB1947B0053DF9C /* GRInputView.swift in Sources */,
+				575FB5502AB411830079B6E8 /* Extension.swift in Sources */,
 				57FDEEF42A99C9F10029303E /* AquaTerraApp.swift in Sources */,
 				761BD4502AB2DEEB00722C88 /* FarmRegisterView.swift in Sources */,
 				761BD4642AB3079200722C88 /* FarmRegisterSubmitView.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
+				698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */,
 				C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */,
 				761BD4682AB3093600722C88 /* FarmRegisterInfoView.swift in Sources */,
 				57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */,

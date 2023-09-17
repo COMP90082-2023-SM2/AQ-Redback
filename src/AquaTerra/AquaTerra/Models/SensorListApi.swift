@@ -89,24 +89,28 @@ final class SensorListApi {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         
-        // 构建 JSON 负载，将坐标信息添加到 geom 参数中
         let sensorData: [String: Any] = [
-            "userName": currentUserUsername ?? "",
+            "username": currentUserUsername ?? "",
             "fieldId": fieldID,
             "sensorId": sensorID,
             "geom": [
                 "type": "Feature",
                 "geometry": [
                     "type": "Point",
-                    "coordinates": [coordinate.longitude, coordinate.latitude]
-                ],
-                "properties": [:]
-            ]
+                    "coordinates": [
+                        String(coordinate.longitude),
+                        String(coordinate.latitude)
+                    ]
+                ] as [String : Any],
+                "properties": Dictionary<String, Any>()
+            ] as [String : Any]
         ]
+
         
         if let jsonData = try? JSONSerialization.data(withJSONObject: sensorData) {
             request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             request.httpBody = jsonData
+            print("Cooordinate Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
         }
         
         let task = URLSession.shared.dataTask(with: request) { _, _, error in
@@ -137,6 +141,104 @@ final class SensorListApi {
         }
         task.resume()
     }
+    
+    public func editSensor(sensorDetail: SensorDetail, coordinate: CLLocationCoordinate2D?, completion: @escaping (Result<Void, Error>) -> Void) {
+        let sensorID = sensorDetail.sensor_id
+        
+        guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/\(sensorID)") else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+
+        // Create the sensorUpdateData dictionary
+        var sensorUpdateData: [String: Any] = [
+            "geom": "{\"type\":\"Feature\",\"geometry\":{\"type\":\"Point\",\"coordinates\":[\(coordinate?.longitude ?? 0),\(coordinate?.latitude ?? 0)]},\"properties\":{}}",
+            "sleeping": sensorDetail.sleeping,
+            "alias": sensorDetail.alias
+        ]
+        
+        // Convert sensorUpdateData to JSON data
+        if let jsonData = try? JSONSerialization.data(withJSONObject: sensorUpdateData) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            print("Edit Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Edit Sensor Error: \(error)")
+                completion(.failure(error))
+                return
+            }
+            
+            // Check if there is response data
+            guard let responseData = data else {
+                print("Edit Sensor Error: No response data")
+                completion(.failure(NSError(domain: "EditSensorErrorDomain", code: 0, userInfo: nil)))
+                return
+            }
+            
+            do {
+                if let jsonResponse = try JSONSerialization.jsonObject(with: responseData, options: []) as? [String: Any] {
+                    print("Edit Sensor Response JSON: \(jsonResponse)")
+                }
+                
+                completion(.success(()))
+            } catch {
+                print("Edit Sensor Error: Failed to parse JSON response")
+                completion(.failure(error))
+            }
+        }
+        task.resume()
+    }
+
+
+
+
+    
+    public func getSensorDetail(username: String, fieldId: String, sensorId: String, completion: @escaping (Result<SensorDetail, Error>) -> Void) {
+        guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/\(sensorId)?username=\(username)&fieldId=\(fieldId)") else {
+            completion(.failure(NSError(domain: "Invalid URL", code: 0, userInfo: nil)))
+            return
+        }
+
+        print("getSensorDetail called with URL: \(url)")
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("getSensorDetail error: \(error)")
+                completion(.failure(error))
+                return
+            }
+
+            guard let data = data else {
+                print("getSensorDetail: No data received")
+                completion(.failure(NSError(domain: "No data received", code: 1, userInfo: nil)))
+                return
+            }
+
+            do {
+                let response = try JSONDecoder().decode(SensorDetailResponse.self, from: data)
+                let sensorDetail = response.sensor
+                print("getSensorDetail success with sensorDetail: \(sensorDetail)")
+                completion(.success(sensorDetail))
+            } catch {
+                print("getSensorDetail error: \(error)")
+                completion(.failure(error))
+            }
+        }
+
+        task.resume()
+    }
+
+
+
+
 }
 
 // Models
@@ -160,7 +262,8 @@ struct SensorDataResponse: Codable {
     let data: [SensorData]
 }
 
-struct SensorData: Codable, Equatable {
+struct SensorData: Codable, Equatable, Identifiable {
+    var id: String { sensor_id }
     let sensor_id: String
     let gateway_id: String?
     let field_id: String
@@ -184,4 +287,42 @@ struct Coordinate {
     let longitude: Double
 }
 
+struct SensorDetailResponse: Codable {
+    let sensor: SensorDetail
+}
+
+struct SensorDetail: Codable {
+    let sensor_id: String
+    let gateway_id: String?
+    let field_id: String
+    let geom: String?
+    let datetime: String?
+    let is_active: Bool
+    let has_notified: Bool
+    let username: String?
+    var sleeping: Int?
+    var alias: String?
+    let points: String?
+    var coordinate: CLLocationCoordinate2D?
+    
+    enum CodingKeys: String, CodingKey {
+        case sensor_id, gateway_id, field_id, geom, datetime, is_active, has_notified, username, sleeping, alias, points
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.sensor_id = try container.decode(String.self, forKey: .sensor_id)
+        self.gateway_id = try container.decodeIfPresent(String.self, forKey: .gateway_id)
+        self.field_id = try container.decode(String.self, forKey: .field_id)
+        self.geom = try container.decodeIfPresent(String.self, forKey: .geom)
+        self.datetime = try container.decodeIfPresent(String.self, forKey: .datetime)
+        self.is_active = try container.decode(Bool.self, forKey: .is_active)
+        self.has_notified = try container.decode(Bool.self, forKey: .has_notified)
+        self.username = try container.decodeIfPresent(String.self, forKey: .username)
+        self.sleeping = try container.decodeIfPresent(Int.self, forKey: .sleeping)
+        self.alias = try container.decodeIfPresent(String.self, forKey: .alias)
+        self.points = try container.decodeIfPresent(String.self, forKey: .points)
+        self.coordinate = nil  // Initialize coordinate as nil, you can set it later
+    }
+}
 
