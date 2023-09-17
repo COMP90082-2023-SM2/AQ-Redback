@@ -15,6 +15,7 @@ struct SessionView: View {
     @State private var fieldData: [FieldData] = []
     @Binding var user: AuthUser
     @State private var isShowingSensorListView = false
+    @State private var isShowingFarmsView = false
     @ObservedObject private var viewModel = SessionViewViewModel()
     
     var body: some View {
@@ -34,10 +35,15 @@ struct SessionView: View {
                             ManageCardView(imgName: "Gateway", TextName: "My Gateways")
                         }
                         
-                        Button{
-                            
-                        }label: {
+                        Button {
+                            isShowingFarmsView.toggle()
+                        } label: {
                             ManageCardView(imgName: "Farm", TextName: "My Farm and Fields")
+                                
+                        }
+                        .navigationDestination(isPresented: $isShowingFarmsView) {
+                            
+                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                         }
                         
                         Button{
