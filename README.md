@@ -139,5 +139,6 @@ amplify init
 ```bash
 amplify push
 ```
-
+### Run the project
+After set up the environment, you can use Xcode to run the project by open the __"AquaTerra.xcworkspace"__.
  
