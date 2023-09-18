@@ -23,24 +23,6 @@ struct FarmRegisterMap: View {
     
     var body: some View {
         VStack {
-            HStack(alignment: .center, content: {
-                Text("• Please draw a polygon shape on the map using the")
-                    .font(.custom("OpenSans-Regular", size: 16))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .lineLimit(1)
-                Image("FarmRegisterMapPolyline")
-                    .resizable()
-                    .frame(width: 25, height: 27)
-                Text("to outline your field.")
-                    .font(.custom("OpenSans-Regular", size: 16))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .lineLimit(1)
-            })
-            
-            Text("• The field must be within 1000 metres from the gateway.")
-                .font(.custom("OpenSans-Regular", size: 16))
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
             ZStack {
                 
                 FarmRegisterWKMap(shouldDrawPolyline: $shouldDrawPolyline, drawPolylineFinished: $drawPolylineFinished, locations: $locations)

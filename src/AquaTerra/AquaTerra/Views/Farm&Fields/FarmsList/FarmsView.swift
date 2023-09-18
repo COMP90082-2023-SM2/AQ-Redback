@@ -26,20 +26,31 @@ struct FarmsView: View {
         
         ZStack {
             VStack {
+                FMNavigationBarView(title: "My Farm and Field").frame(height: 45)
+                Divider()
                 HStack {
-                    Text("Current Farm: ")
-                    Text(viewModel.currentFarm?.name ?? "No Farm Yet").foregroundColor(.farmNameColor)
+                    Text("Current Farm: ").font(.custom("OpenSans-SemiBold", size: 14))
+                        .foregroundColor(Color.black)
+                    Spacer().frame(width: 0)
+                    Text(viewModel.currentFarm?.name ?? "No Farm Yet")
+                        .foregroundColor(Color("ButtonGradient2"))
+                        .font(.custom("OpenSans-Bold", size: 14))
+                        .multilineTextAlignment(.trailing)
+                        .fixedSize(horizontal: false, vertical: true)
+                    
                     Spacer()
                     
                     Button {
                         switchFarm()
                     } label: {
                         Text("Change")
-                            .font(.system(size: 16))
+                            .font(.custom("OpenSans-Regular", size: 14))
                             .padding(12)
                             .foregroundColor(.white)
                             .background(Color.farmNameColor)
                             .cornerRadius(5)
+                            .bold()
+                            .frame(height: 41)
                     }.navigationDestination(isPresented: $shouldPickAnotherFarm) {
                         
                         FarmPickerView(viewModel: viewModel)
@@ -49,32 +60,38 @@ struct FarmsView: View {
                         deleteFarmAlert()
                     } label: {
                         Text("Delete")
-                            .font(.system(size: 16))
+                            .font(.custom("OpenSans-Regular", size: 14))
                             .padding(12)
                             .foregroundColor(.white)
                             .background(Color.farmDeleteColor)
                             .cornerRadius(5)
+                            .bold()
+                            .frame(height: 41)
                     }
                     
-                }.padding()
-                
+                }.frame(height: 50)
+                    .frame(maxWidth: .infinity)
+                    .padding(.leading, 25)
+                    .padding(.trailing, 20)
                 HStack {
                     Text("No.")
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(.leading, 20)
-                    Spacer()
+                        .font(.custom("OpenSans-SemiBold", size: 16))
+                        .padding(.leading, 30)
+                    Spacer().frame(width: 43)
+                    
                     Text("Field")
-                        .font(.system(size: 16, weight: .bold))
-                    Spacer()
+                        .font(.custom("OpenSans-SemiBold", size: 16))
+                    Spacer().frame(width: 50)
+                    
                     Text("Crop")
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.custom("OpenSans-SemiBold", size: 16))
                     Spacer()
                     
                     Button {
                         addNewField()
                     } label: {
                         Text("Add New Field")
-                            .font(.system(size: 16))
+                            .font(.custom("OpenSans-ExtraBold", size: 14))
                             .padding(12)
                             .foregroundColor(.white)
                             .background(
@@ -84,10 +101,12 @@ struct FarmsView: View {
                                     endPoint:.bottomTrailing
                                 ))
                             .cornerRadius(5)
-                            .frame(height: 40)
+                            .frame(height: 41)
                         
                     }
+                    .ignoresSafeArea(.all)
                     .padding(.trailing, 20)
+                    .padding(.vertical, 15)
                     .navigationDestination(isPresented: $shouldAddNewField) {
                         
                         FarmRegisterView(viewModel: viewModel)
@@ -95,7 +114,6 @@ struct FarmsView: View {
                 }
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
                 .background(Color.farmHeadGreyColor)
-                .shadow(radius: 2.0,x: 0, y: 2)
                 
                 if let fields = viewModel.fields?.filter({$0.farm.elementsEqual(viewModel.currentFarmName)}) {
                     
@@ -119,7 +137,20 @@ struct FarmsView: View {
                     
                 } else {
                     Spacer()
-                    Text((viewModel.currentFarm != nil) ? "No field yet, try add one" : "No farm yet, try add one")
+                    Image("empty")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:50, height: 50)
+                        .foregroundColor(Color.gray).opacity(0.5)
+                    
+                    Group {
+                        Text("Please ").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray) +
+                        Text("Select A Field ").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor")) +
+                        Text("To Display Your Sensor Data").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
+                    }.padding(.vertical,15)
+                    
+                    Spacer()
                     Spacer()
                 }
             }
@@ -139,23 +170,21 @@ struct FarmsView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
-        .navigationTitle("My Farms and Fields")
+        .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
-                
                 NavigationBackView()
                     .onTapGesture {
                         presentationMode.wrappedValue.dismiss()
+                        BaseBarModel.share.show()
                     }
                     .frame(width: 70,height: 17)
             }
         }
         .onAppear {
-            
             UITableView.appearance().separatorStyle = .none
             UITableViewCell.appearance().selectionStyle = .none
-            
+    
             viewModel.fetchFarmsAndFieldsData()
         }
     }

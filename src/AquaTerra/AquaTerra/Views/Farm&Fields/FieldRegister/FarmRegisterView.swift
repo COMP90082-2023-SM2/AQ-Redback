@@ -40,6 +40,10 @@ struct FarmRegisterView: View {
     var body: some View {
 
         VStack {
+            FMNavigationBarView(title: "Select a Field")
+                .frame(height: 45)
+            Spacer()
+            
             if mapFullScreen && step == 1 {
                 
                 FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
@@ -61,12 +65,31 @@ struct FarmRegisterView: View {
                             })
                             .padding(.top, 20)
                         case 1:
+                            HStack(alignment: .center, content: {
+                                Text("• Please draw a polygon")
+                                    .font(.custom("OpenSans-Regular", size: 16))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .lineLimit(1)
+                                Image("FarmRegisterMapPolyline")
+                                    .resizable()
+                                    .frame(width: 25, height: 27)
+                                Text("to outline your field.")
+                                    .font(.custom("OpenSans-Regular", size: 16))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .lineLimit(1)
+                            })
+                            
+                            Text("• The field must be within 1000 metres from the gateway.")
+                                .font(.custom("OpenSans-Regular", size: 16))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            
                             FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
                             
                             HStack {
                                 GRButton(enable: polyLineLocationsReady, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
                                     undo()
                                 })
+                                Spacer()
                                 GRButton(enable: polyLineLocationsReady, title: "Next") {
                                     
                                     withAnimation(.linear(duration: 0.5)) {
@@ -76,6 +99,8 @@ struct FarmRegisterView: View {
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
+                            .padding(.bottom, 50)
+                            Spacer()
                         case 2:
                             FarmRegisterSubmitView(viewModel: viewModel) {
                                 
@@ -92,8 +117,8 @@ struct FarmRegisterView: View {
                 }
             }
         }
+        .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
         .navigationTitle("Farm Registration")
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

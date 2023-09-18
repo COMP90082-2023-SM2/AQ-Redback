@@ -22,7 +22,7 @@ struct FarmRegisterInfoView: View {
         VStack(alignment:.leading, spacing: 0) {
             
             HStack {
-                Text("Please enter a farm name and a field name to proceed.")
+                Text("Please enter a farm name and a field name and click next to proceed.")
                     .font(.custom("OpenSans-Regular", size: 16))
                     .frame(maxWidth: .infinity, alignment: .leading)
             }

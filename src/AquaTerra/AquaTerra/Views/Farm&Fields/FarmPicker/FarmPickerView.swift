@@ -27,6 +27,28 @@ struct FarmPickerView: View {
     var body: some View {
         
         VStack {
+            HStack{
+                FMNavigationBarView(title: "Select a Field")
+                    .frame(height: 45)
+                Spacer()
+                
+                Button {
+                    selectCurrentFarm()
+                } label: {
+                    Text("Select")
+                        .font(.custom("OpenSans-Regular", size: 16))
+                        .padding(12)
+                        .foregroundColor(.white)
+                        .bold()
+                        .frame(width:86,height: 41)
+                        .background(Color.farmNameColor)
+                        .cornerRadius(5)
+                        
+                }.padding(.trailing, 20)
+                
+            }
+           
+            
             if let farms = viewModel.farms {
                 
                 Divider().frame(height: 0.5)
@@ -40,8 +62,7 @@ struct FarmPickerView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .navigationBarTitleDisplayMode(.large)
-        .navigationTitle("Choose A Farm")
+        .navigationBarTitle("", displayMode: .inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 NavigationBackView()
@@ -49,21 +70,6 @@ struct FarmPickerView: View {
                         presentationMode.wrappedValue.dismiss()
                     }
                     .frame(width: 70,height: 17)
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                
-                Button {
-                    selectCurrentFarm()
-                } label: {
-                    Text("Select")
-                        .font(.system(size: 16))
-                        .padding(12)
-                        .foregroundColor(.white)
-                        .background(Color.farmNameColor)
-                        .cornerRadius(5)
-                        .frame(width: 86, height: 29)
-                }
             }
         }
         .onAppear {

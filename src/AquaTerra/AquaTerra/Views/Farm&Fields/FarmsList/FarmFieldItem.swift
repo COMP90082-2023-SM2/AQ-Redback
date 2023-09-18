@@ -30,14 +30,15 @@ struct FarmFieldItem: View {
             
             HStack {
                 Text("\(index)")
-                    .font(.system(size: 16, weight: .bold))
-                Spacer()
+                    .font(.custom("OpenSans-Regular", size: 14))
+                Spacer().frame(width: 55)
                 Text(field.name)
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.custom("OpenSans-Regular", size: 14))
                 Spacer()
                 Text(field.crop ?? "")
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.custom("OpenSans-Regular", size: 14))
                 
+                Spacer()
                 Spacer()
                 
                 Button {
@@ -47,7 +48,7 @@ struct FarmFieldItem: View {
                         .resizable()
                         .frame(width: 38, height: 38)
                 }
-                
+                Spacer().frame(width: 0)
                 Button {
                     deleteField()
                 } label: {
@@ -56,6 +57,8 @@ struct FarmFieldItem: View {
                         .frame(width: 38, height: 38)
                 }
             }
+            .padding(.leading, 20)
+            .padding(.trailing, 10)
             .padding(.horizontal)
         }
         .frame(height: 60)
