@@ -20,6 +20,14 @@ struct SensorMapView: View {
     @State private var enable = true
     @State private var allowLocation = false
     
+    init(fullScreen: Binding<Bool>, selectPosion: Binding<CLLocationCoordinate2D?>, annotations: Binding<[MKPointAnnotation]>, latitude: Binding<String?>, longitude: Binding<String?>) {
+        self._fullScreen = fullScreen
+        self._selectPosion = selectPosion
+        self._annotations = annotations
+        self._latitude = latitude
+        self._longitude = longitude
+    }
+    
     var body: some View {
         VStack{
             ZStack{
@@ -60,14 +68,17 @@ struct SensorMapView: View {
                 }
             }
         }
+        .onAppear {
+            addAnnotation()
+        }
     }
     
-    
     func addAnnotation() {
-        if let coordinate = selectPosion {
-            let annotation = MKPointAnnotation()
-            annotation.coordinate = coordinate
-            annotations.append(annotation)
+        if let latitudeStr = latitude, let longitudeStr = longitude,
+           let latitude = Double(latitudeStr), let longitude = Double(longitudeStr) {
+            let initialAnnotation = MKPointAnnotation()
+            initialAnnotation.coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            annotations.append(initialAnnotation)
         }
     }
 }
