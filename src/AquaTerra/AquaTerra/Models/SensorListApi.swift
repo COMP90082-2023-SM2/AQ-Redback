@@ -113,11 +113,22 @@ final class SensorListApi {
             print("Cooordinate Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
         }
         
-        let task = URLSession.shared.dataTask(with: request) { _, _, error in
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 completion(.failure(error))
-            } else {
-                completion(.success(()))
+                print("Create error: \(error)")
+            } else if let httpResponse = response as? HTTPURLResponse {
+                if (200..<300).contains(httpResponse.statusCode) {
+                    // Successful response (status code in the 200-299 range)
+                    completion(.success(()))
+                    print("Create success")
+                } else {
+                    // Handle non-successful response here (status code 500)
+                    let errorMessage = "HTTP status code \(httpResponse.statusCode)"
+                    let error = NSError(domain: "YourErrorDomain", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                    print("Create error: \(errorMessage)")
+                }
             }
         }
         task.resume()

@@ -22,6 +22,7 @@ struct AddSensorView: View {
     @State private var FullScreen = false
     @State private var selected = 0
     @Binding var refreshList : Bool
+    @State private var showAlert = false
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -117,6 +118,7 @@ struct AddSensorView: View {
                                         }
                                     case .failure(let error):
                                         print("Error creating sensor: \(error)")
+                                        showAlert = true
                                     }
                                 }
                                 
@@ -146,7 +148,15 @@ struct AddSensorView: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
+            .alert(isPresented: $showAlert) { // Added alert presentation
+                Alert(
+                    title: Text("Create Sensor Failure"),
+                    message: Text("Failed to insert the sensor. Please try again later."),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
     }
+    
     private func undo() {
         selectPosion = nil
         annotations.removeAll()
