@@ -6,8 +6,7 @@
 //
 
 import SwiftUI
-
-
+import MapKit
 
 struct SensorListItem: View {
     @State var sensorID : String
@@ -19,7 +18,31 @@ struct SensorListItem: View {
     @State var sensor: SensorData
     @ObservedObject var viewModel: SessionViewViewModel
     @State var fieldData: [FieldData]
-    
+    @Binding var editedLatitude: String?
+    @Binding var editedLongitude: String?
+    @State private var region: MKCoordinateRegion
+
+    init(sensorID: String, gatewayID: String, deletionIndex: Binding<Int?>, sensorData: Binding<[SensorData]>, sensor: SensorData, viewModel: SessionViewViewModel, fieldData: [FieldData], editedLatitude: Binding<String?>, editedLongitude: Binding<String?>) {
+        self._sensorID = State(initialValue: sensorID)
+        self._gatewayID = State(initialValue: gatewayID)
+        self._deletionIndex = deletionIndex
+        self._sensorData = sensorData
+        self._sensor = State(initialValue: sensor)
+        self.viewModel = viewModel
+        self._fieldData = State(initialValue: fieldData)
+        self._editedLatitude = editedLatitude
+        self._editedLongitude = editedLongitude
+
+        // Safely unwrap and convert editedLatitude and editedLongitude
+        if let latitudeStr = editedLatitude.wrappedValue, let longitudeStr = editedLongitude.wrappedValue,
+           let latitude = Double(latitudeStr), let longitude = Double(longitudeStr) {
+            self._region = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+        } else {
+            // Provide default values if coordinates are not valid
+            self._region = State(initialValue: MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.8136, longitude: 144.9631), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1)))
+        }
+    }
+
     var body: some View {
         
         VStack{
@@ -51,7 +74,8 @@ struct SensorListItem: View {
                             sensorId: sensor.sensor_id,
                             username: sensor.username ?? "",
                             fieldId: sensor.field_id,
-                            fieldData: fieldData
+                            fieldData: fieldData,
+                            region: $region
                         ), isActive: $showEdit)
                         .opacity(0)
                     )

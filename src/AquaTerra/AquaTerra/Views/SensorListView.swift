@@ -24,6 +24,8 @@ struct SensorListView: View {
     @State private var selectId : String = ""
     @State private var loading = false
     @State private var refreshList = false
+    @State var editedLatitude: String?
+    @State var editedLongitude: String?
     
     @Environment(\.presentationMode) var presentationMode
 
@@ -141,7 +143,7 @@ struct SensorListView: View {
                     List {
                         ForEach(sensorData) { sensor in
                             
-                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel, fieldData: fieldData)
+                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel, fieldData: fieldData, editedLatitude: $editedLatitude, editedLongitude: $editedLongitude)
                                 .listRowSeparator(.hidden)
                                 .buttonStyle(PlainButtonStyle())
                         }

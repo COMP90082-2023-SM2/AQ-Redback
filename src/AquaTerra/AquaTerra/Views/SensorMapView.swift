@@ -16,16 +16,18 @@ struct SensorMapView: View {
     @Binding var latitude: String?
     @Binding var longitude: String?
     
-    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.8136, longitude: 144.9631), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @Binding private var region: MKCoordinateRegion
     @State private var enable = true
     @State private var allowLocation = false
     
-    init(fullScreen: Binding<Bool>, selectPosion: Binding<CLLocationCoordinate2D?>, annotations: Binding<[MKPointAnnotation]>, latitude: Binding<String?>, longitude: Binding<String?>) {
+    
+    init(fullScreen: Binding<Bool>, selectPosion: Binding<CLLocationCoordinate2D?>, annotations: Binding<[MKPointAnnotation]>, latitude: Binding<String?>, longitude: Binding<String?>, region:Binding<MKCoordinateRegion>) {
         self._fullScreen = fullScreen
         self._selectPosion = selectPosion
         self._annotations = annotations
         self._latitude = latitude
         self._longitude = longitude
+        self._region = region
     }
     
     var body: some View {
@@ -92,23 +94,25 @@ struct SMapView: UIViewRepresentable {
     var latitude: String?
     var longitude: String?
 
-
     func makeUIView(context: Context) -> MKMapView {
         let smapView = MKMapView()
         smapView.isZoomEnabled = true
         smapView.delegate = context.coordinator
-
-        // Set the initial map center based on latitude and longitude from SensorMapView
+        
         if let latitudeStr = latitude, let longitudeStr = longitude,
            let latitude = Double(latitudeStr), let longitude = Double(longitudeStr) {
-            let initialRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
-            print("-------------")
-            print(latitudeStr)
-            print(longitudeStr)
+            let initialAnnotation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let initialRegion = MKCoordinateRegion(center: initialAnnotation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+            print("set region")
+            print(Double(latitudeStr),Double(longitudeStr))
+            self.selectedCoordinate = initialAnnotation
+            self.region.center = initialAnnotation
             smapView.setRegion(initialRegion, animated: true)
         }
 
-        smapView.setRegion(region, animated: true)
+        
+
+//        smapView.setRegion(region, animated: true)
 
         // Add the annotations here if needed
 
@@ -177,5 +181,3 @@ struct SMapView: UIViewRepresentable {
         }
     }
 }
-
-

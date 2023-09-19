@@ -23,13 +23,12 @@ struct SensorEditView: View {
     @State var editedLatitude: String?
     @State var editedLongitude: String?
     @State var fieldData: [FieldData]
-
+    @Binding var region : MKCoordinateRegion
     @State private var editedSleeping: String?
     @State private var annotations: [MKPointAnnotation] = []
     @State private var FullScreen = false
     @State private var selected = 0
     @State private var textFiledText : String = ""
-    
     
     
     private var enableBtn : Binding<Bool> {
@@ -44,7 +43,7 @@ struct SensorEditView: View {
     var body: some View {
             VStack {
                 if FullScreen && selected == 1 {
-                    SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                    SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region:$region)
                         .navigationBarTitle("", displayMode: .inline)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarLeading) {
@@ -111,7 +110,7 @@ struct SensorEditView: View {
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 30)
-                            SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude)
+                            SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region)
                                 .padding(.horizontal, 30)
                             HStack{
                                 SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
