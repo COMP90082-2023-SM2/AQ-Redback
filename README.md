@@ -85,12 +85,25 @@ This semester, our team undertook this project with the following goals:
 | iOS SDK                     | The iOS Software Development Kit encompasses an array of APIs, frameworks, and tools essential for app development. This kit provides access to device functionalities like the camera, location services, sensors, and more.       |
 | Apple Developer Account    | For testing and app distribution via real devices or the App Store, developers are required to possess an Apple Developer account. This entails enrollment in a program and the acquisition of certificates and provisioning profiles. |
 
+### Sprint 2 Release  
+In Sprint 2, we focused on key functionalities, and we have completed the following:
 
+1. Farm and Field Management: We have implemented robust features for farm and field management to streamline operations.
+
+2. Sensor Registration: Our team has developed a seamless sensor registration process, ensuring that data collection is both efficient and accurate.
+
+3. Gateway Registration: The gateway registration system is in place, enhancing the connectivity and data flow within the system.
+
+4. Login and Logout Functionality: Secure login and logout features have been integrated, ensuring data confidentiality and user control.
+
+Additionally, we have laid the foundation for the dashboard page by creating a template. While the template showcases our design and layout, please note that the complete dashboard functionality will be implemented in the next sprint.
 
 
 ## Structure of folders  
 ├── docs/ # This folder contains documentation and project artifacts  
 ├── src/  # This folder contains src code  
+├── tests/ # User/system tests  
+├── data samples/ # The API doc provided by client  
 └── README.md  
 
 
