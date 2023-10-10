@@ -18,9 +18,26 @@ struct ProfileView: View {
         NavigationStack{
             
             VStack{
-                CustomHeaderView(title: "My Profile")
+                CustomHeaderView(title: "User Profile")
                     .frame(alignment: .top)
                     .frame(height: 60)
+                
+                Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).padding(.bottom, 10).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
+                
+                List{
+                    ProfileItemView(profileDetail: user.username, profileTitle: "Username")
+                    ProfileItemView(profileDetail: "29-08-2024", profileTitle: "Expired Date")
+                    ProfileItemView(profileDetail: "full", profileTitle: "Subscription Type")
+                    ProfileItemView(profileDetail: "+61405312574", profileTitle: "Phone Number")
+                    ProfileItemView(profileDetail: "000 Demo St", profileTitle: "Address")
+                    ProfileItemView(profileDetail: "", profileTitle: "Change Email")
+                    ProfileItemView(profileDetail: "", profileTitle: "Change Password")
+                }
+                .buttonStyle(PlainButtonStyle())
+                .scrollIndicators(.hidden)
+                .listStyle(PlainListStyle())
+                .padding(.trailing, 25)
+                
                 
                 Button {
                     sessionViewViewModel.signOut()
@@ -41,11 +58,12 @@ struct ProfileView: View {
                             
                         }
                 }.padding(.top, 10)
+
                                 
-                Spacer()
+
 //                CustomTabBar(selectedTab: $selectedTab, user: $user)
                 
-            }
+            }.padding(.bottom, 50)
             
         } .navigationBarTitle("")
             .navigationBarHidden(true)

@@ -43,6 +43,14 @@
 		6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */; };
 		6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */; };
 		6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */; };
+		69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA062AB328CB001777F9 /* InfoTab.swift */; };
+		69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA082AB328E7001777F9 /* MoistureTab.swift */; };
+		69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */; };
+		69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0C2AB336E0001777F9 /* BatteryView.swift */; };
+		69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA102AB3E74B001777F9 /* TabBarItem.swift */; };
+		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
+		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
+		69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA162AB45D61001777F9 /* SelectionView.swift */; };
 		761BD44C2AB2DEEB00722C88 /* UI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4452AB2DEEB00722C88 /* UI+.swift */; };
 		761BD44D2AB2DEEB00722C88 /* FarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4462AB2DEEB00722C88 /* FarmsView.swift */; };
 		761BD44E2AB2DEEB00722C88 /* FarmPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4472AB2DEEB00722C88 /* FarmPickerItem.swift */; };
@@ -57,14 +65,6 @@
 		761BD4682AB3093600722C88 /* FarmRegisterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4672AB3093600722C88 /* FarmRegisterInfoView.swift */; };
 		761BD46A2AB40BC400722C88 /* FarmNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4692AB40BC400722C88 /* FarmNetwork.swift */; };
 		761BD46C2AB4467600722C88 /* FarmDeleteAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD46B2AB4467600722C88 /* FarmDeleteAlert.swift */; };
-		69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA062AB328CB001777F9 /* InfoTab.swift */; };
-		69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA082AB328E7001777F9 /* MoistureTab.swift */; };
-		69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */; };
-		69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0C2AB336E0001777F9 /* BatteryView.swift */; };
-		69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA102AB3E74B001777F9 /* TabBarItem.swift */; };
-		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
-		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
-		69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA162AB45D61001777F9 /* SelectionView.swift */; };
 		C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68262AB1947B0053DF9C /* BaseBarModel.swift */; };
 		C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68282AB1947B0053DF9C /* UITools.swift */; };
 		C61C683D2AB1947B0053DF9C /* NavigationBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C682A2AB1947B0053DF9C /* NavigationBackView.swift */; };
@@ -80,6 +80,7 @@
 		C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68382AB1947B0053DF9C /* MGListItem.swift */; };
 		C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68392AB1947B0053DF9C /* MGHeaderView.swift */; };
 		C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */; };
+		CA0724852AD50B11008D3943 /* ProfileItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0724842AD50B11008D3943 /* ProfileItemView.swift */; };
 		F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3E345A1324DBA81237826D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -163,6 +164,7 @@
 		C61C68382AB1947B0053DF9C /* MGListItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGListItem.swift; sourceTree = "<group>"; };
 		C61C68392AB1947B0053DF9C /* MGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGHeaderView.swift; sourceTree = "<group>"; };
 		C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGatewaysView.swift; sourceTree = "<group>"; };
+		CA0724842AD50B11008D3943 /* ProfileItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ProfileItemView.swift; path = "../../../../../../.Trash/AQ-Redback/src/AquaTerra/AquaTerra/Views/ProfileItemView.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -256,6 +258,7 @@
 				575FB5552AB5699C0079B6E8 /* SensorSubmitView.swift */,
 				575FB5572AB589900079B6E8 /* SensorButton.swift */,
 				575FB5592AB598050079B6E8 /* SensorMapView.swift */,
+				CA0724842AD50B11008D3943 /* ProfileItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -637,6 +640,7 @@
 				761BD4642AB3079200722C88 /* FarmRegisterSubmitView.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
 				698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */,
+				CA0724852AD50B11008D3943 /* ProfileItemView.swift in Sources */,
 				C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */,
 				761BD4682AB3093600722C88 /* FarmRegisterInfoView.swift in Sources */,
 				57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */,
