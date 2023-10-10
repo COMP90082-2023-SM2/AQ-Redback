@@ -30,8 +30,7 @@ struct ProfileView: View {
                     ProfileItemView(profileDetail: "full", profileTitle: "Subscription Type")
                     ProfileItemView(profileDetail: "+61405312574", profileTitle: "Phone Number")
                     ProfileItemView(profileDetail: "000 Demo St", profileTitle: "Address")
-                    ProfileItemView(profileDetail: "", profileTitle: "Change Email")
-                    ProfileItemView(profileDetail: "", profileTitle: "Change Password")
+                    ProfileItemView(profileDetail: "yiyuanw1@student.unimelb.edu.au", profileTitle: "Email")
                 }
                 .buttonStyle(PlainButtonStyle())
                 .scrollIndicators(.hidden)
