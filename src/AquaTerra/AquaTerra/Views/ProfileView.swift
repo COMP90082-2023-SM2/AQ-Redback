@@ -7,12 +7,19 @@
 
 import SwiftUI
 import Amplify
+import AWSMobileClient
+
 
 struct ProfileView: View {
     @State var selectedTab: Tabs = .profile
     @Binding var user: AuthUser
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
-    
+    @State var subType: String?
+    @State var phoneNumber: String?
+    @State var expiredDate: String?
+    @State var userAddress: String?
+    @State var userEmail: String?
+
     var body: some View {
         
         NavigationStack{
@@ -25,12 +32,14 @@ struct ProfileView: View {
                 Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).padding(.bottom, 20).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
                 
                 List{
+                    
                     ProfileItemView( profileTitle: "Username", profileDetail: user.username)
-                    ProfileItemView( profileTitle: "Expired Date", profileDetail: "29-08-2024")
-                    ProfileItemView( profileTitle: "Subscription Type", profileDetail: "full")
-                    ProfileItemView( profileTitle: "Phone Number", profileDetail: "+61405312574")
-                    ProfileItemView( profileTitle: "Address", profileDetail: "000 Demo St")
-                    ProfileItemView( profileTitle: "Email", profileDetail: "yiyuanw1@student.unimelb.edu.au")
+                    ProfileItemView( profileTitle: "Expired Date", profileDetail: expiredDate ?? "")
+                    ProfileItemView( profileTitle: "Subscription Type", profileDetail:subType ?? "")
+                    ProfileItemView( profileTitle: "Phone Number", profileDetail: phoneNumber ?? "")
+                    ProfileItemView( profileTitle: "Address", profileDetail: userAddress ?? "")
+                    ProfileItemView( profileTitle: "Email", profileDetail: userEmail ?? "")
+                    
                 }
                 .buttonStyle(PlainButtonStyle())
                 .scrollIndicators(.hidden)
@@ -58,8 +67,6 @@ struct ProfileView: View {
                         }
                 }.padding(.top, 10)
 
-                                
-
 //                CustomTabBar(selectedTab: $selectedTab, user: $user)
                 
             }.padding(.bottom, 50)
@@ -67,8 +74,34 @@ struct ProfileView: View {
         } .navigationBarTitle("")
             .navigationBarHidden(true)
             .navigationBarBackButtonHidden(true)
+            .onAppear {
+                        Task {
+                             fetchAttributes()
+                        }
+                    }
+        
         
     }
+    
+    // fetch each attribute value from user pool
+    func fetchAttributes() {
+        AWSMobileClient.default().getUserAttributes { (attributes, error) in
+             if(error != nil){
+                print("ERROR")
+             }else{
+                if let attributesDict = attributes{
+                    subType = attributesDict["custom:subscription_level"]
+                    phoneNumber = attributesDict["phone_number"]
+                    expiredDate = attributesDict["custom:sub_expiry_date"]
+                    userAddress = attributesDict["address"]
+                    userEmail = attributesDict["email"]
+                    //print(attributesDict["email"])
+                   //print(attributesDict["given_name"])
+                }
+             }
+        }
+    }
+    
 }
 
 //struct ProfileView_Previews: PreviewProvider {

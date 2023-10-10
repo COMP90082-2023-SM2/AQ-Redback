@@ -81,6 +81,7 @@
 		C61C68482AB1947B0053DF9C /* MGHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C68392AB1947B0053DF9C /* MGHeaderView.swift */; };
 		C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */; };
 		CA9460022AD52D4400630EB6 /* ProfileItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9460012AD52D4400630EB6 /* ProfileItemView.swift */; };
+		CA9460042AD58CB800630EB6 /* SignUpAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9460032AD58CB800630EB6 /* SignUpAlertView.swift */; };
 		F02AFBB5B8E0EA40F5D8C3E0 /* amplifyconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = BD3E345A1324DBA81237826D /* amplifyconfiguration.json */; };
 /* End PBXBuildFile section */
 
@@ -165,6 +166,7 @@
 		C61C68392AB1947B0053DF9C /* MGHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGHeaderView.swift; sourceTree = "<group>"; };
 		C61C683A2AB1947B0053DF9C /* MGatewaysView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGatewaysView.swift; sourceTree = "<group>"; };
 		CA9460012AD52D4400630EB6 /* ProfileItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileItemView.swift; sourceTree = "<group>"; };
+		CA9460032AD58CB800630EB6 /* SignUpAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAlertView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				575FB5572AB589900079B6E8 /* SensorButton.swift */,
 				575FB5592AB598050079B6E8 /* SensorMapView.swift */,
 				CA9460012AD52D4400630EB6 /* ProfileItemView.swift */,
+				CA9460032AD58CB800630EB6 /* SignUpAlertView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
 				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
+				CA9460042AD58CB800630EB6 /* SignUpAlertView.swift in Sources */,
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
 				761BD4512AB2DEEB00722C88 /* FarmPickerView.swift in Sources */,
 				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
