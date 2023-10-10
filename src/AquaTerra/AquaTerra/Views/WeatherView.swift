@@ -99,6 +99,6 @@ struct WeatherView: View {
     }
 }
 
-#Preview {
-    WeatherView()
-}
+//#Preview {
+//    WeatherView()
+//}

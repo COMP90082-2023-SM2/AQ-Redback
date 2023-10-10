@@ -33,12 +33,18 @@ struct ProfileView: View {
                 
                 List{
                     
-                    ProfileItemView( profileTitle: "Username", profileDetail: user.username)
-                    ProfileItemView( profileTitle: "Expired Date", profileDetail: expiredDate ?? "")
-                    ProfileItemView( profileTitle: "Subscription Type", profileDetail:subType ?? "")
-                    ProfileItemView( profileTitle: "Phone Number", profileDetail: phoneNumber ?? "")
-                    ProfileItemView( profileTitle: "Address", profileDetail: userAddress ?? "")
-                    ProfileItemView( profileTitle: "Email", profileDetail: userEmail ?? "")
+                    ProfileItemView( profileTitle: "Username", profileDetail: user.username).listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    ProfileItemView( profileTitle: "Expired Date", profileDetail: expiredDate ?? "").listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    ProfileItemView( profileTitle: "Subscription Type", profileDetail:subType ?? "").listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    ProfileItemView( profileTitle: "Phone Number", profileDetail: phoneNumber ?? "").listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    ProfileItemView( profileTitle: "Address", profileDetail: userAddress ?? "").listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
+                    ProfileItemView( profileTitle: "Email", profileDetail: userEmail ?? "").listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     
                 }
                 .buttonStyle(PlainButtonStyle())
