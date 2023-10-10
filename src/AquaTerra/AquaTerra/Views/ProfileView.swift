@@ -22,20 +22,32 @@ struct ProfileView: View {
                     .frame(alignment: .top)
                     .frame(height: 60)
                 
-                Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).padding(.bottom, 20).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
+                Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).frame(maxWidth: .infinity).padding(.bottom, 20).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
                 
                 List{
                     ProfileItemView( profileTitle: "Username", profileDetail: user.username)
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     ProfileItemView( profileTitle: "Expired Date", profileDetail: "29-08-2024")
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     ProfileItemView( profileTitle: "Subscription Type", profileDetail: "full")
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     ProfileItemView( profileTitle: "Phone Number", profileDetail: "+61405312574")
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     ProfileItemView( profileTitle: "Address", profileDetail: "000 Demo St")
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                     ProfileItemView( profileTitle: "Email", profileDetail: "yiyuanw1@student.unimelb.edu.au")
+                        .listRowSeparator(.hidden)
+                        .listRowInsets(EdgeInsets())
                 }
                 .buttonStyle(PlainButtonStyle())
                 .scrollIndicators(.hidden)
                 .listStyle(PlainListStyle())
-                .padding(.trailing, 25)
+                .frame(maxWidth: .infinity)
                 
                 
                 Button {

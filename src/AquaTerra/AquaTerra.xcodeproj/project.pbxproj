@@ -31,6 +31,10 @@
 		57FDEF0C2A99D8CD0029303E /* LoginViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */; };
 		57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0D2A99E7300029303E /* SignUpView.swift */; };
 		57FDEF102A99E7450029303E /* SignUpViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */; };
+		690E1F422AD5792C004B2D98 /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F412AD5792C004B2D98 /* WeatherApi.swift */; };
+		690E1F442AD57999004B2D98 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F432AD57999004B2D98 /* WeatherView.swift */; };
+		690E1F462AD57A8A004B2D98 /* WeatherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F452AD57A8A004B2D98 /* WeatherRow.swift */; };
+		690E1F482AD57ACB004B2D98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F472AD57ACB004B2D98 /* Extensions.swift */; };
 		697099452AB5585A005003E7 /* SensorStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099442AB5585A005003E7 /* SensorStepView.swift */; };
 		697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099462AB55C69005003E7 /* SensorIDBar.swift */; };
 		698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */; };
@@ -109,6 +113,10 @@
 		57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewViewModel.swift; sourceTree = "<group>"; };
 		57FDEF0D2A99E7300029303E /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewViewModel.swift; sourceTree = "<group>"; };
+		690E1F412AD5792C004B2D98 /* WeatherApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
+		690E1F432AD57999004B2D98 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		690E1F452AD57A8A004B2D98 /* WeatherRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherRow.swift; sourceTree = "<group>"; };
+		690E1F472AD57ACB004B2D98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		697099442AB5585A005003E7 /* SensorStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorStepView.swift; sourceTree = "<group>"; };
 		697099462AB55C69005003E7 /* SensorIDBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIDBar.swift; sourceTree = "<group>"; };
 		698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
@@ -207,6 +215,7 @@
 		57FDEEF22A99C9F10029303E /* AquaTerra */ = {
 			isa = PBXGroup;
 			children = (
+				690E1F402AD57916004B2D98 /* Weather */,
 				C61C68242AB1947B0053DF9C /* MainTab */,
 				6999F1E72AB01A5900B8B3BE /* Info.plist */,
 				57FDEF062A99D5870029303E /* Other */,
@@ -259,6 +268,9 @@
 				575FB5572AB589900079B6E8 /* SensorButton.swift */,
 				575FB5592AB598050079B6E8 /* SensorMapView.swift */,
 				CA9460012AD52D4400630EB6 /* ProfileItemView.swift */,
+				690E1F432AD57999004B2D98 /* WeatherView.swift */,
+				690E1F452AD57A8A004B2D98 /* WeatherRow.swift */,
+				690E1F472AD57ACB004B2D98 /* Extensions.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -298,6 +310,14 @@
 				7BA3B18A8B7FAC55C97B7D6E /* Pods_AquaTerra.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		690E1F402AD57916004B2D98 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				690E1F412AD5792C004B2D98 /* WeatherApi.swift */,
+			);
+			path = Weather;
 			sourceTree = "<group>";
 		};
 		761BD4442AB2DEEB00722C88 /* Farm&Fields */ = {
@@ -609,6 +629,7 @@
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
 				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
+				690E1F462AD57A8A004B2D98 /* WeatherRow.swift in Sources */,
 				761BD4552AB2E07E00722C88 /* Field.swift in Sources */,
 				577279B52AB206D700ED9495 /* AddSensorView.swift in Sources */,
 				69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */,
@@ -618,6 +639,7 @@
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
 				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
+				690E1F442AD57999004B2D98 /* WeatherView.swift in Sources */,
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,
 				761BD4512AB2DEEB00722C88 /* FarmPickerView.swift in Sources */,
 				C61C68402AB1947B0053DF9C /* GRButton.swift in Sources */,
@@ -632,6 +654,8 @@
 				575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */,
 				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
 				69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */,
+				690E1F482AD57ACB004B2D98 /* Extensions.swift in Sources */,
+				690E1F422AD5792C004B2D98 /* WeatherApi.swift in Sources */,
 				573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */,
 				C61C683F2AB1947B0053DF9C /* GRInputView.swift in Sources */,
 				575FB5502AB411830079B6E8 /* Extension.swift in Sources */,
