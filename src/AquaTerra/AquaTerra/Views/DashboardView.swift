@@ -38,14 +38,16 @@ struct DashboardView: View {
                     TabBarView(currentTab: self.$currentTab)
                     
                 }.frame(height: 300)
+                
+                WeatherView()
             }
             
 
 
             Spacer()
-//            CustomTabBar(selectedTab: $selectedTab, user: $user)
 
-        }.edgesIgnoringSafeArea(.all)
+        }
+        .edgesIgnoringSafeArea(.all)
             .onAppear {
                 MGViewModel.share().setupUser(user: user.userId)
                     

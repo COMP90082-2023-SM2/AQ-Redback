@@ -12,21 +12,30 @@ struct ProfileItemView: View {
     var profileDetail: String
  
     var body: some View {
-        
-        HStack {
-            Text(profileTitle)
-                .font(.custom("OpenSans-SemiBold", size: 16))
+        VStack{
+            ZStack{
+                HStack {
+                    Text(profileTitle)
+                        .font(.custom("OpenSans-SemiBold", size: 16))
+                        .padding(.leading, 20)
 
-            Spacer()
-            Spacer()
-            
-            Text(profileDetail)
-                .font(.custom("OpenSans-Regular", size: 16)).padding(.leading, 30)
-            
-        
-        }
-        .frame(height: 68)
-        .padding(.horizontal, 10)
+                    Spacer()
+                    Spacer()
+                    
+                    Text(profileDetail)
+                        .font(.custom("OpenSans-Regular", size: 16))
+                        .padding(.trailing, 20)
+                    
+                
+                }
+                VStack{
+                    Spacer()
+                    Divider()
+                }
+            }.frame(height: 68)
+
+        }.frame(maxWidth: .infinity)
+            .frame(height: 68)
     }
     
     struct ProfileItemView_Previews: PreviewProvider {

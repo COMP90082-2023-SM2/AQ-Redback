@@ -29,7 +29,7 @@ struct ProfileView: View {
                     .frame(alignment: .top)
                     .frame(height: 60)
                 
-                Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).padding(.bottom, 20).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
+                Text("Please visit website to modify profile details.").font(.custom("OpenSans-SemiBold", size: 16)).frame(maxWidth: .infinity).padding(.bottom, 20).padding(.top, 20).padding(.horizontal, 15).background(Color("bar"))
                 
                 List{
                     
@@ -44,7 +44,7 @@ struct ProfileView: View {
                 .buttonStyle(PlainButtonStyle())
                 .scrollIndicators(.hidden)
                 .listStyle(PlainListStyle())
-                .padding(.trailing, 25)
+                .frame(maxWidth: .infinity)
                 
                 
                 Button {
