@@ -93,94 +93,120 @@ struct AddSensorV1View: View {
                             Spacer()
                             
                         case 1:
-                            Text("Please add a marker using icon to locate your sensor on the map.")
-                                .font(.custom("OpenSans-Regular", size: 16))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-
-                            SensorButton(title: "Next") {
-                                fetchGatewaySensors()
-                                print("fieldid: ", fieldID)
-//                                fetchFieldZone(fieldId: fieldID)
-                                
-                                SensorListApi.shared.getFieldZone(userName: "demo") { result in
-                                    switch result {
-                                    case .success(let fieldData):
-                                        if let specificField = fieldData.first(where: { $0.field_id == fieldID }) {
-                                            let points = specificField.points
-                                            let jsonData = specificField.points.data(using: .utf8)
-
-                                            do {
-                                                if let jsonData = jsonData,
-                                                    let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
-                                                    let coordinates = json["coordinates"] as? [[[Double]]] {
-                                                    
-                                                    // Flatten the array of coordinates
-                                                    let flattenedCoordinates = coordinates.flatMap { $0 }
-                                                    
-                                                    // Convert the flattened coordinates to a string
-                                                    let coordinateStrings = flattenedCoordinates.map { "[\($0[0]), \($0[1])]" }
-                                                    
-                                                    // Join the coordinate strings with commas
-                                                    polygenResults = coordinateStrings.joined(separator: ",")
-                                                    
-                                                    print("Extracted coordinates: [\(polygenResults)]")
-                                                }
-                                            } catch {
-                                                print("Error parsing JSON: \(error)")
-                                            }
-                                            
-                                        }
-                                    case .failure(let error):
-                                        print("No points")
-                                    }
+                            ScrollView(showsIndicators: false){
+                                VStack(spacing: 10){
+                                    Text("• Press and hold the physical sensor button until it flashes, one sensor at a time.")
+                                        .font(.custom("OpenSans-Regular", size: 16))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Text("• Wait about 60 seconds and the sensor will flash twice after the sensor has successfully paired with the gateway.")
+                                        .font(.custom("OpenSans-Regular", size: 16))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    
+                                    Text("• If pairing is unsuccessful, the sensor will flash rapidly, in that case, retry step 1 or contact AquaTerra support.")
+                                        .font(.custom("OpenSans-Regular", size: 16))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                    Image("SensorPairing")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
                                 }
                                 
-                            }
-                            .frame(height: 50)
-                            .padding(.top, 15)
+                                SensorButton(title: "Next") {
+                                    fetchGatewaySensors()
+                                    print("fieldid: ", fieldID)
+    //                                fetchFieldZone(fieldId: fieldID)
+                                    
+                                    SensorListApi.shared.getFieldZone(userName: "demo") { result in
+                                        switch result {
+                                        case .success(let fieldData):
+                                            if let specificField = fieldData.first(where: { $0.field_id == fieldID }) {
+                                                let points = specificField.points
+                                                let jsonData = specificField.points.data(using: .utf8)
+
+                                                do {
+                                                    if let jsonData = jsonData,
+                                                        let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                                                        let coordinates = json["coordinates"] as? [[[Double]]] {
+                                                        
+                                                        // Flatten the array of coordinates
+                                                        let flattenedCoordinates = coordinates.flatMap { $0 }
+                                                        
+                                                        // Convert the flattened coordinates to a string
+                                                        let coordinateStrings = flattenedCoordinates.map { "[\($0[0]), \($0[1])]" }
+                                                        
+                                                        // Join the coordinate strings with commas
+                                                        polygenResults = coordinateStrings.joined(separator: ",")
+                                                        
+                                                        print("Extracted coordinates: [\(polygenResults)]")
+                                                    }
+                                                } catch {
+                                                    print("Error parsing JSON: \(error)")
+                                                }
+                                                
+                                            }
+                                        case .failure(let error):
+                                            print("No points")
+                                        }
+                                    }
+                                    
+                                }
+                                .frame(height: 50)
+                                .padding(.top, 15)
+                            }.padding(.bottom, 50)
+
+
 
                         case 2:
-                            if let response = gatewaySensorResponse {
-                                switch response {
-                                case .success(let gatewaySensorResponse):
-                                    if !gatewaySensorResponse.data.isEmpty {
-                                        // Show sensors
-                                        ForEach(gatewaySensorResponse.data, id: \.sensor_id) { sensor in
-                                            Text("Sensor ID: \(sensor.sensor_id), Gateway ID: \(sensor.gateway_id)")
-                                                .font(.custom("OpenSans-Regular", size: 14))
-                                                .foregroundColor(Color("Placeholder"))
-                                                .padding([.horizontal], 15)
-                                                .frame(height: 50)
-                                                .accentColor(Color("ButtonGradient2"))
-                                                .background(Color("Hint"))
-                                                .cornerRadius(5)
+                            VStack{
+                                if let response = gatewaySensorResponse {
+                                    switch response {
+                                    case .success(let gatewaySensorResponse):
+                                        if !gatewaySensorResponse.data.isEmpty {
+                                            // Show sensors
+                                            ForEach(gatewaySensorResponse.data, id: \.sensor_id) { sensor in
+                                                Text("Sensor ID: \(sensor.sensor_id), Gateway ID: \(sensor.gateway_id)")
+                                                    .font(.custom("OpenSans-Regular", size: 14))
+                                                    .foregroundColor(Color("Placeholder"))
+                                                    .frame(height: 50)
+                                                    .frame(maxWidth: .infinity)
+                                                    .accentColor(Color("ButtonGradient2"))
+                                                    .background(Color("Hint"))
+                                                    .cornerRadius(5)
+                                                    .padding(.bottom, 10)
+                                            }
+                                            Text("Please place a marker using the icon to locate your sensor on the map.")
+                                                .font(.custom("OpenSans-Regular", size: 16))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
+                                            
+                                            SensorMapViewVOne(fullScreen: $FullScreen, selectPosion: $selectedCoordinate, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResults: $polygenResults)
+                                                .padding(.bottom, 15)
+                                            
+                                        
+                                        } else {
+                                            // Handle case when no sensors are found
+                                            Text("No Sensor Found")
+                                                .font(.custom("OpenSans-Regular", size: 16))
+                                                .frame(maxWidth: .infinity, alignment: .leading)
                                         }
-                                        
-                                        SensorMapViewVOne(fullScreen: $FullScreen, selectPosion: $selectedCoordinate, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResults: $polygenResults)
-                                        
-                                    
-                                    } else {
-                                        // Handle case when no sensors are found
-                                        Text("No Sensor Found")
+                                    case .failure(let error):
+                                        // Handle the failure
+                                        Text("Error: \(error.localizedDescription)")
                                             .font(.custom("OpenSans-Regular", size: 16))
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
-                                case .failure(let error):
-                                    // Handle the failure
-                                    Text("Error: \(error.localizedDescription)")
-                                        .font(.custom("OpenSans-Regular", size: 16))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
                                 }
-                            }
-                            SensorButton(title: "Submit") {
-                                next()
-                                submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
                                 
-                            }
-                            .frame(height: 50)
-                            .padding(.top, 15)
-
-                        
+                                SensorButton(title: "Submit") {
+                                    next()
+                                    submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
+                                    presentationMode.wrappedValue.dismiss()
+                                }
+                                .frame(height: 50)
+                                .padding(.bottom, 50)
+                                .disabled(selectedCoordinate == nil)
+                                .opacity(selectedCoordinate == nil ? 0.3 : 1.0)
+                                
+                            }.frame(height: 550)
                         default :
                             HStack{}
                         }
@@ -236,14 +262,7 @@ struct AddSensorV1View: View {
         }
     }
     
-//    private func fetchGatewaySensors() {
-//        SensorListApi.shared.fetchGatewaySensors(gatewayIds: gatewayIDs) { result in
-//            DispatchQueue.main.async {
-//                self.gatewaySensorResponse = result
-//                next()
-//            }
-//        }
-//    }
+
     private func fetchGatewaySensors() {
         SensorListApi.shared.fetchGatewaySensors(gatewayIds: gatewayIDs) { result in
             DispatchQueue.main.async {
