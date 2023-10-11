@@ -27,6 +27,7 @@ struct AddSensorV1View: View {
 
     @Binding var gatewayIDs: [String]
     
+    
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
             get: {
@@ -60,48 +61,43 @@ struct AddSensorV1View: View {
                                     Text("Please enter your new sensor ID.")
                                         .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
                                 }
-                                ForEach(gatewayIDs, id: \.self) { gatewayID in
-                                    Text("Gateway ID: \(gatewayID)")
-                                        .font(.custom("OpenSans-Regular", size: 14))
-                                        .foregroundColor(Color("Placeholder"))
-                                        .padding([.horizontal], 15)
-                                        .frame(height: 50)
-                                        .accentColor(Color("ButtonGradient2"))
-                                        .background(Color("Hint"))
-                                        .cornerRadius(5)
+                                if !gatewayIDs.isEmpty {
+                                    ForEach(gatewayIDs, id: \.self) { gatewayID in
+                                        Text("Gateway ID: \(gatewayID)")
+                                            .font(.custom("OpenSans-Regular", size: 14))
+                                            .foregroundColor(Color("Placeholder"))
+                                            .padding([.horizontal], 15)
+                                            .frame(height: 50)
+                                            .accentColor(Color("ButtonGradient2"))
+                                            .background(Color("Hint"))
+                                            .cornerRadius(5)
+                                    }
+                                    
+                                    SensorButton(title: "Next") {
+                                        setupGatewayAPI()
+                                    }
+                                    .frame(height: 50)
+                                    .padding(.top, 15)
+                                } else {
+                                    // Handle the case when gatewayIDs is empty
                                 }
                                 
                             }
-                                .padding(.top, 20)
-                            
-                            SensorButton(title: "Next") {
-                                next()
-                            }
-                            .frame(height: 50)
-                            .padding(.top, 15)
-                            
+                            .padding(.top, 20)
                             Spacer()
                             
                         case 1:
                             Text("Please add a marker using icon to locate your sensor on the map.")
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            GRMapView(
-                                fullScreen: $FullScreen,
-                                selectPosion: $selectedCoordinate,
-                                annotations: $annotations
-                            )
-                            HStack{
-                                GRButton(enable:enableBtn, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
-                                    undo()
-                                })
-                                GRButton(enable:enableBtn, title: "Next") {
-                                    next()
-                                }
+                            
+                            
+                            SensorButton(title: "Next") {
+                                next()
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
-                            .padding(.bottom, 50)
+
 
                         
                         case 2:
@@ -169,6 +165,19 @@ struct AddSensorV1View: View {
     private func next(){
         withAnimation(.linear(duration: 0.5)){
             selected += 1
+        }
+    }
+    
+    private func setupGatewayAPI() {
+        SensorListApi.shared.checkGatewayAPI(gatewayIds: gatewayIDs) { result in
+            switch result {
+            case .success(let response):
+                if response.data == "ok" {
+                    next()
+                }
+            case .failure(let error):
+                print("Error setting up gateway: \(error)")
+            }
         }
     }
     

@@ -286,8 +286,46 @@ final class SensorListApi {
 
         task.resume()
     }
-
-
+    
+    func checkGatewayAPI(gatewayIds: [String], completion: @escaping (Result<SetupGatewayResponse, Error>) -> Void) {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/gateway/setup")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let requestBody: [String: Any] = [
+            "status": true,
+            "gatewayIds": gatewayIds
+        ]
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let decodedResponse = try JSONDecoder().decode(SetupGatewayResponse.self, from: data)
+                    print("data: ", decodedResponse)
+                    completion(.success(decodedResponse))
+                } catch {
+                    completion(.failure(error))
+                }
+            } else {
+                completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
+            }
+        }
+        
+        task.resume()
+    }
 
 
 }
@@ -384,4 +422,8 @@ struct GateWayResponse: Codable {
 struct GateWayData: Codable {
     let points: String
     let gateway_id: String
+}
+
+struct SetupGatewayResponse: Codable {
+    let data: String
 }
