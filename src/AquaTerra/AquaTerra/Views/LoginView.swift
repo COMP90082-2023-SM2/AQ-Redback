@@ -10,18 +10,19 @@ import SwiftUI
 struct LoginView: View {
     
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
+    @State private var showSignUpAlert = false
     
     @State var username = ""
     @State var password = ""
     
-//    init(){
-//        for familyName in UIFont.familyNames {
-//            print(familyName)
-//            for fontName in UIFont.fontNames(forFamilyName: familyName){
-//                print("-- \(fontName)")
-//            }
-//        }
-//    }
+    //    init(){
+    //        for familyName in UIFont.familyNames {
+    //            print(familyName)
+    //            for fontName in UIFont.fontNames(forFamilyName: familyName){
+    //                print("-- \(fontName)")
+    //            }
+    //        }
+    //    }
     
     var body: some View {
         
@@ -34,10 +35,10 @@ struct LoginView: View {
                         .frame(width: 600, height: 200)
                         .offset(y:-180)
                         .mask(
-                        Ellipse()
-                            .foregroundColor(Color.green)
-                            .frame(width: 600, height: 400)
-                            .offset(y:-250)
+                            Ellipse()
+                                .foregroundColor(Color.green)
+                                .frame(width: 600, height: 400)
+                                .offset(y:-250)
                         )
                     
                     Circle()
@@ -57,19 +58,19 @@ struct LoginView: View {
                             .shadow(color: Color.black.opacity(0.10), radius: 3.0, x: 0, y: 4.0)
                             .frame(width: 76, height: 76)
                             .offset(y:-50)
-                            )
-                    
-
+                        )
                     
                     
-               
+                    
+                    
+                    
                     Text("AquaTerra")
                         .font(.custom("OpenSans-ExtraBold", size: 20))
                         .padding(.top, 20)
                     
                 }.frame(width: 300, height: 100)
                     .ignoresSafeArea()
-           
+                
                 // Login Form
                 VStack{
                     VStack(alignment: .center){
@@ -86,7 +87,7 @@ struct LoginView: View {
                     .background(Color("Hint"))
                     .cornerRadius(5)
                     .padding(5)
-
+                    
                     
                     VStack(alignment: .center){
                         SecureField("Password", text: $password)
@@ -108,34 +109,34 @@ struct LoginView: View {
                             .foregroundColor(Color("ButtonGradient2"))
                             .frame(maxWidth: 318, alignment: .trailing)
                     }
-                   
+                    
                     
                     VStack{
                         Button {
-                        sessionViewViewModel.login(
-                            username: username,
-                            password: password
-                        )
-                    }
-                    
+                            sessionViewViewModel.login(
+                                username: username,
+                                password: password
+                            )
+                        }
+                        
                     label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 5, style: .continuous)
                                 .fill(LinearGradient(gradient: Gradient(colors: [Color("ButtonGradient1"), Color("ButtonGradient2")]), startPoint: .leading, endPoint: .trailing))
                                 .frame(height: 50)
                                 .frame(width: 318)
-                                
+                            
                             Text("Log in")
                                 .foregroundColor(Color.white)
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .bold()
                                 .padding([.horizontal], 15)
                                 .padding(.vertical,20)
-                                
-                            }
+                            
                         }
                     }
-                
+                    }
+                    
                 }
                 
                 ZStack{
@@ -152,31 +153,37 @@ struct LoginView: View {
                 
                 // Create Account
                 VStack {
-                    Button(action: sessionViewViewModel.showSignUp){
+                    
+                    Button(action: {showSignUpAlert = true
+                    }) {
                         ZStack {
-                        RoundedRectangle(cornerRadius: 5, style: .continuous)
-                            .fill(Color.black)
-                            .frame(height: 50)
-                            .frame(width: 318)
-                        
-                        Text("Create New Account")
-                            .foregroundColor(Color.white)
-                            .font(.custom("OpenSans-Regular", size: 16))
-                            .bold()
-                            .padding([.horizontal], 15)
-                            .padding(.vertical,20)
-                        
-                            }
+                            RoundedRectangle(cornerRadius: 5, style: .continuous)
+                                .fill(Color.black)
+                                .frame(height: 50)
+                                .frame(width: 318)
+                            
+                            Text("Create New Account")
+                                .foregroundColor(Color.white)
+                                .font(.custom("OpenSans-Regular", size: 16))
+                                .bold()
+                                .padding([.horizontal], 15)
+                                .padding(.vertical,20)
+                            
+                        }
                     }
                 }
             }
         }
+        .sheet(isPresented: $showSignUpAlert) {
+            // Show the SignUpAlertView as a sheet when showSignUpAlert is true
+            SignUpAlertView(title: "Sign Up Unavailable", content: "Please visit Aquaterra Official Website to create new accounts.", showup: $showSignUpAlert)
+        }
     }
-}
-
-
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView()
+    
+    
+    struct LoginView_Previews: PreviewProvider {
+        static var previews: some View {
+            LoginView()
+        }
     }
 }

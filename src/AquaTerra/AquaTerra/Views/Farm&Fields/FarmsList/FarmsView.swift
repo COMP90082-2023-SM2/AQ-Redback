@@ -32,11 +32,19 @@ struct FarmsView: View {
                     Text("Current Farm: ").font(.custom("OpenSans-SemiBold", size: 14))
                         .foregroundColor(Color.black)
                     Spacer().frame(width: 0)
-                    Text(viewModel.currentFarm?.name ?? "No Farm Yet")
-                        .foregroundColor(Color("ButtonGradient2"))
-                        .font(.custom("OpenSans-Bold", size: 14))
-                        .multilineTextAlignment(.trailing)
-                        .fixedSize(horizontal: false, vertical: true)
+                    if viewModel.currentFarm?.name == nil{
+                        Text(viewModel.currentFarm?.name ?? "No Farm Yet")
+                            .foregroundColor(Color.gray)
+                            .font(.custom("OpenSans-SemiBold", size: 14))
+                            .frame(width: 80)
+                        
+                    }else{
+                        Text(viewModel.currentFarm?.name ?? "No Farm Yet")
+                            .foregroundColor(Color("ButtonGradient2"))
+                            .font(.custom("OpenSans-Bold", size: 14))
+                            .frame(width: 80)
+                        
+                    }
                     
                     Spacer()
                     
@@ -114,28 +122,7 @@ struct FarmsView: View {
                 }
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
                 .background(Color.farmHeadGreyColor)
-                
-                if let fields = viewModel.fields?.filter({$0.farm.elementsEqual(viewModel.currentFarmName)}) {
-                    
-                    ScrollView {
-                        LazyVStack(spacing: 0, content: {
-                            ForEach(0..<fields.count, id: \.self) { index in
-                                FarmFieldItem(index: index, field: fields[index], viewModel: viewModel, deleteAlertShowup: $shouldShowDeleteFieldAlert, deleteAction: { field in
-                                    
-                                    deleteField = field
-                                    shouldShowDeleteFieldAlert = true
-                                    
-                                }, viewDetailAction: { field in
-                                    
-                                    //TODO: show field detail
-                                })
-                                .frame(idealWidth: .infinity, maxWidth: .infinity)
-                            }
-                        })
-                    }
-                    Spacer()
-                    
-                } else {
+                if viewModel.currentFarm?.name == nil {
                     Spacer()
                     Image("empty")
                         .renderingMode(.template)
@@ -146,12 +133,34 @@ struct FarmsView: View {
                     
                     Group {
                         Text("Please ").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray) +
-                        Text("Select A Field ").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor")) +
-                        Text("To Display Your Sensor Data").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
+                        Text("Select A Farm ").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor")) +
+                        Text("To Display Your Field Data").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
                     }.padding(.vertical,15)
                     
                     Spacer()
                     Spacer()
+                }else{
+                    if let fields = viewModel.fields?.filter({$0.farm.elementsEqual(viewModel.currentFarmName)}) {
+                        
+                        ScrollView {
+                            LazyVStack(spacing: 0, content: {
+                                ForEach(0..<fields.count, id: \.self) { index in
+                                    FarmFieldItem(index: index, field: fields[index], viewModel: viewModel, deleteAlertShowup: $shouldShowDeleteFieldAlert, deleteAction: { field in
+                                        
+                                        deleteField = field
+                                        shouldShowDeleteFieldAlert = true
+                                        
+                                    }, viewDetailAction: { field in
+                                        
+                                        //TODO: show field detail
+                                    })
+                                    .frame(idealWidth: .infinity, maxWidth: .infinity)
+                                }
+                            })
+                        }
+                        Spacer()
+                        
+                    }
                 }
             }
             
