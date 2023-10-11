@@ -10,6 +10,7 @@
 		15A089DBC62FBADED997AF91 /* Pods_AquaTerra.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BA3B18A8B7FAC55C97B7D6E /* Pods_AquaTerra.framework */; };
 		452DD591C1AB5F625927C19F /* awsconfiguration.json in Resources */ = {isa = PBXBuildFile; fileRef = B126E68F6AB3E80649E71B0A /* awsconfiguration.json */; };
 		570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */; };
+		571038982AD63C0D00D7F0EA /* SensorsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571038972AD63C0D00D7F0EA /* SensorsSelectionView.swift */; };
 		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
 		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
 		575FB5502AB411830079B6E8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB54F2AB411830079B6E8 /* Extension.swift */; };
@@ -91,6 +92,7 @@
 
 /* Begin PBXFileReference section */
 		570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewViewModel.swift; sourceTree = "<group>"; };
+		571038972AD63C0D00D7F0EA /* SensorsSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsSelectionView.swift; sourceTree = "<group>"; };
 		573C635F2AAC3BCE0085524C /* SensorListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListView.swift; sourceTree = "<group>"; };
 		573C63652AAD6C420085524C /* SensorListApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorListApi.swift; sourceTree = "<group>"; };
 		575FB54F2AB411830079B6E8 /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				690E1F432AD57999004B2D98 /* WeatherView.swift */,
 				690E1F452AD57A8A004B2D98 /* WeatherRow.swift */,
 				690E1F472AD57ACB004B2D98 /* Extensions.swift */,
+				571038972AD63C0D00D7F0EA /* SensorsSelectionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -629,6 +632,7 @@
 				761BD4592AB2E0B900722C88 /* FarmsViewModel.swift in Sources */,
 				697099452AB5585A005003E7 /* SensorStepView.swift in Sources */,
 				575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */,
+				571038982AD63C0D00D7F0EA /* SensorsSelectionView.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
 				C61C683C2AB1947B0053DF9C /* UITools.swift in Sources */,
