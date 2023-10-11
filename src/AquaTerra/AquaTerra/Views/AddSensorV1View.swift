@@ -24,7 +24,12 @@ struct AddSensorV1View: View {
     @State private var selected = 0
     @Binding var refreshList : Bool
     @State private var showAlert = false
-
+    @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.840935, longitude: 144.946457), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+    @State private var polygenResults: String? = ""
+    
+    @State var editedLatitude: String?
+    @State var editedLongitude: String?
+    
     @Binding var gatewayIDs: [String]
     
     @State private var gatewaySensorResponse: Result<GatewaySensorResponse, Error>? = nil
@@ -95,7 +100,51 @@ struct AddSensorV1View: View {
                             SensorButton(title: "Next") {
                                 fetchGatewaySensors()
                                 print("fieldid: ", fieldID)
-                                fetchFieldZone(fieldId: fieldID)
+//                                fetchFieldZone(fieldId: fieldID)
+                                
+                                SensorListApi.shared.getFieldZone(userName: "demo") { result in
+                                    switch result {
+                                    case .success(let fieldData):
+                                        if let specificField = fieldData.first(where: { $0.field_id == fieldID }) {
+                                            let points = specificField.points
+                                            let jsonData = specificField.points.data(using: .utf8)
+
+                                            do {
+                                                if let jsonData = jsonData,
+                                                    let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                                                    let coordinates = json["coordinates"] as? [[[Double]]] {
+                                                    
+                                                    // Flatten the array of coordinates
+                                                    let flattenedCoordinates = coordinates.flatMap { $0 }
+                                                    
+                                                    // Convert the flattened coordinates to a string
+                                                    let coordinateStrings = flattenedCoordinates.map { "[\($0[0]), \($0[1])]" }
+                                                    
+                                                    // Join the coordinate strings with commas
+                                                    polygenResults = coordinateStrings.joined(separator: ",")
+                                                    
+                                                    print("Extracted coordinates: [\(polygenResults)]")
+                                                }
+                                            } catch {
+                                                print("Error parsing JSON: \(error)")
+                                            }
+                                         
+                                        
+                                            
+                                            
+                                        }
+                                    case .failure(let error):
+                                        print("No points")
+                                    }
+                                }
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
@@ -116,6 +165,10 @@ struct AddSensorV1View: View {
                                                 .background(Color("Hint"))
                                                 .cornerRadius(5)
                                         }
+                                        
+                                        SensorMapViewVOne(fullScreen: $FullScreen, selectPosion: $selectedCoordinate, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResults: $polygenResults)
+                                        
+                                    
                                     } else {
                                         // Handle case when no sensors are found
                                         Text("No Sensor Found")
