@@ -49,7 +49,7 @@ struct WeatherView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     
                     VStack {
-                        VStack(alignment: .leading, spacing: 20) {
+                        VStack(alignment: .leading, spacing: 15) {
                             Text("Weather Now")
                                 .bold()
                                 .padding(.bottom)
@@ -57,17 +57,15 @@ struct WeatherView: View {
                             
                             
                             HStack {
-                                WeatherRow(logo: "thermometer", name: "Min temp", value: (weather.main.tempMin.roundDouble() + ("°")))
-                                Spacer()
-                                WeatherRow(logo: "wind", name: "Wind speed", value: (weather.wind.speed.roundDouble() + "m/s"))
+                                WeatherRow(logo: "thermometer", name: "Min temp", value: (weather.main.tempMin.roundDouble()), unit:("°"))
+                                Spacer().frame(width: 45)
+                                WeatherRow(logo: "wind", name: "Wind speed", value: (weather.wind.speed.roundDouble() ), unit: ("m/s"))
                             }
                             
                             HStack {
-                                WeatherRow(logo: "thermometer", name: "Max temp", value: (weather.main.tempMax.roundDouble() + "°"))
-    
-                                Spacer()
- 
-                                WeatherRow(logo: "humidity", name: "Humidity", value: "\(weather.main.humidity.roundDouble()) %")
+                                WeatherRow(logo: "thermometer", name: "Max temp", value: (weather.main.tempMax.roundDouble()), unit: ("°"))
+                                Spacer().frame(width: 45)
+                                WeatherRow(logo: "humidity", name: "Humidity", value: "\(weather.main.humidity.roundDouble())", unit: ("%"))
                             }
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)
