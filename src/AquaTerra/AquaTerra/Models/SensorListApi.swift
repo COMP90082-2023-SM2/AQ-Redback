@@ -367,7 +367,7 @@ final class SensorListApi {
     }
 
     
-    public func createSensor(sensorId: String, gatewayId: String, fieldId: String, coordinate: CLLocationCoordinate2D?, completion: @escaping (Result<Void, Error>) -> Void) {
+    public func submitSensorV1(sensorId: String, gatewayId: String, fieldId: String, coordinate: CLLocationCoordinate2D, completion: @escaping (Result<Void, Error>) -> Void) {
         guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/new") else {
             return
         }
@@ -375,23 +375,21 @@ final class SensorListApi {
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
 
-        var geomData: [String: Any] = [:]
-        if let coordinate = coordinate {
-            geomData = [
-                "type": "Feature",
-                "geometry": [
-                    "type": "Point",
-                    "coordinates": [coordinate.longitude, coordinate.latitude]
-                ],
-                "properties": [:]
-            ]
-        }
-
         let jsonDict: [String: Any] = [
             "sensorId": sensorId,
             "gatewayId": gatewayId,
             "fieldId": fieldId,
-            "geom": geomData
+            "geom": [
+                "type": "Feature",
+                "geometry": [
+                    "type": "Point",
+                    "coordinates": [
+                        String(coordinate.longitude),
+                        String(coordinate.latitude)
+                    ]
+                ] as [String : Any],
+                "properties": Dictionary<String, Any>()
+            ] as [String : Any]
         ]
 
         if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {

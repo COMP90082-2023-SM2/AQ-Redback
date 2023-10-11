@@ -128,22 +128,12 @@ struct AddSensorV1View: View {
                                             } catch {
                                                 print("Error parsing JSON: \(error)")
                                             }
-                                         
-                                        
-                                            
                                             
                                         }
                                     case .failure(let error):
                                         print("No points")
                                     }
                                 }
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 
                             }
                             .frame(height: 50)
@@ -184,6 +174,8 @@ struct AddSensorV1View: View {
                             }
                             SensorButton(title: "Submit") {
                                 next()
+                                submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
+                                
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
@@ -244,14 +236,41 @@ struct AddSensorV1View: View {
         }
     }
     
+//    private func fetchGatewaySensors() {
+//        SensorListApi.shared.fetchGatewaySensors(gatewayIds: gatewayIDs) { result in
+//            DispatchQueue.main.async {
+//                self.gatewaySensorResponse = result
+//                next()
+//            }
+//        }
+//    }
     private func fetchGatewaySensors() {
         SensorListApi.shared.fetchGatewaySensors(gatewayIds: gatewayIDs) { result in
             DispatchQueue.main.async {
-                self.gatewaySensorResponse = result
-                next()
+                switch result {
+                case .success(let gatewaySensorResponse):
+                    self.gatewaySensorResponse = result
+                    if !gatewaySensorResponse.data.isEmpty {
+                        if let sensor = gatewaySensorResponse.data.first {
+                            self.sensorID = sensor.sensor_id
+                        }
+                        next()
+                    } else {
+                        // Handle case when no sensors are found
+                        Text("No Sensor Found")
+                            .font(.custom("OpenSans-Regular", size: 16))
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                case .failure(let error):
+                    // Handle the failure
+                    Text("Error: \(error.localizedDescription)")
+                        .font(.custom("OpenSans-Regular", size: 16))
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
             }
         }
     }
+
     
     private func fetchFieldZone(fieldId: String) {
         SensorListApi.shared.getFieldZone(userName: "demo") { result in
@@ -266,6 +285,16 @@ struct AddSensorV1View: View {
             }
         }
     }
-
+    
+    private func submitSensorV1(sensorId: String, gatewayId: String, fieldId: String, coordinate: CLLocationCoordinate2D) {
+        SensorListApi.shared.submitSensorV1(sensorId: sensorId, gatewayId: gatewayId, fieldId: fieldId, coordinate: selectedCoordinate!) { result in
+            switch result {
+            case .success:
+                print("Sensor submitted successfully")
+            case .failure(let error):
+                print("Error submitting sensor: \(error)")
+            }
+        }
+    }
 
 }
