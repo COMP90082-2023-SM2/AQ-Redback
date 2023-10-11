@@ -27,6 +27,7 @@ struct AddSensorV1View: View {
 
     @Binding var gatewayIDs: [String]
     
+    @State private var gatewaySensorResponse: Result<GatewaySensorResponse, Error>? = nil
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -90,41 +91,48 @@ struct AddSensorV1View: View {
                             Text("Please add a marker using icon to locate your sensor on the map.")
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            
-                            
+
                             SensorButton(title: "Next") {
+                                fetchGatewaySensors()
+                            }
+                            .frame(height: 50)
+                            .padding(.top, 15)
+
+                        case 2:
+                            if let response = gatewaySensorResponse {
+                                switch response {
+                                case .success(let gatewaySensorResponse):
+                                    if !gatewaySensorResponse.data.isEmpty {
+                                        // Show sensors
+                                        ForEach(gatewaySensorResponse.data, id: \.sensor_id) { sensor in
+                                            Text("Sensor ID: \(sensor.sensor_id), Gateway ID: \(sensor.gateway_id)")
+                                                .font(.custom("OpenSans-Regular", size: 14))
+                                                .foregroundColor(Color("Placeholder"))
+                                                .padding([.horizontal], 15)
+                                                .frame(height: 50)
+                                                .accentColor(Color("ButtonGradient2"))
+                                                .background(Color("Hint"))
+                                                .cornerRadius(5)
+                                        }
+                                    } else {
+                                        // Handle case when no sensors are found
+                                        Text("No Sensor Found")
+                                            .font(.custom("OpenSans-Regular", size: 16))
+                                            .frame(maxWidth: .infinity, alignment: .leading)
+                                    }
+                                case .failure(let error):
+                                    // Handle the failure
+                                    Text("Error: \(error.localizedDescription)")
+                                        .font(.custom("OpenSans-Regular", size: 16))
+                                        .frame(maxWidth: .infinity, alignment: .leading)
+                                }
+                            }
+                            SensorButton(title: "Submit") {
                                 next()
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
 
-
-                        
-                        case 2:
-                            SensorSubmitView(gateway: sensorID) {
-                                guard let selectedCoordinate = selectedCoordinate else {
-                                    return
-                                }
-
-                                print("Selected Coordinate: \(selectedCoordinate.latitude), \(selectedCoordinate.longitude)")
-                                
-                                SensorListApi.shared.createSensor(sensorID: sensorID, fieldID: fieldID, coordinate: selectedCoordinate) { result in
-                                    switch result {
-                                    case .success:
-                                        DispatchQueue.main.async {
-                                            showAddSensorSheet = false
-                                            refreshList = true
-                                            presentationMode.wrappedValue.dismiss()
-                                        }
-                                    case .failure(let error):
-                                        print("Error creating sensor: \(error)")
-                                        showAlert = true
-                                    }
-                                }
-                                
-                            }
-                                .padding(.top,20)
-                                Spacer()
                         
                         default :
                             HStack{}
@@ -181,4 +189,13 @@ struct AddSensorV1View: View {
         }
     }
     
+    private func fetchGatewaySensors() {
+        SensorListApi.shared.fetchGatewaySensors(gatewayIds: gatewayIDs) { result in
+            DispatchQueue.main.async {
+                self.gatewaySensorResponse = result
+                next()
+            }
+        }
+    }
+
 }

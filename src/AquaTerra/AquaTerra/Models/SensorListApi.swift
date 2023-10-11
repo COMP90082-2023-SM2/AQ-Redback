@@ -326,6 +326,104 @@ final class SensorListApi {
         
         task.resume()
     }
+    
+    func fetchGatewaySensors(gatewayIds: [String], completion: @escaping (Result<GatewaySensorResponse, Error>) -> Void) {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/gateway/sensors")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let requestBody: [String: Any] = [
+            "gatewayIds": gatewayIds,
+            "userName": currentUserUsername ?? ""
+        ]
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: requestBody)
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        } catch {
+            completion(.failure(error))
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let response = try JSONDecoder().decode(GatewaySensorResponse.self, from: data)
+                    print("Gatewaysensors: ", response)
+                    completion(.success(response))
+                } catch {
+                    completion(.failure(error))
+                }
+            } else {
+                completion(.failure(NSError(domain: "NoData", code: 0, userInfo: nil)))
+            }
+        }
+        
+        task.resume()
+    }
+
+    
+    public func createSensor(sensorId: String, gatewayId: String, fieldId: String, coordinate: CLLocationCoordinate2D?, completion: @escaping (Result<Void, Error>) -> Void) {
+        guard let url = URL(string: "https://webapp.aquaterra.cloud/api/sensor/new") else {
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+
+        var geomData: [String: Any] = [:]
+        if let coordinate = coordinate {
+            geomData = [
+                "type": "Feature",
+                "geometry": [
+                    "type": "Point",
+                    "coordinates": [coordinate.longitude, coordinate.latitude]
+                ],
+                "properties": [:]
+            ]
+        }
+
+        let jsonDict: [String: Any] = [
+            "sensorId": sensorId,
+            "gatewayId": gatewayId,
+            "fieldId": fieldId,
+            "geom": geomData
+        ]
+
+        if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            print("Create Sensor Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        }
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse {
+                if (200..<300).contains(httpResponse.statusCode) {
+                    // Successful response (status code in the 200-299 range)
+                    completion(.success(()))
+                    print("Create Sensor Success")
+                } else {
+                    // Handle non-successful response here (status code 500)
+                    let errorMessage = "HTTP status code \(httpResponse.statusCode)"
+                    let error = NSError(domain: "CreateSensorErrorDomain", code: httpResponse.statusCode, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                    completion(.failure(error))
+                    print("Create Sensor Error: \(errorMessage)")
+                }
+            }
+        }
+
+        task.resume()
+    }
+
 
 
 }
@@ -426,4 +524,15 @@ struct GateWayData: Codable {
 
 struct SetupGatewayResponse: Codable {
     let data: String
+}
+
+struct GatewaySensorResponse: Decodable {
+    let data: [Sensor]
+    let error: String?
+}
+
+struct Sensor: Decodable {
+    let sensor_id: String
+    let points: String
+    let gateway_id: String
 }
