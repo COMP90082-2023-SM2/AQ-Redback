@@ -209,6 +209,22 @@ final class SessionViewViewModel: ObservableObject {
         }
     }
     
+    
+    func addSensorV1(fieldID: String, completion: @escaping (Result<GateWayResponse, Error>) -> Void) {
+        SensorListApi.shared.createSensorV1(fieldID: fieldID) { result in
+            switch result {
+            case .success(let gatewayData):
+                print("Sensor created successfully")
+                completion(.success(gatewayData))
+            case .failure(let error):
+                print("Error creating sensor: \(error)")
+                completion(.failure(error))
+            }
+        }
+    }
+
+
+    
     func editSensor(sensorDetail: SensorDetail, coordinate: CLLocationCoordinate2D, completion: @escaping (Result<Void, Error>) -> Void) {
         SensorListApi.shared.editSensor(sensorDetail: sensorDetail, coordinate: coordinate) { result in
             switch result {

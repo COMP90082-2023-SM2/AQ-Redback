@@ -17,6 +17,7 @@ final class SensorListApi {
         static let fieldDataURL = URL(string: "https://webapp.aquaterra.cloud/api/field")
         static let sensorDataURL = URL(string: "https://webapp.aquaterra.cloud/api/sensor/field")
         static let createSensor = URL(string: "https://webapp.aquaterra.cloud/api/sensor/v2/new")
+        static let createSensorV1 = URL(string: "https://webapp.aquaterra.cloud/api/gateway/field")
     }
     
     private init() {}
@@ -133,6 +134,45 @@ final class SensorListApi {
         }
         task.resume()
     }
+    
+    public func createSensorV1(fieldID: String, completion: @escaping (Result<GateWayResponse, Error>) -> Void) {
+        
+        guard let url = Constants.createSensorV1 else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let jsonDict: [String: Any] = [
+            "fieldId": fieldID,
+            "username": currentUserUsername ?? ""
+        ]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            print("Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("json error")
+                completion(.failure(error))
+            } else if let data = data {
+                print("json correct")
+                do {
+                    let result = try JSONDecoder().decode(GateWayResponse.self, from: data)
+                    print("Response JSON: \(String(data: data, encoding: .utf8) ?? "")")
+                    completion(.success(result))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
+
 
     
     public func deleteSensor(sensorID: String, completion: @escaping (Result<Void, Error>) -> Void) {
@@ -337,3 +377,11 @@ struct SensorDetail: Codable {
     }
 }
 
+struct GateWayResponse: Codable {
+    let data: [GateWayData]
+}
+
+struct GateWayData: Codable {
+    let points: String
+    let gateway_id: String
+}

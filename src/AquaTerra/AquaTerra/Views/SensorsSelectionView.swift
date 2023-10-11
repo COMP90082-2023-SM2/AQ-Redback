@@ -18,6 +18,8 @@ struct SensorsSelectionView: View {
     var fieldID: String
     @Binding var refreshList : Bool
     
+    @State private var gatewayIDs: [String] = []
+    
     var body: some View {
         VStack{
             FMNavigationBarView(title: "Select Sensor Version")
@@ -32,8 +34,16 @@ struct SensorsSelectionView: View {
             
             HStack{
                 Button(action: {
-                    // Show the add sensor sheet
-                    
+                    print("Hi")
+                    viewModel.addSensorV1(fieldID: fieldID) { result in
+                        switch result {
+                        case .success(let gatewayData):
+                            gatewayIDs = gatewayData.data.map { $0.gateway_id }
+                        case .failure(let error):
+                            print("Error creating sensor: \(error)")
+                        }
+                    }
+                    showV1 = true
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5, style: .continuous)
@@ -47,7 +57,10 @@ struct SensorsSelectionView: View {
                             
                     }
                 }
-                //        NavigationLink("",destination: AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "", fieldData: fieldData, refreshList: $refreshList),isActive: $showAddSensorSheet).opacity(0)
+
+                NavigationLink("", destination: AddSensorV1View(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: fieldID, fieldData: fieldData, refreshList: $refreshList, gatewayIDs: $gatewayIDs), isActive: $showV1).opacity(0)
+
+
                 
                 Spacer()
                 
@@ -91,3 +104,4 @@ struct SensorsSelectionView: View {
 //#Preview {
 //    SensorsSelectionView()
 //}
+

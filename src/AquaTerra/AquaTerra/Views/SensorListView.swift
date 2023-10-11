@@ -112,7 +112,6 @@ struct SensorListView: View {
                             }
                         }
                         NavigationLink("",destination: SensorsSelectionView(viewModel: viewModel, fieldData: $fieldData, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "", refreshList: $refreshList),isActive: $showAddSensorSheet).opacity(0)
-//                        NavigationLink("",destination: AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: selectedFieldName?.field_id ?? "", fieldData: fieldData, refreshList: $refreshList),isActive: $showAddSensorSheet).opacity(0)
                         
                     }else{
                         Button(action: {
