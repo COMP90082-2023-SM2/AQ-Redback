@@ -153,6 +153,95 @@ class FarmNetwork {
         _ = try await performRequest(url: url, method: .delete, body: nil)
     }
     
+    //MARK: API - Fetch Zones
+    func fetchZones(for user: String) async throws -> [Zone]? {
+        
+        guard let url = URL(string: host.appending("/api/zone")) else {
+            throw NetworkError.invalidURL
+        }
+        
+        let body: [String: Any] = ["userName": user]
+        
+        let data = try await performRequest(url: url, method: .post, body: body)
+        
+        guard let payload = data?["data"] as? [[String: AnyObject]] else {
+            throw NetworkError.invalidData
+        }
+                
+        do {
+            let zones = try JSONDecoder().decode([Zone].self, from: JSONSerialization.data(withJSONObject: payload))
+            return zones
+            
+        } catch {
+            print(error)
+            throw NetworkError.invalidData
+        }
+    }
+    
+    //MARK: API - Add Zone
+    func registerZone(zone: Zone, for user: String) async throws {
+        
+        guard let url = URL(string: host.appending("/api/zone/addZone")) else {
+            throw NetworkError.invalidURL
+        }
+            
+        let geom : [String : Any] = [
+            "type": "Feature",
+            "geometry": [
+                "type": "Polygon",
+                "coordinates" : [zone.polyLineLocations]
+            ] as [String : Any],
+            "properties": [:]
+        ]
+        
+        var body: [String:Any] = ["userName": user,
+                                  "zoneName": zone.name,
+                                  "fieldName": zone.field,
+                                  "geom": geom,
+        ]
+        body["farmName"] = zone.farm
+        body["cropType"] = zone.crop
+        
+        body["soilType25"] = zone.soilType25
+        body["soilType75"] = zone.soilType75
+        body["soilType125"] = zone.soilType125
+        
+        body["wPoint50"] = zone.wiltingPoint50
+        body["wPoint100"] = zone.wiltingPoint100
+        body["wPoint150"] = zone.wiltingPoint150
+
+        body["fCapacity50"] = zone.fieldCapacity50
+        body["fCapacity100"] = zone.fieldCapacity100
+        body["fCapacity150"] = zone.fieldCapacity150
+
+        body["saturation50"] = zone.saturation50
+        body["saturation100"] = zone.saturation100
+        body["saturation150"] = zone.saturation150
+
+        _ = try await performRequest(url: url, method: .post, body: body)
+    }
+    
+    //MARK: API - Delete Field
+    func deleteZone(_ zone: Zone, for user: String) async throws {
+        
+        let path = host.appending("/api/zone/deleteZone")
+       
+        guard let encodedString = path.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else {
+            throw NetworkError.invalidURL
+        }
+        
+        guard let url = URL(string: encodedString) else {
+            throw NetworkError.invalidURL
+        }
+        
+        let body: [String: Any] = ["userName": user,
+                                  "fieldName": zone.field,
+                                   "zoneName": zone.name
+        ]
+        
+        _ = try await performRequest(url: url, method: .delete, body: body)
+    }
+    
     //MARK: Private HTTP Request
     private func performRequest(url: URL, method: HTTPMethod, body: [String:Any]?) async throws -> [String : Any]? {
         
