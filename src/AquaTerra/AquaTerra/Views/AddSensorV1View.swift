@@ -94,6 +94,8 @@ struct AddSensorV1View: View {
 
                             SensorButton(title: "Next") {
                                 fetchGatewaySensors()
+                                print("fieldid: ", fieldID)
+                                fetchFieldZone(fieldId: fieldID)
                             }
                             .frame(height: 50)
                             .padding(.top, 15)
@@ -197,5 +199,20 @@ struct AddSensorV1View: View {
             }
         }
     }
+    
+    private func fetchFieldZone(fieldId: String) {
+        SensorListApi.shared.getFieldZone(userName: "demo") { result in
+            switch result {
+            case .success(let fieldData):
+                if let specificField = fieldData.first(where: { $0.field_id == fieldId }) {
+                    let points = specificField.points
+                    print("Points for Field \(fieldId): \(points)")
+                }
+            case .failure(let error):
+                print("No points")
+            }
+        }
+    }
+
 
 }

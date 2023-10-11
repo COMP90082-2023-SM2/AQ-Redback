@@ -424,7 +424,43 @@ final class SensorListApi {
         task.resume()
     }
 
+    public func getFieldZone(userName: String, completion: @escaping (Result<[FieldData], Error>) -> Void) {
+        guard let url = Constants.fieldDataURL else {
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let jsonDict: [String: Any] = [
+            "userName": currentUserUsername ?? ""
+        ]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+            print("Create Field Request JSON: \(String(data: jsonData, encoding: .utf8) ?? "")")
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            if let data = data {
+                do {
+                    let result = try JSONDecoder().decode(APIResponse.self, from: data)
+                    completion(.success(result.data))
+                } catch {
+                    completion(.failure(error))
+                }
+            }
+        }
+        task.resume()
+    }
 
+    
 
 }
 
