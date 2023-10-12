@@ -15,7 +15,7 @@ struct AddSensorView: View {
     let fieldID: String
     @State private var selectPosion: CLLocationCoordinate2D?
     @State var fieldData: [FieldData]
-    @State private var sensorID: String = ""
+    @State var sensorID: String = ""
     @State private var selectedCoordinate: CLLocationCoordinate2D?
 
     @State private var annotations: [MKPointAnnotation] = []
