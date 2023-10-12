@@ -29,7 +29,7 @@ struct SensorEditView: View {
     @State private var FullScreen = false
     @State private var selected = 0
     @State private var textFiledText : String = ""
-    
+    @State private var polygenResultsV2: String? = ""
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -43,7 +43,7 @@ struct SensorEditView: View {
     var body: some View {
             VStack {
                 if FullScreen && selected == 1 {
-                    SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region:$region)
+                    SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResultsV2: $polygenResultsV2)
                         .navigationBarTitle("", displayMode: .inline)
                             .toolbar {
                                 ToolbarItem(placement: .navigationBarLeading) {
@@ -77,6 +77,40 @@ struct SensorEditView: View {
                                     }
                                     SensorButton(title: "Next") {
                                         next()
+                                        
+                                        SensorListApi.shared.getFieldZone(userName: "demo") { result in
+                                            switch result {
+                                            case .success(let fieldData):
+                                                if let specificField = fieldData.first(where: { $0.field_id == fieldId }) {
+                                                    let points = specificField.points
+                                                    let jsonData = specificField.points.data(using: .utf8)
+
+                                                    do {
+                                                        if let jsonData = jsonData,
+                                                            let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                                                            let coordinates = json["coordinates"] as? [[[Double]]] {
+                                                            
+                                                            // Flatten the array of coordinates
+                                                            let flattenedCoordinates = coordinates.flatMap { $0 }
+                                                            
+                                                            // Convert the flattened coordinates to a string
+                                                            let coordinateStrings = flattenedCoordinates.map { "[\($0[0]), \($0[1])]" }
+                                                            
+                                                            // Join the coordinate strings with commas
+                                                            polygenResultsV2 = coordinateStrings.joined(separator: ",")
+                                                            
+                                                            print("Extracted coordinates: [\(polygenResultsV2)]")
+                                                        }
+                                                    } catch {
+                                                        print("Error parsing JSON: \(error)")
+                                                    }
+                                                    
+                                                }
+                                            case .failure(let error):
+                                                print("No points")
+                                            }
+                                        }
+                                        
                                     }
                                     .frame(height: 50)
                                     .padding(.top, 15)
@@ -110,7 +144,8 @@ struct SensorEditView: View {
                                 .font(.custom("OpenSans-Regular", size: 16))
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(.horizontal, 30)
-                            SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region)
+                            SensorMapView(fullScreen: $FullScreen, selectPosion: $selectPosion, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResultsV2: $polygenResultsV2)
+                            
                                 .padding(.horizontal, 30)
                             HStack{
                                 SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {

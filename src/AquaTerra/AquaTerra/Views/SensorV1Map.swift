@@ -12,15 +12,12 @@ struct SensorMapViewVOne: View {
     @Binding var fullScreen : Bool
     @Binding var selectPosion: CLLocationCoordinate2D?
     @Binding var annotations: [MKPointAnnotation]
-    
     @Binding var latitude: String?
     @Binding var longitude: String?
-    
     @Binding private var region: MKCoordinateRegion
     @State private var enable = true
     @State private var allowLocation = false
     @Binding var polygenResults: String?
-    
     
     
     init(fullScreen: Binding<Bool>, selectPosion: Binding<CLLocationCoordinate2D?>, annotations: Binding<[MKPointAnnotation]>, latitude: Binding<String?>, longitude: Binding<String?>, region:Binding<MKCoordinateRegion>, polygenResults: Binding<String?>) {
@@ -44,6 +41,7 @@ struct SensorMapViewVOne: View {
                             HStack{
                                 Image("hand_ic")
                                     .onTapGesture {
+                                        print("hand")
                                         allowLocation = false
                                     }
                                     .opacity(allowLocation ? 0.5 : 1)
@@ -51,6 +49,7 @@ struct SensorMapViewVOne: View {
                                     .renderingMode(.template)
                                     .foregroundColor(Color.black)
                                     .onTapGesture {
+                                        print("pin")
                                         allowLocation = true
                                     }
                                     .opacity(allowLocation ? 1 : 0.5)
@@ -62,8 +61,9 @@ struct SensorMapViewVOne: View {
                         
                         Image("scale_full_ic")
                             .onTapGesture {
-                                withAnimation(.spring(response: 1,dampingFraction: 0.5,blendDuration: 1)) {
-                                    fullScreen.toggle()
+                                withAnimation {
+//                                    fullScreen.toggle()
+//                                    print("fullscreen")
                                 }
                             }
                             .padding(.top,2)
@@ -111,11 +111,11 @@ struct SMapViewVOne: UIViewRepresentable {
             let initialRegion = MKCoordinateRegion(center: initialAnnotation, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
             print("set region")
             print(Double(latitudeStr),Double(longitudeStr))
-//            self.selectedCoordinate = initialAnnotation
-//            smapView.setRegion(initialRegion, animated: true)
+            self.selectedCoordinate = initialAnnotation
+            smapView.setRegion(initialRegion, animated: true)
         }
-        
-        
+        print("polygonCoordinates")
+        print(polygonCoordinates)
 
         if let polygonCoordinates = polygonCoordinates {
             
@@ -131,6 +131,7 @@ struct SMapViewVOne: UIViewRepresentable {
                     print(polygon)
                     print(coordinates.count)
                     print("-------------")
+                    
                     smapView.addOverlay(polygon)
                 }
             }
@@ -153,7 +154,11 @@ struct SMapViewVOne: UIViewRepresentable {
     }
     
     func convertCoordinatesFromString(_ coordinateString: String) -> [CLLocationCoordinate2D] {
+        print("coordinateString")
+        print()
         let coordinatePairs = coordinateString.components(separatedBy: "],[")
+        print("coordinatePairs")
+        print(coordinatePairs)
 
         var coordinates: [CLLocationCoordinate2D] = []
         let formatter = NumberFormatter()
@@ -213,10 +218,21 @@ struct SMapViewVOne: UIViewRepresentable {
         init(_ parent: SMapViewVOne) {
             self.parent = parent
         }
-        
+
         func mapView(_ smapView: MKMapView, regionDidChangeAnimated animated: Bool) {
             parent.region = smapView.region
         }
+        func mapView(_ smapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+                if let polygon = overlay as? MKPolygon {
+                    let renderer = MKPolygonRenderer(polygon: polygon)
+                    renderer.fillColor = UIColor.brown.withAlphaComponent(0.5) // Customize polygon fill color
+                    renderer.strokeColor = UIColor.brown // Customize polygon border color
+                    renderer.lineWidth = 2.0 // Customize polygon border width
+                    return renderer
+                }
+                return MKOverlayRenderer(overlay: overlay)
+        }
+        
         
         func mapView(_ smapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
             
@@ -234,16 +250,6 @@ struct SMapViewVOne: UIViewRepresentable {
             return annotationView
         }
         
-        func mapView(_ smapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-                if let polygon = overlay as? MKPolygon {
-                    let renderer = MKPolygonRenderer(polygon: polygon)
-                    renderer.fillColor = UIColor.blue.withAlphaComponent(0.5) // Customize polygon fill color
-                    renderer.strokeColor = UIColor.blue // Customize polygon border color
-                    renderer.lineWidth = 2.0 // Customize polygon border width
-                    return renderer
-                }
-                return MKOverlayRenderer(overlay: overlay)
-        }
         
         @objc func handleSingleTapPress(_ gestureRecognizer: UITapGestureRecognizer) {
             

@@ -47,12 +47,11 @@ struct AddSensorV1View: View {
         NavigationView {
             
             VStack{
-                if FullScreen && selected == 1 {
-                    GRMapView(
-                        fullScreen: $FullScreen,
-                        selectPosion: $selectedCoordinate,
-                        annotations: $annotations
-                    )
+                if FullScreen && selected == 2{
+                    VStack{
+//                        Text("fullscreen")
+                        SensorMapViewVOne(fullScreen: $FullScreen, selectPosion: $selectedCoordinate, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResults: $polygenResults)
+                    }
                 }else{
                     FMNavigationBarView(title: "Add A New Sensor")
                         .frame(height: 45)
@@ -233,10 +232,10 @@ struct AddSensorV1View: View {
                 }
             }
             .navigationBarBackButtonHidden(true)
-            .alert(isPresented: $showAlert) { // Added alert presentation
+            .alert(isPresented: $showAlert) {
                 Alert(
-                    title: Text("Create Sensor Failure"),
-                    message: Text("Failed to insert the sensor. Please try again later."),
+                    title: Text("No Sensor Found"),
+                    message: Text("There are no sensors available."),
                     dismissButton: .default(Text("OK"))
                 )
             }
@@ -286,9 +285,7 @@ struct AddSensorV1View: View {
                     }
                 case .failure(let error):
                     // Handle the failure
-                    Text("Error: \(error.localizedDescription)")
-                        .font(.custom("OpenSans-Regular", size: 16))
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                    showAlert = true
                 }
             }
         }
