@@ -41,14 +41,14 @@ struct FarmFieldItem: View {
                 Spacer()
                 Spacer()
                 
-                Button {
-                    showFieldDetail()
-                } label: {
-                    Image("FieldDetailButton")
-                        .resizable()
-                        .frame(width: 38, height: 38)
-                }
-                Spacer().frame(width: 0)
+//                Button {
+//                    showFieldDetail()
+//                } label: {
+//                    Image("FieldDetailButton")
+//                        .resizable()
+//                        .frame(width: 38, height: 38)
+//                }
+//                Spacer().frame(width: 0)
                 Button {
                     deleteField()
                 } label: {

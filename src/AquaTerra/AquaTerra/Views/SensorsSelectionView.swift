@@ -47,7 +47,7 @@ struct SensorsSelectionView: View {
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5, style: .continuous)
-                            .fill(Color("ButtonGradient1"))
+                            .fill(Color("HighlightColor"))
                             .frame(height: 50)
                             .frame(width: 170)
                         
@@ -70,7 +70,7 @@ struct SensorsSelectionView: View {
                 }) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 5, style: .continuous)
-                            .fill(Color("ButtonGradient2"))
+                            .fill(Color(hex: "#85B3A4"))
                             .frame(height: 50)
                             .frame(width: 170)
                         

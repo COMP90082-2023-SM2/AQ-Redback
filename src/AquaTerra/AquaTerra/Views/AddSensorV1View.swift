@@ -63,11 +63,12 @@ struct AddSensorV1View: View {
                         switch selected {
                         case 0:
                             VStack(alignment: .leading){
-                                HStack(spacing: 3.5){
-                                    Text("Please enter your new sensor ID.")
-                                        .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
-                                }
+                                                            
                                 if !gatewayIDs.isEmpty {
+                                    HStack(spacing: 3.5){
+                                        Text("Please enter your new sensor ID.")
+                                            .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
+                                    }
                                     ForEach(gatewayIDs, id: \.self) { gatewayID in
                                         Text("Gateway ID: \(gatewayID)")
                                             .font(.custom("OpenSans-Regular", size: 14))
@@ -86,6 +87,9 @@ struct AddSensorV1View: View {
                                     .padding(.top, 15)
                                 } else {
                                     // Handle the case when gatewayIDs is empty
+                                    Text("No Related Gateway Founded.")
+                                        .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
+                                        .foregroundColor(Color("DeleteColor"))
                                 }
                                 
                             }
