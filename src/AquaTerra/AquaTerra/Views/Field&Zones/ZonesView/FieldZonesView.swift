@@ -12,16 +12,9 @@ struct FieldZonesView: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @ObservedObject var viewModel: FieldViewModel
-    
-    @State private var shouldPickAnotherField = false
-    
-    @State private var shouldAddNewZone = false
-    
+            
     @State private var shouldShowZoneDetail = false
-    
-    @State private var toEditZone: Zone?
-    @State private var shouldShowEditZone = false
-    
+
     @State private var toDeleteZone: Zone?
     @State private var shouldShowDeleteZoneAlert = false
     
@@ -36,7 +29,7 @@ struct FieldZonesView: View {
                     Text("Current Field: ").font(.custom("OpenSans-SemiBold", size: 14))
                         .foregroundColor(Color.black)
                     Spacer().frame(width: 5)
-                    Text(viewModel.currentField?.name ?? "No Field Yet")
+                    Text(viewModel.currentFieldName.isEmpty ? "No Field Yet" : viewModel.currentFieldName)
                         .foregroundColor(Color("ButtonGradient2"))
                         .font(.custom("OpenSans-Bold", size: 14))
                         .multilineTextAlignment(.trailing)
@@ -44,8 +37,8 @@ struct FieldZonesView: View {
                     
                     Spacer()
                     
-                    Button {
-                        pickAnotherField()
+                    NavigationLink {
+                        FieldPickerView(viewModel: viewModel)
                     } label: {
                         Text("Change")
                             .font(.custom("OpenSans-Regular", size: 14))
@@ -55,9 +48,6 @@ struct FieldZonesView: View {
                             .cornerRadius(5)
                             .bold()
                             .frame(height: 41)
-                    }.navigationDestination(isPresented: $shouldPickAnotherField) {
-                        
-                        FieldPickerView(viewModel: viewModel)
                     }
                     
                 }.frame(height: 50)
@@ -78,8 +68,8 @@ struct FieldZonesView: View {
                         .font(.custom("OpenSans-SemiBold", size: 16))
                     Spacer()
                     
-                    Button {
-                        addNewZone()
+                    NavigationLink {
+                        ZoneRegisterView(viewModel: viewModel, modifyType: .add)
                     } label: {
                         Text("Add New Zone")
                             .font(.custom("OpenSans-ExtraBold", size: 14))
@@ -93,14 +83,8 @@ struct FieldZonesView: View {
                                 ))
                             .cornerRadius(5)
                             .frame(height: 41)
-                        
-                    }
-                    .ignoresSafeArea(.all)
-                    .padding(.trailing, 20)
-                    .padding(.vertical, 15)
-                    .navigationDestination(isPresented: $shouldAddNewZone) {
-                        
-                        ZoneRegisterView(viewModel: viewModel)
+                            .padding(.trailing, 20)
+                            .padding(.vertical, 15)
                     }
                 }
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
@@ -112,12 +96,12 @@ struct FieldZonesView: View {
                         LazyVStack(spacing: 0, content: {
                             ForEach(currentZones, id: \.id) { zone in
                                 let index = currentZones.firstIndex(of: zone) ?? 0
-                                FieldZoneItem(index: index, zone: zone, viewModel: viewModel, shouldShowDetail: $shouldShowZoneDetail, shouldEdit: $shouldShowEditZone, shouldDelete: $shouldShowDeleteZoneAlert)
-//                                    .navigationDestination(isPresented: $shouldShowEditZone) {
-//
-//                                        ZoneRegisterView(viewModel: viewModel, toEditZone: zone)
-//                                    }
-                                    .frame(idealWidth: .infinity, maxWidth: .infinity)
+                                FieldZoneItem(index: index, zone: zone, viewModel: viewModel) { zone in
+                                    
+                                    toDeleteZone = zone
+                                    shouldShowDeleteZoneAlert = true
+                                }
+                                .frame(idealWidth: .infinity, maxWidth: .infinity)
                             }
                         })
                     }
@@ -163,20 +147,11 @@ struct FieldZonesView: View {
             }
         }
         .onAppear {
-            UITableView.appearance().separatorStyle = .none
-            UITableViewCell.appearance().selectionStyle = .none
-            
-            viewModel.fetchFieldsAndZonesData()
+            if viewModel.zones == nil {
+                viewModel.fetchFieldsAndZonesData()
+            }
+//            BaseBarModel.share.hidden()
         }
-    }
-    
-    //switch another farm to show
-    func pickAnotherField() {
-        shouldPickAnotherField.toggle()
-    }
-    
-    func addNewZone() {
-        shouldAddNewZone.toggle()
     }
     
     func deleteZone() {

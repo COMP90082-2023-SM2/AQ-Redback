@@ -53,7 +53,7 @@ struct FieldPickerView: View {
                 
                 Divider().frame(height: 0.5)
                 
-                ForEach(fields) { field in
+                ForEach(fields, id: \.id) { field in
                     FieldPickerItem(field: field, currentPickedField: currentpickedField)
                         .frame(height: 68)
                 }

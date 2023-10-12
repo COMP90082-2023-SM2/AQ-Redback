@@ -15,8 +15,7 @@ struct SessionView: View {
     @State private var fieldData: [FieldData] = []
     @Binding var user: AuthUser
     @State private var isShowingSensorListView = false
-    @State private var isShowingFarmsView = false
-    @State private var isShowingZonesView = false
+
     @ObservedObject private var viewModel = SessionViewViewModel()
     
     var body: some View {
@@ -36,15 +35,10 @@ struct SessionView: View {
                             ManageCardView(imgName: "Gateway", TextName: "My Gateways")
                         }
                         
-                        Button {
-                            isShowingFarmsView.toggle()
+                        NavigationLink {
+                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                         } label: {
                             ManageCardView(imgName: "Farm", TextName: "My Farm and Fields")
-                                
-                        }
-                        .navigationDestination(isPresented: $isShowingFarmsView) {
-                            
-                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                         }
                         
                         Button{
@@ -65,14 +59,10 @@ struct SessionView: View {
                             SensorListView(fieldData: self.fieldData, viewModel: viewModel)
                         }
                         
-                        Button{
-                            isShowingZonesView.toggle()
-                        }label: {
-                            ManageCardView(imgName: "Irrigation Zones", TextName: "My Irrigation Zones")
-                        }
-                        .navigationDestination(isPresented: $isShowingZonesView) {
-                            
+                        NavigationLink {
                             FieldZonesView(viewModel: FieldViewModel(currentUserName: user.username))
+                        } label: {
+                            ManageCardView(imgName: "Irrigation Zones", TextName: "My Irrigation Zones")
                         }
                     }.padding(.vertical, 37)
                     

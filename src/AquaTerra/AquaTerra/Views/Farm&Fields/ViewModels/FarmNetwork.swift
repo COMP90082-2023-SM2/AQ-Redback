@@ -178,8 +178,8 @@ class FarmNetwork {
         }
     }
     
-    //MARK: API - Add Zone
-    func registerZone(zone: Zone, for user: String) async throws {
+    //MARK: API - Add/Edit Zone
+    func registerOrEditZone(zone: ZoneEditable, editingZoneName: String? = nil, for user: String) async throws {
         
         guard let url = URL(string: host.appending("/api/zone/addZone")) else {
             throw NetworkError.invalidURL
@@ -199,24 +199,55 @@ class FarmNetwork {
                                   "fieldName": zone.field,
                                   "geom": geom,
         ]
+        //for edit zone
+        if let oldZoneName = editingZoneName, !oldZoneName.isEmpty {
+            body["oldZoneName"] = oldZoneName
+        }
         body["farmName"] = zone.farm
-        body["cropType"] = zone.crop
         
-        body["soilType25"] = zone.soilType25
-        body["soilType75"] = zone.soilType75
-        body["soilType125"] = zone.soilType125
+        if !zone.crop.isEmpty {
+            body["cropType"] = zone.crop
+        }
         
-        body["wPoint50"] = zone.wiltingPoint50
-        body["wPoint100"] = zone.wiltingPoint100
-        body["wPoint150"] = zone.wiltingPoint150
+        if !zone.soilType25.isEmpty {
+            body["soilType25"] = zone.soilType25
+        }
+        if !zone.soilType75.isEmpty {
+            body["soilType75"] = zone.soilType75
+        }
+        if !zone.soilType125.isEmpty {
+            body["soilType125"] = zone.soilType125
+        }
+        
+        if !zone.wiltingPoint50.isEmpty {
+            body["wiltingPoint50"] = Int(zone.wiltingPoint50)
+        }
+        if !zone.wiltingPoint100.isEmpty {
+            body["wiltingPoint100"] = Int(zone.wiltingPoint100)
+        }
+        if !zone.wiltingPoint150.isEmpty {
+            body["wiltingPoint150"] = Int(zone.wiltingPoint150)
+        }
+        
+        if !zone.fieldCapacity50.isEmpty {
+            body["fieldCapacity50"] = Int(zone.fieldCapacity50)
+        }
+        if !zone.fieldCapacity100.isEmpty {
+            body["fieldCapacity100"] = Int(zone.fieldCapacity100)
+        }
+        if !zone.fieldCapacity150.isEmpty {
+            body["fieldCapacity150"] = Int(zone.fieldCapacity150)
+        }
 
-        body["fCapacity50"] = zone.fieldCapacity50
-        body["fCapacity100"] = zone.fieldCapacity100
-        body["fCapacity150"] = zone.fieldCapacity150
-
-        body["saturation50"] = zone.saturation50
-        body["saturation100"] = zone.saturation100
-        body["saturation150"] = zone.saturation150
+        if !zone.saturation50.isEmpty {
+            body["saturation50"] = Int(zone.saturation50)
+        }
+        if !zone.saturation100.isEmpty {
+            body["saturation100"] = Int(zone.saturation100)
+        }
+        if !zone.saturation150.isEmpty {
+            body["saturation150"] = Int(zone.saturation150)
+        }
 
         _ = try await performRequest(url: url, method: .post, body: body)
     }

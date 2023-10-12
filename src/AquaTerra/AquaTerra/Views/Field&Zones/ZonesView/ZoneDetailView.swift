@@ -34,6 +34,8 @@ struct ZoneDetailView: View {
 
                         ZoneDetailItem(title: "Field", subTitle: zone.field, showRightArrow: false)
                         
+                        ZoneDetailItem(title: "Zone Name", subTitle: zone.name, showRightArrow: false)
+
                         ZoneDetailItem(title: "Crop Type", subTitle: zone.crop ?? "", showRightArrow: true)
                         
                         Image("Soil_profile_zone")
@@ -96,7 +98,7 @@ struct ZoneDetailView: View {
 struct ZoneDetailView_Previews: PreviewProvider {
     static var previews: some View {
         
-        let zone = Zone(user: "Demo", name: "Very long name TestZone1", farm: "Farm1", field: "Field1", crop: "Rice", geom: nil, points: "", soilType25: "Loam", soilType75: "Loam", soilType125: "Loam", wiltingPoint50: 7, wiltingPoint100: 7, wiltingPoint150: 7, fieldCapacity50: 20, fieldCapacity100: 20, fieldCapacity150: 20, saturation50: 30, saturation100: 30, saturation150: 30, sensors: nil)
+        let zone = Zone(user: "Demo", farm: "Farm1", name: "Very long name TestZone1", field: "Field1", crop: "Rice", geom: nil, points: "", soilType25: "Loam", soilType75: "Loam", soilType125: "Loam", wiltingPoint50: 7, wiltingPoint100: 7, wiltingPoint150: 7, fieldCapacity50: 20, fieldCapacity100: 20, fieldCapacity150: 20, saturation50: 30, saturation100: 30, saturation150: 30, sensors: nil)
         
         ZoneDetailView(zone: zone)
     }
