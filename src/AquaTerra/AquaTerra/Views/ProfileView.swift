@@ -75,7 +75,7 @@ struct ProfileView: View {
 
 //                CustomTabBar(selectedTab: $selectedTab, user: $user)
                 
-            }.padding(.bottom, 50)
+            }.padding(.bottom, 120)
             
         } .navigationBarTitle("")
             .navigationBarHidden(true)
