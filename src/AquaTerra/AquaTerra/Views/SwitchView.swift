@@ -11,6 +11,9 @@ import SwiftUI
 struct SwitchView: View {
     
     @State var selectedTab: Tabs = .manage
+    
+    @ObservedObject private var tabBarViewModel = BaseBarModel.share
+
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
     @State private var fieldData: [FieldData] = []
     @State var user: AuthUser
@@ -19,31 +22,29 @@ struct SwitchView: View {
     
     var body: some View {
         ZStack {
-                VStack{
-                    TabView(selection: $selectedTab){
-                        if selectedTab == .home{
-                            DashboardView(user:$user).frame(alignment: .top)
-                        }
-                        
-                        if selectedTab == .profile{
-                            ProfileView(user:$user)
-                        }
-                        
-                        if selectedTab == .manage{
-                            SessionView(user:$user)
-                        }
+                VStack {
+                    if selectedTab == .home {
+                        DashboardView(user:$user).frame(alignment: .top)
+                    }
+                    
+                    if selectedTab == .profile {
+                        ProfileView(user:$user)
+                    }
+                    
+                    if selectedTab == .manage {
+                        SessionView(user:$user)
                     }
                 }
             
-            VStack{
-                Spacer()
-                CustomTabBar(selectedTab: $selectedTab, user: $user)
-                
-            }
+                VStack{
+                    Spacer()
+                    CustomTabBar(selectedTab: $selectedTab, user: $user)
+                        .opacity(tabBarViewModel.showTab ? 1.0 : 0)
+                }
         }
+//        .ignoresSafeArea(.all)
         .onAppear {
             MGViewModel.share().setupUser(user: user.username)
-                
         }
     }
     

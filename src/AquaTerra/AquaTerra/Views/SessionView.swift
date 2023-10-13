@@ -15,7 +15,7 @@ struct SessionView: View {
     @State private var fieldData: [FieldData] = []
     @Binding var user: AuthUser
     @State private var isShowingSensorListView = false
-    @State private var isShowingFarmsView = false
+
     @ObservedObject private var viewModel = SessionViewViewModel()
     
     var body: some View {
@@ -35,15 +35,10 @@ struct SessionView: View {
                             ManageCardView(imgName: "Gateway", TextName: "My Gateways")
                         }
                         
-                        Button {
-                            isShowingFarmsView.toggle()
+                        NavigationLink {
+                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                         } label: {
                             ManageCardView(imgName: "Farm", TextName: "My Farm and Fields")
-                                
-                        }
-                        .navigationDestination(isPresented: $isShowingFarmsView) {
-                            
-                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
                         }
                         
                         Button{
@@ -64,9 +59,9 @@ struct SessionView: View {
                             SensorListView(fieldData: self.fieldData, viewModel: viewModel)
                         }
                         
-                        Button{
-                            
-                        }label: {
+                        NavigationLink {
+                            FieldZonesView(viewModel: FieldViewModel.shared)
+                        } label: {
                             ManageCardView(imgName: "Irrigation Zones", TextName: "My Irrigation Zones")
                         }
                     }.padding(.vertical, 37)
@@ -76,6 +71,7 @@ struct SessionView: View {
                 }
             }
             .onAppear {
+                FieldViewModel.shared.currentUserName = user.username
                 MGViewModel.share().setupUser(user: user.username)
                     
             }

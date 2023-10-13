@@ -22,7 +22,6 @@ class FarmsViewModel: ObservableObject {
     ///for add a new farm
     @Published var newFarm: NewFarm = NewFarm(user: "", name: "", fieldName: "")
 
-    typealias FarmRequestCompleteBlock = (_ error: Error?, _ data: Data?) -> Void
 
     init(currentUserName: String, currentFarm: Farm? = nil, farms: [Farm]? = nil, fields: [Field]? = nil) {
         self.currentUserName = currentUserName

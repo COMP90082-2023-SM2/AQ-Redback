@@ -39,7 +39,6 @@ struct FarmFieldItem: View {
                     .font(.custom("OpenSans-Regular", size: 14))
                 
                 Spacer()
-                Spacer()
                 
 //                Button {
 //                    showFieldDetail()

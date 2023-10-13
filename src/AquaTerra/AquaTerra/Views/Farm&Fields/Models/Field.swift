@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Field: Codable, Identifiable {
+struct Field: Codable, Hashable, Identifiable {
     /// field id
     let id: String
     /// user name

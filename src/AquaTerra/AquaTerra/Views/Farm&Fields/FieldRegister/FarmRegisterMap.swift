@@ -85,23 +85,52 @@ struct FarmRegisterWKMap: UIViewRepresentable {
         
         mapView.delegate = context.coordinator
         mapView.region = region
+        debugPrint("makeMapUIView: \(locations)")
         
         return mapView
     }
     
     func updateUIView(_ view: MKMapView, context: Context) {
-        
-        debugPrint("updateUIView")
-        
+                
         if locations.isEmpty {
             view.removeOverlays(view.overlays)
         }
+        
+        drawOriginLines()
     }
     
     func makeCoordinator() -> Coordinator {
         Coordinator(self)
     }
     
+    private func drawOriginLines() {
+        
+        guard locations.count > 1 else {
+            return
+        }
+        
+        mapView.removeOverlays(mapView.overlays)
+
+        //draw new lines
+        let polylines = MKPolyline(coordinates: locations.map({$0.coordinate}), count: locations.count)
+        mapView.addOverlay(polylines)
+        
+        let closedCycle = MKPolyline(coordinates: [locations.first!.coordinate, locations.last!.coordinate], count: 2)
+        mapView.addOverlay(closedCycle)
+
+        //show proper rect
+        var mapRect = MKMapRect.null
+        for location in locations {
+            let point = MKMapPoint(location.coordinate)
+            let pointRect = MKMapRect(x: point.x, y: point.y, width: 0, height: 0)
+            mapRect = mapRect.union(pointRect)
+        }
+        mapRect.origin.x -= 0.25*mapRect.width
+        mapRect.origin.y -= 0.25*mapRect.height
+        mapRect.size = MKMapSize(width: 2*mapRect.size.width, height: 2*mapRect.size.height)
+        let region = MKCoordinateRegion(mapRect)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate {

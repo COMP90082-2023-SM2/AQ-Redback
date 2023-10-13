@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Farm: Codable, Identifiable {
+struct Farm: Codable, Hashable, Identifiable {
     /// field id
     let id: String = UUID().uuidString
     /// user name
