@@ -155,10 +155,7 @@ struct AddSensorV1View: View {
                                 }
                                 .frame(height: 50)
                                 .padding(.top, 15)
-                            }.padding(.bottom, 50)
-
-
-
+                            }
                         case 2:
                             VStack{
                                 if let response = gatewaySensorResponse {
@@ -184,6 +181,7 @@ struct AddSensorV1View: View {
                                             SensorMapViewVOne(fullScreen: $FullScreen, selectPosion: $selectedCoordinate, annotations: $annotations, latitude: $editedLatitude, longitude: $editedLongitude, region: $region, polygenResults: $polygenResults)
                                                 .padding(.bottom, 15)
                                             
+                                            
                                         
                                         } else {
                                             // Handle case when no sensors are found
@@ -198,18 +196,21 @@ struct AddSensorV1View: View {
                                             .frame(maxWidth: .infinity, alignment: .leading)
                                     }
                                 }
-                                
-                                SensorButton(title: "Submit") {
-                                    next()
-                                    submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
-                                    presentationMode.wrappedValue.dismiss()
-                                }
-                                .frame(height: 50)
-                                .padding(.bottom, 50)
-                                .disabled(selectedCoordinate == nil)
-                                .opacity(selectedCoordinate == nil ? 0.3 : 1.0)
-                                
-                            }.frame(height: 550)
+                                HStack{
+                                    SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
+                                        undo()
+                                    })
+                                    
+                                    Spacer().frame(width: 20)
+                                    SensorButton(title: "Submit") {
+                                        next()
+                                        submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
+                                        presentationMode.wrappedValue.dismiss()
+                                    } .disabled(selectedCoordinate == nil)
+                                        .opacity(selectedCoordinate == nil ? 0.3 : 1.0)
+                                    
+                                }.frame(height: 50)
+                            }
                         default :
                             HStack{}
                         }

@@ -62,6 +62,7 @@ struct FarmsView: View {
                     }.navigationDestination(isPresented: $shouldPickAnotherFarm) {
                         
                         FarmPickerView(viewModel: viewModel)
+                        
                     }
                     
                     Button {
@@ -116,12 +117,12 @@ struct FarmsView: View {
                     .padding(.trailing, 20)
                     .padding(.vertical, 15)
                     .navigationDestination(isPresented: $shouldAddNewField) {
-                        
                         FarmRegisterView(viewModel: viewModel)
                     }
                 }
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
                 .background(Color.farmHeadGreyColor)
+                
                 if viewModel.currentFarm?.name == nil {
                     Spacer()
                     Image("empty")
@@ -177,25 +178,25 @@ struct FarmsView: View {
                     deleteFieldData()
                 }
             }
-        }
-        .navigationBarBackButtonHidden(true)
-        .navigationBarTitle("", displayMode: .inline)
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                NavigationBackView()
-                    .onTapGesture {
-                        presentationMode.wrappedValue.dismiss()
-                        BaseBarModel.share.show()
-                    }
-                    .frame(width: 70,height: 17)
+        }.navigationBarBackButtonHidden(true)
+            .navigationBarTitle("", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    NavigationBackView()
+                        .onTapGesture {
+                            presentationMode.wrappedValue.dismiss()
+                            BaseBarModel.share.show()
+                        }
+                        .frame(width: 70,height: 17)
+                }
             }
-        }
-        .onAppear {
-            UITableView.appearance().separatorStyle = .none
-            UITableViewCell.appearance().selectionStyle = .none
-    
-            viewModel.fetchFarmsAndFieldsData()
-        }
+            .onAppear {
+//                BaseBarModel.share.hidden()
+                UITableView.appearance().separatorStyle = .none
+                UITableViewCell.appearance().selectionStyle = .none
+                viewModel.fetchFarmsAndFieldsData()
+               
+            }
     }
     
     func addNewField() {

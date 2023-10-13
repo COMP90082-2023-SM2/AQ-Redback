@@ -27,38 +27,49 @@ struct FarmFieldItem: View {
             Rectangle()
                 .fill(.white)
                 .shadow(radius: 1)
-            
-            HStack {
-                Text("\(index)")
-                    .font(.custom("OpenSans-Regular", size: 14))
-                Spacer().frame(width: 55)
-                Text(field.name)
-                    .font(.custom("OpenSans-Regular", size: 14))
-                Spacer()
-                Text(field.crop ?? "")
-                    .font(.custom("OpenSans-Regular", size: 14))
-                
-                Spacer()
-                
-//                Button {
-//                    showFieldDetail()
-//                } label: {
-//                    Image("FieldDetailButton")
-//                        .resizable()
-//                        .frame(width: 38, height: 38)
-//                }
-//                Spacer().frame(width: 0)
-                Button {
-                    deleteField()
-                } label: {
-                    Image("FieldDeleteButton")
-                        .resizable()
-                        .frame(width: 38, height: 38)
+            GeometryReader { geometry in
+                VStack{
+                    Spacer()
+                    HStack {
+                        Text("\(index)")
+                            .font(.custom("OpenSans-Regular", size: 14))
+                            .frame(width: 30, alignment: .leading) // Fixed width
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                        
+                        Spacer().frame(width: 40)
+                        
+                        Text(field.name)
+                            .font(.custom("OpenSans-Regular", size: 14))
+                            .frame(width: 60, alignment: .leading) // Fixed width
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                        
+                        Spacer()
+                        
+                        Text(field.crop ?? "")
+                            .font(.custom("OpenSans-Regular", size: 14))
+                            .frame(width: 40, alignment: .leading) // Fixed width
+                            .lineLimit(1)
+                            .truncationMode(.tail)
+                        
+                        Spacer()
+                        
+                        
+                        Button {
+                            deleteField()
+                        } label: {
+                            Image("FieldDeleteButton")
+                                .resizable()
+                                .frame(width: 38, height: 38)
+                        }
+                    }
+                    
+                    Spacer()
                 }
+                .padding(.leading, 30)
+                .padding(.trailing, 20)
             }
-            .padding(.leading, 20)
-            .padding(.trailing, 10)
-            .padding(.horizontal)
         }
         .frame(height: 60)
     }

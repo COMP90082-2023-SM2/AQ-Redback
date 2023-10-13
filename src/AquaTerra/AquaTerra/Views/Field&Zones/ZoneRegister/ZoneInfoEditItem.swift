@@ -34,7 +34,6 @@ struct ZoneInfoEditItem: View {
                     .multilineTextAlignment(.trailing)
                     .font(.custom("OpenSans-Regular", size: 14))
                     .foregroundColor(Color("Placeholder"))
-                    .padding([.horizontal], 30)
                     .accentColor(Color("ButtonGradient2"))
                     .keyboardType(keyboardType)
                     .disabled(disabled)
@@ -44,7 +43,7 @@ struct ZoneInfoEditItem: View {
                 }
             }
             .padding(.leading, 30)
-            .padding(.trailing, 20)
+            .padding(.trailing, 30)
         }
         .frame(height: 60)
     }

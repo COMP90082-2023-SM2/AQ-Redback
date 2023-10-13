@@ -76,18 +76,18 @@ struct ZoneRegisterView: View {
                             .padding(.top, 20)
                         case 1:
                             HStack(alignment: .center, content: {
-                                Text("• Please draw a polygon")
+                                Text("• Please draw a polygon to outline your")
                                     .font(.custom("OpenSans-Regular", size: 16))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .lineLimit(1)
 
-                                Image("FarmRegisterMapPolyline")
-                                    .resizable()
-                                    .frame(width: 25, height: 27)
-                                Text("to outline your")
-                                    .font(.custom("OpenSans-Regular", size: 16))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .lineLimit(1)
+//                                Image("FarmRegisterMapPolyline")
+//                                    .resizable()
+//                                    .frame(width: 25, height: 27)
+//                                Text("to outline your")
+//                                    .font(.custom("OpenSans-Regular", size: 16))
+//                                    .frame(maxWidth: .infinity, alignment: .leading)
+//                                    .lineLimit(1)
                             })
                             .padding(.horizontal, 30)
 
@@ -98,6 +98,7 @@ struct ZoneRegisterView: View {
                                 .padding(.horizontal, 30)
 
                             FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
+                                .padding(.horizontal, 30)
                             
                             HStack {
                                 GRButton(enable: polyLineLocationsReady, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {

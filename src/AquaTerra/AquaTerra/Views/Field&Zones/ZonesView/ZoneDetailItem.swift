@@ -24,12 +24,12 @@ struct ZoneDetailItem: View {
                 Spacer()
                 Text(subTitle).font(.custom("OpenSans-Regular", size: 14))
                 
-                if showRightArrow {
-                    Image("arrow_right").resizable().frame(width: 18, height: 18)
-                }
+//                if showRightArrow {
+//                    Image("arrow_right").resizable().frame(width: 18, height: 18)
+//                }
             }
             .padding(.leading, 30)
-            .padding(.trailing, 20)
+            .padding(.trailing, 30)
         }
         .frame(height: 60)
     }

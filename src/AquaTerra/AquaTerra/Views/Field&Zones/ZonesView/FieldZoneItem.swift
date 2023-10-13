@@ -20,55 +20,76 @@ struct FieldZoneItem: View {
     var body: some View {
         
         ZStack {
-            Rectangle()
-                .fill(.white)
-                .shadow(radius: 1)
             
-            HStack {
-                Text("\(index)")
-                    .font(.custom("OpenSans-Regular", size: 14))
-                Spacer().frame(width: 30)
-                Text(zone.name)
-                    .font(.custom("OpenSans-Regular", size: 14))
-                    .frame(maxWidth: 100)
-                Spacer()
-                Text(zone.crop ?? "")
-                    .font(.custom("OpenSans-Regular", size: 14))
-                
-                Spacer()
-                
-                NavigationLink {
-                    ZoneDetailView(zone: zone)
-                } label: {
-                    Image("zone_detail")
-                        .resizable()
-                        .frame(width: 38, height: 38)
-                }
-                
-                NavigationLink {
+                    Rectangle()
+                        .fill(.white)
+                        .shadow(radius: 1)
                     
-                    //avoid to change current zone when edit canceled
-                    ZoneRegisterView(viewModel: viewModel, modifyType: .edit, toEditZone: zone)
-                } label: {
-                    Image("edit")
-                        .resizable()
-                        .frame(width: 38, height: 38)
+                    GeometryReader { geometry in
+                        VStack{
+                            Spacer()
+                            HStack {
+                                Text("\(index)")
+                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .frame(width: 30, alignment: .leading) // Fixed width
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                
+                                Spacer()
+                                
+                                Text(zone.name)
+                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .frame(width: 60, alignment: .leading) // Fixed width
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                
+                                Spacer()
+                                
+                                Text(zone.crop ?? "")
+                                    .font(.custom("OpenSans-Regular", size: 14))
+                                    .frame(width: 40, alignment: .leading) // Fixed width
+                                    .lineLimit(1)
+                                    .truncationMode(.tail)
+                                
+                                Spacer()
+                                
+                                HStack {
+                                    NavigationLink {
+                                        ZoneDetailView(zone: zone)
+                                    } label: {
+                                        Image("zone_detail")
+                                            .resizable()
+                                            .frame(width: 38, height: 38)
+                                    }
+                                    
+                                    NavigationLink {
+                                        ZoneRegisterView(viewModel: viewModel, modifyType: .edit, toEditZone: zone)
+                                    } label: {
+                                        Image("edit")
+                                            .resizable()
+                                            .frame(width: 38, height: 38)
+                                    }
+                                    
+                                    Button {
+                                        deleteZone()
+                                    } label: {
+                                        Image("FieldDeleteButton")
+                                            .resizable()
+                                            .frame(width: 38, height: 38)
+                                    }
+                                }
+                                .frame(width: 120, alignment: .trailing) // Fixed width for the button group
+                            }
+                            .padding(.leading, 20)
+                            .padding(.trailing, 20)
+                            .frame(width: geometry.size.width) // Set the HStack's width to match the GeometryReader
+                            Spacer()
+                        }
+                    }
                 }
-
-                Button {
-                    deleteZone()
-                } label: {
-                    Image("FieldDeleteButton")
-                        .resizable()
-                        .frame(width: 38, height: 38)
-                }
+                .frame(height: 60)
             }
-            .padding(.leading, 10)
-            .padding(.trailing, 10)
-            .padding(.horizontal)
-        }
-        .frame(height: 60)
-    }
+
     
     func deleteZone() {
         deleteAction?(zone)

@@ -54,15 +54,18 @@ struct FieldZonesView: View {
                     .frame(maxWidth: .infinity)
                     .padding(.leading, 25)
                     .padding(.trailing, 20)
+                
                 HStack {
                     Text("No.")
                         .font(.custom("OpenSans-SemiBold", size: 16))
                         .padding(.leading, 20)
-                    Spacer().frame(width: 43)
+                    
+                    Spacer().frame(width: 40)
                     
                     Text("Zone")
                         .font(.custom("OpenSans-SemiBold", size: 16))
-                    Spacer().frame(width: 53)
+                    
+                    Spacer().frame(width: 50)
                     
                     Text("Crop")
                         .font(.custom("OpenSans-SemiBold", size: 16))
@@ -134,6 +137,7 @@ struct FieldZonesView: View {
                 }
             }
         }
+        .edgesIgnoringSafeArea(.bottom)
         .navigationBarBackButtonHidden(true)
         .navigationBarTitle("", displayMode: .inline)
         .toolbar {

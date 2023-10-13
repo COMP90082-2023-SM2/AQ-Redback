@@ -151,7 +151,6 @@ struct SensorListView: View {
                     .buttonStyle(PlainButtonStyle())
                     .listStyle(PlainListStyle())
                     .scrollIndicators(.hidden)
-                    .padding(.bottom, 70)
                     .frame(maxHeight: .infinity)
                     
                     
@@ -174,6 +173,9 @@ struct SensorListView: View {
                     Spacer()
                 }
                 
+            }
+            .onAppear{
+                BaseBarModel.share.hidden()
             }
             .onChange(of: refreshList){
                 refreshed in

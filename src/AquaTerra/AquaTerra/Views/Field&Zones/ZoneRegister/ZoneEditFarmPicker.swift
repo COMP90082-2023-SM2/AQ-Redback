@@ -29,16 +29,8 @@ struct ZoneEditFarmPicker: View {
                         Text(name)
                     })
                 })
-//                Picker(title, selection: $selection) {
-//                    ForEach(dataSource, id: \.id) { item in
-//                        Text(item.name).tag(item.id)
-//                            .font(.custom("OpenSans-Regular", size: 14))
-//                            .foregroundColor(Color("Placeholder"))
-//                            .padding([.horizontal], 30)
-//                            .accentColor(Color("ButtonGradient2"))
-//                    }
-//                }
                 .pickerStyle(.menu)
+                .accentColor(.green)
             }
             .padding(.leading, 30)
             .padding(.trailing, 20)

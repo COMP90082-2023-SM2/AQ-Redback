@@ -32,9 +32,8 @@ struct SensorsSelectionView: View {
                 .padding(.top, 20)
                 .padding(.bottom, 30)
             
-            HStack{
+            VStack(spacing: 10){
                 Button(action: {
-                    print("Hi")
                     viewModel.addSensorV1(fieldID: fieldID) { result in
                         switch result {
                         case .success(let gatewayData):
@@ -62,7 +61,6 @@ struct SensorsSelectionView: View {
 
 
                 
-                Spacer()
                 
                 Button(action: {
                     showV2 = true
@@ -80,6 +78,7 @@ struct SensorsSelectionView: View {
                     }
                 }
                 NavigationLink("",destination: AddSensorView(viewModel: viewModel, showAddSensorSheet: $showAddSensorSheet, fieldID: fieldID, fieldData: fieldData, refreshList: $refreshList), isActive: $showV2).opacity(0)
+                
                 
             }.padding(.horizontal, 30)
             

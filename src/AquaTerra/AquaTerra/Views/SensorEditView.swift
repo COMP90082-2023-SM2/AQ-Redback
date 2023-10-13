@@ -150,7 +150,6 @@ struct SensorEditView: View {
                             HStack{
                                 SensorButton(title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
                                     undo()
-                                    presentationMode.wrappedValue.dismiss()
                                 })
                                 Spacer().frame(width: 20)
                                 SensorButton(title: "Next") {

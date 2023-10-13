@@ -128,6 +128,7 @@ struct SMapView: UIViewRepresentable {
         uiView.setRegion(region, animated: true)
         uiView.removeAnnotations(uiView.annotations)
         uiView.addAnnotations(annotations)
+        
         if !polygenResultsV2.isEmpty {
             let coordinates = convertCoordinatesFromString(polygenResultsV2)
             if !coordinates.isEmpty {

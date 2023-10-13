@@ -148,7 +148,7 @@ class Coordinator: NSObject, MKMapViewDelegate, UIGestureRecognizerDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         if let routePolyline = overlay as? MKPolyline {
             let renderer = MKPolylineRenderer(polyline: routePolyline)
-            renderer.strokeColor = .systemBlue
+            renderer.strokeColor = .systemGreen
             renderer.lineWidth = 8
             renderer.alpha = 0.75
             
