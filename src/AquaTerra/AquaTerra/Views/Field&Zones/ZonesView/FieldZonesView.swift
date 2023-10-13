@@ -147,10 +147,9 @@ struct FieldZonesView: View {
             }
         }
         .onAppear {
-            if viewModel.zones == nil {
-                viewModel.fetchFieldsAndZonesData()
-            }
-//            BaseBarModel.share.hidden()
+            BaseBarModel.share.hidden()
+
+            viewModel.fetchFieldsAndZonesData()
         }
     }
     

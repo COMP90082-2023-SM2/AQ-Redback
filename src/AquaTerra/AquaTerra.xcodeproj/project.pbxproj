@@ -73,7 +73,8 @@
 		762DE48F2AD78A2600F049CB /* ZoneInfoEditItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE48E2AD78A2600F049CB /* ZoneInfoEditItem.swift */; };
 		762DE4912AD7917800F049CB /* ZoneRegisterSubmitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE4902AD7917800F049CB /* ZoneRegisterSubmitView.swift */; };
 		762DE4932AD794E100F049CB /* ZoneGeometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE4922AD794E100F049CB /* ZoneGeometry.swift */; };
-		762DE4972AD7D3BB00F049CB /* ZoneInfoPickItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE4962AD7D3BB00F049CB /* ZoneInfoPickItem.swift */; };
+		762DE4972AD7D3BB00F049CB /* ZoneEditFarmPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE4962AD7D3BB00F049CB /* ZoneEditFarmPicker.swift */; };
+		762DE49B2AD91DF300F049CB /* ZoneEditFieldPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762DE49A2AD91DF300F049CB /* ZoneEditFieldPicker.swift */; };
 		76E487A12AD648810080AD51 /* ZoneDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E487A02AD648800080AD51 /* ZoneDetailView.swift */; };
 		76E487A32AD64C050080AD51 /* ZoneDetailItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E487A22AD64C050080AD51 /* ZoneDetailItem.swift */; };
 		76FDB8C52AD40BF6008DAC46 /* FieldZonesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76FDB8C42AD40BF6008DAC46 /* FieldZonesView.swift */; };
@@ -172,7 +173,8 @@
 		762DE48E2AD78A2600F049CB /* ZoneInfoEditItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneInfoEditItem.swift; sourceTree = "<group>"; };
 		762DE4902AD7917800F049CB /* ZoneRegisterSubmitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneRegisterSubmitView.swift; sourceTree = "<group>"; };
 		762DE4922AD794E100F049CB /* ZoneGeometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneGeometry.swift; sourceTree = "<group>"; };
-		762DE4962AD7D3BB00F049CB /* ZoneInfoPickItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneInfoPickItem.swift; sourceTree = "<group>"; };
+		762DE4962AD7D3BB00F049CB /* ZoneEditFarmPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneEditFarmPicker.swift; sourceTree = "<group>"; };
+		762DE49A2AD91DF300F049CB /* ZoneEditFieldPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZoneEditFieldPicker.swift; sourceTree = "<group>"; };
 		76E487A02AD648800080AD51 /* ZoneDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDetailView.swift; sourceTree = "<group>"; };
 		76E487A22AD64C050080AD51 /* ZoneDetailItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZoneDetailItem.swift; sourceTree = "<group>"; };
 		76FDB8C42AD40BF6008DAC46 /* FieldZonesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldZonesView.swift; sourceTree = "<group>"; };
@@ -467,7 +469,8 @@
 				76FDB8D62AD500F1008DAC46 /* ZoneRegisterView.swift */,
 				762DE48C2AD6A70A00F049CB /* ZoneInfoEditView.swift */,
 				762DE48E2AD78A2600F049CB /* ZoneInfoEditItem.swift */,
-				762DE4962AD7D3BB00F049CB /* ZoneInfoPickItem.swift */,
+				762DE4962AD7D3BB00F049CB /* ZoneEditFarmPicker.swift */,
+				762DE49A2AD91DF300F049CB /* ZoneEditFieldPicker.swift */,
 				762DE4902AD7917800F049CB /* ZoneRegisterSubmitView.swift */,
 			);
 			path = ZoneRegister;
@@ -711,7 +714,7 @@
 				76FDB8D42AD4F96F008DAC46 /* FieldPickerItem.swift in Sources */,
 				761BD44C2AB2DEEB00722C88 /* UI+.swift in Sources */,
 				575FB5562AB5699C0079B6E8 /* SensorSubmitView.swift in Sources */,
-				762DE4972AD7D3BB00F049CB /* ZoneInfoPickItem.swift in Sources */,
+				762DE4972AD7D3BB00F049CB /* ZoneEditFarmPicker.swift in Sources */,
 				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
 				5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */,
 				6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */,
@@ -742,6 +745,7 @@
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
 				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
+				762DE49B2AD91DF300F049CB /* ZoneEditFieldPicker.swift in Sources */,
 				CA9460042AD58CB800630EB6 /* SignUpAlertView.swift in Sources */,
 				690E1F442AD57999004B2D98 /* WeatherView.swift in Sources */,
 				C61C68492AB1947B0053DF9C /* MGatewaysView.swift in Sources */,

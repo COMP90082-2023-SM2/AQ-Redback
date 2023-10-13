@@ -44,7 +44,6 @@ struct SwitchView: View {
         }
 //        .ignoresSafeArea(.all)
         .onAppear {
-            print("SwitchView onAppear")
             MGViewModel.share().setupUser(user: user.username)
         }
     }

@@ -24,8 +24,8 @@ struct ZoneRegisterSubmitView: View {
             }
             .padding(.bottom, 10)
             
-            if let editZone = viewModel.editZone {
-                Text(editZone.name)
+            if !viewModel.editZone.name.isEmpty {
+                Text(viewModel.editZone.name)
                     .foregroundColor(.init(hex: "#80B240"))
                     .font(.system(size: 16,weight: .bold))
                     .padding(.bottom)

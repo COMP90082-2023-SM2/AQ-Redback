@@ -90,6 +90,7 @@ struct ZoneDetailView: View {
             }
         }
         .onAppear {
+            BaseBarModel.share.hidden()
             print("zone: \(zone.name)")
         }
     }

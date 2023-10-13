@@ -46,6 +46,7 @@ struct FieldZoneItem: View {
                 }
                 
                 NavigationLink {
+                    
                     //avoid to change current zone when edit canceled
                     ZoneRegisterView(viewModel: viewModel, modifyType: .edit, toEditZone: zone)
                 } label: {

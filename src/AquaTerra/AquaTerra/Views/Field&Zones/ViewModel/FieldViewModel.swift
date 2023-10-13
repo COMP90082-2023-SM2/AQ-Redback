@@ -16,7 +16,9 @@ enum ZoneNavigationDestination: String {
 
 class FieldViewModel: ObservableObject {
     
-    let currentUserName: String
+    static let shared = FieldViewModel()
+    
+    var currentUserName: String = ""
 
     @Published var currentField: Field?
     @AppStorage("CurrentField") var currentFieldName: String = ""
@@ -25,25 +27,22 @@ class FieldViewModel: ObservableObject {
 
     @Published var zones: [Zone]?
 
+    @Published var farms: [Farm]?
+
     ///for edit a zone
     @Published var editZone: ZoneEditable = ZoneEditable()
     @Published var editZoneOldName: String = ""
 
     ///for add a new zone
     @Published var newZone: ZoneEditable = ZoneEditable()
-
-    init(currentUserName: String, currentField: Field? = nil, fields: [Field]? = nil, zones: [Zone]? = nil) {
-        self.currentUserName = currentUserName
-        self.currentField = currentField
-        self.fields = fields
-        self.zones = zones
-    }
     
     @MainActor
     func fetchFieldsAndZonesData() {
         
         Task {
             
+            farms = try await FarmNetwork.shared.fetchFarms(for: currentUserName)
+
             fields = try await FarmNetwork.shared.fetchFields(for: currentUserName)
 
             currentField = fields?.filter({$0.name.elementsEqual(currentFieldName)}).first
@@ -109,9 +108,24 @@ class FieldViewModel: ObservableObject {
         let zones = [Zone(user: "Demo", farm: "Farm1", name: "TestZone1", field: currentField.name, crop: "Rice", geom: nil, points: "", soilType25: "Loam", soilType75: "Loam", soilType125: "Loam", wiltingPoint50: 7, wiltingPoint100: 7, wiltingPoint150: 7, fieldCapacity50: 20, fieldCapacity100: 20, fieldCapacity150: 20, saturation50: 30, saturation100: 30, saturation150: 30, sensors: nil),
                      Zone(user: "Demo", farm: "Farm1", name: "TestZone2", field: currentField.name, crop: "Rice", geom: nil, points: "", soilType25: "Loam", soilType75: "Loam", soilType125: "Loam", wiltingPoint50: 7, wiltingPoint100: 7, wiltingPoint150: 7, fieldCapacity50: 20, fieldCapacity100: 20, fieldCapacity150: 20, saturation50: 30, saturation100: 30, saturation150: 30, sensors: nil)]
         
-        let viewmodel = FieldViewModel(currentUserName: "Demo", currentField: currentField, zones: zones)
+        let viewmodel = FieldViewModel.shared
+        viewmodel.currentField = currentField
+        viewmodel.currentFieldName = currentField.name
+        viewmodel.fields = fields
+        viewmodel.zones = zones
 
         return viewmodel
     }
 }
 
+
+extension Array where Element: Equatable {
+    
+    func removeDuplicate() -> Array {
+       return self.enumerated().filter { (index,value) -> Bool in
+            return self.firstIndex(of: value) == index
+        }.map { (_, value) in
+            value
+        }
+    }
+}

@@ -10,6 +10,7 @@ import Foundation
 enum HTTPMethod {
     case get
     case post
+    case put
     case delete
     
     func methodString() -> String {
@@ -18,6 +19,8 @@ enum HTTPMethod {
             return "GET"
         case .post:
             return "POST"
+        case .put:
+            return "PUT"
         case .delete:
             return "DELETE"
         }
@@ -180,10 +183,6 @@ class FarmNetwork {
     
     //MARK: API - Add/Edit Zone
     func registerOrEditZone(zone: ZoneEditable, editingZoneName: String? = nil, for user: String) async throws {
-        
-        guard let url = URL(string: host.appending("/api/zone/addZone")) else {
-            throw NetworkError.invalidURL
-        }
             
         let geom : [String : Any] = [
             "type": "Feature",
@@ -199,10 +198,7 @@ class FarmNetwork {
                                   "fieldName": zone.field,
                                   "geom": geom,
         ]
-        //for edit zone
-        if let oldZoneName = editingZoneName, !oldZoneName.isEmpty {
-            body["oldZoneName"] = oldZoneName
-        }
+
         body["farmName"] = zone.farm
         
         if !zone.crop.isEmpty {
@@ -248,8 +244,20 @@ class FarmNetwork {
         if !zone.saturation150.isEmpty {
             body["saturation150"] = Int(zone.saturation150)
         }
-
-        _ = try await performRequest(url: url, method: .post, body: body)
+        //for edit zone
+        if let oldZoneName = editingZoneName, !oldZoneName.isEmpty {
+            guard let url = URL(string: host.appending("/api/zone")) else {
+                throw NetworkError.invalidURL
+            }
+            body["oldZoneName"] = oldZoneName
+            _ = try await performRequest(url: url, method: .put, body: body)
+        } else {
+            //add zone
+            guard let url = URL(string: host.appending("/api/zone/addZone")) else {
+                throw NetworkError.invalidURL
+            }
+            _ = try await performRequest(url: url, method: .post, body: body)
+        }
     }
     
     //MARK: API - Delete Field

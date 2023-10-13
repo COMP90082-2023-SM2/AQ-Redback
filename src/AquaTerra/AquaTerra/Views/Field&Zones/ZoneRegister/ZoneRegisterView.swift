@@ -80,14 +80,22 @@ struct ZoneRegisterView: View {
                                     .font(.custom("OpenSans-Regular", size: 16))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .lineLimit(1)
+
                                 Image("FarmRegisterMapPolyline")
                                     .resizable()
                                     .frame(width: 25, height: 27)
-                                Text("to outline your zone.")
+                                Text("to outline your")
                                     .font(.custom("OpenSans-Regular", size: 16))
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                     .lineLimit(1)
                             })
+                            .padding(.horizontal, 30)
+
+                            Text("zone.")
+                                .font(.custom("OpenSans-Regular", size: 16))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .lineLimit(1)
+                                .padding(.horizontal, 30)
 
                             FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
                             
@@ -106,6 +114,7 @@ struct ZoneRegisterView: View {
                             .frame(height: 50)
                             .padding(.top, 15)
                             .padding(.bottom, 50)
+                            .padding(.horizontal, 30)
                             Spacer()
                         case 2:
                             ZoneRegisterSubmitView(viewModel: viewModel) {
@@ -113,6 +122,7 @@ struct ZoneRegisterView: View {
                                 onAddOrEditZone()
                             }
                             .padding(.top,20)
+                            .padding(.horizontal, 30)
                         default :
                             HStack{}
                         }
@@ -121,6 +131,7 @@ struct ZoneRegisterView: View {
                 }
             }
         }
+        .ignoresSafeArea(.all, edges: .bottom)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -134,17 +145,26 @@ struct ZoneRegisterView: View {
             }
         }
         .onAppear {
-            
             BaseBarModel.share.hidden()
 
+//            prepareZoneData()
             if modifyType == .edit, let editZone = toEditZone {
                 viewModel.editZone = ZoneEditable.copyFromZone(editZone)
                 viewModel.editZoneOldName = editZone.name
                 
-                if let geom = editZone.geom {
-                    let jsonData = geom.data(using: .utf8)!
-                    if let zoneGeometry = try? JSONDecoder().decode(ZoneGeometry.self, from: jsonData) {
-                        polyLineLocations = zoneGeometry.geometry.coordinates.map({ CLLocation(latitude: $0.first ?? 0.0, longitude: $0.last ?? 0.0) })
+                if !editZone.points.isEmpty {
+                    let jsonData = editZone.points.data(using: .utf8)!
+                    
+                    do {
+                        let zoneCoordinates = try JSONDecoder().decode(ZoneCoordinates.self, from: jsonData)
+                        if let first = zoneCoordinates.coordinates.first {
+                            polyLineLocations = first.map({ CLLocation(latitude: $0.first ?? 0.0, longitude: $0.last ?? 0.0) })
+                            if polyLineLocations.count > 2 {
+                                drawPolylineFinished = true
+                            }
+                        }
+                    } catch {
+                        debugPrint("decode editZone points: \(error)")
                     }
                 }
             } else {
@@ -153,6 +173,11 @@ struct ZoneRegisterView: View {
                 viewModel.newZone.field = viewModel.currentField?.name ?? ""
             }
         }
+    }
+    
+    func prepareZoneData() {
+        
+        
     }
     
     private func undo() {

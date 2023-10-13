@@ -15,6 +15,8 @@ struct ZoneInfoEditView: View {
 
     @Binding var enable: Bool
     
+    @State var pickFields: [Field] = []
+    
     private var newZoneDefaultFarm : Binding<String> {
         Binding<String>(
             get: {
@@ -28,7 +30,7 @@ struct ZoneInfoEditView: View {
     var body: some View {
         ZStack {
             ScrollView {
-                LazyVStack(spacing: 0, content: {
+                VStack(spacing: 0, content: {
                     
                     if modifyType == .add { // new zone
                         
@@ -44,10 +46,10 @@ struct ZoneInfoEditView: View {
                         
                         Group {
                             
-                            ZoneInfoEditItem(title: "Farm", placeholder: "", subTitle: newZoneDefaultFarm, disabled: true, showRightArrow: false)
+                            ZoneEditFarmPicker(title: "Farm", dataSource: viewModel.farms ?? [], selection: $viewModel.newZone.farm)
 
-                            ZoneInfoPickItem(title: "Field", dataSource: viewModel.fields ?? [], selection: $viewModel.newZone.field)
-                            
+                            ZoneEditFieldPicker(title: "Field", dataSource: viewModel.fields ?? [], selection: $viewModel.newZone.field)
+
                             ZoneInfoEditItem(title: "Zone Name", placeholder: "Enter a zone name", subTitle: $viewModel.newZone.name, disabled: false, showRightArrow: false)
                             
                             ZoneInfoEditItem(title: "Crop Type", placeholder: "Enter a crop type", subTitle: $viewModel.newZone.crop, disabled: false, showRightArrow: false)
@@ -104,10 +106,14 @@ struct ZoneInfoEditView: View {
                         .background(Color(hex: "#FAFAFA"))
                         
                         Group {
-                            ZoneInfoEditItem(title: "Farm", placeholder: "", subTitle: $viewModel.editZone.farm, disabled: true, showRightArrow: false)
-                            
-                            ZoneInfoPickItem(title: "Field", dataSource: viewModel.fields ?? [], selection: $viewModel.editZone.field)
-                            
+                            ZoneEditFarmPicker(title: "Farm", dataSource: viewModel.farms ?? [], selection: $viewModel.editZone.farm)
+
+                            ZoneEditFieldPicker(title: "Field", dataSource: viewModel.fields ?? [], selection: $viewModel.editZone.field)
+                                .onAppear {
+                                    pickFields = viewModel.fields?.filter({$0.farm.elementsEqual(viewModel.editZone.farm)}) ?? []
+                                    print("parent pick fields == \(pickFields)")
+                                }
+   
                             ZoneInfoEditItem(title: "Zone Name", placeholder: "Enter a zone name", subTitle: $viewModel.editZone.name, disabled: false, showRightArrow: false)
                             
                             ZoneInfoEditItem(title: "Crop Type", placeholder: "Enter a crop type", subTitle: $viewModel.editZone.crop, disabled: false, showRightArrow: false)
@@ -160,11 +166,12 @@ struct ZoneInfoEditView: View {
                     })
                     .frame(height: 50)
                     .padding(.top)
+                    .padding(.horizontal, 30)
                     
                     Spacer().frame(height: 50)
                 })
             }
-            .scrollDismissesKeyboard(.automatic)
+            .scrollDismissesKeyboard(.immediately)
             Spacer()
         }
     }

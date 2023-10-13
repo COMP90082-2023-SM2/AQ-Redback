@@ -60,7 +60,7 @@ struct SessionView: View {
                         }
                         
                         NavigationLink {
-                            FieldZonesView(viewModel: FieldViewModel(currentUserName: user.username))
+                            FieldZonesView(viewModel: FieldViewModel.shared)
                         } label: {
                             ManageCardView(imgName: "Irrigation Zones", TextName: "My Irrigation Zones")
                         }
@@ -71,6 +71,7 @@ struct SessionView: View {
                 }
             }
             .onAppear {
+                FieldViewModel.shared.currentUserName = user.username
                 MGViewModel.share().setupUser(user: user.username)
                     
             }

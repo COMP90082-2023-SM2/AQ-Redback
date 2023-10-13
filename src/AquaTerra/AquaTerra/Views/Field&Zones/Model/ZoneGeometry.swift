@@ -7,14 +7,9 @@
 
 import Foundation
 
-struct ZoneGeometry: Codable {
-    
-    struct Geometry: Codable {
-        
-        let type: String
-        let coordinates: [[Double]]
-    }
+struct ZoneCoordinates: Codable {
     
     let type: String
-    let geometry: Geometry
+    //FIXME: Invalid multiple empty array in api data🤮
+    let coordinates: [[[Double]]]
 }
