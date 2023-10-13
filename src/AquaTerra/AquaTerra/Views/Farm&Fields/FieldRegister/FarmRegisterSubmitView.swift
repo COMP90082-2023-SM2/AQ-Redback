@@ -2,7 +2,7 @@
 //  FarmRegisterSubmitView.swift
 //  AquaTerra
 //
-//  Created by Joyce on 2023/9/14.
+//  Created by You Zhou on 2023/9/14.
 //
 
 import SwiftUI

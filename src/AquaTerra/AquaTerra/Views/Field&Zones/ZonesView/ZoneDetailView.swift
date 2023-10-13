@@ -2,7 +2,7 @@
 //  ZoneDetailView.swift
 //  AquaTerra
 //
-//  Created by WD on 2023/10/11.
+//  Created by You Zhou on 2023/10/11.
 //
 
 import SwiftUI

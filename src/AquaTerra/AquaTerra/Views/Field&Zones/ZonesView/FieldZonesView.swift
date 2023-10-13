@@ -2,7 +2,7 @@
 //  FieldZonesView.swift
 //  AquaTerra
 //
-//  Created by WD on 2023/10/9.
+//  Created by You Zhou on 2023/10/9.
 //
 
 import SwiftUI
@@ -90,7 +90,7 @@ struct FieldZonesView: View {
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
                 .background(Color.farmHeadGreyColor)
                 
-                if let zones = viewModel.zones, let currentZones = zones.filter({$0.field.elementsEqual(viewModel.currentFieldName)}) {
+                if let currentZones = viewModel.zones?.filter({$0.field.elementsEqual(viewModel.currentFieldName)}) {
                     
                     ScrollView {
                         LazyVStack(spacing: 0, content: {
