@@ -39,7 +39,6 @@
 		690E1F482AD57ACB004B2D98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F472AD57ACB004B2D98 /* Extensions.swift */; };
 		697099452AB5585A005003E7 /* SensorStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099442AB5585A005003E7 /* SensorStepView.swift */; };
 		697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099462AB55C69005003E7 /* SensorIDBar.swift */; };
-		698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */; };
 		698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */; };
 		698B69D22AB319640031E0ED /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69D12AB319640031E0ED /* ProfileView.swift */; };
 		6999F1EE2AB01DC000B8B3BE /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1E82AB01DBE00B8B3BE /* OpenSans-Medium.ttf */; };
@@ -57,6 +56,17 @@
 		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
 		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
 		69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA162AB45D61001777F9 /* SelectionView.swift */; };
+		707A20B62ADA9B77005501FE /* Expression in Frameworks */ = {isa = PBXBuildFile; productRef = 707A20B52ADA9B77005501FE /* Expression */; };
+		707A20B82ADA9C05005501FE /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20B72ADA9C05005501FE /* DashboardViewModel.swift */; };
+		707A20C32ADA9C12005501FE /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BA2ADA9C12005501FE /* DashboardView.swift */; };
+		707A20C42ADA9C12005501FE /* DashboardDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BB2ADA9C12005501FE /* DashboardDetailView.swift */; };
+		707A20C52ADA9C12005501FE /* DashboardSensorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BC2ADA9C12005501FE /* DashboardSensorPicker.swift */; };
+		707A20C62ADA9C12005501FE /* DashboardSensorDataTypePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BD2ADA9C12005501FE /* DashboardSensorDataTypePicker.swift */; };
+		707A20C72ADA9C12005501FE /* DashboardMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BE2ADA9C12005501FE /* DashboardMapView.swift */; };
+		707A20C82ADA9C12005501FE /* DashboardDateTimePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20BF2ADA9C12005501FE /* DashboardDateTimePicker.swift */; };
+		707A20C92ADA9C12005501FE /* DashboardMoistureDepthPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20C02ADA9C12005501FE /* DashboardMoistureDepthPicker.swift */; };
+		707A20CA2ADA9C12005501FE /* DashboardFieldPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20C12ADA9C12005501FE /* DashboardFieldPicker.swift */; };
+		707A20CB2ADA9C12005501FE /* DashboardLatestRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707A20C22ADA9C12005501FE /* DashboardLatestRecordView.swift */; };
 		761BD44C2AB2DEEB00722C88 /* UI+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4452AB2DEEB00722C88 /* UI+.swift */; };
 		761BD44D2AB2DEEB00722C88 /* FarmsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4462AB2DEEB00722C88 /* FarmsView.swift */; };
 		761BD44E2AB2DEEB00722C88 /* FarmPickerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761BD4472AB2DEEB00722C88 /* FarmPickerItem.swift */; };
@@ -140,7 +150,6 @@
 		690E1F472AD57ACB004B2D98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		697099442AB5585A005003E7 /* SensorStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorStepView.swift; sourceTree = "<group>"; };
 		697099462AB55C69005003E7 /* SensorIDBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIDBar.swift; sourceTree = "<group>"; };
-		698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
 		698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
 		698B69D12AB319640031E0ED /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		6999F1E72AB01A5900B8B3BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -159,6 +168,16 @@
 		69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardView.swift; sourceTree = "<group>"; };
 		69B1DA142AB40517001777F9 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
 		69B1DA162AB45D61001777F9 /* SelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionView.swift; sourceTree = "<group>"; };
+		707A20B72ADA9C05005501FE /* DashboardViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		707A20BA2ADA9C12005501FE /* DashboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		707A20BB2ADA9C12005501FE /* DashboardDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDetailView.swift; sourceTree = "<group>"; };
+		707A20BC2ADA9C12005501FE /* DashboardSensorPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSensorPicker.swift; sourceTree = "<group>"; };
+		707A20BD2ADA9C12005501FE /* DashboardSensorDataTypePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardSensorDataTypePicker.swift; sourceTree = "<group>"; };
+		707A20BE2ADA9C12005501FE /* DashboardMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMapView.swift; sourceTree = "<group>"; };
+		707A20BF2ADA9C12005501FE /* DashboardDateTimePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardDateTimePicker.swift; sourceTree = "<group>"; };
+		707A20C02ADA9C12005501FE /* DashboardMoistureDepthPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardMoistureDepthPicker.swift; sourceTree = "<group>"; };
+		707A20C12ADA9C12005501FE /* DashboardFieldPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardFieldPicker.swift; sourceTree = "<group>"; };
+		707A20C22ADA9C12005501FE /* DashboardLatestRecordView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardLatestRecordView.swift; sourceTree = "<group>"; };
 		7542C0EA64370EBD912ACCD8 /* Pods-AquaTerra.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AquaTerra.release.xcconfig"; path = "Target Support Files/Pods-AquaTerra/Pods-AquaTerra.release.xcconfig"; sourceTree = "<group>"; };
 		761BD4452AB2DEEB00722C88 /* UI+.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UI+.swift"; sourceTree = "<group>"; };
 		761BD4462AB2DEEB00722C88 /* FarmsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FarmsView.swift; sourceTree = "<group>"; };
@@ -218,6 +237,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				707A20B62ADA9B77005501FE /* Expression in Frameworks */,
 				15A089DBC62FBADED997AF91 /* Pods_AquaTerra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,6 +297,7 @@
 		57FDEF022A99D54D0029303E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				707A20B92ADA9C12005501FE /* DashboardView */,
 				761BD4442AB2DEEB00722C88 /* Farm&Fields */,
 				76FDB8C32AD40B85008DAC46 /* Field&Zones */,
 				57FDEEF52A99C9F10029303E /* MainView.swift */,
@@ -286,7 +307,6 @@
 				57CEAEDF2A9F0CBB002EEFCE /* SessionView.swift */,
 				6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */,
 				577279B42AB206D700ED9495 /* AddSensorView.swift */,
-				698B69CD2AB1ED7C0031E0ED /* DashboardView.swift */,
 				698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */,
 				698B69D12AB319640031E0ED /* ProfileView.swift */,
 				69B1DA062AB328CB001777F9 /* InfoTab.swift */,
@@ -325,6 +345,7 @@
 				57FDEF0B2A99D8CD0029303E /* LoginViewViewModel.swift */,
 				57FDEF0F2A99E7450029303E /* SignUpViewViewModel.swift */,
 				570E47552A9F1A6000CF6575 /* SessionViewViewModel.swift */,
+				707A20B72ADA9C05005501FE /* DashboardViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -361,6 +382,22 @@
 				690E1F412AD5792C004B2D98 /* WeatherApi.swift */,
 			);
 			path = Weather;
+			sourceTree = "<group>";
+		};
+		707A20B92ADA9C12005501FE /* DashboardView */ = {
+			isa = PBXGroup;
+			children = (
+				707A20BA2ADA9C12005501FE /* DashboardView.swift */,
+				707A20BB2ADA9C12005501FE /* DashboardDetailView.swift */,
+				707A20BC2ADA9C12005501FE /* DashboardSensorPicker.swift */,
+				707A20BD2ADA9C12005501FE /* DashboardSensorDataTypePicker.swift */,
+				707A20BE2ADA9C12005501FE /* DashboardMapView.swift */,
+				707A20BF2ADA9C12005501FE /* DashboardDateTimePicker.swift */,
+				707A20C02ADA9C12005501FE /* DashboardMoistureDepthPicker.swift */,
+				707A20C12ADA9C12005501FE /* DashboardFieldPicker.swift */,
+				707A20C22ADA9C12005501FE /* DashboardLatestRecordView.swift */,
+			);
+			path = DashboardView;
 			sourceTree = "<group>";
 		};
 		761BD4442AB2DEEB00722C88 /* Farm&Fields */ = {
@@ -600,6 +637,9 @@
 			dependencies = (
 			);
 			name = AquaTerra;
+			packageProductDependencies = (
+				707A20B52ADA9B77005501FE /* Expression */,
+			);
 			productName = AquaTerra;
 			productReference = 57FDEEF02A99C9F10029303E /* AquaTerra.app */;
 			productType = "com.apple.product-type.application";
@@ -628,6 +668,9 @@
 				Base,
 			);
 			mainGroup = 57FDEEE72A99C9F10029303E;
+			packageReferences = (
+				707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */,
+			);
 			productRefGroup = 57FDEEF12A99C9F10029303E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -711,6 +754,7 @@
 				761BD4562AB2E07E00722C88 /* Farm.swift in Sources */,
 				76FDB8D72AD500F1008DAC46 /* ZoneRegisterView.swift in Sources */,
 				762DE48D2AD6A70A00F049CB /* ZoneInfoEditView.swift in Sources */,
+				707A20C92ADA9C12005501FE /* DashboardMoistureDepthPicker.swift in Sources */,
 				697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */,
 				575FB5582AB589900079B6E8 /* SensorButton.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
@@ -722,11 +766,14 @@
 				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
 				76FDB8D42AD4F96F008DAC46 /* FieldPickerItem.swift in Sources */,
 				761BD44C2AB2DEEB00722C88 /* UI+.swift in Sources */,
+				707A20CA2ADA9C12005501FE /* DashboardFieldPicker.swift in Sources */,
 				575FB5562AB5699C0079B6E8 /* SensorSubmitView.swift in Sources */,
 				762DE4972AD7D3BB00F049CB /* ZoneEditFarmPicker.swift in Sources */,
 				C61C68452AB1947B0053DF9C /* MGViewModel.swift in Sources */,
+				707A20B82ADA9C05005501FE /* DashboardViewModel.swift in Sources */,
 				5786D2802AB34FE400F5B9EE /* SensorEditView.swift in Sources */,
 				6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */,
+				707A20C32ADA9C12005501FE /* DashboardView.swift in Sources */,
 				5710389A2AD64A3700D7F0EA /* AddSensorV1View.swift in Sources */,
 				57FDEEF62A99C9F10029303E /* MainView.swift in Sources */,
 				57FDEF0E2A99E7300029303E /* SignUpView.swift in Sources */,
@@ -736,8 +783,10 @@
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				761BD4592AB2E0B900722C88 /* FarmsViewModel.swift in Sources */,
 				762DE4912AD7917800F049CB /* ZoneRegisterSubmitView.swift in Sources */,
+				707A20C72ADA9C12005501FE /* DashboardMapView.swift in Sources */,
 				697099452AB5585A005003E7 /* SensorStepView.swift in Sources */,
 				575FB5542AB542700079B6E8 /* EditViewListItem.swift in Sources */,
+				707A20C62ADA9C12005501FE /* DashboardSensorDataTypePicker.swift in Sources */,
 				571038982AD63C0D00D7F0EA /* SensorsSelectionView.swift in Sources */,
 				57FDEF0A2A99D8AE0029303E /* MainViewViewModel.swift in Sources */,
 				698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */,
@@ -756,6 +805,7 @@
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
 				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
+				707A20C42ADA9C12005501FE /* DashboardDetailView.swift in Sources */,
 				762DE49B2AD91DF300F049CB /* ZoneEditFieldPicker.swift in Sources */,
 				CA9460042AD58CB800630EB6 /* SignUpAlertView.swift in Sources */,
 				690E1F442AD57999004B2D98 /* WeatherView.swift in Sources */,
@@ -766,6 +816,7 @@
 				575FB5522AB4AD8E0079B6E8 /* SensorListItem.swift in Sources */,
 				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
 				762DE4932AD794E100F049CB /* ZoneGeometry.swift in Sources */,
+				707A20CB2ADA9C12005501FE /* DashboardLatestRecordView.swift in Sources */,
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				761BD44F2AB2DEEB00722C88 /* FarmFieldItem.swift in Sources */,
 				761BD46C2AB4467600722C88 /* FarmDeleteAlert.swift in Sources */,
@@ -774,6 +825,8 @@
 				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
 				575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */,
 				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
+				707A20C82ADA9C12005501FE /* DashboardDateTimePicker.swift in Sources */,
+				707A20C52ADA9C12005501FE /* DashboardSensorPicker.swift in Sources */,
 				69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */,
 				690E1F482AD57ACB004B2D98 /* Extensions.swift in Sources */,
 				690E1F422AD5792C004B2D98 /* WeatherApi.swift in Sources */,
@@ -786,7 +839,6 @@
 				76FDB8CD2AD40FA4008DAC46 /* Zone.swift in Sources */,
 				76FDB8D12AD4F95E008DAC46 /* FieldPickerView.swift in Sources */,
 				57CEAEE02A9F0CBB002EEFCE /* SessionView.swift in Sources */,
-				698B69CE2AB1ED7C0031E0ED /* DashboardView.swift in Sources */,
 				CA9460022AD52D4400630EB6 /* ProfileItemView.swift in Sources */,
 				C61C683B2AB1947B0053DF9C /* BaseBarModel.swift in Sources */,
 				761BD4682AB3093600722C88 /* FarmRegisterInfoView.swift in Sources */,
@@ -1010,6 +1062,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/Expression.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.13.7;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		707A20B52ADA9B77005501FE /* Expression */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */;
+			productName = Expression;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 57FDEEE82A99C9F10029303E /* Project object */;
 }

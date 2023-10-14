@@ -458,6 +458,76 @@ final class SensorListApi {
         task.resume()
     }
 
+    public func getFields() async throws -> [FieldData] {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/field")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let jsonDict: [String: Any] = ["userName": currentUserUsername ?? "demo"]
+        if let requestData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = requestData
+        }
+        let (responseData, _) = try await URLSession.shared.data(for: request)
+        let a = try JSONSerialization.jsonObject(with: responseData)
+        return try JSONDecoder().decode(FieldsResponse.self, from: responseData).data
+    }
+    
+    
+    public func getSensors(fieldId: String) async throws -> [SensorData] {
+        guard let url = Constants.sensorDataURL else {
+            return []
+        }
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        
+        let jsonDict: [String: Any] = ["userName": currentUserUsername ?? "demo", "fieldId": fieldId]
+        
+        if let jsonData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = jsonData
+        }
+        let (responseData,_) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(SensorDataResponse.self, from: responseData).data
+    }
+    
+    public func getMoisture(fieldName: String, sensorId: String) async throws -> MoistureData? {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/moisture")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let jsonDict: [String: Any] = ["userName": currentUserUsername ?? "demo","fieldName":fieldName, "sensorID":sensorId,]
+        if let requestData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = requestData
+        }
+        let (responseData, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(MoistureResponse.self, from: responseData).data.first
+    }
+    
+    public func getMoistures(fieldName: String, startDate: Date? = nil,endDate: Date? = nil) async throws -> [MoistureData] {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/moisture")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        var jsonDict: [String: Any] = ["userName": currentUserUsername ?? "demo","fieldName":fieldName]
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E MMM dd yyyy HH:mm:ss"
+        if let startDate {
+            jsonDict["startDate"] = dateFormatter.string(from: startDate)
+        }
+        if let endDate {
+            jsonDict["endDate"] = dateFormatter.string(from: endDate)
+        }
+        if let requestData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = requestData
+        }
+        let (responseData, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(MoistureResponse.self, from: responseData).data
+    }
+    
+    public func getSensorFormula(sensorId: String) async throws -> SensorFormulaData {
+        let (responseData, _) = try await URLSession.shared.data(from: URL(string: "http://webapp.aquaterra.cloud/api/sensorformula/\(sensorId)")!)
+        return try JSONDecoder().decode(SensorFormulaResponse.self, from: responseData).data ?? SensorFormulaData(formula: "", formula_id: 0, parameter: "", lowest_adt: 0)
+    }
     
 
 }
@@ -467,7 +537,45 @@ struct APIResponse: Codable {
     let data: [FieldData]
 }
 
-struct FieldData: Codable {
+struct FieldsResponse: Decodable {
+    let data: [FieldData]
+}
+
+struct MoistureResponse: Decodable {
+    let data: [MoistureData]
+}
+
+struct SensorFormulaResponse: Decodable {
+    let data: SensorFormulaData?
+}
+
+struct SensorFormulaData: Decodable {
+    let formula:String
+    let formula_id: Int
+    let parameter: String
+    let lowest_adt: Double
+}
+
+struct MoistureData: Decodable, Identifiable {
+    let id = UUID()
+    let time: String
+    let sensor_id: String
+    let latitude: Double
+    let longitude: Double
+    let temperature: Double
+    let battery_vol: Double
+    let cap50: Double
+    let cap100: Double
+    let cap150: Double
+    var moistureDepth50: Double! = 0
+    var moistureDepth100: Double! = 0
+    var moistureDepth150: Double! = 0
+}
+
+struct FieldData: Codable,Identifiable,Hashable {
+    var id: String {
+        field_id
+    }
     let points: String
     let field_name: String
     let crop_type: String?
