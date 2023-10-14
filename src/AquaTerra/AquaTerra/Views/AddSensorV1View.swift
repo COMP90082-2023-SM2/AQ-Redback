@@ -33,6 +33,7 @@ struct AddSensorV1View: View {
     @Binding var gatewayIDs: [String]
     
     @State private var gatewaySensorResponse: Result<GatewaySensorResponse, Error>? = nil
+    var currentUserUsername: String?
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -119,7 +120,7 @@ struct AddSensorV1View: View {
                                     print("fieldid: ", fieldID)
     //                                fetchFieldZone(fieldId: fieldID)
                                     
-                                    SensorListApi.shared.getFieldZone(userName: "demo") { result in
+                                    SensorListApi.shared.getFieldZone(userName: currentUserUsername ?? "") { result in
                                         switch result {
                                         case .success(let fieldData):
                                             if let specificField = fieldData.first(where: { $0.field_id == fieldID }) {
@@ -294,7 +295,7 @@ struct AddSensorV1View: View {
 
     
     private func fetchFieldZone(fieldId: String) {
-        SensorListApi.shared.getFieldZone(userName: "demo") { result in
+        SensorListApi.shared.getFieldZone(userName: currentUserUsername ?? "") { result in
             switch result {
             case .success(let fieldData):
                 if let specificField = fieldData.first(where: { $0.field_id == fieldId }) {
