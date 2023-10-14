@@ -28,7 +28,7 @@ struct FarmPickerView: View {
         
         VStack {
             HStack{
-                FMNavigationBarView(title: "Select a Field")
+                FMNavigationBarView(title: "Choose A Farm")
                     .frame(height: 45)
                 Spacer()
                 
@@ -59,6 +59,21 @@ struct FarmPickerView: View {
                 }
                 
                 Spacer()
+            } else {
+                VStack {
+                    Spacer()
+                    
+                    Image("empty")
+                        .renderingMode(.template)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:50, height: 50)
+                        .foregroundColor(Color.gray).opacity(0.5)
+                    
+                    Text("No farm yet. ").font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
+                    
+                    Spacer()
+                }
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -77,6 +92,7 @@ struct FarmPickerView: View {
             pickedFarm = viewModel.currentFarmName
             
             print("current farm: \(pickedFarm)")
+            print("current farms: \(viewModel.farms)")
         }
     }
     

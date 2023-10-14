@@ -71,17 +71,22 @@ class FieldViewModel: ObservableObject {
         Task {
             try await FarmNetwork.shared.registerOrEditZone(zone: newZone, for: currentUserName)
             
+            self.newZone = ZoneEditable()
+            
             fetchFieldsAndZonesData()
         }
     }
     
-    //MARK: API - Add Zone
+    //MARK: API - Edit Zone
     @MainActor
     func editZone(_ zone: ZoneEditable, oldZoneName: String) {
         
         Task {
             try await FarmNetwork.shared.registerOrEditZone(zone: zone, editingZoneName: oldZoneName, for: currentUserName)
 
+            self.editZone = ZoneEditable()
+            self.editZoneOldName = ""
+            
             fetchFieldsAndZonesData()
         }
     }
