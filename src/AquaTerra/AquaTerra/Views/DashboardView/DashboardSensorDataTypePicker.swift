@@ -20,8 +20,9 @@ struct DashboardSensorDataTypePicker: View {
             }
             .background(Color.white)
             Divider()
-                .overlay(Color.red.opacity(0.01))
-        }
+            .overlay(Color.red.opacity(0.01))
+        }.frame(height: 12)
+            .padding(.top, 10)
     }
 }
 

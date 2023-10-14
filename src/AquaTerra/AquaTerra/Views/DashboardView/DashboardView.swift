@@ -16,64 +16,71 @@ struct DashboardView: View {
     @State var isDashboardDetailPresented = false
     @State var isFetchingData = true
     @State var isFetchingLatestRecord = true
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 0) {
                 CustomHeaderView(title: "Dashboard")
-                    .frame(height: 60)
-                Spacer()
-                    .frame(height: 19)
-                ScrollView {
+                VStack{
+                    DashboardFieldPicker()
+                    Spacer().frame(height: 15)
+                    DashboardSensorDataTypePicker()
                     if !isFetchingData {
                         VStack(spacing: 15) {
-                            DashboardFieldPicker()
-                            DashboardSensorDataTypePicker()
-                            if dashboardViewModel.sensorDataTypeSelection == .moisture {
-                                DashboardMoistureDepthPicker()
-                            }
-                            if dashboardViewModel.sensorDataTypeSelection != .info {
-                                DashboardDateTimePicker()
-                            }
-                            DashboardMapView(dashboardViewModel: dashboardViewModel, coordinateRegion: dashboardViewModel.coordinateRegion, annotations: dashboardViewModel.annotations)
-                                .frame(height: 208)
-                                .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                                .padding(.horizontal)
-                            if !dashboardViewModel.sensorSelection.sensor_id.isEmpty {
-                                DashboardSensorPicker()
-                                if isFetchingLatestRecord {
-                                    ProgressView()
-                                        .frame(height: 150)
-                                } else if let latestRecord = dashboardViewModel.latestRecord {
-                                    DashboardLatestRecordView(isDashboardDetailPresented: $isDashboardDetailPresented, record: latestRecord)
-                                        .padding(.horizontal)
-                                        .padding(.bottom, 100)
+                            ScrollView{
+                                Spacer().frame(height: 15)
+                                if dashboardViewModel.sensorDataTypeSelection == .moisture {
+                                    DashboardMoistureDepthPicker()
                                 }
+                                if dashboardViewModel.sensorDataTypeSelection != .info {
+                                    DashboardDateTimePicker()
+                                }
+                                DashboardMapView(dashboardViewModel: dashboardViewModel, coordinateRegion: dashboardViewModel.coordinateRegion, annotations: dashboardViewModel.annotations)
+                                    .frame(height: 208)
+                                    .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                                    .padding(.horizontal)
+                                
+                                Spacer().frame(height: 15)
+                                if !dashboardViewModel.sensorSelection.sensor_id.isEmpty {
+                                    DashboardSensorPicker()
+                                    if isFetchingLatestRecord {
+                                        ProgressView()
+                                            .frame(height: 150)
+                                    } else if let latestRecord = dashboardViewModel.latestRecord {
+                                        Spacer().frame(height: 15)
+                                        DashboardLatestRecordView(isDashboardDetailPresented: $isDashboardDetailPresented, record: latestRecord)
+                                            .padding(.horizontal)
+                                            .padding(.bottom, 100)
+                                    }
+                                }
+                                
                             }
+                           
                         }
-                    }
-                }
-                .overlay {
-                    if isFetchingData {
+                    }else{
+                        Spacer()
                         ProgressView()
+                        Spacer()
                     }
                 }
+                Spacer()
             }
-            .overlay {
-                if dashboardViewModel.isWarningPresented {
-                    ZStack {
-                        Color.black.opacity(0.2)
-                        Text("Some sensors' battery voltage is low!")
-                            .font(.system(size: 15))
-                            .frame(width: 200, height: 200)
-                            .background(.white)
-                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-                            .onTapGesture {
-                                dashboardViewModel.isWarningPresented = false
-                            }
-                    }
-                    .ignoresSafeArea()
-                }
-            }
+//            .overlay {
+//                if dashboardViewModel.isWarningPresented {
+//                    ZStack {
+//                        Color.black.opacity(0.2)
+//                        Text("Some sensors' battery voltage is low!")
+//                            .font(.system(size: 15))
+//                            .frame(width: 200, height: 200)
+//                            .background(.white)
+//                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+//                            .onTapGesture {
+//                                dashboardViewModel.isWarningPresented = false
+//                            }
+//                    }
+//                    .ignoresSafeArea()
+//                }
+//            }
             .onChange(of: dashboardViewModel.fieldSelection) { _ in
                 guard !isFetchingData else {
                     return
@@ -113,6 +120,9 @@ struct DashboardView: View {
                     .environmentObject(dashboardViewModel)
             }
             .environmentObject(dashboardViewModel)
+            .onAppear{
+                BaseBarModel.share.show()
+            }
         }
     }
 }

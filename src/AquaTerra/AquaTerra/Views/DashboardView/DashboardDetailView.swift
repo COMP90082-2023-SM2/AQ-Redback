@@ -296,6 +296,7 @@ struct DashboardDetailView: View {
             }
         }
         .onAppear {
+            BaseBarModel.share.hidden()
             dashboardViewModel.updateChart()
         }
     }

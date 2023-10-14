@@ -80,7 +80,7 @@ struct FieldZoneItem: View {
                                 }
                                 .frame(width: 120, alignment: .trailing) // Fixed width for the button group
                             }
-                            .padding(.leading, 20)
+                            .padding(.leading, 25)
                             .padding(.trailing, 20)
                             .frame(width: geometry.size.width) // Set the HStack's width to match the GeometryReader
                             Spacer()

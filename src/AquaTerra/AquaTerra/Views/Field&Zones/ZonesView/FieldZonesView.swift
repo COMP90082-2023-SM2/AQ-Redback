@@ -58,7 +58,7 @@ struct FieldZonesView: View {
                 HStack {
                     Text("No.")
                         .font(.custom("OpenSans-SemiBold", size: 16))
-                        .padding(.leading, 20)
+                        .padding(.leading, 25)
                     
                     Spacer().frame(width: 40)
                     

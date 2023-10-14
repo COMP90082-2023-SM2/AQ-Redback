@@ -37,6 +37,8 @@
 		690E1F422AD5792C004B2D98 /* WeatherApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F412AD5792C004B2D98 /* WeatherApi.swift */; };
 		690E1F442AD57999004B2D98 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F432AD57999004B2D98 /* WeatherView.swift */; };
 		690E1F482AD57ACB004B2D98 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690E1F472AD57ACB004B2D98 /* Extensions.swift */; };
+		691DAEC12ADABF040086FD02 /* SensorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DAEC02ADABF040086FD02 /* SensorPickerView.swift */; };
+		691DAEC72ADAD78C0086FD02 /* FieldItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691DAEC62ADAD78C0086FD02 /* FieldItems.swift */; };
 		697099452AB5585A005003E7 /* SensorStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099442AB5585A005003E7 /* SensorStepView.swift */; };
 		697099472AB55C69005003E7 /* SensorIDBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697099462AB55C69005003E7 /* SensorIDBar.swift */; };
 		698B69D02AB1F1A20031E0ED /* CustomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */; };
@@ -148,6 +150,8 @@
 		690E1F412AD5792C004B2D98 /* WeatherApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherApi.swift; sourceTree = "<group>"; };
 		690E1F432AD57999004B2D98 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
 		690E1F472AD57ACB004B2D98 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		691DAEC02ADABF040086FD02 /* SensorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorPickerView.swift; sourceTree = "<group>"; };
+		691DAEC62ADAD78C0086FD02 /* FieldItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldItems.swift; sourceTree = "<group>"; };
 		697099442AB5585A005003E7 /* SensorStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorStepView.swift; sourceTree = "<group>"; };
 		697099462AB55C69005003E7 /* SensorIDBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorIDBar.swift; sourceTree = "<group>"; };
 		698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomHeaderView.swift; sourceTree = "<group>"; };
@@ -389,13 +393,15 @@
 			children = (
 				707A20BA2ADA9C12005501FE /* DashboardView.swift */,
 				707A20BB2ADA9C12005501FE /* DashboardDetailView.swift */,
-				707A20BC2ADA9C12005501FE /* DashboardSensorPicker.swift */,
 				707A20BD2ADA9C12005501FE /* DashboardSensorDataTypePicker.swift */,
 				707A20BE2ADA9C12005501FE /* DashboardMapView.swift */,
 				707A20BF2ADA9C12005501FE /* DashboardDateTimePicker.swift */,
 				707A20C02ADA9C12005501FE /* DashboardMoistureDepthPicker.swift */,
 				707A20C12ADA9C12005501FE /* DashboardFieldPicker.swift */,
 				707A20C22ADA9C12005501FE /* DashboardLatestRecordView.swift */,
+				707A20BC2ADA9C12005501FE /* DashboardSensorPicker.swift */,
+				691DAEC02ADABF040086FD02 /* SensorPickerView.swift */,
+				691DAEC62ADAD78C0086FD02 /* FieldItems.swift */,
 			);
 			path = DashboardView;
 			sourceTree = "<group>";
@@ -817,8 +823,10 @@
 				573C63662AAD6C420085524C /* SensorListApi.swift in Sources */,
 				762DE4932AD794E100F049CB /* ZoneGeometry.swift in Sources */,
 				707A20CB2ADA9C12005501FE /* DashboardLatestRecordView.swift in Sources */,
+				691DAEC12ADABF040086FD02 /* SensorPickerView.swift in Sources */,
 				C61C68422AB1947B0053DF9C /* GRSubmitView.swift in Sources */,
 				761BD44F2AB2DEEB00722C88 /* FarmFieldItem.swift in Sources */,
+				691DAEC72ADAD78C0086FD02 /* FieldItems.swift in Sources */,
 				761BD46C2AB4467600722C88 /* FarmDeleteAlert.swift in Sources */,
 				762DE4892AD6A38E00F049CB /* WeatherRow.swift in Sources */,
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,

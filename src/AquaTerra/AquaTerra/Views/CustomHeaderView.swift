@@ -12,22 +12,21 @@ struct CustomHeaderView: View {
     
     
     var body: some View {
+        
         VStack(spacing: 24) {
             ZStack{
                 Rectangle()
                     .fill(Color.white)
                     .frame(maxHeight: 127)
                     .shadow(color: Color.black.opacity(0.15), radius: 2.0, x: 0, y: 0)
-                    .ignoresSafeArea()
-                
                 Text(title)
                     .font(.custom("OpenSans-ExtraBold", size: 24))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.top, 76)
-                    .padding(.horizontal, 28)
+                    .padding(.horizontal, 20)
                     .padding(.bottom, 15)
             }.ignoresSafeArea()
-                .frame(maxHeight: 127)
+                .frame(height: 65)
         }
     }
 }
