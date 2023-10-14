@@ -9,7 +9,9 @@ import SwiftUI
 
 class FarmsViewModel: ObservableObject {
     
-    let currentUserName: String
+    static let shared = FarmsViewModel()
+    
+    @Published var currentUserName: String = ""
 
     @AppStorage("CurrentFarm") var currentFarmName: String = ""
 
@@ -21,13 +23,6 @@ class FarmsViewModel: ObservableObject {
 
     ///for add a new farm
     @Published var newFarm: NewFarm = NewFarm(user: "", name: "", fieldName: "")
-
-
-    init(currentUserName: String, currentFarm: Farm? = nil, farms: [Farm]? = nil, fields: [Field]? = nil) {
-        self.currentUserName = currentUserName
-        self.currentFarm = currentFarm
-        self.farms = farms
-    }
     
     @MainActor
     func fetchFarmsAndFieldsData() {
@@ -90,7 +85,7 @@ class FarmsViewModel: ObservableObject {
        Task {
             try await FarmNetwork.shared.deleteField(field.id)
             
-            await fetchFieldsData()
+            fetchFieldsData()
         }
     }
 
@@ -113,7 +108,12 @@ class FarmsViewModel: ObservableObject {
         let fields = [Field(id: UUID().uuidString, user: "Demo", name: "Field1", farm: "Farm1", crop: "Rice", soil: nil, geom: "", points: "", elevation: nil),
                        Field(id: UUID().uuidString, user: "Demo", name: "Field2", farm: "Farm1", crop: "Rice", soil: nil, geom: "", points: "", elevation: nil),
                        Field(id: UUID().uuidString, user: "Demo", name: "Morningt....", farm: "Farm1", crop: "Rice", soil: nil, geom: "", points: "", elevation: nil)]
-        let viewmodel = FarmsViewModel(currentUserName: "Demo", currentFarm: farms.first!, farms: farms, fields: fields)
+
+        let viewmodel = FarmsViewModel.shared
+        viewmodel.currentUserName = "Demo"
+        viewmodel.currentFarm = farms.first
+        viewmodel.farms = farms
+        viewmodel.fields = fields
 
         return viewmodel
     }

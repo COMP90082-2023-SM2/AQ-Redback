@@ -16,6 +16,8 @@ struct SessionView: View {
     @Binding var user: AuthUser
     @State private var isShowingSensorListView = false
 
+    @ObservedObject private var farmsViewModel = FarmsViewModel.shared
+
     @ObservedObject private var viewModel = SessionViewViewModel()
     
     var body: some View {
@@ -36,7 +38,7 @@ struct SessionView: View {
                         }
                         
                         NavigationLink {
-                            FarmsView(viewModel: FarmsViewModel(currentUserName: user.username))
+                            FarmsView(viewModel: farmsViewModel)
                         } label: {
                             ManageCardView(imgName: "Farm", TextName: "My Farm and Fields")
                         }
@@ -71,6 +73,7 @@ struct SessionView: View {
                 }
             }
             .onAppear {
+                farmsViewModel.currentUserName = user.username
                 FieldViewModel.shared.currentUserName = user.username
                 MGViewModel.share().setupUser(user: user.username)
                     

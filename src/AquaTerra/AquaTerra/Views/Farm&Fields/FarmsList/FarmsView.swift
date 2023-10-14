@@ -38,7 +38,7 @@ struct FarmsView: View {
                             .font(.custom("OpenSans-SemiBold", size: 14))
                             .frame(width: 80)
                         
-                    }else{
+                    } else {
                         Text(viewModel.currentFarm?.name ?? "No Farm Yet")
                             .foregroundColor(Color("ButtonGradient2"))
                             .font(.custom("OpenSans-Bold", size: 14))
@@ -122,7 +122,7 @@ struct FarmsView: View {
                 }
                 .frame(idealWidth: .infinity, maxWidth: .infinity, minHeight: 60)
                 .background(Color.farmHeadGreyColor)
-                
+                                
                 if viewModel.currentFarm?.name == nil {
                     Spacer()
                     Image("empty")
@@ -139,8 +139,7 @@ struct FarmsView: View {
                     }.padding(.vertical,15)
                     
                     Spacer()
-                    Spacer()
-                }else{
+                } else {
                     if let fields = viewModel.fields?.filter({$0.farm.elementsEqual(viewModel.currentFarmName)}) {
                         
                         ScrollView {
@@ -159,9 +158,9 @@ struct FarmsView: View {
                                 }
                             })
                         }
-                        Spacer()
-                        
                     }
+                    
+                    Spacer()
                 }
             }
             
@@ -178,25 +177,27 @@ struct FarmsView: View {
                     deleteFieldData()
                 }
             }
-        }.navigationBarBackButtonHidden(true)
-            .navigationBarTitle("", displayMode: .inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    NavigationBackView()
-                        .onTapGesture {
-                            presentationMode.wrappedValue.dismiss()
-                            BaseBarModel.share.show()
-                        }
-                        .frame(width: 70,height: 17)
-                }
+        }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarTitle("", displayMode: .inline)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                NavigationBackView()
+                    .onTapGesture {
+                        presentationMode.wrappedValue.dismiss()
+                        BaseBarModel.share.show()
+                    }
+                    .frame(width: 70,height: 17)
             }
-            .onAppear {
-//                BaseBarModel.share.hidden()
-                UITableView.appearance().separatorStyle = .none
-                UITableViewCell.appearance().selectionStyle = .none
-                viewModel.fetchFarmsAndFieldsData()
-               
-            }
+        }
+        .onAppear {
+            UITableView.appearance().separatorStyle = .none
+            UITableViewCell.appearance().selectionStyle = .none
+    
+            BaseBarModel.share.hidden()
+
+            viewModel.fetchFarmsAndFieldsData()
+        }
     }
     
     func addNewField() {
