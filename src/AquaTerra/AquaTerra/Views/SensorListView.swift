@@ -140,19 +140,40 @@ struct SensorListView: View {
                 
                 
                 if selectedFieldName != nil {
-                    List {
-                        ForEach(sensorData) { sensor in
-                            
-                            SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel, fieldData: fieldData, editedLatitude: $editedLatitude, editedLongitude: $editedLongitude)
-                                .listRowSeparator(.hidden)
-                                .buttonStyle(PlainButtonStyle())
-                        }
+                    if sensorData == []{
+                        Spacer()
+                        Image("empty")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width:50, height: 50)
+                            .foregroundColor(Color.gray).opacity(0.5)
+                        
+                        Group {
+                            Text("No Sensors Found In This Field, ")
+                                .font(.custom("OpenSans-Regular", size: 13)).foregroundColor(Color.gray)
+                            +
+                            Text("Please Add New Sensors").font(.custom("OpenSans-ExtraBold", size: 13)).foregroundColor(Color("HighlightColor"))
+                        }.padding(.vertical,15)
+                            .padding(.horizontal, 30)
+                        
+                        Spacer()
+                        Spacer()
                     }
-                    .buttonStyle(PlainButtonStyle())
-                    .listStyle(PlainListStyle())
-                    .scrollIndicators(.hidden)
-                    .frame(maxHeight: .infinity)
-                    
+                    else{
+                        List {
+                            ForEach(sensorData) { sensor in
+                                
+                                SensorListItem(sensorID: viewModel.abbreviateSensorID(sensor.sensor_id), gatewayID: sensor.gateway_id ?? "", deletionIndex: $deletionIndex, sensorData: $sensorData, sensor: sensor, viewModel: viewModel, fieldData: fieldData, editedLatitude: $editedLatitude, editedLongitude: $editedLongitude)
+                                    .listRowSeparator(.hidden)
+                                    .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                        .listStyle(PlainListStyle())
+                        .scrollIndicators(.hidden)
+                        .frame(maxHeight: .infinity)
+                    }
                     
                 }else{
                     Spacer()
