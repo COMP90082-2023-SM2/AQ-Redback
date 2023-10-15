@@ -10,6 +10,7 @@ import MapKit
 
 class DashboardViewModel: ObservableObject {
     @Published var isWarningPresented = false
+    @Published var warnedSensors = "11"
     @Published var sensorDataTypeSelection: SensorDataType = .moisture
     @Published var moistureDepthSelection = MoistureDepth.depth50
     @Published var fieldSelection = FieldData(points: "", field_name: "", crop_type: nil, soil_type: nil, farm_name: "", username: "", geom: "", elevation: nil, field_id: "")
@@ -138,6 +139,10 @@ class DashboardViewModel: ObservableObject {
                 if self.moistures.contains(where: { $0.battery_vol < 4 }) {
                     Task { @MainActor in
                         self.isWarningPresented = true
+                    }
+                    let warnSensor = self.moistures.map { $0.sensor_id }
+                    if let firstWarnedSensor = warnSensor.first {
+                        self.warnedSensors = firstWarnedSensor
                     }
                 }
             }

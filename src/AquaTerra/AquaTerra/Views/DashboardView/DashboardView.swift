@@ -65,22 +65,22 @@ struct DashboardView: View {
                 }
                 Spacer()
             }
-//            .overlay {
-//                if dashboardViewModel.isWarningPresented {
-//                    ZStack {
-//                        Color.black.opacity(0.2)
-//                        Text("Some sensors' battery voltage is low!")
-//                            .font(.system(size: 15))
-//                            .frame(width: 200, height: 200)
-//                            .background(.white)
-//                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
-//                            .onTapGesture {
-//                                dashboardViewModel.isWarningPresented = false
-//                            }
-//                    }
-//                    .ignoresSafeArea()
-//                }
-//            }
+            .overlay {
+                if dashboardViewModel.isWarningPresented {
+                    ZStack {
+                        Color.black.opacity(0.2)
+                        Text("Sensor battery low : \(dashboardViewModel.warnedSensors)")
+                            .font(.system(size: 15))
+                            .frame(width: 200, height: 100)
+                            .background(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+                            .onTapGesture {
+                                dashboardViewModel.isWarningPresented = false
+                            }
+                    }
+                    .ignoresSafeArea()
+                }
+            }
             .onChange(of: dashboardViewModel.fieldSelection) { _ in
                 guard !isFetchingData else {
                     return
