@@ -10,9 +10,9 @@ import SwiftUI
 struct WeatherView: View {
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?
+    @ObservedObject var viewModel: DashboardViewModel
     var longitude = 144.9631
-    var latitude = 37.8136
-    
+    var latitude = 37.813
     
     var body: some View {
         VStack{
@@ -29,6 +29,7 @@ struct WeatherView: View {
                             }
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                            .padding(.top, 20)
                             
                             Spacer()
                             
@@ -87,7 +88,16 @@ struct WeatherView: View {
                        .foregroundColor(Color("ButtonGradient2"))
                        .task {
                            do {
-                               weather = try await weatherManager.getCurrentWeather(latitude: latitude, longitude: longitude)
+                               if let pointsString = viewModel.sensorSelection.points,
+                                   let jsonData = pointsString.data(using: .utf8),
+                                   let points = try? JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any],
+                                   let coordinates = points["coordinates"] as? [Double] {
+                                   let latitude = coordinates[1]
+                                   let longitude = coordinates[0]
+                                   weather = try await weatherManager.getCurrentWeather(latitude: latitude, longitude: longitude)
+                               } else {
+                                   print("Error getting weather")
+                               }
                            } catch {
                                print("Error getting weather: \(error)")
                            }
@@ -97,6 +107,6 @@ struct WeatherView: View {
     }
 }
 
-//#Preview {
-//    WeatherView()
-//}
+#Preview {
+    WeatherView(viewModel: DashboardViewModel())
+}

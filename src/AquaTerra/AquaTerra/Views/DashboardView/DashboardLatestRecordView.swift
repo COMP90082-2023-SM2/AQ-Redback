@@ -73,7 +73,6 @@ struct DashboardLatestRecordView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 }
                 
-                Spacer().frame(width: 10)
                 Button {
                     isDashboardDetailPresented = true
                 } label: {
@@ -91,6 +90,7 @@ struct DashboardLatestRecordView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
                 }
                 .buttonStyle(.plain)
+                .padding(.top, 10)
                 
             }
             .padding(.horizontal, 30)

@@ -283,7 +283,9 @@ struct DashboardDetailView: View {
                     .padding(.bottom)
                     .background(Color("ChartBackground"))
                 }
+                WeatherView(viewModel: dashboardViewModel)
             }
+            
         }
         .navigationBarBackButtonHidden()
         .toolbar {

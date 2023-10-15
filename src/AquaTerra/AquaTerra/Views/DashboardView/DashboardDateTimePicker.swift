@@ -72,13 +72,20 @@ struct DashboardDateTimePicker: View {
                 HStack {
                     Text("Low")
                     Spacer()
-                    Text("Hight")
+                    Text("High")
                 }
                 .font(.custom("OpenSans-Regular", size: 7))
             }
             .frame(width: 130)
-            Slider(value: $dashboardViewModel.addDays, in: 0 ... 15, step: 1)
-                .tint(Color("HighlightColor"))
+            Spacer()
+            HStack{
+                Text("Time")
+                    .font(.custom("OpenSans-Bold", size: 13))
+                    .foregroundColor(Color("HighlightColor"))
+                Slider(value: $dashboardViewModel.addDays, in: 0 ... 15, step: 1)
+                    .tint(Color("HighlightColor"))
+            }
+            
         }
         .frame(height: 37)
         .padding(.horizontal)
