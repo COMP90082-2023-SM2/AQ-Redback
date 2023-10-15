@@ -136,7 +136,7 @@ class DashboardViewModel: ObservableObject {
                 transferMoisture(moisture: moisture, sensorFormula: sensorFormulas[moisture.sensor_id]!)
             })
             Task.detached {
-                if self.moistures.contains(where: { $0.battery_vol < 4 }) {
+                if self.moistures.contains(where: { $0.battery_vol < 3.4 }) {
                     Task { @MainActor in
                         self.isWarningPresented = true
                     }
