@@ -58,7 +58,7 @@ struct AddSensorView: View {
                                         .font(.custom("OpenSans-SemiBold", size: 16)).frame(alignment: .leading)
                                 }
                                 
-                                TextField("Example:AquaTerraGateway909a56",text: $sensorID)
+                                TextField("Example:AFA0000DEMO01",text: $sensorID)
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .foregroundColor(Color("Placeholder"))
                                     .padding([.horizontal], 15)
