@@ -529,6 +529,19 @@ final class SensorListApi {
         return try JSONDecoder().decode(SensorFormulaResponse.self, from: responseData).data ?? SensorFormulaData(formula: "", formula_id: 0, parameter: "", lowest_adt: 0)
     }
     
+    public func getEvaporations(fieldId: String) async throws -> [EvaporationData] {
+        let url = URL(string: "https://webapp.aquaterra.cloud/api/evaporation")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        var jsonDict: [String: Any] = ["userName": currentUserUsername ?? "demo","fieldId":fieldId]
+        if let requestData = try? JSONSerialization.data(withJSONObject: jsonDict) {
+            request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = requestData
+        }
+        let (responseData, _) = try await URLSession.shared.data(for: request)
+        return try JSONDecoder().decode(EvaporationsResponse.self, from: responseData).data
+    }
+    
 
 }
 
@@ -547,6 +560,16 @@ struct MoistureResponse: Decodable {
 
 struct SensorFormulaResponse: Decodable {
     let data: SensorFormulaData?
+}
+
+struct EvaporationsResponse: Decodable {
+    let data: [EvaporationData]
+}
+
+struct EvaporationData: Decodable {
+    let field_id: String
+    let date: String
+    let evaporation: Double
 }
 
 struct SensorFormulaData: Decodable {

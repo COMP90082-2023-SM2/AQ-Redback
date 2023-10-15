@@ -23,15 +23,23 @@ class DashboardViewModel: ObservableObject {
     @Published var annotations: [MKAnnotation] = []
     @Published var addDays = 15.0
 
-    @Published var depth50MoisturesForChart: [MoistureChartItem] = []
-    @Published var depth100MoisturesForChart: [MoistureChartItem] = []
-    @Published var depth150MoisturesForChart: [MoistureChartItem] = []
-    @Published var temperatureForChart: [TemperatureChartItem] = []
+    @Published var batteryForChart: [BatteryChartItem] = []
+    @Published var depthMosturesForChart: [DepthMoistureChartItem] = []
+    @Published var dateDepth50MoisturesForChart: [DateMoistureChartItem] = []
+    @Published var dateDepth100MoisturesForChart: [DateMoistureChartItem] = []
+    @Published var dateDepth150MoisturesForChart: [DateMoistureChartItem] = []
+    @Published var dateTemperatureForChart: [DateTemperatureChartItem] = []
+    @Published var evaporationsForChart: [EvaporationChartItem] = []
 
-    var depth50MoisturesForChartDict: [Date: MoistureChartItem] = [:]
-    var depth100MoisturesForChartDict: [Date: MoistureChartItem] = [:]
-    var depth150MoisturesForChartDict: [Date: MoistureChartItem] = [:]
-    var temperatureForChartDict: [Date: TemperatureChartItem] = [:]
+    var depth50MoisturesForChartDict: [String: DepthMoistureChartItem] = [:]
+    var depth100MoisturesForChartDict: [String: DepthMoistureChartItem] = [:]
+    var depth150MoisturesForChartDict: [String: DepthMoistureChartItem] = [:]
+    var dateDepth50MoisturesForChartDict: [Date: DateMoistureChartItem] = [:]
+    var dateDepth100MoisturesForChartDict: [Date: DateMoistureChartItem] = [:]
+    var dateDepth150MoisturesForChartDict: [Date: DateMoistureChartItem] = [:]
+    var dateTemperatureForChartDict: [Date: DateTemperatureChartItem] = [:]
+    var batteryForChartDict: [Date: BatteryChartItem] = [:]
+    var evaporationsForChartDict: [Date: EvaporationChartItem] = [:]
 
     var sensorFormulas: [String: SensorFormulaData] = [:]
 
@@ -41,35 +49,75 @@ class DashboardViewModel: ObservableObject {
     }
 
     func updateChart() {
+        dateDepth50MoisturesForChart.removeAll()
+        dateDepth100MoisturesForChart.removeAll()
+        dateDepth150MoisturesForChart.removeAll()
+        dateTemperatureForChart.removeAll()
+        depthMosturesForChart.removeAll()
+        depth50MoisturesForChartDict.removeAll()
+        depth100MoisturesForChartDict.removeAll()
+        depth150MoisturesForChartDict.removeAll()
+        dateDepth50MoisturesForChartDict.removeAll()
+        dateDepth100MoisturesForChartDict.removeAll()
+        dateDepth150MoisturesForChartDict.removeAll()
+        dateTemperatureForChartDict.removeAll()
+        batteryForChart.removeAll()
+        batteryForChartDict.removeAll()
         let df = ISO8601DateFormatter()
         df.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
-        depth50MoisturesForChart = moistures.filter({ $0.sensor_id == sensorSelection.sensor_id }).map { it in
-            let date = zeroSecond(date: df.date(from: it.time)!)
-            let item = MoistureChartItem(date: date, value: it.moistureDepth50)
-            depth50MoisturesForChartDict[date] = item
-            return item
-        }
 
-        depth100MoisturesForChart = moistures.filter({ $0.sensor_id == sensorSelection.sensor_id }).map { it in
-            let date = zeroSecond(date: df.date(from: it.time)!)
-            let item = MoistureChartItem(date: date, value: it.moistureDepth100)
-            depth100MoisturesForChartDict[date] = item
-            return item
-        }
+        let today = Date.now
+        let theDayBeforeYesterday = today.advanced(by: -24 * 60 * 60 * 2)
+        let yesterday = today.advanced(by: -24 * 60 * 60)
 
-        depth150MoisturesForChart = moistures.filter({ $0.sensor_id == sensorSelection.sensor_id }).map { it in
-            let date = zeroSecond(date: df.date(from: it.time)!)
-            let item = MoistureChartItem(date: date, value: it.moistureDepth150)
-            depth150MoisturesForChartDict[date] = item
-            return item
-        }
+        for moisture in moistures {
+            if moisture.sensor_id == sensorSelection.sensor_id {
+                let date = zeroSecond(date: df.date(from: moisture.time)!)
+                let moistureItem50 = DateMoistureChartItem(date: date, value: moisture.moistureDepth50)
+                let moistureItem100 = DateMoistureChartItem(date: date, value: moisture.moistureDepth100)
+                let moistureItem150 = DateMoistureChartItem(date: date, value: moisture.moistureDepth150)
+                dateDepth50MoisturesForChartDict[date] = moistureItem50
+                dateDepth50MoisturesForChart.append(moistureItem50)
+                dateDepth100MoisturesForChartDict[date] = moistureItem100
+                dateDepth100MoisturesForChart.append(moistureItem100)
+                dateDepth150MoisturesForChartDict[date] = moistureItem150
+                dateDepth150MoisturesForChart.append(moistureItem150)
 
-        temperatureForChart = moistures.filter({ $0.sensor_id == sensorSelection.sensor_id }).map({ it in
-            let date = zeroSecond(date: df.date(from: it.time)!)
-            let item = TemperatureChartItem(date: date, value: it.temperature)
-            temperatureForChartDict[date] = item
-            return item
-        })
+                let temperatureItem = DateTemperatureChartItem(date: date, value: moisture.temperature)
+                dateTemperatureForChart.append(temperatureItem)
+                dateTemperatureForChartDict[date] = temperatureItem
+
+                let batteryItem = BatteryChartItem(date: date, value: moisture.battery_vol)
+                batteryForChart.append(batteryItem)
+                batteryForChartDict[date] = batteryItem
+
+                if Calendar.current.isDate(date, inSameDayAs: today) {
+                    let depthMoistureItem0 = DepthMoistureChartItem(date: date, depth: -50, value: moisture.moistureDepth50)
+                    let depthMoistureItem1 = DepthMoistureChartItem(date: date, depth: -100, value: moisture.moistureDepth100)
+                    let depthMoistureItem2 = DepthMoistureChartItem(date: date, depth: -150, value: moisture.moistureDepth150)
+                    depthMosturesForChart.append(contentsOf: [depthMoistureItem0, depthMoistureItem1, depthMoistureItem2])
+                    depth50MoisturesForChartDict["Today"] = depthMoistureItem0
+                    depth100MoisturesForChartDict["Today"] = depthMoistureItem1
+                    depth150MoisturesForChartDict["Today"] = depthMoistureItem2
+                } else if Calendar.current.isDate(date, inSameDayAs: yesterday) {
+                    let depthMoistureItem0 = DepthMoistureChartItem(date: date, depth: -50, value: moisture.moistureDepth50)
+                    let depthMoistureItem1 = DepthMoistureChartItem(date: date, depth: -100, value: moisture.moistureDepth100)
+                    let depthMoistureItem2 = DepthMoistureChartItem(date: date, depth: -150, value: moisture.moistureDepth150)
+                    depthMosturesForChart.append(contentsOf: [depthMoistureItem0, depthMoistureItem1, depthMoistureItem2])
+                    depth50MoisturesForChartDict["Yesterday"] = depthMoistureItem0
+                    depth100MoisturesForChartDict["Yesterday"] = depthMoistureItem1
+                    depth150MoisturesForChartDict["Yesterday"] = depthMoistureItem2
+                } else if Calendar.current.isDate(date, inSameDayAs: theDayBeforeYesterday) {
+                    let depthMoistureItem0 = DepthMoistureChartItem(date: date, depth: -50, value: moisture.moistureDepth50)
+                    let depthMoistureItem1 = DepthMoistureChartItem(date: date, depth: -100, value: moisture.moistureDepth100)
+                    let depthMoistureItem2 = DepthMoistureChartItem(date: date, depth: -150, value: moisture.moistureDepth150)
+                    depthMosturesForChart.append(contentsOf: [depthMoistureItem0, depthMoistureItem1, depthMoistureItem2])
+                    depth50MoisturesForChartDict["BeforeYesterday"] = depthMoistureItem0
+                    depth100MoisturesForChartDict["BeforeYesterday"] = depthMoistureItem1
+                    depth150MoisturesForChartDict["BeforeYesterday"] = depthMoistureItem2
+                }
+            }
+        }
     }
 
     func updateMap() {
@@ -158,6 +206,22 @@ class DashboardViewModel: ObservableObject {
             latestRecord = transferMoisture(moisture: moisture, sensorFormula: sensorFormula)
         }
     }
+    
+    @MainActor
+    func fetchEvaporations() async throws {
+        evaporationsForChart.removeAll()
+        evaporationsForChartDict.removeAll()
+        let evaporations = try await SensorListApi.shared.getEvaporations(fieldId: fieldSelection.field_id)
+        for evaporation in evaporations {
+            let df = DateFormatter()
+            df.dateFormat = "MM-dd-yyyy"
+            let date = df.date(from: evaporation.date)!
+            let value = evaporation.evaporation
+            let item = EvaporationChartItem(date: date, value: value)
+            evaporationsForChart.append(item)
+            evaporationsForChartDict[date] = item
+        }
+    }
 
     private func getSensorFormulas(sensorIds: [String]) async throws -> [String: SensorFormulaData] {
         try await withThrowingTaskGroup(of: (String, SensorFormulaData).self, returning: [String: SensorFormulaData].self) { group in
@@ -176,9 +240,8 @@ class DashboardViewModel: ObservableObject {
     }
 
     private func getMoistures(fieldName: String) async throws -> [MoistureData] {
-        let startDate = Date.now.advanced(by: -(24 * 60 * 60 * 15))
-        let endDate = Date.now
-        return try await SensorListApi.shared.getMoistures(fieldName: fieldSelection.field_name, startDate: startDate, endDate: endDate)
+      
+        return try await SensorListApi.shared.getMoistures(fieldName: fieldSelection.field_name)
     }
 
     private func getFieldLocation(pointsStr: String) -> CLLocation? {
@@ -273,13 +336,32 @@ class DashboardViewModel: ObservableObject {
     }
 }
 
-struct MoistureChartItem: Identifiable {
+struct DateMoistureChartItem: Identifiable {
     let id = UUID()
     let date: Date
     let value: Double
 }
 
-struct TemperatureChartItem: Identifiable {
+struct DateTemperatureChartItem: Identifiable {
+    let id = UUID()
+    let date: Date
+    let value: Double
+}
+
+struct DepthMoistureChartItem: Identifiable {
+    let id = UUID()
+    let date: Date
+    let depth: Int
+    let value: Double
+}
+
+struct BatteryChartItem: Identifiable {
+    let id = UUID()
+    let date: Date
+    let value: Double
+}
+
+struct EvaporationChartItem: Identifiable {
     let id = UUID()
     let date: Date
     let value: Double
