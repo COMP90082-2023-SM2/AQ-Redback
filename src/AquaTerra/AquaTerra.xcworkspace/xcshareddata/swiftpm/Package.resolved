@@ -8,6 +8,15 @@
         "revision" : "bd35e1919e7c596b45869a3704dc2a15fab648c4",
         "version" : "0.13.7"
       }
+    },
+    {
+      "identity" : "simpletoast",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/sanzaru/SimpleToast",
+      "state" : {
+        "revision" : "6637b95dfc49d3d688ad2d7b6e0655c0f6862f83",
+        "version" : "0.8.0"
+      }
     }
   ],
   "version" : 2

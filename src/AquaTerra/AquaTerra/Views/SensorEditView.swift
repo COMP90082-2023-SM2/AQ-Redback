@@ -8,6 +8,7 @@
 import SwiftUI
 import CoreLocation
 import MapKit
+import SimpleToast
 
 struct SensorEditView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -30,6 +31,15 @@ struct SensorEditView: View {
     @State private var selected = 0
     @State private var textFiledText : String = ""
     @State private var polygenResultsV2: String? = ""
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -72,7 +82,7 @@ struct SensorEditView: View {
                                             get: {self.editedLatitude ?? ""},set: {self.editedLatitude = $0}))
                                         EditViewListItem(title: "Latitude", detail: Binding(
                                             get: {self.editedLongitude ?? ""},set: {self.editedLongitude = $0}))
-                                        EditViewListItem(title: "Sleeping Time (Hr)", detail: Binding(
+                                        EditViewListItem(title: "Sleeping Time (S)", detail: Binding(
                                             get: {self.editedSleeping ?? ""},set: {self.editedSleeping = $0}))
                                     }
                                     SensorButton(title: "Next") {
@@ -184,7 +194,17 @@ struct SensorEditView: View {
                             }
                         }
                 }
-            }.navigationBarBackButtonHidden(true)
+            }
+            .simpleToast(isPresented: $showToast, options: toastOptions) {
+                HStack {
+                    Text("Successfully Added the Sensor V2!").bold()
+                }
+                .padding(20)
+                .background(Color.green.opacity(1))
+                .foregroundColor(Color.white)
+                .cornerRadius(14)
+            }
+            .navigationBarBackButtonHidden(true)
     }
     // Helper method to parse coordinates from JSON string
     private func parseCoordinates(_ points: String?) {
@@ -232,7 +252,10 @@ struct SensorEditView: View {
                         switch result {
                         case .success:
                             DispatchQueue.main.async {
-                                presentationMode.wrappedValue.dismiss()
+                                showToast.toggle()
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    presentationMode.wrappedValue.dismiss()
+                                }
                             }
                         case .failure(let error):
                             print("Error editing sensor: \(error)")

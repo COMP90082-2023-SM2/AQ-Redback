@@ -8,6 +8,7 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import SimpleToast
 
 struct AddSensorV1View: View {
     @ObservedObject var viewModel: SessionViewViewModel
@@ -34,6 +35,15 @@ struct AddSensorV1View: View {
     
     @State private var gatewaySensorResponse: Result<GatewaySensorResponse, Error>? = nil
     var currentUserUsername: String?
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -204,12 +214,16 @@ struct AddSensorV1View: View {
                                     
                                     Spacer().frame(width: 20)
                                     SensorButton(title: "Submit") {
+                                        showToast.toggle()
                                         refreshList = true
                                         next()
                                         submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
-                                        presentationMode.wrappedValue.dismiss()
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                            presentationMode.wrappedValue.dismiss()
+                                        }
                                     } .disabled(selectedCoordinate == nil)
                                         .opacity(selectedCoordinate == nil ? 0.3 : 1.0)
+
                                     
                                 }.frame(height: 50)
                             }
@@ -223,6 +237,15 @@ struct AddSensorV1View: View {
                     
                 }
             }
+        }
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            HStack {
+                Text("Successfully Added the Sensor V1!").bold()
+            }
+            .padding(20)
+            .background(Color.green.opacity(1))
+            .foregroundColor(Color.white)
+            .cornerRadius(14)
         }
         .navigationBarTitle("", displayMode: .inline)
             .toolbar {

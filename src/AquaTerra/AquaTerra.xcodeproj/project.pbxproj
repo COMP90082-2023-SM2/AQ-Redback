@@ -13,6 +13,7 @@
 		571038982AD63C0D00D7F0EA /* SensorsSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571038972AD63C0D00D7F0EA /* SensorsSelectionView.swift */; };
 		5710389A2AD64A3700D7F0EA /* AddSensorV1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 571038992AD64A3700D7F0EA /* AddSensorV1View.swift */; };
 		5710389C2AD6C52100D7F0EA /* SensorV1Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5710389B2AD6C52100D7F0EA /* SensorV1Map.swift */; };
+		572508D12AE129450069B95C /* SimpleToast in Frameworks */ = {isa = PBXBuildFile; productRef = 572508D02AE129450069B95C /* SimpleToast */; };
 		573C63602AAC3BCE0085524C /* SensorListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C635F2AAC3BCE0085524C /* SensorListView.swift */; };
 		573C63662AAD6C420085524C /* SensorListApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573C63652AAD6C420085524C /* SensorListApi.swift */; };
 		575FB5502AB411830079B6E8 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575FB54F2AB411830079B6E8 /* Extension.swift */; };
@@ -242,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				707A20B62ADA9B77005501FE /* Expression in Frameworks */,
+				572508D12AE129450069B95C /* SimpleToast in Frameworks */,
 				15A089DBC62FBADED997AF91 /* Pods_AquaTerra.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -645,6 +647,7 @@
 			name = AquaTerra;
 			packageProductDependencies = (
 				707A20B52ADA9B77005501FE /* Expression */,
+				572508D02AE129450069B95C /* SimpleToast */,
 			);
 			productName = AquaTerra;
 			productReference = 57FDEEF02A99C9F10029303E /* AquaTerra.app */;
@@ -676,6 +679,7 @@
 			mainGroup = 57FDEEE72A99C9F10029303E;
 			packageReferences = (
 				707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */,
+				572508CF2AE129450069B95C /* XCRemoteSwiftPackageReference "SimpleToast" */,
 			);
 			productRefGroup = 57FDEEF12A99C9F10029303E /* Products */;
 			projectDirPath = "";
@@ -1072,6 +1076,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		572508CF2AE129450069B95C /* XCRemoteSwiftPackageReference "SimpleToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sanzaru/SimpleToast";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.8.0;
+			};
+		};
 		707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/nicklockwood/Expression.git";
@@ -1083,6 +1095,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		572508D02AE129450069B95C /* SimpleToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 572508CF2AE129450069B95C /* XCRemoteSwiftPackageReference "SimpleToast" */;
+			productName = SimpleToast;
+		};
 		707A20B52ADA9B77005501FE /* Expression */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 707A20B42ADA9B77005501FE /* XCRemoteSwiftPackageReference "Expression" */;

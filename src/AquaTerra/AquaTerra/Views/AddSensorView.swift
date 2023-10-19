@@ -7,6 +7,7 @@
 import SwiftUI
 import MapKit
 import CoreLocation
+import SimpleToast
 
 struct AddSensorView: View {
     @ObservedObject var viewModel: SessionViewViewModel
@@ -23,6 +24,15 @@ struct AddSensorView: View {
     @State private var selected = 0
     @Binding var refreshList : Bool
     @State private var showAlert = false
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
     
     private var enableBtn : Binding<Bool> {
         Binding<Bool>(
@@ -114,7 +124,10 @@ struct AddSensorView: View {
                                         DispatchQueue.main.async {
                                             showAddSensorSheet = false
                                             refreshList = true
-                                            presentationMode.wrappedValue.dismiss()
+                                            showToast.toggle()
+                                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                                presentationMode.wrappedValue.dismiss()
+                                            }
                                         }
                                     case .failure(let error):
                                         print("Error creating sensor: \(error)")
@@ -136,6 +149,15 @@ struct AddSensorView: View {
                     
                 }
             }
+        }
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            HStack {
+                Text("Successfully Added the Sensor V2!").bold()
+            }
+            .padding(20)
+            .background(Color.green.opacity(1))
+            .foregroundColor(Color.white)
+            .cornerRadius(14)
         }
         .navigationBarTitle("", displayMode: .inline)
             .toolbar {
