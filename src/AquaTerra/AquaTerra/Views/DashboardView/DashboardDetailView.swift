@@ -163,10 +163,14 @@ struct DashboardDetailView: View {
             ])
             .chartLegend(.hidden)
             .chartXAxis {
-                AxisMarks(values: .stride(by: .day, count: 2)) { _ in
-                    AxisGridLine()
-                    AxisValueLabel(format: .dateTime.day())
-                }
+//                AxisMarks(values: .stride(by: .day, count: 2)) { _ in
+//                    AxisGridLine()
+//                    AxisValueLabel(format: .dateTime.day())
+//                }
+                AxisMarks(values: .stride(by: .day, count: 2)) { value in
+                                    AxisGridLine()
+                                    AxisValueLabel("\(formatDate(date:value.as(Date.self)!))")
+                  }
             }
             .chartYAxis {
                 AxisMarks(position: .leading, values: [0, 25, 50]) { it in
@@ -667,7 +671,13 @@ struct DashboardDetailView: View {
         dateFormatter.dateFormat = "E MMM dd yyyy HH:mm:ss"
         return dateFormatter.string(from: date)
     }
-
+    
+    private func formatDate(date: Date) -> String {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MM/dd"
+            return dateFormatter.string(from: date)
+        }
+    
     private func formateNumber(_ number: Double) -> String {
         return String(format: "%.2f", number)
     }

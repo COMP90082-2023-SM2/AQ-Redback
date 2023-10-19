@@ -107,6 +107,3 @@ struct WeatherView: View {
     }
 }
 
-#Preview {
-    WeatherView(viewModel: DashboardViewModel())
-}
