@@ -594,10 +594,10 @@ struct DashboardDetailView: View {
             }
         }
         .chartXAxis {
-            AxisMarks(values: .stride(by: .day, count: 2)) { _ in
-                AxisGridLine()
-                AxisValueLabel(format: .dateTime.day())
-            }
+            AxisMarks(values: .stride(by: .day, count: 2)) { value in
+                                AxisGridLine()
+                                AxisValueLabel("\(formatDate(date:value.as(Date.self)!))")
+              }
         }
         .chartYAxis {
             AxisMarks(position: .leading, values: [0, 2, 4, 6, 8]) { it in
