@@ -32,7 +32,7 @@ struct DashboardDetailView: View {
                 depthMoistureChartView
                 batteryLevelChartView
                 evaporationChartView
-                // WeatherView(viewModel: dashboardViewModel)
+                WeatherView(viewModel: dashboardViewModel)
             }
         }
         .navigationBarBackButtonHidden()
