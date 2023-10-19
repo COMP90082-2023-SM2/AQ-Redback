@@ -204,6 +204,7 @@ struct AddSensorV1View: View {
                                     
                                     Spacer().frame(width: 20)
                                     SensorButton(title: "Submit") {
+                                        refreshList = true
                                         next()
                                         submitSensorV1(sensorId: sensorID, gatewayId: gatewayIDs[0], fieldId: fieldID, coordinate: selectedCoordinate!)
                                         presentationMode.wrappedValue.dismiss()
