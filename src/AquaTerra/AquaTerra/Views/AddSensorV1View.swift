@@ -240,7 +240,7 @@ struct AddSensorV1View: View {
         }
         .simpleToast(isPresented: $showToast, options: toastOptions) {
             HStack {
-                Text("Successfully Added the Sensor V1!").bold()
+                Text("Successfully Create the Sensor V1!").bold()
             }
             .padding(20)
             .background(Color.green.opacity(1))

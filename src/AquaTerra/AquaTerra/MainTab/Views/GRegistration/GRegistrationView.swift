@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SimpleToast
 
 struct GReginstrationView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -18,6 +19,16 @@ struct GReginstrationView: View {
     
     @State private var position : CLLocationCoordinate2D?
     @State private var annotations : [MKPointAnnotation] = []
+    @State private var showAlert = false
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
     
     private var isTextEmpty : Binding<Bool> {
         Binding<Bool>(
@@ -97,6 +108,15 @@ struct GReginstrationView: View {
                     .frame(width: 70,height: 17)
             }
         }
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            HStack {
+                Text("Successfully Create a Gateway!").bold()
+            }
+            .padding(20)
+            .background(Color.green.opacity(1))
+            .foregroundColor(Color.white)
+            .cornerRadius(14)
+        }
         .navigationBarBackButtonHidden(true)
     }
     
@@ -115,7 +135,10 @@ struct GReginstrationView: View {
         if let position = position {
             MGViewModel.shareInstance.submit(id: textFiledText, latitude: position.latitude,longitude: position.longitude)
             withAnimation(.linear(duration: 0.5)){
-                presentationMode.wrappedValue.dismiss()
+                showToast.toggle()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         }
     }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SimpleToast
 
 enum ZoneModifyType {
     case add
@@ -25,6 +26,15 @@ struct ZoneRegisterView: View {
     @State private var mapFullScreen = false
     @State private var polyLineLocations: [CLLocation] = []
     @State private var drawPolylineFinished: Bool = false
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
 
     private var zoneInfoReady: Binding<Bool> {
         Binding<Bool>(
@@ -132,6 +142,15 @@ struct ZoneRegisterView: View {
                 }
             }
         }
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            HStack {
+                Text("Successfully Create the Zone!").bold()
+            }
+            .padding(20)
+            .background(Color.green.opacity(1))
+            .foregroundColor(Color.white)
+            .cornerRadius(14)
+        }
         .ignoresSafeArea(.all, edges: .bottom)
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
@@ -198,9 +217,11 @@ struct ZoneRegisterView: View {
             viewModel.newZone.polyLineLocations = polyLineLocations.map({ [$0.coordinate.longitude, $0.coordinate.latitude] })
             viewModel.addZone(viewModel.newZone)
         }
-        
+        showToast.toggle()
         withAnimation(.linear(duration: 0.5)) {
-            presentationMode.wrappedValue.dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }

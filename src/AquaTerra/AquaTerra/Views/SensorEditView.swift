@@ -197,7 +197,7 @@ struct SensorEditView: View {
             }
             .simpleToast(isPresented: $showToast, options: toastOptions) {
                 HStack {
-                    Text("Successfully Added the Sensor V2!").bold()
+                    Text("Successfully Edit the Sensor").bold()
                 }
                 .padding(20)
                 .background(Color.green.opacity(1))

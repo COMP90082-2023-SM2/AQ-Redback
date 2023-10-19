@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import SimpleToast
 
 struct FarmRegisterView: View {
     
@@ -18,6 +19,15 @@ struct FarmRegisterView: View {
     @State private var mapFullScreen = false
     @State private var polyLineLocations: [CLLocation] = []
     @State private var drawPolylineFinished: Bool = false
+    @State private var showToast = false
+    @State private var value = 0
+    private let toastOptions = SimpleToastOptions(
+        alignment: .top,
+        hideAfter: 2,
+        backdropColor: Color.black.opacity(0.2),
+        animation: .default,
+        modifierType: .slide
+    )
 
     private var farmAndFieldNameReady: Binding<Bool> {
         Binding<Bool>(
@@ -117,6 +127,15 @@ struct FarmRegisterView: View {
                 }
             }
         }
+        .simpleToast(isPresented: $showToast, options: toastOptions) {
+            HStack {
+                Text("Successfully Create the Field!").bold()
+            }
+            .padding(20)
+            .background(Color.green.opacity(1))
+            .foregroundColor(Color.white)
+            .cornerRadius(14)
+        }
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .navigationTitle("Farm Registration")
@@ -145,9 +164,11 @@ struct FarmRegisterView: View {
         viewModel.newFarm.polyLineLocations = polyLineLocations.map({ [$0.coordinate.longitude, $0.coordinate.latitude] })
         
         viewModel.registerField()
-        
+        showToast.toggle()
         withAnimation(.linear(duration: 0.5)) {
-            presentationMode.wrappedValue.dismiss()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                presentationMode.wrappedValue.dismiss()
+            }
         }
     }
 }
