@@ -98,6 +98,20 @@ In Sprint 2, we focused on key functionalities, and we have completed the follow
 
 Additionally, we have laid the foundation for the dashboard page by creating a template. While the template showcases our design and layout, please note that the complete dashboard functionality will be implemented in the next sprint.
 
+### Sprint 3 Release  
+In Sprint 3, we focused on the implementation of the dashboard, user profile page, irrigation zone management page and the registration, and deletion of version 2 sensors, and we have completed the following:
+
+1. Irrigation Zone Management: This feature has enabled users to register new irrigation zones on their desired field by entering the zone name, crop types, crop wilting point, saturation point, capacity etc and the zone location. It also allows user to edit their zone information and delete the zone if it is no longer in use.
+
+2. Version 1 Sensor Registration: This feature enabled the registration of version one sensors by finding the related gateways to this sensor, pairing one of the gateways to the physical sensor and choosing the location on the map where the sensor should be installed.
+
+3. User Profile: This page enabled users to see their relevant details such as name, email address, phone number, subscription type, and expiry date. However, this information can not be edited on the app and the users would be notified to edit their information on the web application.
+
+4. Dashboard Page: This page enabled users to get a quick overview of the sensors, their current status and their statuses over time. Users can view the moisture level, battery level, and temperature level of each sensor within the field.  They can see details of each sensor, their evaporation over time, average soil moisture as well as the weather prediction of the field.
+
+### Product Demonstration  
+Since our client did not give us Apple developer accounts, our product can not be deployed but we recorded several demo videos to demonstrate the features we have completed. 
+Please visit this link: https://confluence.cis.unimelb.edu.au:8443/display/COMP900822023SM2AQRedBack/Product+Demonstration to have a nice overview of our product.
 
 ## Structure of folders  
 ├── docs/ # This folder contains documentation and project artifacts  
