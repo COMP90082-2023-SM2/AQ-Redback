@@ -111,7 +111,11 @@ In Sprint 3, we focused on the implementation of the dashboard, user profile pag
 
 ### Product Demonstration  
 Due to the absence of Apple developer accounts provided by our client, regrettably, we are unable to proceed with the deployment of our product. However, in an effort to showcase the functionality and features we have successfully developed, we have prepared a series of comprehensive demonstration videos. 
-Please visit this link: https://confluence.cis.unimelb.edu.au:8443/display/COMP900822023SM2AQRedBack/Product+Demonstration to have a nice overview of our product.
+Please visit this link: https://confluence.cis.unimelb.edu.au:8443/display/COMP900822023SM2AQRedBack/Product+Demonstration to have a nice overview of our product.  
+
+### Test Plans  
+https://confluence.cis.unimelb.edu.au:8443/pages/viewpage.action?pageId=146647404  
+https://confluence.cis.unimelb.edu.au:8443/pages/viewpage.action?pageId=146667337  
 
 ## Structure of folders  
 ├── docs/ # This folder contains documentation and project artifacts  
