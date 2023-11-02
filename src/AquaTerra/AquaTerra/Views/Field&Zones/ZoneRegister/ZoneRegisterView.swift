@@ -9,6 +9,7 @@ import SwiftUI
 import MapKit
 import SimpleToast
 
+// Enum to represent whether the user is adding or editing a zone
 enum ZoneModifyType {
     case add
     case edit
@@ -17,6 +18,7 @@ struct ZoneRegisterView: View {
     
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
+    // Observed object for managing field-related data
     @ObservedObject var viewModel: FieldViewModel
 
     let modifyType: ZoneModifyType
@@ -28,6 +30,8 @@ struct ZoneRegisterView: View {
     @State private var drawPolylineFinished: Bool = false
     @State private var showToast = false
     @State private var value = 0
+    
+    // Configuration options for the toast notification
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 2,
@@ -36,6 +40,7 @@ struct ZoneRegisterView: View {
         modifierType: .slide
     )
 
+    // Computed property to check if zone information is ready for the next step
     private var zoneInfoReady: Binding<Bool> {
         Binding<Bool>(
             get: {
@@ -49,6 +54,7 @@ struct ZoneRegisterView: View {
         )
     }
     
+    // Computed property to check if polyline locations are ready for the next step
     private var polyLineLocationsReady : Binding<Bool> {
         Binding<Bool>(
             get: {
@@ -61,16 +67,19 @@ struct ZoneRegisterView: View {
     var body: some View {
         
         VStack {
+            // Custom navigation bar at the top
             FMNavigationBarView(title: modifyType == .add ? "Zone Registration": "Edit Zone")
                 .frame(height: 45)
             Spacer()
             
             if mapFullScreen && step == 1 {
                 
+                // Display the map in full-screen mode
                 FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
                 
             } else {
 
+                // Registration steps
                 VStack {
                     
                     GRSetpView(steps: ["Info", "Plot", "Submit"], selected: $step)
@@ -78,6 +87,7 @@ struct ZoneRegisterView: View {
                     VStack{
                         switch step {
                         case 0:
+                            // Step 1: Zone information entry
                             ZoneInfoEditView(viewModel: viewModel, modifyType: modifyType, enable: zoneInfoReady) {
                                 withAnimation(.linear(duration: 0.5)) {
                                         step += 1
@@ -85,6 +95,7 @@ struct ZoneRegisterView: View {
                             }
                             .padding(.top, 20)
                         case 1:
+                            // Step 2: Drawing a polygon on the map
                             HStack(alignment: .center, content: {
                                 Text("• Please draw a polygon to outline your")
                                     .font(.custom("OpenSans-Regular", size: 16))
@@ -107,14 +118,17 @@ struct ZoneRegisterView: View {
                                 .lineLimit(1)
                                 .padding(.horizontal, 30)
 
+                            // Map for drawing the polygon
                             FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
                                 .padding(.horizontal, 30)
                             
                             HStack {
+                                // Button to undo drawing
                                 GRButton(enable: polyLineLocationsReady, title: "Undo",colors: [.init(hex: "C1B18B")], buttonAction: {
                                     undo()
                                 })
                                 Spacer()
+                                // Button to proceed to the next step
                                 GRButton(enable: polyLineLocationsReady, title: "Next") {
                                     
                                     withAnimation(.linear(duration: 0.5)) {
@@ -128,6 +142,7 @@ struct ZoneRegisterView: View {
                             .padding(.horizontal, 30)
                             Spacer()
                         case 2:
+                            // Step 3: Submitting the zone information
                             ZoneRegisterSubmitView(viewModel: viewModel) {
                                 
                                 onAddOrEditZone()
@@ -143,6 +158,7 @@ struct ZoneRegisterView: View {
             }
         }
         .simpleToast(isPresented: $showToast, options: toastOptions) {
+            // Toast notification for successful zone creation
             HStack {
                 Text("Successfully Create the Zone!").bold()
             }
@@ -155,6 +171,7 @@ struct ZoneRegisterView: View {
         .navigationBarTitle("", displayMode: .inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
+            // Custom back button in the navigation bar
             ToolbarItem(placement: .navigationBarLeading) {
                 
                 NavigationBackView()
