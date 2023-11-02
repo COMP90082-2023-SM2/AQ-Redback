@@ -9,10 +9,13 @@ import SwiftUI
 
 struct FieldZonesView: View {
     
+    // Get the presentationMode used to dismiss the current view
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    // Use a viewModel wrapped by an observation object, which may contain data related to fields and regions
     @ObservedObject var viewModel: FieldViewModel
-            
+    
+    // Status attribute used to control whether area details are displayed
     @State private var shouldShowZoneDetail = false
 
     @State private var toDeleteZone: Zone?
@@ -29,6 +32,7 @@ struct FieldZonesView: View {
                     Text("Current Field: ").font(.custom("OpenSans-SemiBold", size: 14))
                         .foregroundColor(Color.black)
                     Spacer().frame(width: 5)
+                    // Display the currently selected field name, or "No Field Yet" if no field is selected
                     Text(viewModel.currentFieldName.isEmpty ? "No Field Yet" : viewModel.currentFieldName)
                         .foregroundColor(Color("ButtonGradient2"))
                         .font(.custom("OpenSans-Bold", size: 14))
@@ -37,6 +41,7 @@ struct FieldZonesView: View {
                     
                     Spacer()
                     
+                    // Navigation links for selecting different fields
                     NavigationLink {
                         FieldPickerView(viewModel: viewModel)
                     } label: {
@@ -71,6 +76,7 @@ struct FieldZonesView: View {
                         .font(.custom("OpenSans-SemiBold", size: 16))
                     Spacer()
                     
+                    // Navigation link for adding new areas
                     NavigationLink {
                         ZoneRegisterView(viewModel: viewModel, modifyType: .add)
                     } label: {
@@ -129,7 +135,7 @@ struct FieldZonesView: View {
                     Spacer()
                 }
             }
-            
+            // If shouldShowDeleteZoneAlert is true, show a warning about deleting the zone
             if shouldShowDeleteZoneAlert {
                 FarmDeleteAlert(title: "Zone Deletion", content: "Are you sure you want to delete this zone ?", showup: $shouldShowDeleteZoneAlert) {
                     
@@ -156,7 +162,7 @@ struct FieldZonesView: View {
             viewModel.fetchFieldsAndZonesData()
         }
     }
-    
+    // Handle the operation of deleting the area
     func deleteZone() {
         
         guard let zone = toDeleteZone else { return }

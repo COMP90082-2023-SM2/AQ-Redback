@@ -10,6 +10,6 @@ import Foundation
 struct ZoneCoordinates: Codable {
     
     let type: String
-    //FIXME: Invalid multiple empty array in api data🤮
+    //FIXME: Invalid multiple empty array in api data
     let coordinates: [[[Double]]]
 }

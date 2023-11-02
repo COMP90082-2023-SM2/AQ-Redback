@@ -9,11 +9,11 @@ import SwiftUI
 
 struct FarmRegisterSubmitView: View {
     
-    @State private var state = true
+    @State private var state = true //Control the state of the submit button
     
     @ObservedObject var viewModel: FarmsViewModel
 
-    var actionBlock: ButtonActionBlock?
+    var actionBlock: ButtonActionBlock? // Operation callback function when the button is clicked
     
     var body: some View {
         VStack {

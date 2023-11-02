@@ -9,9 +9,9 @@ import SwiftUI
 
 struct FarmPickerItem: View {
     
-    let farm: Farm
+    let farm: Farm //Farm object, used to display farm information
     
-    @Binding var currentPickedFarm: String
+    @Binding var currentPickedFarm: String // Bind to the name of the currently selected farm
 
     var body: some View {
         
@@ -23,7 +23,7 @@ struct FarmPickerItem: View {
             HStack {
                 
                 Button {
-                    selectFarm()
+                    selectFarm() //Select the farm when the user clicks the button
                 } label: {
                     Image(currentPickedFarm.elementsEqual(farm.name) ? "FarmPickSelected" : "FarmPickNormal")
                         .resizable()
@@ -40,13 +40,13 @@ struct FarmPickerItem: View {
         }
         .gesture(TapGesture().onEnded({
             
-            selectFarm()
+            selectFarm() // select farm when user clicks on entire view
         }))
     }
     
     func selectFarm() {
         
-        currentPickedFarm = farm.name
+        currentPickedFarm = farm.name //Set the currently selected farm name
     }
 }
 

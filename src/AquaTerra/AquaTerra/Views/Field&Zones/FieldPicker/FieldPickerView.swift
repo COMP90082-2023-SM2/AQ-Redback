@@ -14,7 +14,7 @@ struct FieldPickerView: View {
     @ObservedObject var viewModel: FieldViewModel
 
     @State private var pickedField: String = ""
-    
+//    Create a binding to track the currently selected field
     private var currentpickedField: Binding<String> {
         Binding<String>(
             get: {
@@ -25,13 +25,14 @@ struct FieldPickerView: View {
     }
     
     var body: some View {
-        
+        //Main view structure
         VStack {
             HStack{
+                // Customize the navigation bar view to display the "Select a Field" title
                 FMNavigationBarView(title: "Select a Field")
                     .frame(height: 45)
                 Spacer()
-                
+                //Select button, used to select the current farm
                 Button {
                     selectCurrentFarm()
                 } label: {
@@ -48,7 +49,7 @@ struct FieldPickerView: View {
                 
             }
            
-            
+            // If field data exists, display the field list
             if let fields = viewModel.fields {
                 
                 Divider().frame(height: 0.5)

@@ -10,13 +10,13 @@ import MapKit
 
 struct FarmRegisterMap: View {
         
-    @Binding var mapFullScreen: Bool
+    @Binding var mapFullScreen: Bool //Control the map to display in full screen
 
-    @Binding var drawPolylineFinished: Bool
+    @Binding var drawPolylineFinished: Bool // Mark whether polygon drawing is completed
 
-    @State private var shouldDrawPolyline = false
+    @State private var shouldDrawPolyline = false //Control whether to draw polygons
 
-    @Binding var locations: [CLLocation]
+    @Binding var locations: [CLLocation] //Storage the position coordinates of the drawn polygon
 
     @State private var region = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.8136, longitude: 144.9631), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
 
@@ -75,11 +75,11 @@ struct FarmRegisterWKMap: UIViewRepresentable {
     
     let region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: -37.8136, longitude: 144.9631), span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
     
-    @Binding var shouldDrawPolyline: Bool
+    @Binding var shouldDrawPolyline: Bool //Control whether to draw polygons
 
-    @Binding var drawPolylineFinished: Bool
+    @Binding var drawPolylineFinished: Bool // Mark whether polygon drawing is completed
 
-    @Binding var locations: [CLLocation]
+    @Binding var locations: [CLLocation] //Storage the position coordinates of the drawn polygon
     
     func makeUIView(context: Context) -> MKMapView {
         

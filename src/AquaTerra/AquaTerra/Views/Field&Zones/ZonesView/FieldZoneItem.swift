@@ -15,6 +15,7 @@ struct FieldZoneItem: View {
     
     @ObservedObject var viewModel: FieldViewModel
 
+    // Closure that handles the operation of deleting a region
     var deleteAction: ((Zone) -> Void)?
 
     var body: some View {
@@ -29,6 +30,7 @@ struct FieldZoneItem: View {
                         VStack{
                             Spacer()
                             HStack {
+                                //Display the sequence number of the area in the list
                                 Text("\(index)")
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .frame(width: 30, alignment: .leading) // Fixed width
@@ -37,6 +39,7 @@ struct FieldZoneItem: View {
                                 
                                 Spacer()
                                 
+                                //Display the name of the area
                                 Text(zone.name)
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .frame(width: 60, alignment: .leading) // Fixed width
@@ -45,6 +48,7 @@ struct FieldZoneItem: View {
                                 
                                 Spacer()
                                 
+                                //Display the crop information of the area (if any)
                                 Text(zone.crop ?? "")
                                     .font(.custom("OpenSans-Regular", size: 14))
                                     .frame(width: 40, alignment: .leading) // Fixed width
@@ -54,6 +58,7 @@ struct FieldZoneItem: View {
                                 Spacer()
                                 
                                 HStack {
+                                    // Navigation link for viewing detailed information about the area
                                     NavigationLink {
                                         ZoneDetailView(zone: zone)
                                     } label: {
@@ -62,6 +67,7 @@ struct FieldZoneItem: View {
                                             .frame(width: 38, height: 38)
                                     }
                                     
+                                    // Navigation link, used to edit regional information
                                     NavigationLink {
                                         ZoneRegisterView(viewModel: viewModel, modifyType: .edit, toEditZone: zone)
                                     } label: {
@@ -70,6 +76,7 @@ struct FieldZoneItem: View {
                                             .frame(width: 38, height: 38)
                                     }
                                     
+                                    // Button for deleting areas
                                     Button {
                                         deleteZone()
                                     } label: {

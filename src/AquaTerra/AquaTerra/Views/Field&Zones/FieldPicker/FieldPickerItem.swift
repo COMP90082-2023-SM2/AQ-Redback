@@ -10,7 +10,7 @@ import SwiftUI
 struct FieldPickerItem: View {
     
     let field: Field
-    
+    // Binding properties used to track the currently selected field
     @Binding var currentPickedField: String
 
     var body: some View {
@@ -21,7 +21,7 @@ struct FieldPickerItem: View {
                 .shadow(radius: 0.5, x: 0, y: 0.5)
             
             HStack {
-                
+                //Select button, used to select areas
                 Button {
                     selectField()
                 } label: {
@@ -43,7 +43,7 @@ struct FieldPickerItem: View {
             selectField()
         }))
     }
-    
+    // Handle the operation of selecting the field
     func selectField() {
         
         currentPickedField = field.name
@@ -57,7 +57,7 @@ struct FieldPickerItem_Previews: PreviewProvider {
         let bindingpickedField = Binding {
             return field.name
         } set: { _ in }
-
+        //Show a preview of the FieldPickerItem view
         FieldPickerItem(field: field, currentPickedField: bindingpickedField)
     }
 }

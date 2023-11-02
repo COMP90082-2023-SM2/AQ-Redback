@@ -21,6 +21,8 @@ struct FarmRegisterView: View {
     @State private var drawPolylineFinished: Bool = false
     @State private var showToast = false
     @State private var value = 0
+    
+    // Options for setting Toast messages
     private let toastOptions = SimpleToastOptions(
         alignment: .top,
         hideAfter: 2,
@@ -29,6 +31,7 @@ struct FarmRegisterView: View {
         modifierType: .slide
     )
 
+    // Used to check whether the farmland and field names are ready
     private var farmAndFieldNameReady: Binding<Bool> {
         Binding<Bool>(
             get: {
@@ -38,6 +41,7 @@ struct FarmRegisterView: View {
         )
     }
     
+    // Used to check whether the drawing polygon is ready
     private var polyLineLocationsReady : Binding<Bool> {
         Binding<Bool>(
             get: {
@@ -56,6 +60,7 @@ struct FarmRegisterView: View {
             
             if mapFullScreen && step == 1 {
                 
+                // If the map is full screen and the current step is 1, show the map view
                 FarmRegisterMap(mapFullScreen: $mapFullScreen, drawPolylineFinished: $drawPolylineFinished, locations: $polyLineLocations)
                 
             } else {
@@ -67,6 +72,7 @@ struct FarmRegisterView: View {
                     VStack{
                         switch step {
                         case 0:
+                            // Step 0: Enter farmland information
                             FarmRegisterInfoView(viewModel: viewModel, enable: farmAndFieldNameReady, clickAction: {
                                 
                                 withAnimation(.linear(duration: 0.5)) {
@@ -75,6 +81,7 @@ struct FarmRegisterView: View {
                             })
                             .padding(.top, 20)
                         case 1:
+                            // Step 1: Draw the polygon
                             HStack(alignment: .center, content: {
                                 Text("• Please draw a polygon")
                                     .font(.custom("OpenSans-Regular", size: 16))
@@ -112,6 +119,7 @@ struct FarmRegisterView: View {
                             .padding(.bottom, 50)
                             Spacer()
                         case 2:
+                            // Step 2: Submit farmland information
                             FarmRegisterSubmitView(viewModel: viewModel) {
                                 
                                 onRegisterField()
@@ -151,6 +159,7 @@ struct FarmRegisterView: View {
         }
     }
     
+    // Undo the operation of drawing the polygon
     private func undo() {
         polyLineLocations.removeAll()
     }

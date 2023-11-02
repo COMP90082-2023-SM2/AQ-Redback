@@ -11,12 +11,12 @@ struct FarmRegisterInfoView: View {
     
     @ObservedObject var viewModel: FarmsViewModel
 
-    @Binding var enable: Bool
+    @Binding var enable: Bool // State used to enable or disable the button
     
-    @FocusState private var farmInputFocused: Bool
-    @FocusState private var fieldInputFocused: Bool
+    @FocusState private var farmInputFocused: Bool // Used to detect whether the farm input box is selected
+    @FocusState private var fieldInputFocused: Bool // Used to detect whether the field input box is selected
 
-    var clickAction: ButtonActionBlock?
+    var clickAction: ButtonActionBlock? // Operation callback function when the button is clicked
 
     var body: some View {
         VStack(alignment:.leading, spacing: 0) {
