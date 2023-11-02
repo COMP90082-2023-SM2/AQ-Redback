@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is profile item view 
 struct ProfileItemView: View {
     var profileTitle: String
     var profileDetail: String

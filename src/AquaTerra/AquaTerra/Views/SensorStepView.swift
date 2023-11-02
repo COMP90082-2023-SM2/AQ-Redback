@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is edit or create sensor steps view
 struct SensorStepView : View {
     var steps : [String] = ["Info","Plot","Submit"]
     @Binding var selected : Int

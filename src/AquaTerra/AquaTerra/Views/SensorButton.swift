@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is Sensor button view
 struct SensorButton: View {
     var title : String = "title"
     var font : Font?

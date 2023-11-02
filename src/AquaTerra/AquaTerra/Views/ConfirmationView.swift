@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//This is sign-up confirmation code, temporary blocked.
 struct ConfirmationView: View {
     
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel

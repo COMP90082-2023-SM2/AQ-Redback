@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-
+// This is map for edit or creating sensor
 struct SensorMapView: View {
     @Binding var fullScreen: Bool
     @Binding var selectPosion: CLLocationCoordinate2D?

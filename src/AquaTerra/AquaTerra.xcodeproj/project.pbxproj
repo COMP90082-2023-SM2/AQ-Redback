@@ -51,10 +51,6 @@
 		6999F1F22AB01DC000B8B3BE /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */; };
 		6999F1F32AB01DC000B8B3BE /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */; };
 		6999F1F52AB140DB00B8B3BE /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */; };
-		69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA062AB328CB001777F9 /* InfoTab.swift */; };
-		69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA082AB328E7001777F9 /* MoistureTab.swift */; };
-		69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */; };
-		69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA0C2AB336E0001777F9 /* BatteryView.swift */; };
 		69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA102AB3E74B001777F9 /* TabBarItem.swift */; };
 		69B1DA132AB3F1E3001777F9 /* ManageCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */; };
 		69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69B1DA142AB40517001777F9 /* SwitchView.swift */; };
@@ -165,10 +161,6 @@
 		6999F1EC2AB01DC000B8B3BE /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
 		6999F1ED2AB01DC000B8B3BE /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		6999F1F42AB140DB00B8B3BE /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		69B1DA062AB328CB001777F9 /* InfoTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTab.swift; sourceTree = "<group>"; };
-		69B1DA082AB328E7001777F9 /* MoistureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoistureTab.swift; sourceTree = "<group>"; };
-		69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemperatureTab.swift; sourceTree = "<group>"; };
-		69B1DA0C2AB336E0001777F9 /* BatteryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryView.swift; sourceTree = "<group>"; };
 		69B1DA102AB3E74B001777F9 /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageCardView.swift; sourceTree = "<group>"; };
 		69B1DA142AB40517001777F9 /* SwitchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchView.swift; sourceTree = "<group>"; };
@@ -315,10 +307,6 @@
 				577279B42AB206D700ED9495 /* AddSensorView.swift */,
 				698B69CF2AB1F1A20031E0ED /* CustomHeaderView.swift */,
 				698B69D12AB319640031E0ED /* ProfileView.swift */,
-				69B1DA062AB328CB001777F9 /* InfoTab.swift */,
-				69B1DA082AB328E7001777F9 /* MoistureTab.swift */,
-				69B1DA0A2AB328F4001777F9 /* TemperatureTab.swift */,
-				69B1DA0C2AB336E0001777F9 /* BatteryView.swift */,
 				69B1DA102AB3E74B001777F9 /* TabBarItem.swift */,
 				69B1DA122AB3F1E3001777F9 /* ManageCardView.swift */,
 				69B1DA142AB40517001777F9 /* SwitchView.swift */,
@@ -769,7 +757,6 @@
 				575FB5582AB589900079B6E8 /* SensorButton.swift in Sources */,
 				570E47562A9F1A6000CF6575 /* SessionViewViewModel.swift in Sources */,
 				69B1DA112AB3E74B001777F9 /* TabBarItem.swift in Sources */,
-				69B1DA092AB328E7001777F9 /* MoistureTab.swift in Sources */,
 				69B1DA152AB40517001777F9 /* SwitchView.swift in Sources */,
 				C61C683E2AB1947B0053DF9C /* FMNavigationBarView.swift in Sources */,
 				761BD44D2AB2DEEB00722C88 /* FarmsView.swift in Sources */,
@@ -811,9 +798,7 @@
 				76FDB8CA2AD40C98008DAC46 /* FieldViewModel.swift in Sources */,
 				57CEAEDE2A9F0CA2002EEFCE /* ConfirmationView.swift in Sources */,
 				76FDB8C72AD40C52008DAC46 /* FieldZoneItem.swift in Sources */,
-				69B1DA072AB328CB001777F9 /* InfoTab.swift in Sources */,
 				C61C68442AB1947B0053DF9C /* GRStepView.swift in Sources */,
-				69B1DA0D2AB336E0001777F9 /* BatteryView.swift in Sources */,
 				C61C68462AB1947B0053DF9C /* MGAlertView.swift in Sources */,
 				707A20C42ADA9C12005501FE /* DashboardDetailView.swift in Sources */,
 				762DE49B2AD91DF300F049CB /* ZoneEditFieldPicker.swift in Sources */,
@@ -836,7 +821,6 @@
 				C61C68412AB1947B0053DF9C /* GRMapView.swift in Sources */,
 				C61C68472AB1947B0053DF9C /* MGListItem.swift in Sources */,
 				575FB55A2AB598050079B6E8 /* SensorMapView.swift in Sources */,
-				69B1DA0B2AB328F4001777F9 /* TemperatureTab.swift in Sources */,
 				707A20C82ADA9C12005501FE /* DashboardDateTimePicker.swift in Sources */,
 				707A20C52ADA9C12005501FE /* DashboardSensorPicker.swift in Sources */,
 				69B1DA172AB45D61001777F9 /* SelectionView.swift in Sources */,
@@ -980,11 +964,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = AquaTerra/AquaTerra.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6HQ229LF2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AquaTerra/Info.plist;
@@ -1002,7 +988,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redback.AquaTerra.AquaTerra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;
@@ -1019,11 +1005,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = AquaTerra/AquaTerra.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "-";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"AquaTerra/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 6HQ229LF2Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = AquaTerra/Info.plist;
@@ -1041,7 +1029,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.3;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.redback.AquaTerra.AquaTerra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = auto;

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is a Header component
 struct CustomHeaderView: View {
     var title : String
     

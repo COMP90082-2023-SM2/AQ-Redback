@@ -8,6 +8,7 @@
 import Amplify
 import SwiftUI
 
+// This tab bar which can be navigate to Dashboard, Farm management page and User profile page
 struct SwitchView: View {
     
     @State var selectedTab: Tabs = .manage

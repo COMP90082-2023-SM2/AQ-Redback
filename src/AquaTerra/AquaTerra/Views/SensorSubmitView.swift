@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is SensorSubmitView
 struct SensorSubmitView: View {
     @State private var state = true
     var gateway : String

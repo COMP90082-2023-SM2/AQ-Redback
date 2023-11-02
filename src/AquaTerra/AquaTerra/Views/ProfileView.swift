@@ -9,7 +9,7 @@ import SwiftUI
 import Amplify
 import AWSMobileClient
 
-
+// This user profile page
 struct ProfileView: View {
     @State var selectedTab: Tabs = .profile
     @Binding var user: AuthUser

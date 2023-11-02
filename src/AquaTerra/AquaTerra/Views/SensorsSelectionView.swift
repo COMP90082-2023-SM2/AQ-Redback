@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is sensor selection view
 struct SensorsSelectionView: View {
     @Environment(\.presentationMode) var presentationMode
     @State private var showV1 = false

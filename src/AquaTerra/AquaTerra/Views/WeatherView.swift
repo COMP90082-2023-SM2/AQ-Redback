@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This wather component view page
 struct WeatherView: View {
     var weatherManager = WeatherManager()
     @State var weather: ResponseBody?

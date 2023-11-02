@@ -9,7 +9,7 @@ import SwiftUI
 import CoreLocation
 import MapKit
 import SimpleToast
-
+// This is three steps for edit sensor view
 struct SensorEditView: View {
     @Environment(\.presentationMode) var presentationMode
     

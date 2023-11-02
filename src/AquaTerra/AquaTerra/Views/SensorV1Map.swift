@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-
+// This is sensor v1 map with zone
 struct SensorMapViewVOne: View {
     @Binding var fullScreen : Bool
     @Binding var selectPosion: CLLocationCoordinate2D?

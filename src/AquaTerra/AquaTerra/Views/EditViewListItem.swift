@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This edit item view
 struct EditViewListItem: View {
     @State var title: String
     @Binding var detail: String?

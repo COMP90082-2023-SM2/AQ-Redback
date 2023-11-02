@@ -8,6 +8,7 @@
 import Amplify
 import SwiftUI
 
+// This is Farm management page
 struct SessionView: View {
     
     @State var selectedTab: Tabs = .manage

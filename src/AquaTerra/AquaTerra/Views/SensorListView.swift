@@ -5,7 +5,7 @@
 //  Created by Davincci on 9/9/2023.
 //
 import SwiftUI
-
+// This is sensor list view page
 struct SensorListView: View {
     @State var fieldData: [FieldData]
 

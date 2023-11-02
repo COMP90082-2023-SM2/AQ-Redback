@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is sensor id bar view
 struct SensorIDBar: View {
     @State var sensorDetail: SensorDetail?
     var colors : [Color] = [.init(hex: "#7FAF3A"),.init(hex: "#85B3A4")]

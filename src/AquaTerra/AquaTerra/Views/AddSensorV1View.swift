@@ -9,7 +9,7 @@ import SwiftUI
 import MapKit
 import CoreLocation
 import SimpleToast
-
+// This is page for creating V1 sensor with three steps process
 struct AddSensorV1View: View {
     @ObservedObject var viewModel: SessionViewViewModel
     @Binding var showAddSensorSheet: Bool

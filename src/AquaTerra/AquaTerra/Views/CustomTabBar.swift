@@ -14,6 +14,7 @@ enum Tabs: String, CaseIterable {
     case profile
 }
 
+// This custom tab bar which can be navigate to Dashboard, Farm management page and User profile page
 struct CustomTabBar: View {
     
     
@@ -48,11 +49,7 @@ struct CustomTabBar: View {
                         }label: {
                             TabBarItemIcon(imgName: "Home", isActive: selectedTab == .home, width: 32, height: 30)
                         }
-//                        .navigationDestination(isPresented: $showDashboardView){
-//                            DashboardView(user: $user)
-//                        }
-//                        .navigationBarBackButtonHidden(true)
-//
+
                         Button{
                             //Switch to manage
                             if selectedTab == .manage {
@@ -64,11 +61,7 @@ struct CustomTabBar: View {
                         }label: {
                             TabBarItemIcon(imgName: "Manage", isActive: selectedTab == .manage, width: 36, height: 36)
                         }
-//                        .navigationDestination(isPresented: $showSessionView){
-//                            SessionView(user: $user)
-//                        }
-//                        .navigationBarBackButtonHidden(true)
-//
+
                         Button{
                             //Switch to Home
                             if selectedTab == .profile {
@@ -80,10 +73,7 @@ struct CustomTabBar: View {
                         }label: {
                             TabBarItemIcon(imgName: "User", isActive: selectedTab == .profile, width: 34, height: 34)
                         }
-//                        .navigationDestination(isPresented: $showProfileView){
-//                            ProfileView(user: $user)
-//                        }
-//                        .navigationBarBackButtonHidden(true)
+
                     }.frame(width: 335, height: 90)
                 }
         

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is sign up alert view
 struct SignUpAlertView: View {
     
     let title: String

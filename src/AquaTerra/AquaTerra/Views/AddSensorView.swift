@@ -9,6 +9,7 @@ import MapKit
 import CoreLocation
 import SimpleToast
 
+// This is Create Sensor V2 page which has three steps of process
 struct AddSensorView: View {
     @ObservedObject var viewModel: SessionViewViewModel
     @Binding var showAddSensorSheet: Bool

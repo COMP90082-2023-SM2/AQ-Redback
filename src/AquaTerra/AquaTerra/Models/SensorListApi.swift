@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-
+// This class is used to handle network requests and operations related to sensors and data.
 final class SensorListApi {
     static let shared = SensorListApi()
     var currentUserUsername: String?

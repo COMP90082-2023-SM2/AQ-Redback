@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is selection page for filter
 struct SelectionView: View {
     @Binding var selectedFieldName: FieldData?
     @ObservedObject var viewModel: SessionViewViewModel

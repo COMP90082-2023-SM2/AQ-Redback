@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This style setting for the card view
 struct ManageCardView: View {
     var imgName : String
     var TextName: String
@@ -30,8 +30,3 @@ struct ManageCardView: View {
     }
 }
 
-//struct ManageCardView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ManageCardView()
-//    }
-//}

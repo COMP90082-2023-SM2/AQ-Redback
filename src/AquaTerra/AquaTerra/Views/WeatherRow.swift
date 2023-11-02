@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is weather view
 struct WeatherRow: View {
     var logo: String
     var name: String

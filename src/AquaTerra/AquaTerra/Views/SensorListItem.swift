@@ -7,7 +7,7 @@
 
 import SwiftUI
 import MapKit
-
+// This is sensor list item view
 struct SensorListItem: View {
     @State var sensorID : String
     @State var gatewayID : String

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+// This is sign-up function, curently Temporary blocked.
 struct SignUpView: View {
     
     @EnvironmentObject var sessionViewViewModel: SessionViewViewModel
