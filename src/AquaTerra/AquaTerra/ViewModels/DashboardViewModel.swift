@@ -202,10 +202,14 @@ class DashboardViewModel: ObservableObject {
     @MainActor
     func fetchLatestRecord() async throws {
         if let moisture = try await SensorListApi.shared.getMoisture(fieldName: fieldSelection.field_name, sensorId: sensorSelection.sensor_id) {
-            let sensorFormula = sensorFormulas[moisture.sensor_id]!
-            latestRecord = transferMoisture(moisture: moisture, sensorFormula: sensorFormula)
+            if let sensorFormula = sensorFormulas[moisture.sensor_id] {
+                latestRecord = transferMoisture(moisture: moisture, sensorFormula: sensorFormula)
+            } else {
+                
+            }
         }
     }
+
     
     @MainActor
     func fetchEvaporations() async throws {
