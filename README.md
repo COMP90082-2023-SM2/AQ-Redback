@@ -110,8 +110,11 @@ In Sprint 3, we focused on the implementation of the dashboard, user profile pag
 4. Dashboard Page: This page enabled users to get a quick overview of the sensors, their current status and their statuses over time. Users can view the moisture level, battery level, and temperature level of each sensor within the field.  They can see details of each sensor, their evaporation over time, average soil moisture as well as the weather prediction of the field.
 
 ### Product Demonstration  
-Due to the absence of Apple developer accounts provided by our client, regrettably, we are unable to proceed with the deployment of our product. However, in an effort to showcase the functionality and features we have successfully developed, we have prepared a series of comprehensive demonstration videos. 
-Please visit this link: https://confluence.cis.unimelb.edu.au:8443/display/COMP900822023SM2AQRedBack/Product+Demonstration to have a nice overview of our product.  
+Our final product demonstration video can be found on youtube: https://youtu.be/CvloBxfRaH0. Please visit this link to have a better view of the video.
+
+## Product Depolyment
+Our ios mobile app product has been deployed and uploaded to testflight for testing. Please visit this link: https://testflight.apple.com/join/g5narCPW and follow in instructions to use the app on iphone devices.
+
 
 ### Test Plans  
 https://confluence.cis.unimelb.edu.au:8443/pages/viewpage.action?pageId=146647404  
