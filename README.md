@@ -112,7 +112,7 @@ In Sprint 3, we focused on the implementation of the dashboard, user profile pag
 ### Product Demonstration  
 Our final product demonstration video can be found on youtube: https://youtu.be/CvloBxfRaH0. Please visit this link to have a better view of the video.
 
-## Product Depolyment
+### Product Depolyment
 Our ios mobile app product has been deployed and uploaded to testflight for testing. Please visit this link: https://testflight.apple.com/join/g5narCPW and follow in instructions to use the app on iphone devices.
 
 
